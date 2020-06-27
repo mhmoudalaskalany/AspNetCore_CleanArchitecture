@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BackendCore.Api</name>
+    </assembly>
+    <members>
+        <member name="T:BackendCore.Api.Controllers.AccountsController">
+            <summary>
+            App Controller
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.AccountsController.#ctor(BackendCore.Service.Services.Login.ILoginService,BackendCore.Service.Services.Base.ITokenService)">
+            <inheritdoc />
+        </member>
+        <member name="M:BackendCore.Api.Controllers.AccountsController.Login(BackendCore.Common.DTO.Login.LoginParameters)">
+            <summary>
+            Login 
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BackendCore.Api.Controllers.Base.BaseController">
+            <inheritdoc />
+        </member>
+        <member name="F:BackendCore.Api.Controllers.Base.BaseController.TokenService">
+            <summary>
+            Token Business Property
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Base.BaseController.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Base.BaseController.#ctor(BackendCore.Service.Services.Base.ITokenService)">
+            <inheritdoc />
+        </member>
+        <member name="T:BackendCore.Api.Controllers.PermissionsController">
+            <summary>
+            App Controller
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.PermissionsController.#ctor(BackendCore.Service.Services.Permission.IPermissionService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.PermissionsController.GetAsync(System.Int64)">
+            <summary>
+            Get By Id 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.PermissionsController.GetAllAsync">
+            <summary>
+            Get All 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.PermissionsController.GetPagedAsync(BackendCore.Common.DTO.Base.BaseParam{BackendCore.Common.DTO.Permission.Parameters.PermissionFilter})">
+            <summary>
+            GetAll Data paged
+            </summary>
+            <param name="filter">Filter responsible for search and sort</param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.PermissionsController.AddAsync(BackendCore.Common.DTO.Permission.AddPermissionDto)">
+            <summary>
+            Add 
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.PermissionsController.UpdateAsync(BackendCore.Common.DTO.Permission.AddPermissionDto)">
+            <summary>
+            Update  
+            </summary>
+            <param name="model">Object content</param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.PermissionsController.DeleteAsync(System.Int64)">
+            <summary>
+            Remove  by id
+            </summary>
+            <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="T:BackendCore.Api.Controllers.UsersController">
+            <summary>
+            App Controller
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.UsersController.#ctor(BackendCore.Service.Services.User.IUserService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.UsersController.GetAsync(System.Int64)">
+            <summary>
+            Get By Id 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.UsersController.GetAllAsync">
+            <summary>
+            Get All 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.UsersController.GetPagedAsync(BackendCore.Common.DTO.Base.BaseParam{BackendCore.Common.DTO.User.Parameters.UserFilter})">
+            <summary>
+            GetAll Data paged
+            </summary>
+            <param name="filter">Filter responsible for search and sort</param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.UsersController.AddAsync(BackendCore.Common.DTO.User.AddUserDto)">
+            <summary>
+            Add 
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.UsersController.UpdateAsync(BackendCore.Common.DTO.User.AddUserDto)">
+            <summary>
+            Update  
+            </summary>
+            <param name="model">Object content</param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.UsersController.DeleteAsync(System.Int64)">
+            <summary>
+            Remove  by id
+            </summary>
+            <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="T:BackendCore.Api.Extensions.ConfigureExtension">
+            <summary>
+            Pipeline Extensions
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureExtension.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            General Configuration Method
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureExtension.ConfigureCors(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Configure Cors
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureExtension.SwaggerConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            User Swagger
+            </summary>
+            <param name="app"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:BackendCore.Api.Extensions.ConfigureServiceExtension">
+            <summary>
+            Dependency Extensions
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureServiceExtension.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Register Extensions
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureServiceExtension.RegisterDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Add DbContext
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureServiceExtension.RegisterAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            register auto-mapper
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureServiceExtension.RegisterCores(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register Main Core
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="T:BackendCore.Api.Program">
+            <summary>
+            Start Point
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Program.Main(System.String[])">
+            <summary>
+            Kick Off
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:BackendCore.Api.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Build Web Host
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BackendCore.Api.Startup">
+            <summary>
+            Start Up Class
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:BackendCore.Api.Startup.Configuration">
+            <summary>
+            Public Configuration Property
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configure Dependencies
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:BackendCore.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Configure Pipeline
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>
