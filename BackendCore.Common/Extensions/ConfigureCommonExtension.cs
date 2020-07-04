@@ -89,6 +89,7 @@ namespace BackendCore.Common.Extensions
                 options.AddSecurityRequirement(security);
 
             });
+            services.AddSwaggerGenNewtonsoftSupport();
         }
     }
 }
