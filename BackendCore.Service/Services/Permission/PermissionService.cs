@@ -25,7 +25,7 @@ namespace BackendCore.Service.Services.Permission
             {
                 int limit = filter.PageSize;
                 int offset = ((--filter.PageNumber) * filter.PageSize);
-                var query = await UnitOfWork.Repository.FindPaggedAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
+                var query = await UnitOfWork.Repository.FindPagedAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
                 var data = Mapper.Map<IEnumerable<Entities.Entities.Permission>, IEnumerable<PermissionDto>>(query.Item2);
                 return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, ResponseResult.PostResult(data, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString()));
             }

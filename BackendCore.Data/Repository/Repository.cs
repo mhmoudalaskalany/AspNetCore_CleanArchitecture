@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using BackendCore.Common.Abstraction.Repository;
 using BackendCore.Common.Extensions;
@@ -68,7 +69,7 @@ namespace BackendCore.Data.Repository
             }
             return await query.ToListAsync();
         }
-        public async Task<(int, IEnumerable<T>)> FindPaggedAsync(Expression<Func<T, bool>> predicate = null, int skip = 0, int take = 0, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true)
+        public async Task<(int, IEnumerable<T>)> FindPagedAsync(Expression<Func<T, bool>> predicate = null, int skip = 0, int take = 0, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true)
         {
             IQueryable<T> query = DbSet;
             if (disableTracking)
@@ -82,7 +83,8 @@ namespace BackendCore.Data.Repository
             int count = query.Count();
             if (orderByCriteria != null)
             {
-                query = query.OrderBy(orderByCriteria).Skip(skip).Take(take);
+                var field = orderByCriteria.First().PairAsSqlExpression;
+                query = query.OrderBy(field).Skip(skip).Take(take);
             }
             if (include != null)
             {
