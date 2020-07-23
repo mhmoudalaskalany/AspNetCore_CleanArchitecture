@@ -81,7 +81,6 @@ namespace BackendCore.Service.Services.Base
                     Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
                         message: "Data Inserted Successfully");
                 }
-
                 Result.Data = model;
                 return Result;
             }
