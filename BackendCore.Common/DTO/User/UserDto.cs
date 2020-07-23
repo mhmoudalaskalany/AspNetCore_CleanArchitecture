@@ -2,7 +2,7 @@
 
 namespace BackendCore.Common.DTO.User
 {
-    public class UserDto : IPrimaryKeyField<long?>
+    public class UserDto : IEntityDto<long?>
     {
         public long? Id { get; set; }
         public string NameEn { get; set; }

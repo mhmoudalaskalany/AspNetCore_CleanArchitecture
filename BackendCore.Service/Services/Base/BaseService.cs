@@ -5,19 +5,22 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BackendCore.Common.Abstraction.UnitOfWork;
 using BackendCore.Common.Core;
+using BackendCore.Entities.Entities.Base;
 
 namespace BackendCore.Service.Services.Base
 {
-    public class BaseService<T, TDto, TGetDto> : IBaseService<T, TDto, TGetDto>
-        where T : class
-        where TDto : IPrimaryKeyField<long?>
+    public class BaseService<T, TDto, TGetDto, TKey, TKeyDto> 
+        : IBaseService<T, TDto, TGetDto, TKey, TKeyDto>
+        where T : BaseEntity<TKey>
+        where TDto : IEntityDto<TKeyDto>
+        where TGetDto : IEntityDto<TKeyDto>
     {
-        protected readonly IUnitOfWork<T> UnitOfWork;
+        protected readonly IUnitOfWork<T,TKey> UnitOfWork;
         protected readonly IMapper Mapper;
         protected readonly IResponseResult ResponseResult;
         protected IResult Result;
 
-        protected internal BaseService(IServiceBaseParameter<T> businessBaseParameter)
+        protected internal BaseService(IServiceBaseParameter<T, TKey> businessBaseParameter)
         {
             UnitOfWork = businessBaseParameter.UnitOfWork;
             ResponseResult = businessBaseParameter.ResponseResult;

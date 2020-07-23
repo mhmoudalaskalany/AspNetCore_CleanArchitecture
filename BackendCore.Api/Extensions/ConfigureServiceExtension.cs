@@ -72,9 +72,9 @@ namespace BackendCore.Api.Extensions
         /// <param name="services"></param>
         private static void RegisterCores(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IBaseService<,,>), typeof(BaseService<,,>));
-            services.AddTransient(typeof(IServiceBaseParameter<>), typeof(ServiceBaseParameter<>));
-            services.AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+            services.AddTransient(typeof(IBaseService<,,,,>), typeof(BaseService<,,,,>));
+            services.AddTransient(typeof(IServiceBaseParameter<,>), typeof(ServiceBaseParameter<,>));
+            services.AddTransient(typeof(IUnitOfWork<,>), typeof(UnitOfWork<,>));
             var servicesToScan = Assembly.GetAssembly(typeof(PermissionService)); //..or whatever assembly you need
             services.RegisterAssemblyPublicNonGenericClasses(servicesToScan)
                 .Where(c => c.Name.EndsWith("Service"))

@@ -5,9 +5,8 @@ using BackendCore.Entities.Entities.Base;
 
 namespace BackendCore.Entities.Entities
 {
-    public class Role : BaseEntity
+    public class Role : BaseEntity<long>
     {
-        public long Id { get; set; }
         public string NameAr { get; set; }
         public string NameEn { get; set; }
         public virtual  ICollection<User> Users{ get; set; } = new Collection<User>();

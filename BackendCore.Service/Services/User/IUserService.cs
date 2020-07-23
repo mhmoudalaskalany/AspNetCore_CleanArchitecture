@@ -7,7 +7,7 @@ using BackendCore.Service.Services.Base;
 
 namespace BackendCore.Service.Services.User
 {
-    public interface IUserService : IBaseService<Entities.Entities.User, AddUserDto, UserDto>
+    public interface IUserService : IBaseService<Entities.Entities.User, AddUserDto, UserDto , long, long?>
     {
         Task<DataPaging> GetAllPagedAsync(BaseParam<UserFilter> filter);
     }

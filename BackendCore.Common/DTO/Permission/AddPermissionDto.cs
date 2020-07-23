@@ -2,7 +2,7 @@
 
 namespace BackendCore.Common.DTO.Permission
 {
-    public class AddPermissionDto : IPrimaryKeyField<long?>
+    public class AddPermissionDto : IEntityDto<long?>
     {
         public long? Id { get; set; }
         public string NameEn { get; set; }

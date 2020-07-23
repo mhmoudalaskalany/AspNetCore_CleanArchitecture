@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BackendCore.Common.Core;
+using BackendCore.Entities.Entities.Base;
 
 namespace BackendCore.Service.Services.Base
 {
-    public interface IBaseService<T, TDto, TGetDto>
+    public interface IBaseService<T, TDto, TGetDto, TKey , TKeyDto>
+        where T : BaseEntity<TKey>
+        where TDto : IEntityDto<TKeyDto>
+        where TGetDto : IEntityDto<TKeyDto>
     {
         Task<IResult> GetAllAsync(bool disableTracking = false);
         Task<IResult> AddAsync(TDto model);

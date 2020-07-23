@@ -12,9 +12,9 @@ using LinqKit;
 
 namespace BackendCore.Service.Services.Permission
 {
-    public class PermissionService : BaseService<Entities.Entities.Permission, AddPermissionDto, PermissionDto>, IPermissionService
+    public class PermissionService : BaseService<Entities.Entities.Permission, AddPermissionDto, PermissionDto , long , long?>, IPermissionService
     {
-        public PermissionService(IServiceBaseParameter<Entities.Entities.Permission> parameters) : base(parameters)
+        public PermissionService(IServiceBaseParameter<Entities.Entities.Permission , long> parameters) : base(parameters)
         {
 
         }

@@ -12,9 +12,9 @@ using LinqKit;
 
 namespace BackendCore.Service.Services.User
 {
-    public class UserService : BaseService<Entities.Entities.User, AddUserDto, UserDto>, IUserService
+    public class UserService : BaseService<Entities.Entities.User, AddUserDto, UserDto , long, long?>, IUserService
     {
-        public UserService(IServiceBaseParameter<Entities.Entities.User> parameters) : base(parameters)
+        public UserService(IServiceBaseParameter<Entities.Entities.User,long> parameters) : base(parameters)
         {
 
         }
@@ -25,7 +25,7 @@ namespace BackendCore.Service.Services.User
             {
                 int limit = filter.PageSize;
                 int offset = ((--filter.PageNumber) * filter.PageSize);
-                var query = await UnitOfWork.Repository.FindPaggedAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
+                var query = await UnitOfWork.Repository.FindPagedAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
                 var data = Mapper.Map<IEnumerable<Entities.Entities.User>, IEnumerable<UserDto>>(query.Item2);
                 return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, ResponseResult.PostResult(data, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString()));
             }

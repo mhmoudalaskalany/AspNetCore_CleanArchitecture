@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BackendCore.Service.Services.Login
 {
-    public class LoginService : BaseService<Entities.Entities.User,AddUserDto, UserDto>, ILoginService
+    public class LoginService : BaseService<Entities.Entities.User,AddUserDto, UserDto, long , long?>, ILoginService
     {
         private readonly ITokenService _tokenBusiness;
-        public LoginService(IServiceBaseParameter<Entities.Entities.User> businessBaseParameter, ITokenService tokenBusiness) : base(businessBaseParameter)
+        public LoginService(IServiceBaseParameter<Entities.Entities.User , long> businessBaseParameter, ITokenService tokenBusiness) : base(businessBaseParameter)
         {
             _tokenBusiness = tokenBusiness;
         }
