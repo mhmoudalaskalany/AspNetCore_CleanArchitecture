@@ -5,26 +5,37 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BackendCore.Common.Abstraction.UnitOfWork;
 using BackendCore.Common.Core;
+using BackendCore.Common.DTO.Base;
 using BackendCore.Entities.Entities.Base;
+using Microsoft.AspNetCore.Http;
 
 namespace BackendCore.Service.Services.Base
 {
-    public class BaseService<T, TDto, TGetDto, TKey, TKeyDto> 
+    public class BaseService<T, TDto, TGetDto, TKey, TKeyDto>
         : IBaseService<T, TDto, TGetDto, TKey, TKeyDto>
         where T : BaseEntity<TKey>
         where TDto : IEntityDto<TKeyDto>
         where TGetDto : IEntityDto<TKeyDto>
     {
-        protected readonly IUnitOfWork<T,TKey> UnitOfWork;
+        protected readonly IUnitOfWork<T, TKey> UnitOfWork;
         protected readonly IMapper Mapper;
         protected readonly IResponseResult ResponseResult;
         protected IResult Result;
+        protected IHttpContextAccessor HttpContextAccessor;
+        protected TokenClaimDto ClaimData { get; set; }
 
         protected internal BaseService(IServiceBaseParameter<T, TKey> businessBaseParameter)
         {
+            HttpContextAccessor = businessBaseParameter.HttpContextAccessor;
             UnitOfWork = businessBaseParameter.UnitOfWork;
             ResponseResult = businessBaseParameter.ResponseResult;
             Mapper = businessBaseParameter.Mapper;
+            var claims = HttpContextAccessor.HttpContext.User;
+            ClaimData = new TokenClaimDto()
+            {
+                UserId = claims?.FindFirst(t => t.Type == "UserId")?.Value,
+                Email = claims?.FindFirst(t => t.Type == "Email")?.Value
+            };
         }
 
         public virtual async Task<IResult> GetAllAsync(bool disableTracking = false)
