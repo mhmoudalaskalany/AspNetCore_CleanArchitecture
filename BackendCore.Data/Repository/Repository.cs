@@ -131,6 +131,15 @@ namespace BackendCore.Data.Repository
         {
             DbSet.Remove(entity);
         }
+        public void RemoveLogical(T entity)
+        {
+            var type = entity.GetType();
+            var property = type.GetProperty("IsDeleted");
+            if (property != null) property.SetValue(entity, true);
+            var id = type.GetProperty("Id")?.GetValue(entity);
+            var original = DbSet.Find(id);
+            Update(original, entity);
+        }
         public async void Remove(Expression<Func<T, bool>> predicate)
         {
             var objects = await DbSet.FindAsync(predicate);

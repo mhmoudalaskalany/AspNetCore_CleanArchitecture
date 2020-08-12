@@ -22,6 +22,7 @@ namespace BackendCore.Common.Abstraction.Repository
         void Update(T originalEntity, T newEntity);
         void UpdateRange(IEnumerable<T> newEntities);
         void Remove(T entity);
+        void RemoveLogical(T entity);
         void Remove(Expression<Func<T, bool>> predicate);
         void RemoveRange(IEnumerable<T> entities);
     }
