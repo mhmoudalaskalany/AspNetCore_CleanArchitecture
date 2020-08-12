@@ -138,6 +138,28 @@ namespace BackendCore.Service.Services.Base
                 return Result;
             }
         }
+        public virtual async Task<IResult> DeleteSoftAsync(long id)
+        {
+            try
+            {
+                var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
+                UnitOfWork.Repository.RemoveLogical(entityToDelete);
+                int affectedRows = await UnitOfWork.SaveChanges();
+                if (affectedRows > 0)
+                {
+                    Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
+                        message: "Data Deleted Successfully");
+                }
+
+                return Result;
+            }
+            catch (Exception e)
+            {
+                Result.Message = e.InnerException != null ? e.InnerException.Message : e.Message;
+                Result = new ResponseResult(null, HttpStatusCode.InternalServerError, e, Result.Message);
+                return Result;
+            }
+        }
 
         public virtual async Task<IResult> GetByIdAsync(long id)
         {

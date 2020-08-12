@@ -90,6 +90,17 @@ namespace BackendCore.Api.Controllers
             return await _userService.DeleteAsync(id);
         }
 
+        /// <summary>
+        /// Soft Remove  by id
+        /// </summary>
+        /// <param name="id">PK</param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public async Task<IResult> DeleteSoftAsync(long id)
+        {
+            return await _userService.DeleteSoftAsync(id);
+        }
+
 
     }
 }

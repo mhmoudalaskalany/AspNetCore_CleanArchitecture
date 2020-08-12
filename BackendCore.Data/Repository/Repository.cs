@@ -123,9 +123,9 @@ namespace BackendCore.Data.Repository
         {
             Context.Entry(originalEntity).CurrentValues.SetValues(newEntity);
         }
-        public void UpdateRange(IEnumerable<T> newEntitie)
+        public void UpdateRange(IEnumerable<T> newEntities)
         {
-            Context.UpdateRange(newEntitie);
+            Context.UpdateRange(newEntities);
         }
         public void Remove(T entity)
         {

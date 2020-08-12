@@ -15,6 +15,7 @@ namespace BackendCore.Service.Services.Base
         Task<IResult> AddListAsync(List<TDto> model);
         Task<IResult> UpdateAsync(TDto model);
         Task<IResult> DeleteAsync(long id);
+        Task<IResult> DeleteSoftAsync(long id);
         Task<IResult> GetByIdAsync(long id);
     }
 }
