@@ -52,9 +52,6 @@ namespace BackendCore.Api.Extensions
             services.AddSingleton<IDataInitializer, DataInitializer>();
         }
 
-        
-
-
 
         /// <summary>
         /// register auto-mapper
