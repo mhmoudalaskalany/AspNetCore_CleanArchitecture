@@ -7,5 +7,6 @@ namespace BackendCore.Service.Services.Login
     public interface ILoginService
     {
         Task<IResult> Login(LoginParameters parameters);
+        Task<IResult> AdLogin(LoginParameters parameters);
     }
 }
