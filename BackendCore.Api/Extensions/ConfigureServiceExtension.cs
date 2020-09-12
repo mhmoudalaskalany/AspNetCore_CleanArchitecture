@@ -1,13 +1,19 @@
 ﻿using System.Reflection;
 using AutoMapper;
+using BackendCore.Common.Abstraction.Repository.ActiveDirectory;
 using BackendCore.Common.Abstraction.UnitOfWork;
+using BackendCore.Common.EmailHelper;
 using BackendCore.Common.Extensions;
+using BackendCore.Common.MediaUploader;
 using BackendCore.Data.Context;
 using BackendCore.Data.DataInitializer;
+using BackendCore.Data.Repository.ActiveDirectory;
 using BackendCore.Data.UnitOfWork;
+using BackendCore.Service.Helper;
 using BackendCore.Service.Mapping;
 using BackendCore.Service.Services.Base;
 using BackendCore.Service.Services.Permission;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +37,7 @@ namespace BackendCore.Api.Extensions
         {
             services.RegisterDbContext(configuration);
             services.RegisterCores();
+            services.RegisterRepository();
             services.RegisterAutoMapper();
             services.RegisterCommonServices(configuration);
             services.AddControllers();
@@ -64,11 +71,24 @@ namespace BackendCore.Api.Extensions
         }
 
         /// <summary>
+        /// Register Custom Repositories
+        /// </summary>
+        /// <param name="services"></param>
+        private static void RegisterRepository(this IServiceCollection services)
+        {
+            services.AddScoped<IActiveDirectoryRepository, ActiveDirectoryRepository>();
+        }
+
+        /// <summary>
         /// Register Main Core
         /// </summary>
         /// <param name="services"></param>
         private static void RegisterCores(this IServiceCollection services)
         {
+            services.AddSingleton<AppHelper>();
+            services.AddSingleton<ISendMail, SendMail>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IUploaderConfiguration, UploaderConfiguration>();
             services.AddTransient(typeof(IBaseService<,,,,>), typeof(BaseService<,,,,>));
             services.AddTransient(typeof(IServiceBaseParameter<,>), typeof(ServiceBaseParameter<,>));
             services.AddTransient(typeof(IUnitOfWork<,>), typeof(UnitOfWork<,>));
