@@ -110,7 +110,63 @@ namespace BackendCore.Data.Repository
             }
             return await query.ToListAsync();
         }
+        
+        
+        public async Task<ICollection<TType>> GetSelectAsync<TType>(Expression<Func<T, bool>> where, Expression<Func<T, TType>> select) where TType : class
+        {
+            return await DbSet.Where(where).Select(select).ToListAsync();
+        }
+        public async Task<IEnumerable<TType>> FindSelectAsync<TType>(Expression<Func<T, TType>> select, Expression<Func<T, bool>> predicate = null, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true) where TType : class
+        {
+            IQueryable<T> query = DbSet;
+            if (disableTracking)
+            {
+                query = query.AsNoTracking();
+            }
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+            if (orderByCriteria != null)
+            {
+                query = query.OrderBy(orderByCriteria);
+            }
+            if (include != null)
+            {
+                query = include(query);
+            }
+            return await query.Select(select).ToListAsync();
+        }
+        public async Task<(int, IEnumerable<TType>)> FindPagedSelectAsync<TType>(Expression<Func<T, TType>> select, Expression<Func<T, bool>> predicate = null, int skip = 0, int take = 0, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true) where TType : class
+        {
+            IQueryable<T> query = DbSet;
+            if (disableTracking)
+            {
+                query = query.AsNoTracking();
+            }
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+            if (include != null)
+            {
+                query = include(query);
+            }
+            var count = query.Count();
+            if (orderByCriteria == null) return (count, await query.Skip(skip).Take(take).Select(select).ToListAsync());
+            var field = orderByCriteria.First().PairAsSqlExpression;
+            query = query.OrderBy(field).Skip(skip).Take(take);
 
+            return (count, await query.Select(select).ToListAsync());
+        }
+        public async Task<int> Count(Expression<Func<T, bool>> predicate = null) => predicate == null ? await DbSet.CountAsync() : await DbSet.CountAsync(predicate);
+        public async Task<TB> Max<TB>(Expression<Func<T, TB>> selector, Expression<Func<T, bool>> predicate = null)
+        {
+            if (predicate == null)
+                return await DbSet.MaxAsync(selector);
+            return await DbSet.Where(predicate).MaxAsync(selector);
+        }
+        public async Task<bool> Any(Expression<Func<T, bool>> predicate = null) => predicate == null ? await DbSet.AnyAsync() : await DbSet.AnyAsync(predicate);
         public T Add(T newEntity)
         {
             return DbSet.Add(newEntity).Entity;
