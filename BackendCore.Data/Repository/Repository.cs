@@ -12,7 +12,7 @@ using BackendCore.Entities.Entities.Base;
 
 namespace BackendCore.Data.Repository
 {
-    public class Repository<T,TKey> : IRepository<T,TKey> where T : BaseEntity<TKey>
+    public class Repository<T,TKey> : IRepository<T,TKey> where T : class
     {
         protected readonly DbContext Context;
         protected DbSet<T> DbSet;

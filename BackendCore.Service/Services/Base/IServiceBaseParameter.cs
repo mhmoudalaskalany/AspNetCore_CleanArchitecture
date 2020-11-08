@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace BackendCore.Service.Services.Base
 {
-    public interface IServiceBaseParameter<T,TKey> where T : BaseEntity<TKey>
+    public interface IServiceBaseParameter<T,TKey> where T : class
     {
         IMapper Mapper { get; set; }
         IUnitOfWork<T,TKey> UnitOfWork { get; set; }

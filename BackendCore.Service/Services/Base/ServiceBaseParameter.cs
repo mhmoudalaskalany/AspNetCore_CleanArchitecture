@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace BackendCore.Service.Services.Base
 {
-    public class ServiceBaseParameter<T,TKey> : IServiceBaseParameter<T,TKey> where T : BaseEntity<TKey>
+    public class ServiceBaseParameter<T,TKey> : IServiceBaseParameter<T,TKey> where T : class
     {
 
         public ServiceBaseParameter(

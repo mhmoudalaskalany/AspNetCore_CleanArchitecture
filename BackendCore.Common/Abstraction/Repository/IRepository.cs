@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Query;
 
 namespace BackendCore.Common.Abstraction.Repository
 {
-    public interface IRepository<T,TKey> where T : BaseEntity<TKey>
+    public interface IRepository<T,TKey> where T : class
     {
         Task<T> GetAsync(params object[] keys);
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true);

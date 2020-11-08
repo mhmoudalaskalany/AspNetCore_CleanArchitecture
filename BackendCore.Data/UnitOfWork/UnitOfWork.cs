@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace BackendCore.Data.UnitOfWork
 {
-    public class UnitOfWork<T,TKey> : IUnitOfWork<T,TKey> where T : BaseEntity<TKey>
+    public class UnitOfWork<T,TKey> : IUnitOfWork<T,TKey> where T : class 
     {
         private DbContext _context;
         private IDbContextTransaction _transaction;

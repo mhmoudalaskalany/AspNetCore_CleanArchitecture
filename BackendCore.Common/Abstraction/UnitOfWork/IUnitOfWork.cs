@@ -5,7 +5,7 @@ using BackendCore.Entities.Entities.Base;
 
 namespace BackendCore.Common.Abstraction.UnitOfWork
 {
-    public interface IUnitOfWork<T,TKey> : IDisposable where T : BaseEntity<TKey>
+    public interface IUnitOfWork<T,TKey> : IDisposable where T : class
     {
         IRepository<T,TKey> Repository { get; }
         Task<int> SaveChanges();

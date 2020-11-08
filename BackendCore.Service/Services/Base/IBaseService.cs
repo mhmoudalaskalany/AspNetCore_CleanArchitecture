@@ -6,7 +6,7 @@ using BackendCore.Entities.Entities.Base;
 namespace BackendCore.Service.Services.Base
 {
     public interface IBaseService<T, TDto, TGetDto, TKey , TKeyDto>
-        where T : BaseEntity<TKey>
+        where T : class
         where TDto : IEntityDto<TKeyDto>
         where TGetDto : IEntityDto<TKeyDto>
     {
