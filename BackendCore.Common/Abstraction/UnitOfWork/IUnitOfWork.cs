@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using BackendCore.Common.Abstraction.Repository;
-using BackendCore.Entities.Entities.Base;
 
 namespace BackendCore.Common.Abstraction.UnitOfWork
 {
-    public interface IUnitOfWork<T,TKey> : IDisposable where T : class
+    public interface IUnitOfWork<T> : IDisposable where T : class
     {
-        IRepository<T,TKey> Repository { get; }
+        IRepository<T> Repository { get; }
+        IRepository<TB> GetRepository<TB>() where TB : class;
         Task<int> SaveChanges();
         void StartTransaction();
         void CommitTransaction();

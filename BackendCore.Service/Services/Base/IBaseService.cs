@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BackendCore.Common.Core;
-using BackendCore.Entities.Entities.Base;
 
 namespace BackendCore.Service.Services.Base
 {

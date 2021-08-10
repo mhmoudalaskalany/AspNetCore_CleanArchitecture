@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Mail;
 using Microsoft.Extensions.Configuration;
 
-namespace BackendCore.Common.EmailHelper
+namespace BackendCore.Common.Helpers.EmailHelper
 {
     public class SendMail : ISendMail
     {

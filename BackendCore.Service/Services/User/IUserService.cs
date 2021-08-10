@@ -9,6 +9,11 @@ namespace BackendCore.Service.Services.User
 {
     public interface IUserService : IBaseService<Entities.Entities.User, AddUserDto, UserDto , long, long?>
     {
+        /// <summary>
+        /// Get All Paged
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         Task<DataPaging> GetAllPagedAsync(BaseParam<UserFilter> filter);
     }
 }

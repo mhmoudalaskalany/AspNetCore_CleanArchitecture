@@ -8,11 +8,10 @@ using BackendCore.Common.Abstraction.Repository;
 using BackendCore.Common.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using BackendCore.Entities.Entities.Base;
 
 namespace BackendCore.Data.Repository
 {
-    public class Repository<T,TKey> : IRepository<T,TKey> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly DbContext Context;
         protected DbSet<T> DbSet;

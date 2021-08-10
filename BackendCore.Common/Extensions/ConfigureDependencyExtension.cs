@@ -2,6 +2,9 @@
 using System.IO;
 using System.Text;
 using BackendCore.Common.Core;
+using BackendCore.Common.Helpers.EmailHelper;
+using BackendCore.Common.Helpers.MailKitHelper;
+using Cex.Common.EmailHelper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -11,23 +14,45 @@ using Microsoft.OpenApi.Models;
 
 namespace BackendCore.Common.Extensions
 {
-    public static class ConfigureCommonExtension
+    public static class ConfigureDependencyExtension
     {
         public static IServiceCollection RegisterCommonServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddCors();
             services.RegisterMainCore();
+            services.RegisterEmailMetadata(configuration);
             services.AddApiDocumentationServices(configuration);
             services.RegisterAuthentication(configuration);
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             return services;
         }
 
+        /// <summary>
+        /// Register Main Core Dependencies
+        /// </summary>
+        /// <param name="services"></param>
         private static void RegisterMainCore(this IServiceCollection services)
         {
             services.AddTransient<IResponseResult, ResponseResult>();
             services.AddTransient<IResult, Result>();
+            services.AddSingleton<ISendMail, SendMail>();
+            services.AddSingleton<ISendMailKit, SendMailKit>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
+        /// <summary>
+        /// Register Notification Meta Data
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        private static void RegisterEmailMetadata(this IServiceCollection services, IConfiguration configuration)
+        {
+            var notificationMetadata = configuration.GetSection("EmailMetadata").Get<EmailMetadata>();
+            services.AddSingleton(notificationMetadata);
+        }
+        /// <summary>
+        /// Register Authentication
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
         private static void RegisterAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAuthentication(option =>
@@ -51,6 +76,11 @@ namespace BackendCore.Common.Extensions
                 };
             });
         }
+        /// <summary>
+        /// Register Api Swagger Documentation
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
 
         private static void AddApiDocumentationServices(this IServiceCollection services, IConfiguration configuration)
         {

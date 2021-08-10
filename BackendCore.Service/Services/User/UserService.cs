@@ -12,30 +12,38 @@ using LinqKit;
 
 namespace BackendCore.Service.Services.User
 {
-    public class UserService : BaseService<Entities.Entities.User, AddUserDto, UserDto , long, long?>, IUserService
+    public class UserService : BaseService<Entities.Entities.User, AddUserDto, UserDto, long, long?>, IUserService
     {
-        public UserService(IServiceBaseParameter<Entities.Entities.User,long> parameters) : base(parameters)
+        public UserService(IServiceBaseParameter<Entities.Entities.User> parameters) : base(parameters)
         {
 
         }
 
+        #region Public Methods
+        /// <summary>
+        /// Get All Paged
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public async Task<DataPaging> GetAllPagedAsync(BaseParam<UserFilter> filter)
         {
-            try
-            {
-                int limit = filter.PageSize;
-                int offset = ((--filter.PageNumber) * filter.PageSize);
-                var query = await UnitOfWork.Repository.FindPagedAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
-                var data = Mapper.Map<IEnumerable<Entities.Entities.User>, IEnumerable<UserDto>>(query.Item2);
-                return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, ResponseResult.PostResult(data, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString()));
-            }
-            catch (Exception e)
-            {
-                Result.Message = e.InnerException != null ? e.InnerException.Message : e.Message;
-                Result = new ResponseResult(null, status: HttpStatusCode.InternalServerError, exception: e, message: Result.Message);
-                return new DataPaging(0, 0, 0, Result);
-            }
+
+            int limit = filter.PageSize;
+            int offset = ((--filter.PageNumber) * filter.PageSize);
+            var query = await UnitOfWork.Repository.FindPagedAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.User>, IEnumerable<UserDto>>(query.Item2);
+            return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, ResponseResult.PostResult(data, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString()));
+
         }
+
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Predicate Builder
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         static Expression<Func<Entities.Entities.User, bool>> PredicateBuilderFunction(UserFilter filter)
         {
             var predicate = PredicateBuilder.New<Entities.Entities.User>(true);
@@ -50,5 +58,9 @@ namespace BackendCore.Service.Services.User
             }
             return predicate;
         }
+
+        #endregion
+
+
     }
 }

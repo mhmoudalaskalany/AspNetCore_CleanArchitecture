@@ -1,6 +1,6 @@
-﻿namespace BackendCore.Common.EmailHelper
+﻿namespace BackendCore.Common.Helpers.MailKitHelper
 {
-    public interface ISendMail
+    public interface ISendMailKit
     {
         void Send(string mailTo, string body, string subject, bool supportHtml = false);
     }

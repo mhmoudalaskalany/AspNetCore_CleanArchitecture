@@ -1,9 +1,8 @@
 ﻿using System.Reflection;
-using AutoMapper;
 using BackendCore.Common.Abstraction.Repository.ActiveDirectory;
 using BackendCore.Common.Abstraction.UnitOfWork;
-using BackendCore.Common.EmailHelper;
 using BackendCore.Common.Extensions;
+using BackendCore.Common.Helpers.EmailHelper;
 using BackendCore.Common.MediaUploader;
 using BackendCore.Data.Context;
 using BackendCore.Data.DataInitializer;
@@ -24,7 +23,7 @@ namespace BackendCore.Api.Extensions
     /// <summary>
     /// Dependency Extensions
     /// </summary>
-    public static class ConfigureServiceExtension
+    public static class ConfigureDependencyExtension
     {
         private const string ConnectionStringName = "Default";
         /// <summary>
@@ -90,8 +89,8 @@ namespace BackendCore.Api.Extensions
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IUploaderConfiguration, UploaderConfiguration>();
             services.AddTransient(typeof(IBaseService<,,,,>), typeof(BaseService<,,,,>));
-            services.AddTransient(typeof(IServiceBaseParameter<,>), typeof(ServiceBaseParameter<,>));
-            services.AddTransient(typeof(IUnitOfWork<,>), typeof(UnitOfWork<,>));
+            services.AddTransient(typeof(IServiceBaseParameter<>), typeof(ServiceBaseParameter<>));
+            services.AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
             var servicesToScan = Assembly.GetAssembly(typeof(PermissionService)); //..or whatever assembly you need
             services.RegisterAssemblyPublicNonGenericClasses(servicesToScan)
                 .Where(c => c.Name.EndsWith("Service"))

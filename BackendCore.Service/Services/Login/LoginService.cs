@@ -15,11 +15,14 @@ namespace BackendCore.Service.Services.Login
     {
         private readonly ITokenService _tokenBusiness;
         private readonly IActiveDirectoryRepository _activeDirectoryRepository;
-        public LoginService(IServiceBaseParameter<Entities.Entities.User , long> businessBaseParameter, ITokenService tokenBusiness, IActiveDirectoryRepository activeDirectoryRepository) : base(businessBaseParameter)
+        public LoginService(IServiceBaseParameter<Entities.Entities.User> businessBaseParameter, ITokenService tokenBusiness, IActiveDirectoryRepository activeDirectoryRepository) : base(businessBaseParameter)
         {
             _tokenBusiness = tokenBusiness;
             _activeDirectoryRepository = activeDirectoryRepository;
         }
+
+        #region Public Methods
+
         public async Task<IResult> Login(LoginParameters parameters)
         {
             var user = await UnitOfWork.Repository.FirstOrDefaultAsync(q => q.UserName == parameters.Username && !q.IsDeleted, include: source => source.Include(a => a.Role), disableTracking: false);
@@ -58,6 +61,10 @@ namespace BackendCore.Service.Services.Login
             }
         }
 
+        #endregion
+
+        #region Private Methods
+
         private async Task<Entities.Entities.User> CheckIfUserInDatabase(ActiveDirectoryUserDto dto)
         {
             try
@@ -82,5 +89,8 @@ namespace BackendCore.Service.Services.Login
                 throw;
             }
         }
+
+        #endregion
+
     }
 }

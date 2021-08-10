@@ -1,4 +1,5 @@
 using BackendCore.Api.Extensions;
+using BackendCore.Common.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -42,6 +43,7 @@ namespace BackendCore.Api
         /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.ConfigureCustomExceptionMiddleware();
             app.Configure(env, Configuration);
             if (env.IsDevelopment())
             {
