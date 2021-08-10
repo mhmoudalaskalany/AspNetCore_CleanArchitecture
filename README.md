@@ -1,5 +1,5 @@
 # BackendCore
-Core Template For .Net Core 3 Web Api
+Core Template For .Net Core 5 Web Api
 
 - Generic crud operations
 - Generic Repository And Uniot Of Work Pattern
