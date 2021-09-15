@@ -1,5 +1,7 @@
+using System;
 using BackendCore.Api.Extensions;
 using BackendCore.Common.Exceptions;
+using BackendCore.Service.DependencyExtension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +15,7 @@ namespace BackendCore.Api
     /// </summary>
     public class Startup
     {
+        private readonly Shell _shell;
         /// <summary>
         /// Constructor
         /// </summary>
@@ -20,6 +23,7 @@ namespace BackendCore.Api
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _shell = (Shell)Activator.CreateInstance(typeof(Shell));
         }
         /// <summary>
         /// Public Configuration Property
@@ -43,6 +47,8 @@ namespace BackendCore.Api
         /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            _shell.ConfigureHttp(app, env);
+            Shell.Start(_shell);
             app.ConfigureCustomExceptionMiddleware();
             app.Configure(env, Configuration);
             if (env.IsDevelopment())
