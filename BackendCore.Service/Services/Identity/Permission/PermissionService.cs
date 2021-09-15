@@ -55,11 +55,11 @@ namespace BackendCore.Service.Services.Identity.Permission
         {
             var predicate = PredicateBuilder.New<Entities.Entities.Identity.Permission>(true);
 
-            if (!string.IsNullOrWhiteSpace(filter.NameAr))
+            if (!string.IsNullOrWhiteSpace(filter?.NameAr))
             {
                 predicate = predicate.And(b => b.NameAr.ToLower().Contains(filter.NameAr.ToLower()));
             }
-            if (!string.IsNullOrWhiteSpace(filter.NameEn))
+            if (!string.IsNullOrWhiteSpace(filter?.NameEn))
             {
                 predicate = predicate.And(b => b.NameEn.ToLower().Contains(filter.NameEn.ToLower()));
             }
