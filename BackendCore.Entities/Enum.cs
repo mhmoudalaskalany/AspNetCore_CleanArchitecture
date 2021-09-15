@@ -1,7 +1,7 @@
 ﻿using System;
-using BackendCore.Entities;
+using BackendCore.Entities.Enum;
 
-namespace BackendCore.Entities
+namespace BackendCore.Entities.Enum
 {
     public enum Gender
     {
@@ -19,6 +19,25 @@ namespace BackendCore.Entities
         Admin = 1,
         [Values("User", "مستخدم", "")]
         User = 2
+    }
+    public enum Action
+    {
+        [Values("Approve", "موافقة", "APPROVE")]
+        Approve = 1,
+        [Values("Reject", "رفض", "REJECT")]
+        Reject,
+        [Values("Close", "إغلاق", "CLOSE")]
+        Close
+
+    }
+    public enum Status
+    {
+        [Values("Active", "فعال", "ACTIVE")]
+        Active = 1,
+        [Values("InActive", "غير فعال", "IN-ACTIVE")]
+        InActive,
+        [Values("Suspended", "موقوف", "SUSPENDED")]
+        Suspended
     }
 
     internal class Values : Attribute

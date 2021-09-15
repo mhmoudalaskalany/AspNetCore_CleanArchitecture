@@ -1,4 +1,5 @@
 ﻿using BackendCore.Entities.Entities;
+using BackendCore.Entities.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

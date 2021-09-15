@@ -1,8 +1,6 @@
-﻿using BackendCore.Entities.Entities.Base;
-
-namespace BackendCore.Entities.Entities
+﻿namespace BackendCore.Entities.Entities.Base
 {
-    public class Permission : BaseEntity<long>
+    public class Lookup<TKey> : BaseEntity<TKey>
     {
         public string NameEn { get; set; }
         public string NameAr { get; set; }

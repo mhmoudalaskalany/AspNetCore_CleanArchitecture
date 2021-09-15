@@ -12,9 +12,9 @@ using LinqKit;
 
 namespace BackendCore.Service.Services.Permission
 {
-    public class PermissionService : BaseService<Entities.Entities.Permission, AddPermissionDto, PermissionDto , long , long?>, IPermissionService
+    public class PermissionService : BaseService<Entities.Entities.Identity.Permission, AddPermissionDto, PermissionDto , long , long?>, IPermissionService
     {
-        public PermissionService(IServiceBaseParameter<Entities.Entities.Permission> parameters) : base(parameters)
+        public PermissionService(IServiceBaseParameter<Entities.Entities.Identity.Permission> parameters) : base(parameters)
         {
 
         }
@@ -26,7 +26,7 @@ namespace BackendCore.Service.Services.Permission
                 int limit = filter.PageSize;
                 int offset = ((--filter.PageNumber) * filter.PageSize);
                 var query = await UnitOfWork.Repository.FindPagedAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
-                var data = Mapper.Map<IEnumerable<Entities.Entities.Permission>, IEnumerable<PermissionDto>>(query.Item2);
+                var data = Mapper.Map<IEnumerable<Entities.Entities.Identity.Permission>, IEnumerable<PermissionDto>>(query.Item2);
                 return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, ResponseResult.PostResult(data, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString()));
             }
             catch (Exception e)
@@ -36,9 +36,9 @@ namespace BackendCore.Service.Services.Permission
                 return new DataPaging(0, 0, 0, Result);
             }
         }
-        static Expression<Func<Entities.Entities.Permission, bool>> PredicateBuilderFunction(PermissionFilter filter)
+        static Expression<Func<Entities.Entities.Identity.Permission, bool>> PredicateBuilderFunction(PermissionFilter filter)
         {
-            var predicate = PredicateBuilder.New<Entities.Entities.Permission>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Identity.Permission>(true);
 
             if (!string.IsNullOrWhiteSpace(filter.NameAr))
             {

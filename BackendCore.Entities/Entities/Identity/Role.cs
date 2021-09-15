@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using BackendCore.Entities.Entities.Base;
 
-namespace BackendCore.Entities.Entities
+namespace BackendCore.Entities.Entities.Identity
 {
     public class Role : BaseEntity<long>
     {

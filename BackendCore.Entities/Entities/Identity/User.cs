@@ -1,6 +1,6 @@
 ﻿using BackendCore.Entities.Entities.Base;
 
-namespace BackendCore.Entities.Entities
+namespace BackendCore.Entities.Entities.Identity
 {
     public class User : BaseEntity<long>
     {

@@ -1,13 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using BackendCore.Common.Extensions;
-using BackendCore.Entities.Entities;
-using Permission = BackendCore.Entities.Entities.Permission;
+using BackendCore.Entities.Entities.Identity;
+using BackendCore.Entities.Entities.Lookup;
+using Action = BackendCore.Entities.Entities.Lookup.Action;
+using Permission = BackendCore.Entities.Entities.Identity.Permission;
 
 namespace BackendCore.Data.DataInitializer
 {
     public class DataInitializer : IDataInitializer
     {
-        public Role[] SeedRoles()
+        #region Public Methods
+        /// <summary>
+        /// Seed Roles
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Role> SeedRoles()
         {
             var roleList = new List<Role>();
             roleList.AddRange(new[]
@@ -23,7 +32,11 @@ namespace BackendCore.Data.DataInitializer
 
             return roleList.ToArray();
         }
-        public User[] SeedUsers()
+        /// <summary>
+        /// Seed Users
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<User> SeedUsers()
         {
             var userList = new List<User>();
             userList.AddRange(new[]
@@ -46,7 +59,11 @@ namespace BackendCore.Data.DataInitializer
             return userList.ToArray();
         }
 
-        public Permission[] SeedPermissions()
+        /// <summary>
+        /// Seed Permissions
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Permission> SeedPermissions()
         {
             var permissionList = new List<Permission>();
             permissionList.AddRange(new[]
@@ -84,5 +101,46 @@ namespace BackendCore.Data.DataInitializer
 
             return permissionList.ToArray();
         }
+        /// <summary>
+        /// Seed Actions
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Action> SeedActions()
+        {
+            var enums = Enum.GetValues(typeof(Entities.Enum.Action));
+            return (from object enumItem in enums
+                select new Action
+                {
+                    Id = (int)(Entities.Enum.Action)enumItem,
+                    NameEn = ((Entities.Enum.Action)enumItem).GetName().NameEn,
+                    NameAr = ((Entities.Enum.Action)enumItem).GetName().NameAr,
+                    Code = ((Entities.Enum.Action)enumItem).GetName().Code,
+                    CreatedDate = new DateTime(2021, 1, 1),
+                    ModifiedDate = new DateTime(2021, 1, 1)
+
+                }).ToList();
+        }
+        /// <summary>
+        /// Seed Statuses
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Status> SeedStatuses()
+        {
+            var enums = Enum.GetValues(typeof(Entities.Enum.Status));
+            return (from object enumItem in enums
+                select new Status
+                {
+                    Id = (int)(Entities.Enum.Status)enumItem,
+                    NameEn = ((Entities.Enum.Status)enumItem).GetName().NameEn,
+                    NameAr = ((Entities.Enum.Status)enumItem).GetName().NameAr,
+                    Code = ((Entities.Enum.Status)enumItem).GetName().Code,
+                    CreatedDate = new DateTime(2021, 1, 1),
+                    ModifiedDate = new DateTime(2021, 1, 1)
+
+                }).ToList();
+        }
+
+        #endregion
+
     }
 }

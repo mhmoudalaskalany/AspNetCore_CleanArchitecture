@@ -7,7 +7,7 @@ using BackendCore.Service.Services.Base;
 
 namespace BackendCore.Service.Services.User
 {
-    public interface IUserService : IBaseService<Entities.Entities.User, AddUserDto, UserDto , long, long?>
+    public interface IUserService : IBaseService<Entities.Entities.Identity.User, AddUserDto, UserDto , long, long?>
     {
         /// <summary>
         /// Get All Paged

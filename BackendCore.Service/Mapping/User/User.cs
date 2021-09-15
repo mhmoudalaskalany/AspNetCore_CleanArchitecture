@@ -1,5 +1,6 @@
 ﻿using BackendCore.Common.DTO.User;
 using BackendCore.Entities.Entities;
+using BackendCore.Entities.Entities.Identity;
 
 // ReSharper disable once CheckNamespace
 namespace BackendCore.Service.Mapping

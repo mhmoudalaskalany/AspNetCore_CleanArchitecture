@@ -1,4 +1,5 @@
 ﻿using BackendCore.Common.DTO.Permission;
+using BackendCore.Entities.Entities.Identity;
 
 
 // ReSharper disable once CheckNamespace
@@ -8,10 +9,10 @@ namespace BackendCore.Service.Mapping
     {
         public void MapPermission()
         {
-            CreateMap<Entities.Entities.Permission, PermissionDto>()
+            CreateMap<Permission, PermissionDto>()
                 .ReverseMap();
 
-            CreateMap<Entities.Entities.Permission, AddPermissionDto>()
+            CreateMap<Permission, AddPermissionDto>()
                 .ReverseMap();
         }
     }

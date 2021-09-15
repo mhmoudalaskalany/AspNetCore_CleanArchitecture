@@ -9,6 +9,7 @@ using BackendCore.Common.Abstraction.UnitOfWork;
 using BackendCore.Common.Core;
 using BackendCore.Common.DTO.Base;
 using BackendCore.Entities;
+using BackendCore.Entities.Enum;
 using BackendCore.Integration.CacheRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -134,6 +135,7 @@ namespace BackendCore.Service.Services.Base
 
             T entityToUpdate = await UnitOfWork.Repository.GetAsync(model.Id);
             var newEntity = Mapper.Map(model, entityToUpdate);
+            SetEntityModifiedBaseProperties(newEntity);
             UnitOfWork.Repository.Update(entityToUpdate, newEntity);
             int affectedRows = await UnitOfWork.SaveChanges();
             if (affectedRows > 0)
@@ -174,6 +176,7 @@ namespace BackendCore.Service.Services.Base
         {
 
             var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
+            SetEntityModifiedBaseProperties(entityToDelete);
             UnitOfWork.Repository.RemoveLogical(entityToDelete);
             int affectedRows = await UnitOfWork.SaveChanges();
             if (affectedRows > 0)

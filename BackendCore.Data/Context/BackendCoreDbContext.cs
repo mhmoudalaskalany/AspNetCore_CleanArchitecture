@@ -1,6 +1,8 @@
 ﻿using BackendCore.Data.Configuration;
 using BackendCore.Data.DataInitializer;
-using BackendCore.Entities.Entities;
+using BackendCore.Entities.Entities.Business;
+using BackendCore.Entities.Entities.Identity;
+using BackendCore.Entities.Entities.Lookup;
 using Microsoft.EntityFrameworkCore;
 
 namespace BackendCore.Data.Context
@@ -13,9 +15,29 @@ namespace BackendCore.Data.Context
             _dataInitializer = dataInitializer;
         }
 
+        #region Identity
+
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Permission> Permissions { get; set; }
+
+        #endregion
+
+
+
+        #region Lookup
+
+        public virtual DbSet<Status> Statuses { get; set; }
+        public virtual DbSet<Action> Actions { get; set; }
+
+        #endregion
+
+        #region Business
+
+        public virtual DbSet<Attachment> Attachments { get; set; }
+
+        #endregion
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,6 +52,8 @@ namespace BackendCore.Data.Context
             modelBuilder.Entity<Role>().HasData(_dataInitializer.SeedRoles());
             modelBuilder.Entity<User>().HasData(_dataInitializer.SeedUsers());
             modelBuilder.Entity<Permission>().HasData(_dataInitializer.SeedPermissions());
+            modelBuilder.Entity<Status>().HasData(_dataInitializer.SeedStatuses());
+            modelBuilder.Entity<Action>().HasData(_dataInitializer.SeedActions());
             #endregion
             base.OnModelCreating(modelBuilder);
         }

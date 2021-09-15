@@ -1,4 +1,4 @@
-﻿using BackendCore.Entities;
+﻿using BackendCore.Entities.Enum;
 
 namespace BackendCore.Common.DTO.Base
 {
