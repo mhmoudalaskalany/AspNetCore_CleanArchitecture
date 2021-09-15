@@ -1,6 +1,8 @@
 ﻿using BackendCore.Common.DTO.Permission;
 
-namespace BackendCore.Service.Mapping.Permission
+
+// ReSharper disable once CheckNamespace
+namespace BackendCore.Service.Mapping
 {
     public partial class MappingService
     {
