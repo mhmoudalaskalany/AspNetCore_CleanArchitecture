@@ -6,7 +6,7 @@ namespace BackendCore.Service.Mapping
 {
     public partial class MappingService
     {
-        public void MapUserProfile()
+        public void MapUser()
         {
             CreateMap<User, UserDto>()
                 .ReverseMap();

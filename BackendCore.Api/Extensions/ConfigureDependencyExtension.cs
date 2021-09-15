@@ -2,21 +2,18 @@
 using BackendCore.Common.Abstraction.Repository.ActiveDirectory;
 using BackendCore.Common.Abstraction.UnitOfWork;
 using BackendCore.Common.Extensions;
-using BackendCore.Common.Helpers.EmailHelper;
-using BackendCore.Common.MediaUploader;
 using BackendCore.Data.Context;
 using BackendCore.Data.DataInitializer;
 using BackendCore.Data.Repository.ActiveDirectory;
 using BackendCore.Data.UnitOfWork;
 using BackendCore.Service.Helper;
-using BackendCore.Service.Mapping;
 using BackendCore.Service.Services.Base;
 using BackendCore.Service.Services.Permission;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCore.AutoRegisterDi;
+using MappingService = BackendCore.Service.Mapping.Permission.MappingService;
 
 namespace BackendCore.Api.Extensions
 {
@@ -85,9 +82,6 @@ namespace BackendCore.Api.Extensions
         private static void RegisterCores(this IServiceCollection services)
         {
             services.AddSingleton<AppHelper>();
-            services.AddSingleton<ISendMail, SendMail>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient<IUploaderConfiguration, UploaderConfiguration>();
             services.AddTransient(typeof(IBaseService<,,,,>), typeof(BaseService<,,,,>));
             services.AddTransient(typeof(IServiceBaseParameter<>), typeof(ServiceBaseParameter<>));
             services.AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));

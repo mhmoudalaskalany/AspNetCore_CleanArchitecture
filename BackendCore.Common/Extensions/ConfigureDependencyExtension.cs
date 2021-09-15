@@ -4,6 +4,7 @@ using System.Text;
 using BackendCore.Common.Core;
 using BackendCore.Common.Helpers.EmailHelper;
 using BackendCore.Common.Helpers.MailKitHelper;
+using BackendCore.Common.MediaUploader;
 using Cex.Common.EmailHelper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
@@ -32,11 +33,12 @@ namespace BackendCore.Common.Extensions
         /// <param name="services"></param>
         private static void RegisterMainCore(this IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IResponseResult, ResponseResult>();
             services.AddTransient<IResult, Result>();
             services.AddSingleton<ISendMail, SendMail>();
             services.AddSingleton<ISendMailKit, SendMailKit>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IUploaderConfiguration, UploaderConfiguration>();
         }
         /// <summary>
         /// Register Notification Meta Data

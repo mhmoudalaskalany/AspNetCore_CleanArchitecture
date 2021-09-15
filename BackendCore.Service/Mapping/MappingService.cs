@@ -6,8 +6,8 @@ namespace BackendCore.Service.Mapping
     {
         public MappingService()
         {
-            MapUserProfile();
-            MapPermissionProfile();
+            MapUser();
+            MapPermission();
         }
     }
 }
