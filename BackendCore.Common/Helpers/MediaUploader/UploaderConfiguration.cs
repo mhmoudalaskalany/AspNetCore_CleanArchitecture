@@ -3,7 +3,7 @@ using System.IO;
 using BackendCore.Common.Extensions;
 using Microsoft.AspNetCore.Hosting;
 
-namespace BackendCore.Common.MediaUploader
+namespace BackendCore.Common.Helpers.MediaUploader
 {
     public class UploaderConfiguration : IUploaderConfiguration
     {

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace BackendCore.Common.MediaUploader
+namespace BackendCore.Common.Helpers.MediaUploader
 {
     public interface IUploaderConfiguration
     {

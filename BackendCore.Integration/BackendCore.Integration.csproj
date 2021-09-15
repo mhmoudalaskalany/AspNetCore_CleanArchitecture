@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BackendCore.Common\BackendCore.Common.csproj" />
-    <ProjectReference Include="..\BackendCore.Integration\BackendCore.Integration.csproj" />
   </ItemGroup>
 
 </Project>

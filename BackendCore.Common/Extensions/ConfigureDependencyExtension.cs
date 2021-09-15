@@ -3,8 +3,10 @@ using System.IO;
 using System.Text;
 using BackendCore.Common.Core;
 using BackendCore.Common.Helpers.EmailHelper;
+using BackendCore.Common.Helpers.HttpClient.RestSharp;
 using BackendCore.Common.Helpers.MailKitHelper;
-using BackendCore.Common.MediaUploader;
+using BackendCore.Common.Helpers.MediaUploader;
+using BackendCore.Common.Helpers.TokenGenerator;
 using Cex.Common.EmailHelper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +26,7 @@ namespace BackendCore.Common.Extensions
             services.RegisterEmailMetadata(configuration);
             services.AddApiDocumentationServices(configuration);
             services.RegisterAuthentication(configuration);
+            services.RegisterHttpClientHelpers();
             return services;
         }
 
@@ -38,8 +41,19 @@ namespace BackendCore.Common.Extensions
             services.AddTransient<IResult, Result>();
             services.AddSingleton<ISendMail, SendMail>();
             services.AddSingleton<ISendMailKit, SendMailKit>();
+            services.AddTransient<ITokenGenerator, TokenGenerator>();
             services.AddTransient<IUploaderConfiguration, UploaderConfiguration>();
         }
+
+        /// <summary>
+        /// Register Http Client Helpers
+        /// </summary>
+        /// <param name="services"></param>
+        private static void RegisterHttpClientHelpers(this IServiceCollection services)
+        {
+            services.AddTransient<IRestSharpContainer, RestSharpContainer>();
+        }
+
         /// <summary>
         /// Register Notification Meta Data
         /// </summary>

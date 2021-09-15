@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BackendCore.Common.MediaUploader
+namespace BackendCore.Common.Helpers.MediaUploader
 {
     public static class MimeTypeMap
     {

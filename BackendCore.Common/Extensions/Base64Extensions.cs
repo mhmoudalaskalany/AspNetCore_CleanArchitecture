@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using BackendCore.Common.MediaUploader;
+using BackendCore.Common.Helpers.MediaUploader;
 
 namespace BackendCore.Common.Extensions
 {

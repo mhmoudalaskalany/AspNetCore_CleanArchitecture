@@ -6,6 +6,8 @@ using BackendCore.Data.Context;
 using BackendCore.Data.DataInitializer;
 using BackendCore.Data.Repository.ActiveDirectory;
 using BackendCore.Data.UnitOfWork;
+using BackendCore.Integration.CacheRepository;
+using BackendCore.Integration.FileRepository;
 using BackendCore.Service.Helper;
 using BackendCore.Service.Services.Base;
 using BackendCore.Service.Services.Permission;
@@ -34,6 +36,7 @@ namespace BackendCore.Api.Extensions
             services.RegisterDbContext(configuration);
             services.RegisterCores();
             services.RegisterRepository();
+            services.RegisterIntegrationRepositories();
             services.RegisterAutoMapper();
             services.RegisterCommonServices(configuration);
             services.AddControllers();
@@ -73,6 +76,16 @@ namespace BackendCore.Api.Extensions
         private static void RegisterRepository(this IServiceCollection services)
         {
             services.AddScoped<IActiveDirectoryRepository, ActiveDirectoryRepository>();
+        }
+
+        /// <summary>
+        /// register Integration Repositories
+        /// </summary>
+        /// <param name="services"></param>
+        private static void RegisterIntegrationRepositories(this IServiceCollection services)
+        {
+            services.AddTransient<IFileRepository, FileRepository>();
+            services.AddTransient<ICacheRepository, CacheRepository>();
         }
 
         /// <summary>
