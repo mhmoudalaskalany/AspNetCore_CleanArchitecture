@@ -4,7 +4,7 @@ Core Template For .Net Core 5 Web Api with extensible and clean architecture
 - Generic crud operations
 - Auto Mapper
 - Abstraction
-- Generic Repository And Uniot Of Work Pattern
+- Generic Repository And Unit Of Work Pattern
 - User Management Module (manageing user role and permission per page level)
 
 # Installation
