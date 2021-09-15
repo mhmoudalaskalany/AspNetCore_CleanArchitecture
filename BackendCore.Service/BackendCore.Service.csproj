@@ -9,4 +9,8 @@
     <ProjectReference Include="..\BackendCore.Integration\BackendCore.Integration.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Business\" />
+  </ItemGroup>
+
 </Project>

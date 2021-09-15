@@ -1,5 +1,5 @@
-﻿using BackendCore.Common.DTO.Login;
-using BackendCore.Common.DTO.User;
+﻿using BackendCore.Common.DTO.Identity.Login;
+using BackendCore.Common.DTO.Identity.User;
 
 namespace BackendCore.Service.Services.Base
 {

@@ -11,7 +11,7 @@ using BackendCore.Integration.FileRepository;
 using BackendCore.Service.Helper;
 using BackendCore.Service.Mapping;
 using BackendCore.Service.Services.Base;
-using BackendCore.Service.Services.Permission;
+using BackendCore.Service.Services.Identity.Permission;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

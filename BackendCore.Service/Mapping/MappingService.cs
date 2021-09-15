@@ -6,8 +6,26 @@ namespace BackendCore.Service.Mapping
     {
         public MappingService()
         {
+            #region Identity Profiles
+
             MapUser();
             MapPermission();
+
+            #endregion
+
+            #region Lookups Profiles
+
+            MapAction();
+            MapStatus();
+
+            #endregion
+
+            #region Business Profiles
+
+            MapAttachment();
+
+            #endregion
+
         }
     }
 }

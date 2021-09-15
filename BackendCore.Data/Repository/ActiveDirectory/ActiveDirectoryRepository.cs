@@ -2,8 +2,8 @@
 using System.DirectoryServices;
 using System.DirectoryServices.AccountManagement;
 using BackendCore.Common.Abstraction.Repository.ActiveDirectory;
-using BackendCore.Common.DTO.Login;
-using BackendCore.Common.DTO.User;
+using BackendCore.Common.DTO.Identity.Login;
+using BackendCore.Common.DTO.Identity.User;
 using Microsoft.Extensions.Configuration;
 
 namespace BackendCore.Data.Repository.ActiveDirectory

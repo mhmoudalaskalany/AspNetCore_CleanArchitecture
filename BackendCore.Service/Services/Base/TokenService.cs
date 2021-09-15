@@ -2,8 +2,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using BackendCore.Common.DTO.Login;
-using BackendCore.Common.DTO.User;
+using BackendCore.Common.DTO.Identity.Login;
+using BackendCore.Common.DTO.Identity.User;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -38,7 +38,7 @@ namespace BackendCore.Service.Services.Base
                 signingCredentials: credentials,
                 claims: claims);
 
-            _userLoginReturn.UserId = userInfo.Id ?? 1;
+            _userLoginReturn.UserId = userInfo.Id;
             _userLoginReturn.TokenValidTo = token.ValidTo;
 
             _userLoginReturn.Token = new JwtSecurityTokenHandler().WriteToken(token);

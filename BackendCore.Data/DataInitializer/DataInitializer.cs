@@ -43,7 +43,7 @@ namespace BackendCore.Data.DataInitializer
             {
                 new User
                 {
-                    Id = 1,
+                    Id = new Guid("abcc43c2-f7b8-4d70-8c1e-81bc61cb4518"),
                     NameEn = "Admin",
                     NameAr = "مدير",
                     Email = "Admin@admin.com",
