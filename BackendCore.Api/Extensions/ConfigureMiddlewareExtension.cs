@@ -1,11 +1,14 @@
 ﻿using System;
 using BackendCore.Data.Context;
+using BackendCore.Service.Services.BackgroundJobs.Jobs;
+using FluentScheduler;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using Environment = BackendCore.Common.StaticData.Environment;
 
 namespace BackendCore.Api.Extensions
 {
@@ -29,6 +32,7 @@ namespace BackendCore.Api.Extensions
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseFluentScheduler(configuration);
             app.SwaggerConfig(configuration);
             return app;
         }
@@ -81,6 +85,21 @@ namespace BackendCore.Api.Extensions
                 c.DocumentTitle = $"{title} Documentation";
                 c.DocExpansion(DocExpansion.None);
             });
+        }
+
+        /// <summary>
+        /// User Fluent Scheduler
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="configuration"></param>
+        public static void UseFluentScheduler(this IApplicationBuilder app, IConfiguration configuration)
+        {
+            var env = configuration["Environment"];
+            if (env ==Environment.Development)
+            {
+                JobManager.Initialize(new MyRegistry());
+            }
+
         }
     }
 }
