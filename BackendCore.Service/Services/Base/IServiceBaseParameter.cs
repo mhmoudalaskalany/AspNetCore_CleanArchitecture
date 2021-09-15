@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using BackendCore.Common.Abstraction.UnitOfWork;
 using BackendCore.Common.Core;
+using BackendCore.Integration.CacheRepository;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace BackendCore.Service.Services.Base
 {
@@ -11,5 +13,7 @@ namespace BackendCore.Service.Services.Base
         IUnitOfWork<T> UnitOfWork { get; set; }
         IResponseResult ResponseResult { get; set; }
         IHttpContextAccessor HttpContextAccessor { get; set; }
+        IConfiguration Configuration { get; set; }
+        ICacheRepository CacheRepository { get; set; }
     }
 }

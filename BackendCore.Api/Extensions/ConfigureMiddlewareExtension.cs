@@ -26,7 +26,6 @@ namespace BackendCore.Api.Extensions
             app.ConfigureCors();
             app.CreateDatabase();
             app.UseHttpsRedirection();
-            app.UseMiddleware<Common.ExceptionHandlers.ExceptionHandlerMiddleware>();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

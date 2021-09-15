@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -8,7 +9,9 @@ using BackendCore.Common.Abstraction.UnitOfWork;
 using BackendCore.Common.Core;
 using BackendCore.Common.DTO.Base;
 using BackendCore.Entities;
+using BackendCore.Integration.CacheRepository;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using static System.Enum;
 namespace BackendCore.Service.Services.Base
 {
@@ -23,6 +26,8 @@ namespace BackendCore.Service.Services.Base
         protected readonly IResponseResult ResponseResult;
         protected IResult Result;
         protected IHttpContextAccessor HttpContextAccessor;
+        protected IConfiguration Configuration;
+        protected ICacheRepository CacheRepository;
         protected TokenClaimDto ClaimData { get; set; }
 
         protected internal BaseService(IServiceBaseParameter<T> businessBaseParameter)
@@ -31,9 +36,11 @@ namespace BackendCore.Service.Services.Base
             UnitOfWork = businessBaseParameter.UnitOfWork;
             ResponseResult = businessBaseParameter.ResponseResult;
             Mapper = businessBaseParameter.Mapper;
+            CacheRepository = businessBaseParameter.CacheRepository;
+            Configuration = businessBaseParameter.Configuration;
             var claims = HttpContextAccessor?.HttpContext?.User;
             ClaimData = GetTokenClaimDto(claims);
-            
+
         }
 
         /// <summary>
@@ -50,16 +57,26 @@ namespace BackendCore.Service.Services.Base
                 message: "Data Retrieved Successfully");
 
         }
+
         /// <summary>
         /// Get All
         /// </summary>
         /// <param name="disableTracking"></param>
+        /// <param name="predicate"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> GetAllAsync(bool disableTracking = false)
+        public virtual async Task<IResult> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null)
         {
 
+            IEnumerable<T> query;
+            if (predicate != null)
+            {
+                query = await UnitOfWork.Repository.FindAsync(predicate);
+            }
+            else
+            {
+                query = await UnitOfWork.Repository.GetAllAsync(disableTracking: disableTracking);
+            }
 
-            var query = await UnitOfWork.Repository.GetAllAsync(disableTracking: disableTracking);
             var data = Mapper.Map<IEnumerable<T>, IEnumerable<TGetDto>>(query);
             return ResponseResult.PostResult(data, status: HttpStatusCode.OK,
                 message: HttpStatusCode.OK.ToString());

@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using BackendCore.Common.Core;
 using BackendCore.Common.Helpers.EmailHelper;
+using BackendCore.Common.Helpers.HttpClient;
 using BackendCore.Common.Helpers.HttpClient.RestSharp;
 using BackendCore.Common.Helpers.MailKitHelper;
 using BackendCore.Common.Helpers.MediaUploader;
@@ -36,6 +37,7 @@ namespace BackendCore.Common.Extensions
         /// <param name="services"></param>
         private static void RegisterMainCore(this IServiceCollection services)
         {
+            services.AddSingleton<MicroServicesUrls>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IResponseResult, ResponseResult>();
             services.AddTransient<IResult, Result>();
