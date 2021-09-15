@@ -28,11 +28,11 @@ namespace BackendCore.Service.Services.Identity.User
         public async Task<DataPaging> GetAllPagedAsync(BaseParam<UserFilter> filter)
         {
 
-            int limit = filter.PageSize;
-            int offset = ((--filter.PageNumber) * filter.PageSize);
+            var limit = filter.PageSize;
+            var offset = ((--filter.PageNumber) * filter.PageSize);
             var query = await UnitOfWork.Repository.FindPagedAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
             var data = Mapper.Map<IEnumerable<Entities.Entities.Identity.User>, IEnumerable<UserDto>>(query.Item2);
-            return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, ResponseResult.PostResult(data, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString()));
+            return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, result: data, status: HttpStatusCode.OK, HttpStatusCode.OK.ToString());
 
         }
 
