@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using BackendCore.Common.Abstraction.Repository.ActiveDirectory;
-using BackendCore.Common.Abstraction.UnitOfWork;
 using BackendCore.Common.Extensions;
+using BackendCore.Common.Infrastructure.Repository.ActiveDirectory;
+using BackendCore.Common.Infrastructure.UnitOfWork;
 using BackendCore.Data.Context;
 using BackendCore.Data.DataInitializer;
 using BackendCore.Data.Repository.ActiveDirectory;

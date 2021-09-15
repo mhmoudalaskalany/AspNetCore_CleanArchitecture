@@ -4,8 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
-using BackendCore.Common.Abstraction.Repository;
 using BackendCore.Common.Extensions;
+using BackendCore.Common.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 

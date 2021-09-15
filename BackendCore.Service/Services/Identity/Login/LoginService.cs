@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using BackendCore.Common.Abstraction.Repository.ActiveDirectory;
 using BackendCore.Common.Core;
 using BackendCore.Common.DTO.Identity.Login;
 using BackendCore.Common.DTO.Identity.User;
 using BackendCore.Common.Extensions;
+using BackendCore.Common.Infrastructure.Repository.ActiveDirectory;
 using BackendCore.Service.Services.Base;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using BackendCore.Common.Abstraction.UnitOfWork;
 using BackendCore.Common.Core;
+using BackendCore.Common.Infrastructure.UnitOfWork;
 using BackendCore.Integration.CacheRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;

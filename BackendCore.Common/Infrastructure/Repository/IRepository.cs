@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BackendCore.Common.Extensions;
 using Microsoft.EntityFrameworkCore.Query;
 
-namespace BackendCore.Common.Abstraction.Repository
+namespace BackendCore.Common.Infrastructure.Repository
 {
     public interface IRepository<T> where T : class
     {

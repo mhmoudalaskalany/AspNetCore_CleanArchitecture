@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BackendCore.Common.Abstraction.Repository;
-using BackendCore.Common.Abstraction.UnitOfWork;
+using BackendCore.Common.Infrastructure.Repository;
+using BackendCore.Common.Infrastructure.UnitOfWork;
 using BackendCore.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;

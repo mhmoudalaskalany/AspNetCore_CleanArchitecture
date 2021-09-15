@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BackendCore.Common.Abstraction.Repository;
+using BackendCore.Common.Infrastructure.Repository;
 
-namespace BackendCore.Common.Abstraction.UnitOfWork
+namespace BackendCore.Common.Infrastructure.UnitOfWork
 {
     public interface IUnitOfWork<T> : IDisposable where T : class
     {
