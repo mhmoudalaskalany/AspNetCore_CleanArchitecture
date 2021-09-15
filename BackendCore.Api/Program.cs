@@ -38,7 +38,7 @@ namespace BackendCore.Api
 
             try
             {
-                Log.Information("-----Starting web host at Cex Api------");
+                Log.Information("-----Starting web host at  Api------");
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception e)

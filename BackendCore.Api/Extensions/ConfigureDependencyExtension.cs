@@ -9,13 +9,13 @@ using BackendCore.Data.UnitOfWork;
 using BackendCore.Integration.CacheRepository;
 using BackendCore.Integration.FileRepository;
 using BackendCore.Service.Helper;
+using BackendCore.Service.Mapping;
 using BackendCore.Service.Services.Base;
 using BackendCore.Service.Services.Permission;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCore.AutoRegisterDi;
-using MappingService = BackendCore.Service.Mapping.Permission.MappingService;
 
 namespace BackendCore.Api.Extensions
 {
