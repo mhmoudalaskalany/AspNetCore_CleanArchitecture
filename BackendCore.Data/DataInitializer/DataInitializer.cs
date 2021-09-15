@@ -26,6 +26,8 @@ namespace BackendCore.Data.DataInitializer
                     Id = 1,
                     NameEn = "Admin",
                     NameAr = "مدير",
+                    CreatedDate = new DateTime(2021, 1, 1),
+                    ModifiedDate = new DateTime(2021, 1, 1)
                 }
 
             });
@@ -51,7 +53,9 @@ namespace BackendCore.Data.DataInitializer
                     IsDeleted = false,
                     UserName = "admin",
                     Password = CryptoHasher.HashPassword("123456"),
-                    RoleId = 1
+                    RoleId = 1,
+                    CreatedDate = new DateTime(2021, 1, 1),
+                    ModifiedDate = new DateTime(2021, 1, 1)
                 }
 
             });
@@ -73,28 +77,36 @@ namespace BackendCore.Data.DataInitializer
                     Id = 1,
                     NameEn = "Add",
                     NameAr = "اضافة",
-                    Code = "Add"
+                    Code = "Add",
+                    CreatedDate = new DateTime(2021, 1, 1),
+                    ModifiedDate = new DateTime(2021, 1, 1)
                 },
                 new Permission
                 {
                     Id = 2,
                     NameEn = "Edit",
                     NameAr = "تعديل",
-                    Code = "Edit"
+                    Code = "Edit",
+                    CreatedDate = new DateTime(2021, 1, 1),
+                    ModifiedDate = new DateTime(2021, 1, 1)
                 },
                 new Permission
                 {
                     Id = 3,
                     NameEn = "View",
                     NameAr = "عرض",
-                    Code = "View"
+                    Code = "View",
+                    CreatedDate = new DateTime(2021, 1, 1),
+                    ModifiedDate = new DateTime(2021, 1, 1)
                 },
                 new Permission
                 {
                     Id = 4,
                     NameEn = "Delete",
                     NameAr = "حذف",
-                    Code = "Delete"
+                    Code = "Delete",
+                    CreatedDate = new DateTime(2021, 1, 1),
+                    ModifiedDate = new DateTime(2021, 1, 1)
                 }
 
             });

@@ -4,14 +4,16 @@ using BackendCore.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BackendCore.Data.Migrations
 {
     [DbContext(typeof(BackendCoreDbContext))]
-    partial class BackendCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210915231454_AddAuditTrialEntity")]
+    partial class AddAuditTrialEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,9 +158,9 @@ namespace BackendCore.Data.Migrations
                         {
                             Id = 1L,
                             Code = "Add",
-                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(2186),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(2216),
                             NameAr = "اضافة",
                             NameEn = "Add"
                         },
@@ -166,9 +168,9 @@ namespace BackendCore.Data.Migrations
                         {
                             Id = 2L,
                             Code = "Edit",
-                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(3750),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(3759),
                             NameAr = "تعديل",
                             NameEn = "Edit"
                         },
@@ -176,9 +178,9 @@ namespace BackendCore.Data.Migrations
                         {
                             Id = 3L,
                             Code = "View",
-                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(3761),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(3762),
                             NameAr = "عرض",
                             NameEn = "View"
                         },
@@ -186,9 +188,9 @@ namespace BackendCore.Data.Migrations
                         {
                             Id = 4L,
                             Code = "Delete",
-                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(3764),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(3765),
                             NameAr = "حذف",
                             NameEn = "Delete"
                         });
@@ -230,9 +232,9 @@ namespace BackendCore.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2021, 9, 16, 3, 14, 53, 624, DateTimeKind.Local).AddTicks(1030),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedDate = new DateTime(2021, 9, 16, 3, 14, 53, 625, DateTimeKind.Local).AddTicks(2339),
                             NameAr = "مدير",
                             NameEn = "Admin"
                         });
@@ -293,13 +295,13 @@ namespace BackendCore.Data.Migrations
                         new
                         {
                             Id = new Guid("abcc43c2-f7b8-4d70-8c1e-81bc61cb4518"),
-                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2021, 9, 16, 3, 14, 53, 627, DateTimeKind.Local).AddTicks(610),
                             Email = "Admin@admin.com",
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedDate = new DateTime(2021, 9, 16, 3, 14, 53, 627, DateTimeKind.Local).AddTicks(622),
                             NameAr = "مدير",
                             NameEn = "Admin",
-                            Password = "APvoUO9yVp4jzeyjSarvGu2KEDgNX1kC1x4IXk90e2qpig1quO8oSfySG0aCen+CiQ==",
+                            Password = "AL3fYgO/pCMCzBvJd/e2XMK2KfqyaSDHdaZPK97diaKI+6mlw/bpPGgqLHIUl5pGBw==",
                             Phone = "01016670280",
                             RoleId = 1L,
                             UserName = "admin"
