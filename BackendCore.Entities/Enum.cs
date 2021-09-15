@@ -3,6 +3,8 @@ using BackendCore.Entities.Enum;
 
 namespace BackendCore.Entities.Enum
 {
+    #region Lookup Enum
+
     public enum Gender
     {
         [Values("Male", "ذكر", "")]
@@ -39,6 +41,22 @@ namespace BackendCore.Entities.Enum
         [Values("Suspended", "موقوف", "SUSPENDED")]
         Suspended
     }
+
+    #endregion
+
+
+    #region Common Enum
+
+    public enum AuditType
+    {
+        None = 0,
+        Create = 1,
+        Update = 2,
+        Delete = 3
+    }
+
+    #endregion
+
 
     internal class Values : Attribute
     {

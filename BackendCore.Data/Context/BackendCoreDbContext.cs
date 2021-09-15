@@ -1,5 +1,6 @@
 ﻿using BackendCore.Data.Configuration;
 using BackendCore.Data.DataInitializer;
+using BackendCore.Entities.Entities.Audit;
 using BackendCore.Entities.Entities.Business;
 using BackendCore.Entities.Entities.Identity;
 using BackendCore.Entities.Entities.Lookup;
@@ -29,6 +30,12 @@ namespace BackendCore.Data.Context
 
         public virtual DbSet<Status> Statuses { get; set; }
         public virtual DbSet<Action> Actions { get; set; }
+
+        #endregion
+
+        #region Audit
+
+        public virtual DbSet<Audit> AuditTrails { get; set; }
 
         #endregion
 
