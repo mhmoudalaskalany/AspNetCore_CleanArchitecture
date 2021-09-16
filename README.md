@@ -1,12 +1,25 @@
 # .Net Core 5 Api Clean Architecture
-Core Template For .Net Core 5 Web Api with extensible and clean architecture
+Clean Architecture For .Net Core 5 Web Api with N-Tier Layers
 
 - Generic crud operations
 - Auto Mapper
 - Abstraction
 - Generic Repository And Unit Of Work Pattern
 - User Management Module (manageing user role and permission per page level)
-
+- Redis Caching
+- Audit Trails
+- Logging Using Serilog To Sql Server Database
+- Fluent Scheduler (For Backgroud Tasks)
+- Swagger Documentation
+- JWT Authentication
+- Policy Based Authorization
+- Form Based (Username And Password) Authentication And LDAP Authentication 
+# Road Map
+- Add Dashboard For Audit Trails Logs
+- Add Logging Dashboard
+- Add Prometheus And Grafana Dashboard For Monitoring And Health Checks
+- Add AMQP (Rabbit MQ And Masstransit)
+- Add External Providers Authentication (Google , Azure AD , Facebook)
 # Installation
 
 - clone the repository
