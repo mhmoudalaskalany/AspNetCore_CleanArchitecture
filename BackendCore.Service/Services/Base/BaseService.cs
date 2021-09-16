@@ -8,7 +8,6 @@ using AutoMapper;
 using BackendCore.Common.Core;
 using BackendCore.Common.DTO.Base;
 using BackendCore.Common.Infrastructure.UnitOfWork;
-using BackendCore.Entities;
 using BackendCore.Entities.Enum;
 using BackendCore.Integration.CacheRepository;
 using Microsoft.AspNetCore.Http;
@@ -196,7 +195,7 @@ namespace BackendCore.Service.Services.Base
         {
             var type = entity.GetType();
             var createdBy = type.GetProperty("CreatedById");
-            if (createdBy != null) createdBy.SetValue(entity, long.Parse(ClaimData.UserId));
+            if (createdBy != null) createdBy.SetValue(entity, Guid.Parse(ClaimData.UserId));
             var createdDate = type.GetProperty("CreatedDate");
             if (createdDate != null) createdDate.SetValue(entity, DateTime.Now);
 
@@ -209,7 +208,7 @@ namespace BackendCore.Service.Services.Base
         {
             var type = entity.GetType();
             var createdBy = type.GetProperty("ModifiedById");
-            if (createdBy != null) createdBy.SetValue(entity, long.Parse(ClaimData.UserId));
+            if (createdBy != null) createdBy.SetValue(entity, Guid.Parse(ClaimData.UserId));
             var createdDate = type.GetProperty("ModifiedDate");
             if (createdDate != null) createdDate.SetValue(entity, DateTime.Now);
 
