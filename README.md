@@ -14,6 +14,11 @@ Clean Architecture For .Net Core 5 Web Api with N-Tier Layers
 - JWT Authentication
 - Policy Based Authorization
 - Form Based (Username And Password) Authentication And LDAP Authentication 
+# Road Map
+- Add Dashboard For Audit Trails Logs
+- Add Logging Dashboard
+- Add Prometheus And Grafana Dashboard For Monitoring And Health Checks
+- Add AMQP (Rabbit MQ And Masstransit)
 # Installation
 
 - clone the repository
