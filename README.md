@@ -19,6 +19,7 @@ Clean Architecture For .Net Core 5 Web Api with N-Tier Layers
 - Add Logging Dashboard
 - Add Prometheus And Grafana Dashboard For Monitoring And Health Checks
 - Add AMQP (Rabbit MQ And Masstransit)
+- Add External Providers Authentication (Google , Azure AD , Facebook)
 # Installation
 
 - clone the repository
