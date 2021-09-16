@@ -10,7 +10,10 @@ namespace BackendCore.Data.Context
 {
     public partial class BackendCoreDbContext
     {
+        #region Audit Entities
         public virtual DbSet<Audit> AuditTrails { get; set; }
+        #endregion
+
 
         #region Overriden Methods
 
