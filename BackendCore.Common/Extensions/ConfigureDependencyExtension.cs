@@ -8,6 +8,7 @@ using BackendCore.Common.Helpers.HttpClient.RestSharp;
 using BackendCore.Common.Helpers.MailKitHelper;
 using BackendCore.Common.Helpers.MediaUploader;
 using BackendCore.Common.Helpers.TokenGenerator;
+using BackendCore.Common.Services;
 using Cex.Common.EmailHelper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
@@ -38,6 +39,7 @@ namespace BackendCore.Common.Extensions
         private static void RegisterMainCore(this IServiceCollection services)
         {
             services.AddSingleton<MicroServicesUrls>();
+            services.AddScoped<IClaimService, ClaimService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IResponseResult, ResponseResult>();
             services.AddTransient<IResult, Result>();
