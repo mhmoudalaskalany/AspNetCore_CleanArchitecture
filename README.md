@@ -3,7 +3,7 @@ Clean Architecture For .Net Core 5 Web Api with N-Tier Layers
 
 - Generic crud operations
 - Auto Mapper
-- Abstraction
+- SOLID Principles Applied
 - Generic Repository And Unit Of Work Pattern
 - User Management Module (manageing user role and permission per page level)
 - Redis Caching
