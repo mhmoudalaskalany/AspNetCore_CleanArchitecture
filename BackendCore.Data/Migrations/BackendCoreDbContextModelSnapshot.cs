@@ -28,8 +28,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<string>("AffectedColumns")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -40,8 +40,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -78,8 +78,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<string>("AttachmentDisplaySize")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -99,8 +99,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsPublic")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -123,8 +123,8 @@ namespace BackendCore.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -132,8 +132,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -201,8 +201,8 @@ namespace BackendCore.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -210,8 +210,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -244,8 +244,8 @@ namespace BackendCore.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -256,8 +256,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -299,7 +299,7 @@ namespace BackendCore.Data.Migrations
                             ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "مدير",
                             NameEn = "Admin",
-                            Password = "AFj4thZS6h0t75r1K9h0dye8CIBVT37wJlNHnLgZXTYWKIupzWzAcWdDCrc1VQlM3w==",
+                            Password = "ALpf52Z9a5aHszZjvLE/g5byB8g9/mljVT2VjQZs/9AxVz27RoGqKphB/6zQxnICuA==",
                             Phone = "01016670280",
                             RoleId = 1L,
                             UserName = "admin"
@@ -316,8 +316,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -325,8 +325,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -384,8 +384,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -393,8 +393,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");

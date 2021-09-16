@@ -13,10 +13,10 @@ namespace BackendCore.Data.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: true),
+                    CreatedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedById = table.Column<long>(type: "bigint", nullable: true),
+                    ModifiedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     NameEn = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NameAr = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -38,10 +38,10 @@ namespace BackendCore.Data.Migrations
                     Size = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsPublic = table.Column<bool>(type: "bit", nullable: false),
                     AttachmentDisplaySize = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: true),
+                    CreatedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedById = table.Column<long>(type: "bigint", nullable: true),
+                    ModifiedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -50,14 +50,38 @@ namespace BackendCore.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AuditTrails",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TableName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OldValues = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NewValues = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AffectedColumns = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PrimaryKey = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditTrails", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Permissions",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: true),
+                    CreatedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedById = table.Column<long>(type: "bigint", nullable: true),
+                    ModifiedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     NameEn = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NameAr = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -76,10 +100,10 @@ namespace BackendCore.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameAr = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NameEn = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: true),
+                    CreatedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedById = table.Column<long>(type: "bigint", nullable: true),
+                    ModifiedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -93,10 +117,10 @@ namespace BackendCore.Data.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: true),
+                    CreatedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedById = table.Column<long>(type: "bigint", nullable: true),
+                    ModifiedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     NameEn = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NameAr = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -120,10 +144,10 @@ namespace BackendCore.Data.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NationalId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RoleId = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: true),
+                    CreatedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedById = table.Column<long>(type: "bigint", nullable: true),
+                    ModifiedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -152,16 +176,16 @@ namespace BackendCore.Data.Migrations
                 columns: new[] { "Id", "Code", "CreatedById", "CreatedDate", "IsDeleted", "ModifiedById", "ModifiedDate", "NameAr", "NameEn" },
                 values: new object[,]
                 {
-                    { 1L, "Add", null, new DateTime(2021, 9, 16, 2, 43, 19, 491, DateTimeKind.Local).AddTicks(9681), false, null, new DateTime(2021, 9, 16, 2, 43, 19, 491, DateTimeKind.Local).AddTicks(9694), "اضافة", "Add" },
-                    { 2L, "Edit", null, new DateTime(2021, 9, 16, 2, 43, 19, 492, DateTimeKind.Local).AddTicks(465), false, null, new DateTime(2021, 9, 16, 2, 43, 19, 492, DateTimeKind.Local).AddTicks(469), "تعديل", "Edit" },
-                    { 3L, "View", null, new DateTime(2021, 9, 16, 2, 43, 19, 492, DateTimeKind.Local).AddTicks(471), false, null, new DateTime(2021, 9, 16, 2, 43, 19, 492, DateTimeKind.Local).AddTicks(472), "عرض", "View" },
-                    { 4L, "Delete", null, new DateTime(2021, 9, 16, 2, 43, 19, 492, DateTimeKind.Local).AddTicks(474), false, null, new DateTime(2021, 9, 16, 2, 43, 19, 492, DateTimeKind.Local).AddTicks(474), "حذف", "Delete" }
+                    { 1L, "Add", null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "اضافة", "Add" },
+                    { 2L, "Edit", null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "تعديل", "Edit" },
+                    { 3L, "View", null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "عرض", "View" },
+                    { 4L, "Delete", null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "حذف", "Delete" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "CreatedById", "CreatedDate", "IsDeleted", "ModifiedById", "ModifiedDate", "NameAr", "NameEn" },
-                values: new object[] { 1L, null, new DateTime(2021, 9, 16, 2, 43, 19, 485, DateTimeKind.Local).AddTicks(4813), false, null, new DateTime(2021, 9, 16, 2, 43, 19, 486, DateTimeKind.Local).AddTicks(2748), "مدير", "Admin" });
+                values: new object[] { 1L, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "مدير", "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Statuses",
@@ -176,7 +200,7 @@ namespace BackendCore.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedById", "CreatedDate", "Email", "IsDeleted", "ModifiedById", "ModifiedDate", "NameAr", "NameEn", "NationalId", "Password", "Phone", "RoleId", "UserName" },
-                values: new object[] { new Guid("abcc43c2-f7b8-4d70-8c1e-81bc61cb4518"), null, new DateTime(2021, 9, 16, 2, 43, 19, 487, DateTimeKind.Local).AddTicks(5725), "Admin@admin.com", false, null, new DateTime(2021, 9, 16, 2, 43, 19, 487, DateTimeKind.Local).AddTicks(5733), "مدير", "Admin", null, "AFM++3iAmDI90bIhQnC+0cZx+Dp7SSr9nj//zyESXEjqN3A02eOxEpKnumJdBjxErQ==", "01016670280", 1L, "admin" });
+                values: new object[] { new Guid("abcc43c2-f7b8-4d70-8c1e-81bc61cb4518"), null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin@admin.com", false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "مدير", "Admin", null, "ALpf52Z9a5aHszZjvLE/g5byB8g9/mljVT2VjQZs/9AxVz27RoGqKphB/6zQxnICuA==", "01016670280", 1L, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Permissions_Code",
@@ -197,6 +221,9 @@ namespace BackendCore.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Attachments");
+
+            migrationBuilder.DropTable(
+                name: "AuditTrails");
 
             migrationBuilder.DropTable(
                 name: "Permissions");

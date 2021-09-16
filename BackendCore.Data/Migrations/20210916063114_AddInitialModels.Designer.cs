@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendCore.Data.Migrations
 {
     [DbContext(typeof(BackendCoreDbContext))]
-    [Migration("20210915231454_AddAuditTrialEntity")]
-    partial class AddAuditTrialEntity
+    [Migration("20210916063114_AddInitialModels")]
+    partial class AddInitialModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,8 +30,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<string>("AffectedColumns")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -42,8 +42,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -80,8 +80,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<string>("AttachmentDisplaySize")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -101,8 +101,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsPublic")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -125,8 +125,8 @@ namespace BackendCore.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -134,8 +134,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -158,9 +158,9 @@ namespace BackendCore.Data.Migrations
                         {
                             Id = 1L,
                             Code = "Add",
-                            CreatedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(2186),
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(2216),
+                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "اضافة",
                             NameEn = "Add"
                         },
@@ -168,9 +168,9 @@ namespace BackendCore.Data.Migrations
                         {
                             Id = 2L,
                             Code = "Edit",
-                            CreatedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(3750),
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(3759),
+                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "تعديل",
                             NameEn = "Edit"
                         },
@@ -178,9 +178,9 @@ namespace BackendCore.Data.Migrations
                         {
                             Id = 3L,
                             Code = "View",
-                            CreatedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(3761),
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(3762),
+                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "عرض",
                             NameEn = "View"
                         },
@@ -188,9 +188,9 @@ namespace BackendCore.Data.Migrations
                         {
                             Id = 4L,
                             Code = "Delete",
-                            CreatedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(3764),
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 9, 16, 3, 14, 53, 633, DateTimeKind.Local).AddTicks(3765),
+                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "حذف",
                             NameEn = "Delete"
                         });
@@ -203,8 +203,8 @@ namespace BackendCore.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -212,8 +212,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -232,9 +232,9 @@ namespace BackendCore.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedDate = new DateTime(2021, 9, 16, 3, 14, 53, 624, DateTimeKind.Local).AddTicks(1030),
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 9, 16, 3, 14, 53, 625, DateTimeKind.Local).AddTicks(2339),
+                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "مدير",
                             NameEn = "Admin"
                         });
@@ -246,8 +246,8 @@ namespace BackendCore.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -258,8 +258,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -295,13 +295,13 @@ namespace BackendCore.Data.Migrations
                         new
                         {
                             Id = new Guid("abcc43c2-f7b8-4d70-8c1e-81bc61cb4518"),
-                            CreatedDate = new DateTime(2021, 9, 16, 3, 14, 53, 627, DateTimeKind.Local).AddTicks(610),
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Admin@admin.com",
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 9, 16, 3, 14, 53, 627, DateTimeKind.Local).AddTicks(622),
+                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "مدير",
                             NameEn = "Admin",
-                            Password = "AL3fYgO/pCMCzBvJd/e2XMK2KfqyaSDHdaZPK97diaKI+6mlw/bpPGgqLHIUl5pGBw==",
+                            Password = "ALpf52Z9a5aHszZjvLE/g5byB8g9/mljVT2VjQZs/9AxVz27RoGqKphB/6zQxnICuA==",
                             Phone = "01016670280",
                             RoleId = 1L,
                             UserName = "admin"
@@ -318,8 +318,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -327,8 +327,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -386,8 +386,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("CreatedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -395,8 +395,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("ModifiedById")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
