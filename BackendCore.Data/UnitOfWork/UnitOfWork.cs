@@ -20,6 +20,13 @@ namespace BackendCore.Data.UnitOfWork
             _context = context;
             Repository = new Repository<T>(_context);
         }
+
+        #region Public Methods
+        /// <summary>
+        /// Get Repository Instance
+        /// </summary>
+        /// <typeparam name="TB"></typeparam>
+        /// <returns></returns>
         public IRepository<TB> GetRepository<TB>() where TB : class
         {
             _repositories ??= new Dictionary<string, dynamic>();
@@ -34,30 +41,58 @@ namespace BackendCore.Data.UnitOfWork
             _repositories.Add(type, repository);
             return _repositories[type];
         }
-
-        public async Task<int> SaveChanges()
+        /// <summary>
+        /// Save Changes Async
+        /// </summary>
+        /// <returns></returns>
+        public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
         }
+
+        /// <summary>
+        /// Save Changes
+        /// </summary>
+        /// <returns></returns>
+        public int SaveChanges()
+        {
+            return  _context.SaveChanges();
+        }
+        /// <summary>
+        /// Start Transaction
+        /// </summary>
         public void StartTransaction()
         {
             _transaction = _context.Database.BeginTransaction();
         }
+        /// <summary>
+        /// Commit Transaction
+        /// </summary>
         public void CommitTransaction()
         {
             _transaction.Commit();
             _transaction.Dispose();
         }
+        /// <summary>
+        /// Rollback
+        /// </summary>
         public void Rollback()
         {
             _transaction.Rollback();
             _transaction.Dispose();
         }
+        /// <summary>
+        /// Dispose Resource
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposing)
@@ -73,5 +108,8 @@ namespace BackendCore.Data.UnitOfWork
             _context.Dispose();
             _context = null;
         }
+
+        #endregion
+
     }
 }

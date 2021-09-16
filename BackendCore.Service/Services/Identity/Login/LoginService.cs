@@ -92,7 +92,7 @@ namespace BackendCore.Service.Services.Identity.Login
                 // add default user role to user we can change it after that
                 user.RoleId = 2;
                 UnitOfWork.Repository.Add(user);
-                await UnitOfWork.SaveChanges();
+                await UnitOfWork.SaveChangesAsync();
                 return user;
             }
             catch (Exception e)

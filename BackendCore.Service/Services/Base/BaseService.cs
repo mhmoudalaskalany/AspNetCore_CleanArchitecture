@@ -94,7 +94,7 @@ namespace BackendCore.Service.Services.Base
             T entity = Mapper.Map<TDto, T>(model);
             SetEntityCreatedBaseProperties(entity);
             UnitOfWork.Repository.Add(entity);
-            int affectedRows = await UnitOfWork.SaveChanges();
+            int affectedRows = await UnitOfWork.SaveChangesAsync();
             if (affectedRows > 0)
             {
                 Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
@@ -115,7 +115,7 @@ namespace BackendCore.Service.Services.Base
 
             List<T> entities = Mapper.Map<List<TDto>, List<T>>(model);
             UnitOfWork.Repository.AddRange(entities);
-            int affectedRows = await UnitOfWork.SaveChanges();
+            int affectedRows = await UnitOfWork.SaveChangesAsync();
             if (affectedRows > 0)
             {
                 Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
@@ -137,7 +137,7 @@ namespace BackendCore.Service.Services.Base
             var newEntity = Mapper.Map(model, entityToUpdate);
             SetEntityModifiedBaseProperties(newEntity);
             UnitOfWork.Repository.Update(entityToUpdate, newEntity);
-            int affectedRows = await UnitOfWork.SaveChanges();
+            int affectedRows = await UnitOfWork.SaveChangesAsync();
             if (affectedRows > 0)
             {
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
@@ -157,7 +157,7 @@ namespace BackendCore.Service.Services.Base
 
             var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
             UnitOfWork.Repository.Remove(entityToDelete);
-            int affectedRows = await UnitOfWork.SaveChanges();
+            int affectedRows = await UnitOfWork.SaveChangesAsync();
             if (affectedRows > 0)
             {
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
@@ -178,7 +178,7 @@ namespace BackendCore.Service.Services.Base
             var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
             SetEntityModifiedBaseProperties(entityToDelete);
             UnitOfWork.Repository.RemoveLogical(entityToDelete);
-            int affectedRows = await UnitOfWork.SaveChanges();
+            int affectedRows = await UnitOfWork.SaveChangesAsync();
             if (affectedRows > 0)
             {
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
