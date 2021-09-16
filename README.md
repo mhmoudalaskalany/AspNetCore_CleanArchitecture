@@ -1,5 +1,5 @@
 # .Net Core 5 Api Clean Architecture
-Core Template For .Net Core 5 Web Api with extensible and clean architecture
+Clean Architecture For .Net Core 5 Web Api with N-Tier Layers
 
 - Generic crud operations
 - Auto Mapper
