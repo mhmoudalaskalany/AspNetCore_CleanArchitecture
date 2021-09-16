@@ -1,4 +1,5 @@
-﻿using BackendCore.Common.DTO.Base;
+﻿using System;
+using BackendCore.Common.DTO.Base;
 using Microsoft.AspNetCore.Http;
 
 namespace BackendCore.Common.Services
@@ -25,7 +26,7 @@ namespace BackendCore.Common.Services
                 Email = claims?.FindFirst(t => t.Type == "Email")?.Value
             };
         }
-        public long UserId => ClaimData.UserId != null ? long.Parse(ClaimData.UserId) : 0;
+        public Guid UserId => ClaimData.UserId != null ? Guid.Parse(ClaimData.UserId) : Guid.Empty;
 
         public string Token => _context.Request.Headers["Authorization"];
 
