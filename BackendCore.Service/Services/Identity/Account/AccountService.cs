@@ -7,15 +7,16 @@ using BackendCore.Common.DTO.Identity.User;
 using BackendCore.Common.Extensions;
 using BackendCore.Common.Infrastructure.Repository.ActiveDirectory;
 using BackendCore.Service.Services.Base;
+using BackendCore.Service.Services.Identity.Login;
 using Microsoft.EntityFrameworkCore;
 
-namespace BackendCore.Service.Services.Identity.Login
+namespace BackendCore.Service.Services.Identity.Account
 {
-    public class LoginService : BaseService<Entities.Entities.Identity.User,AddUserDto, UserDto, Guid , Guid?>, ILoginService
+    public class AccountService : BaseService<Entities.Entities.Identity.User,AddUserDto, UserDto, Guid , Guid?>, IAccountService
     {
         private readonly ITokenService _tokenBusiness;
         private readonly IActiveDirectoryRepository _activeDirectoryRepository;
-        public LoginService(IServiceBaseParameter<Entities.Entities.Identity.User> businessBaseParameter, ITokenService tokenBusiness, IActiveDirectoryRepository activeDirectoryRepository) : base(businessBaseParameter)
+        public AccountService(IServiceBaseParameter<Entities.Entities.Identity.User> businessBaseParameter, ITokenService tokenBusiness, IActiveDirectoryRepository activeDirectoryRepository) : base(businessBaseParameter)
         {
             _tokenBusiness = tokenBusiness;
             _activeDirectoryRepository = activeDirectoryRepository;
@@ -32,7 +33,7 @@ namespace BackendCore.Service.Services.Identity.Login
             var user = await UnitOfWork.Repository.FirstOrDefaultAsync(q => q.UserName == parameters.Username && !q.IsDeleted, include: source => source.Include(a => a.Role), disableTracking: false);
             if (user == null) return ResponseResult.PostResult(status: HttpStatusCode.BadRequest,
                 message: "Wrong Username or Password");
-            bool rightPass = CryptoHasher.VerifyHashedPassword(user.Password, parameters.Password);
+            var rightPass = CryptoHasher.VerifyHashedPassword(user.Password, parameters.Password);
             if (!rightPass) return ResponseResult.PostResult(status: HttpStatusCode.NotFound, message: "Wrong Password");
             var role = user.RoleId;
             var userDto = Mapper.Map<Entities.Entities.Identity.User, UserDto>(user);

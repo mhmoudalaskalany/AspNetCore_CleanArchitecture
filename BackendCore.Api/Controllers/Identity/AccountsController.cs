@@ -10,15 +10,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace BackendCore.Api.Controllers.Identity
 {
     /// <summary>
-    /// Account Controller
+    /// Accounts Controller
     /// </summary>
     public class AccountsController : BaseController
     {
-        private readonly ILoginService _loginServices;
+        private readonly IAccountService _accountService;
         /// <inheritdoc />
-        public AccountsController(ILoginService loginServices, ITokenService tokenService) : base(tokenService)
+        public AccountsController(IAccountService accountService, ITokenService tokenService) : base(tokenService)
         {
-            _loginServices = loginServices;
+            _accountService = accountService;
         }
         /// <summary>
         /// Login 
@@ -29,7 +29,7 @@ namespace BackendCore.Api.Controllers.Identity
         [AllowAnonymous]
         public async Task<IResult> Login(LoginParameters parameter)
         {
-            return await _loginServices.Login(parameter);
+            return await _accountService.Login(parameter);
         }
     }
 }

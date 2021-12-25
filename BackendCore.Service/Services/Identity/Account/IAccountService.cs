@@ -4,7 +4,7 @@ using BackendCore.Common.DTO.Identity.Login;
 
 namespace BackendCore.Service.Services.Identity.Login
 {
-    public interface ILoginService
+    public interface IAccountService
     {
         Task<IResult> Login(LoginParameters parameters);
         Task<IResult> AdLogin(LoginParameters parameters);
