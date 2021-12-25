@@ -7,7 +7,7 @@ namespace BackendCore.Common.Helpers.FileHelpers.StorageHelper
 {
     public interface IStorageService
     {
-        Task<IEnumerable<object>> StoreToSharedFolder(IFormFileCollection files, string path , string appCode);
+        Task<List<FileDto>> StoreToSharedFolder(IFormFileCollection files, string path , string appCode);
         Task<object> StoreBytes(UploadRequestDto dto, string path , string appCode);
         Task<object> DownLoad(string url, string path);
         Task<bool> Delete(string path);

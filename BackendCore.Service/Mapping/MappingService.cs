@@ -26,6 +26,12 @@ namespace BackendCore.Service.Mapping
 
             #endregion
 
+            #region Common Profiles
+
+            MapFile();
+
+            #endregion
+
         }
     }
 }

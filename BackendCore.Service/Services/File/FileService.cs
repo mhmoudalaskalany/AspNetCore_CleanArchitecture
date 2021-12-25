@@ -12,7 +12,6 @@ using BackendCore.Entities.Enum;
 using BackendCore.Service.Services.Base;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using FileDto = BackendCore.Integration.FileRepository.Dtos.FileDto;
 
 namespace BackendCore.Service.Services.File
 {
@@ -50,7 +49,7 @@ namespace BackendCore.Service.Services.File
           
             var basePath = _configuration["StoragePaths:Base"];
             _path = basePath + _configuration["StoragePaths:" + appCode];
-            var fileNames = (List<FileDto>)await _storage(storageType.ToString()).StoreToSharedFolder(files, _path, appCode);
+            var fileNames = await _storage(storageType.ToString()).StoreToSharedFolder(files, _path, appCode);
             fileNames.ForEach(x => x.Id = Guid.NewGuid());
             var entities = Mapper.Map<List<Entities.Entities.Common.File>>(fileNames);
             entities.ForEach(x =>

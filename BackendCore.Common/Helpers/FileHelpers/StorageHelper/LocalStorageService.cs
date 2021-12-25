@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using BackendCore.Common.DTO.Common.File;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Win32.SafeHandles;
 using Newtonsoft.Json;
 using SimpleImpersonation;
 
@@ -31,10 +33,16 @@ namespace BackendCore.Common.Helpers.FileHelpers.StorageHelper
             var password = _configuration["Network:Password"];
             var domain = _configuration["Network:Domain"];
             var credentials = new UserCredentials(domain, username, password);
-            Impersonation.RunAsUser(credentials, LogonType.Interactive, () =>
-            {
-                File.Delete(path);
-            });
+            using SafeAccessTokenHandle userHandle = credentials.LogonUser(LogonType.Interactive);
+#pragma warning disable CA1416 // Validate platform compatibility
+            WindowsIdentity.RunImpersonated(userHandle, () =>
+           {
+               File.Delete(path);
+           });
+#pragma warning restore CA1416 // Validate platform compatibility
+
+
+
             return true;
         }
         public async Task<object> DownLoad(string url, string path)
@@ -43,25 +51,26 @@ namespace BackendCore.Common.Helpers.FileHelpers.StorageHelper
             var password = _configuration["Network:Password"];
             var domain = _configuration["Network:Domain"];
             var credentials = new UserCredentials(domain, username, password);
-            var result = Impersonation.RunAsUser(credentials, LogonType.Interactive, () =>
+            using SafeAccessTokenHandle userHandle = credentials.LogonUser(LogonType.Interactive);
+#pragma warning disable CA1416 // Validate platform compatibility
+            var result = await WindowsIdentity.RunImpersonatedAsync(userHandle, async () =>
             {
                 var folderPath = Path.Combine($"{path}" + url);
-                
+
                 var memory = new MemoryStream();
-                using (var stream = new FileStream(folderPath, FileMode.Open))
-                {
-                     stream.CopyTo(memory);
-                }
+                await using var stream = new FileStream(folderPath, FileMode.Open);
+                await stream.CopyToAsync(memory);
                 memory.Position = 0;
                 return memory;
             });
+#pragma warning restore CA1416 // Validate platform compatibility
 
             return result;
 
 
         }
 
-        public async Task<IEnumerable<object>> StoreToSharedFolder(IFormFileCollection files, string path , string appCode)
+        public async Task<List<FileDto>> StoreToSharedFolder(IFormFileCollection files, string path, string appCode)
         {
             try
             {
@@ -69,33 +78,36 @@ namespace BackendCore.Common.Helpers.FileHelpers.StorageHelper
                 var password = _configuration["Network:Password"];
                 var domain = _configuration["Network:Domain"];
                 var credentials = new UserCredentials(domain, username, password);
-                var result = Impersonation.RunAsUser(credentials, LogonType.Interactive, () =>
+                using SafeAccessTokenHandle userHandle = credentials.LogonUser(LogonType.Interactive);
+#pragma warning disable CA1416 // Validate platform compatibility
+                var result = await WindowsIdentity.RunImpersonatedAsync(userHandle, async () =>
                 {
                     var uploadsFolderPath = Path.Combine($"{path}") + DateTime.UtcNow.Date.ToString("dd-MM-yyyy");
                     if (!Directory.Exists(uploadsFolderPath))
                         Directory.CreateDirectory(uploadsFolderPath);
-                    List<FileDto> filesName = new List<FileDto>();
+                    var filesName = new List<FileDto>();
                     foreach (var item in files)
                     {
                         var file = new FileDto
                         {
-                            Name = item.FileName, FileSize = ((item.Length / 1024f) / 1024f).ToString(),
+                            Name = item.FileName,
+                            FileSize = ((item.Length / 1024f) / 1024f).ToString(),
                             AppCode = appCode
                         };
                         var newFileName = Guid.NewGuid() + Path.GetExtension(item.FileName);
                         file.Url = newFileName;
                         file.ContentType = item.ContentType;
                         file.DocumentType = Path.GetExtension(item.FileName).Replace(".", "");
-                        
+
                         var filePath = Path.Combine(uploadsFolderPath, newFileName);
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            item.CopyTo(stream);
-                        }
+                        await using var stream = new FileStream(filePath, FileMode.Create);
+                        await item.CopyToAsync(stream);
                         filesName.Add(file);
                     }
                     return filesName;
                 });
+#pragma warning restore CA1416 // Validate platform compatibility
+
                 return result;
             }
             catch (Exception e)
@@ -107,8 +119,8 @@ namespace BackendCore.Common.Helpers.FileHelpers.StorageHelper
 
 
         }
-        
-        public async Task<object> StoreBytes(UploadRequestDto dto, string path , string appCode)
+
+        public async Task<object> StoreBytes(UploadRequestDto dto, string path, string appCode)
         {
             try
             {
@@ -116,7 +128,9 @@ namespace BackendCore.Common.Helpers.FileHelpers.StorageHelper
                 var password = _configuration["Network:Password"];
                 var domain = _configuration["Network:Domain"];
                 var credentials = new UserCredentials(domain, username, password);
-                var result = Impersonation.RunAsUser(credentials, LogonType.Interactive, () =>
+                using SafeAccessTokenHandle userHandle = credentials.LogonUser(LogonType.Interactive);
+#pragma warning disable CA1416 // Validate platform compatibility
+                var result = await WindowsIdentity.RunImpersonatedAsync(userHandle, async () =>
                 {
                     var uploadsFolderPath = Path.Combine($"{path}") + DateTime.UtcNow.Date.ToString("dd-MM-yyyy");
                     if (!Directory.Exists(uploadsFolderPath))
@@ -133,10 +147,12 @@ namespace BackendCore.Common.Helpers.FileHelpers.StorageHelper
                     file.ContentType = dto.MimeType;
                     file.DocumentType = Path.GetExtension(dto.FileName).Replace(".", "");
                     var filePath = Path.Combine(uploadsFolderPath, newFileName);
-                    using var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
-                    fs.Write(dto.FileBytes, 0, dto.FileBytes.Length);
+                    await using var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+                    await fs.WriteAsync(dto.FileBytes, 0, dto.FileBytes.Length);
                     return file;
                 });
+#pragma warning restore CA1416 // Validate platform compatibility
+
                 return result;
 
             }
@@ -156,9 +172,11 @@ namespace BackendCore.Common.Helpers.FileHelpers.StorageHelper
                 var password = _configuration["Network:Password"];
                 var domain = _configuration["Network:Domain"];
                 var location = _configuration["StoragePaths:Location"];
-                _logger.LogInformation("Location:  " + location);
                 var credentials = new UserCredentials(domain, username, password);
-                var result = Impersonation.RunAsUser(credentials, LogonType.Interactive, () => Directory.GetFiles(@location));
+                using SafeAccessTokenHandle userHandle = credentials.LogonUser(LogonType.Interactive);
+#pragma warning disable CA1416 // Validate platform compatibility
+                var result =
+                    await WindowsIdentity.RunImpersonatedAsync(userHandle, async () => Directory.GetFiles(@location));
                 return result;
             }
             catch (Exception e)

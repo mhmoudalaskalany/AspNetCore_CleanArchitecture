@@ -55,7 +55,7 @@ namespace BackendCore.Common.Helpers.FileHelpers.StorageHelper
         /// <param name="path"></param>
         /// <param name="appCode"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<object>> StoreToSharedFolder(IFormFileCollection files, string path, string appCode)
+        public async Task<List<FileDto>> StoreToSharedFolder(IFormFileCollection files, string path, string appCode)
         {
             try
             {

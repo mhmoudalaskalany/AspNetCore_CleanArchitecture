@@ -5,7 +5,6 @@ using BackendCore.Common.DTO.Common.File;
 using BackendCore.Entities.Enum;
 using BackendCore.Service.Services.Base;
 using Microsoft.AspNetCore.Http;
-using FileDto = BackendCore.Integration.FileRepository.Dtos.FileDto;
 
 namespace BackendCore.Service.Services.File
 {

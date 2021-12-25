@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BackendCore.Integration.FileRepository.Dtos
+namespace BackendCore.Common.DTO.Common.File
 {
     public class TokenDto
     {

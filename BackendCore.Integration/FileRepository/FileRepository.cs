@@ -7,7 +7,7 @@ using BackendCore.Common.Helpers.HttpClient.RestSharp;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RestSharp;
-using TokenDto = BackendCore.Integration.FileRepository.Dtos.TokenDto;
+using TokenDto = BackendCore.Common.DTO.Common.File.TokenDto;
 
 namespace BackendCore.Integration.FileRepository
 {

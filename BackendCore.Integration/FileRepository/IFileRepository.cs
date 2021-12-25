@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TokenDto = BackendCore.Integration.FileRepository.Dtos.TokenDto;
+using TokenDto = BackendCore.Common.DTO.Common.File.TokenDto;
 
 namespace BackendCore.Integration.FileRepository
 {
