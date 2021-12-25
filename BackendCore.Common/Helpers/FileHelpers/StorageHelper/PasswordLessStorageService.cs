@@ -40,8 +40,8 @@ namespace BackendCore.Common.Helpers.FileHelpers.StorageHelper
             var folderPath = Path.Combine($"{path}" + url);
 
             var memory = new MemoryStream();
-            using var stream = new FileStream(folderPath, FileMode.Open);
-            stream.CopyTo(memory);
+            await using var stream = new FileStream(folderPath, FileMode.Open);
+            await stream.CopyToAsync(memory);
             memory.Position = 0;
             return memory;
 
@@ -79,8 +79,8 @@ namespace BackendCore.Common.Helpers.FileHelpers.StorageHelper
                     file.DocumentType = Path.GetExtension(item.FileName).Replace(".", "");
 
                     var filePath = Path.Combine(uploadsFolderPath, newFileName);
-                    using var stream = new FileStream(filePath, FileMode.Create);
-                    item.CopyTo(stream);
+                    await using var stream = new FileStream(filePath, FileMode.Create);
+                    await item.CopyToAsync(stream);
                     filesName.Add(file);
                 }
                 return filesName;
@@ -122,7 +122,7 @@ namespace BackendCore.Common.Helpers.FileHelpers.StorageHelper
                 file.ContentType = dto.MimeType;
                 file.DocumentType = Path.GetExtension(dto.FileName).Replace(".", "");
                 var filePath = Path.Combine(uploadsFolderPath, newFileName);
-                using var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+                await using var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
                 fs.Write(dto.FileBytes, 0, dto.FileBytes.Length);
                 return file;
 
