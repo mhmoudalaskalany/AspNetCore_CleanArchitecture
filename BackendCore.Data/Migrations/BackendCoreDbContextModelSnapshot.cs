@@ -113,6 +113,59 @@ namespace BackendCore.Data.Migrations
                     b.ToTable("Attachments");
                 });
 
+            modelBuilder.Entity("BackendCore.Entities.Entities.Common.File", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AppCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("CreatedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocumentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileSize")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPublic")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StorageType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Files");
+                });
+
             modelBuilder.Entity("BackendCore.Entities.Entities.Identity.Permission", b =>
                 {
                     b.Property<long>("Id")
@@ -299,7 +352,7 @@ namespace BackendCore.Data.Migrations
                             ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "مدير",
                             NameEn = "Admin",
-                            Password = "AOuJ6y3b2DdXnldZKhmMg+1SGckHI9eRATfrH+oYQSKnia3whEbUM38QJgdLKvPcAg==",
+                            Password = "AJ/7RrFHQJw5adUbk6rT4CQLp20Ytqjw2HHU+1g9yJOcR/HWbBzvQnYaBnA2dPysUw==",
                             Phone = "01016670280",
                             RoleId = 1L,
                             UserName = "admin"

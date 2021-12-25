@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Business\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 

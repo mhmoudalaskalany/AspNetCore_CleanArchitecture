@@ -2,6 +2,7 @@
 using BackendCore.Data.Configuration;
 using BackendCore.Data.DataInitializer;
 using BackendCore.Entities.Entities.Business;
+using BackendCore.Entities.Entities.Common;
 using BackendCore.Entities.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Action = BackendCore.Entities.Entities.Lookup.Action;
@@ -21,6 +22,12 @@ namespace BackendCore.Data.Context
 
         #region Business
         public virtual DbSet<Attachment> Attachments { get; set; }
+        #endregion
+
+        #region Common Entities
+
+        public virtual DbSet<File> Files { get; set; }
+
         #endregion
 
         #region Overriden Methods
