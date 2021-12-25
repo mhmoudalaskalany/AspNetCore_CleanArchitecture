@@ -47,6 +47,12 @@ namespace BackendCore.Entities.Enum
 
     #region Common Enum
 
+    public enum StorageType
+    {
+        LocalStorage = 1,
+        PasswordLess
+    }
+
     public enum AuditType
     {
         None = 0,

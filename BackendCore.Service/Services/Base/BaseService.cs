@@ -48,7 +48,7 @@ namespace BackendCore.Service.Services.Base
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> GetByIdAsync(long id)
+        public virtual async Task<IResult> GetByIdAsync(object id)
         {
 
             T query = await UnitOfWork.Repository.GetAsync(id);
@@ -151,7 +151,7 @@ namespace BackendCore.Service.Services.Base
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> DeleteAsync(long id)
+        public virtual async Task<IResult> DeleteAsync(object id)
         {
 
             var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
@@ -171,7 +171,7 @@ namespace BackendCore.Service.Services.Base
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> DeleteSoftAsync(long id)
+        public virtual async Task<IResult> DeleteSoftAsync(object id)
         {
 
             var entityToDelete = await UnitOfWork.Repository.GetAsync(id);

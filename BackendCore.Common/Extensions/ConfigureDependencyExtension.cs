@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using BackendCore.Common.Core;
 using BackendCore.Common.Helpers.EmailHelper;
+using BackendCore.Common.Helpers.FileHelpers.StorageHelper;
 using BackendCore.Common.Helpers.HttpClient;
 using BackendCore.Common.Helpers.HttpClient.RestSharp;
 using BackendCore.Common.Helpers.MailKitHelper;
@@ -24,6 +25,7 @@ namespace BackendCore.Common.Extensions
         public static IServiceCollection RegisterCommonServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddCors();
+            services.RegisterFileServices();
             services.RegisterMainCore();
             services.RegisterEmailMetadata(configuration);
             services.AddApiDocumentationServices(configuration);
@@ -56,6 +58,25 @@ namespace BackendCore.Common.Extensions
         private static void RegisterHttpClientHelpers(this IServiceCollection services)
         {
             services.AddTransient<IRestSharpContainer, RestSharpContainer>();
+        }
+
+        /// <summary>
+        /// Register File Services
+        /// </summary>
+        /// <param name="services"></param>
+        private static void RegisterFileServices(this IServiceCollection services)
+        {
+            services.AddScoped<LocalStorageService>();
+            services.AddScoped<PasswordLessStorageService>();
+            services.AddScoped<Func<string, IStorageService>>(serviceProvider => key =>
+            {
+                switch (key)
+                {
+                    case "LocalStorage": return serviceProvider.GetService<LocalStorageService>();
+                    case "PasswordLessStorage": return serviceProvider.GetService<PasswordLessStorageService>();
+                    default: return serviceProvider.GetService<PasswordLessStorageService>();
+                }
+            });
         }
 
         /// <summary>
