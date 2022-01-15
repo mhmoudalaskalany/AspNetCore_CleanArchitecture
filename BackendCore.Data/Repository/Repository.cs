@@ -36,7 +36,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Get
         /// </summary>
-        /// <param name="keys"></param>
         /// <returns></returns>
         public async Task<T> GetAsync(params object[] keys)
         {
@@ -45,10 +44,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// First Or Default
         /// </summary>
-        /// <param name="predicate"></param>
-        /// <param name="orderby"></param>
-        /// <param name="include"></param>
-        /// <param name="disableTracking"></param>
         /// <returns></returns>
         public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true)
         {
@@ -67,7 +62,7 @@ namespace BackendCore.Data.Repository
             }
             if (include != null)
             {
-                query = include(query);
+                query = include(query).AsSplitQuery();
             }
             return await query.FirstOrDefaultAsync();
 
@@ -75,10 +70,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Find
         /// </summary>
-        /// <param name="predicate"></param>
-        /// <param name="orderByCriteria"></param>
-        /// <param name="include"></param>
-        /// <param name="disableTracking"></param>
         /// <returns></returns>
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate = null, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true)
         {
@@ -97,19 +88,13 @@ namespace BackendCore.Data.Repository
             }
             if (include != null)
             {
-                query = include(query);
+                query = include(query).AsSplitQuery();
             }
             return await query.ToListAsync();
         }
         /// <summary>
         /// Find Paged
         /// </summary>
-        /// <param name="predicate"></param>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
-        /// <param name="orderByCriteria"></param>
-        /// <param name="include"></param>
-        /// <param name="disableTracking"></param>
         /// <returns></returns>
         public async Task<(int, IEnumerable<T>)> FindPagedAsync(Expression<Func<T, bool>> predicate = null, int skip = 0, int take = 0, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true)
         {
@@ -122,7 +107,7 @@ namespace BackendCore.Data.Repository
             {
                 query = query.Where(predicate);
             }
-            int count = query.Count();
+            var count = query.Count();
             if (orderByCriteria != null)
             {
                 var field = orderByCriteria.First().PairAsSqlExpression;
@@ -130,16 +115,13 @@ namespace BackendCore.Data.Repository
             }
             if (include != null)
             {
-                query = include(query);
+                query = include(query).AsSplitQuery();
             }
             return (count, await query.ToListAsync());
         }
         /// <summary>
         /// Get All 
         /// </summary>
-        /// <param name="orderByCriteria"></param>
-        /// <param name="include"></param>
-        /// <param name="disableTracking"></param>
         /// <returns></returns>
         public async Task<IEnumerable<T>> GetAllAsync(IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true)
         {
@@ -150,7 +132,7 @@ namespace BackendCore.Data.Repository
             }
             if (include != null)
             {
-                query = include(query);
+                query = include(query).AsSplitQuery();
             }
             if (orderByCriteria != null)
             {
@@ -161,9 +143,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Get Select
         /// </summary>
-        /// <typeparam name="TType"></typeparam>
-        /// <param name="where"></param>
-        /// <param name="select"></param>
         /// <returns></returns>
 
         public async Task<ICollection<TType>> GetSelectAsync<TType>(Expression<Func<T, bool>> where, Expression<Func<T, TType>> select) where TType : class
@@ -173,12 +152,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Find Select With Sort And Order
         /// </summary>
-        /// <typeparam name="TType"></typeparam>
-        /// <param name="select"></param>
-        /// <param name="predicate"></param>
-        /// <param name="orderByCriteria"></param>
-        /// <param name="include"></param>
-        /// <param name="disableTracking"></param>
         /// <returns></returns>
         public async Task<IEnumerable<TType>> FindSelectAsync<TType>(Expression<Func<T, TType>> select, Expression<Func<T, bool>> predicate = null, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true) where TType : class
         {
@@ -197,21 +170,13 @@ namespace BackendCore.Data.Repository
             }
             if (include != null)
             {
-                query = include(query);
+                query = include(query).AsSplitQuery();
             }
             return await query.Select(select).ToListAsync();
         }
         /// <summary>
         /// Find Paged Select
         /// </summary>
-        /// <typeparam name="TType"></typeparam>
-        /// <param name="select"></param>
-        /// <param name="predicate"></param>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
-        /// <param name="orderByCriteria"></param>
-        /// <param name="include"></param>
-        /// <param name="disableTracking"></param>
         /// <returns></returns>
         public async Task<(int, IEnumerable<TType>)> FindPagedSelectAsync<TType>(Expression<Func<T, TType>> select, Expression<Func<T, bool>> predicate = null, int skip = 0, int take = 0, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true) where TType : class
         {
@@ -226,7 +191,7 @@ namespace BackendCore.Data.Repository
             }
             if (include != null)
             {
-                query = include(query);
+                query = include(query).AsSplitQuery();
             }
             var count = query.Count();
             if (orderByCriteria == null) return (count, await query.Skip(skip).Take(take).Select(select).ToListAsync());
@@ -238,19 +203,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Find Grouped With Sort And Order
         /// </summary>
-        /// <typeparam name="TResult"></typeparam>
-        /// <typeparam name="TKey"></typeparam>
-        /// <typeparam name="TGroup"></typeparam>
-        /// <typeparam name="TReturn"></typeparam>
-        /// <param name="predicates"></param>
-        /// <param name="firstSelector"></param>
-        /// <param name="orderSelector"></param>
-        /// <param name="groupSelector"></param>
-        /// <param name="selector"></param>
-        /// <param name="isDesc"></param>
-        /// <param name="include"></param>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
         /// <returns></returns>
         public IList<TReturn> FindGrouped<TResult, TKey, TGroup, TReturn>(
             List<Expression<Func<T, bool>>> predicates,
@@ -263,7 +215,7 @@ namespace BackendCore.Data.Repository
             IQueryable<T> query = DbSet;
             if (include != null)
             {
-                query = include(query);
+                query = include(query).AsSplitQuery();
             }
 
             var result = predicates
@@ -274,8 +226,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Execute Stored
         /// </summary>
-        /// <typeparam name="TB"></typeparam>
-        /// <param name="sql"></param>
         /// <returns></returns>
         public IEnumerable<TB> ExecuteStored<TB>(string sql) where TB : class
         {
@@ -285,7 +235,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Exec Stored
         /// </summary>
-        /// <param name="query"></param>
         /// <returns></returns>
         public async Task<int> ExecWithStoreProcedure(string query)
         {
@@ -294,7 +243,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Get Next Sequence Value By Sequence Name
         /// </summary>
-        /// <param name="sequenceName"></param>
         /// <returns></returns>
         public long GetNextSequenceValue(string sequenceName)
         {
@@ -305,15 +253,11 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Count
         /// </summary>
-        /// <param name="predicate"></param>
         /// <returns></returns>
         public async Task<int> Count(Expression<Func<T, bool>> predicate = null) => predicate == null ? await DbSet.CountAsync() : await DbSet.CountAsync(predicate);
         /// <summary>
         /// Max
         /// </summary>
-        /// <typeparam name="TB"></typeparam>
-        /// <param name="selector"></param>
-        /// <param name="predicate"></param>
         /// <returns></returns>
         public async Task<TB> Max<TB>(Expression<Func<T, TB>> selector, Expression<Func<T, bool>> predicate = null)
         {
@@ -324,13 +268,11 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Any
         /// </summary>
-        /// <param name="predicate"></param>
         /// <returns></returns>
         public async Task<bool> Any(Expression<Func<T, bool>> predicate = null) => predicate == null ? await DbSet.AnyAsync() : await DbSet.AnyAsync(predicate);
         /// <summary>
         /// Add
         /// </summary>
-        /// <param name="newEntity"></param>
         /// <returns></returns>
         public T Add(T newEntity)
         {
@@ -339,7 +281,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Add Range
         /// </summary>
-        /// <param name="entities"></param>
         public void AddRange(IEnumerable<T> entities)
         {
             DbSet.AddRange(entities);
@@ -347,8 +288,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Update
         /// </summary>
-        /// <param name="originalEntity"></param>
-        /// <param name="newEntity"></param>
         public void Update(T originalEntity, T newEntity)
         {
             Context.Entry(originalEntity).CurrentValues.SetValues(newEntity);
@@ -356,7 +295,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Update Range
         /// </summary>
-        /// <param name="newEntities"></param>
         public void UpdateRange(IEnumerable<T> newEntities)
         {
             Context.UpdateRange(newEntities);
@@ -364,7 +302,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Remove
         /// </summary>
-        /// <param name="entity"></param>
         public void Remove(T entity)
         {
             DbSet.Remove(entity);
@@ -372,7 +309,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Remove Logical
         /// </summary>
-        /// <param name="entity"></param>
         public void RemoveLogical(T entity)
         {
             var type = entity.GetType();
@@ -385,7 +321,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Remove With Predicate
         /// </summary>
-        /// <param name="predicate"></param>
         public async void Remove(Expression<Func<T, bool>> predicate)
         {
             var objects = await DbSet.FindAsync(predicate);
@@ -394,7 +329,6 @@ namespace BackendCore.Data.Repository
         /// <summary>
         /// Remove Range
         /// </summary>
-        /// <param name="entities"></param>
         public void RemoveRange(IEnumerable<T> entities)
         {
             DbSet.RemoveRange(entities);
