@@ -1,4 +1,4 @@
-# .Net Core 5 Api Clean Architecture
+# .Net Core 6 Api Clean Architecture
 Clean Architecture For .Net Core 5 Web Api with N-Tier Layers
 
 - Generic crud operations
