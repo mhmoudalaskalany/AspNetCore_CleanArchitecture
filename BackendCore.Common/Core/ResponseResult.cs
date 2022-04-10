@@ -13,7 +13,7 @@ namespace BackendCore.Common.Core
             Status = status;
         }
 
-        public IResult PostResult(object result = null, HttpStatusCode status = HttpStatusCode.BadRequest, Exception exception = null, string message = null)
+        public IFinalResult PostResult(object result = null, HttpStatusCode status = HttpStatusCode.BadRequest, Exception exception = null, string message = null)
         {
             return new ResponseResult(result: result, status: status, exception: exception, message: message);
         }

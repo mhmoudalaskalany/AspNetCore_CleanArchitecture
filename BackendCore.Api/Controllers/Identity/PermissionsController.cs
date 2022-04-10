@@ -27,7 +27,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// </summary>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<IResult> GetAsync(long id)
+        public async Task<IFinalResult> GetAsync(long id)
         {
             var result = await _permissionService.GetByIdAsync(id);
             return result;
@@ -38,7 +38,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _permissionService.GetAllAsync();
             return result;
@@ -61,7 +61,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IResult> AddAsync([FromBody] AddPermissionDto dto)
+        public async Task<IFinalResult> AddAsync([FromBody] AddPermissionDto dto)
         {
             var result = await _permissionService.AddAsync(dto);
             return result;
@@ -74,7 +74,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// <param name="model">Object content</param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<IResult> UpdateAsync(AddPermissionDto model)
+        public async Task<IFinalResult> UpdateAsync(AddPermissionDto model)
         {
 
             return await _permissionService.UpdateAsync(model);
@@ -85,7 +85,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<IResult> DeleteAsync(long id)
+        public async Task<IFinalResult> DeleteAsync(long id)
         {
             return await _permissionService.DeleteAsync(id);
         }
@@ -96,7 +96,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<IResult> DeleteSoftAsync(long id)
+        public async Task<IFinalResult> DeleteSoftAsync(long id)
         {
             return await _permissionService.DeleteSoftAsync(id);
         }

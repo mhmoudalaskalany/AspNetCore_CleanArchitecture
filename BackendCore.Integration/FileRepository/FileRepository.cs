@@ -37,7 +37,7 @@ namespace BackendCore.Integration.FileRepository
         public async Task<List<TokenDto>> GetTokens(List<Guid> ids)
         {
             var appCode = _configuration["AppCode"];
-            var result = await _restSharpContainer.SendRequest<ResponseResult>(_urls.GenerateTokenWithClaims + "/" + appCode, Method.POST, ids);
+            var result = await _restSharpContainer.SendRequest<ResponseResult>(_urls.GenerateTokenWithClaims + "/" + appCode, Method.Post, ids);
             var tokens = JsonConvert.DeserializeObject<List<TokenDto>>(JsonConvert.SerializeObject(result.Data));
             return tokens;
         }

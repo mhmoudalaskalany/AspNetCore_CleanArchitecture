@@ -3,9 +3,9 @@ using System.Net;
 
 namespace BackendCore.Common.Core
 {
-    public interface IResponseResult : IResult
+    public interface IResponseResult : IFinalResult
     {
-        IResult PostResult(object result = null,
+        IFinalResult PostResult(object result = null,
             HttpStatusCode status = HttpStatusCode.BadRequest, Exception exception = null,
             string message = null);
     }

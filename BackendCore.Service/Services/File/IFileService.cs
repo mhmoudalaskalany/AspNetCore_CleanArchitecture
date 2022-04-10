@@ -19,14 +19,14 @@ namespace BackendCore.Service.Services.File
         /// <param name="isPublic"></param>
         /// <param name="appCode"></param>
         /// <returns></returns>
-        Task<IResult> UploadToSanStorage(IFormFileCollection files, StorageType storageType, bool isPublic, string appCode);
+        Task<IFinalResult> UploadToSanStorage(IFormFileCollection files, StorageType storageType, bool isPublic, string appCode);
         /// <summary>
         /// Upload Bytes
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        Task<IResult> UploadBytes(UploadRequestDto dto, int length);
+        Task<IFinalResult> UploadBytes(UploadRequestDto dto, int length);
         /// <summary>
         /// Download With App Code
         /// </summary>
@@ -45,6 +45,6 @@ namespace BackendCore.Service.Services.File
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<IResult> DeletePhysicalAsync(Guid id);
+        Task<IFinalResult> DeletePhysicalAsync(Guid id);
     }
 }

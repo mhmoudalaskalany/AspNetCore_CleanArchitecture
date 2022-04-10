@@ -9,10 +9,8 @@ namespace BackendCore.Common.Helpers.HttpClient.RestSharp
         Task<T> SendRequest<T>(string url, Method method, object obj = null, string urlEncoded = null,
             Dictionary<string, string> headers = null);
 
-        Task<T> SendBasicRequest<T>(string url, Method method, object obj = null,
+        Task<T> SendBasicRequest<T>(string url, Method method, string username, string password, object obj = null,
             Dictionary<string, string> headers = null);
 
-        Task<T> SendBasicRequestWithCredentials<T>(string url, Method method, string username, string password,
-            object obj = null, Dictionary<string, string> headers = null);
     }
 }

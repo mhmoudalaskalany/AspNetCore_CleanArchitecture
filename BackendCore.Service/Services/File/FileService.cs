@@ -44,7 +44,7 @@ namespace BackendCore.Service.Services.File
         /// <param name="isPublic"></param>
         /// <param name="appCode"></param>
         /// <returns></returns>
-        public async Task<IResult> UploadToSanStorage(IFormFileCollection files, StorageType storageType, bool isPublic, string appCode)
+        public async Task<IFinalResult> UploadToSanStorage(IFormFileCollection files, StorageType storageType, bool isPublic, string appCode)
         {
           
             var basePath = _configuration["StoragePaths:Base"];
@@ -71,7 +71,7 @@ namespace BackendCore.Service.Services.File
         /// <param name="model"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public async Task<IResult> UploadBytes(UploadRequestDto model, int length)
+        public async Task<IFinalResult> UploadBytes(UploadRequestDto model, int length)
         {
             var basePath = _configuration["StoragePaths:Base"];
             _path = basePath + _configuration["StoragePaths:" + model.AppCode];
@@ -137,7 +137,7 @@ namespace BackendCore.Service.Services.File
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<IResult> DeletePhysicalAsync(Guid id)
+        public async Task<IFinalResult> DeletePhysicalAsync(Guid id)
         {
             var file = await UnitOfWork.Repository.GetAsync(id);
             var decryptedUrl = CryptoHelper.DecryptString(file.Url);

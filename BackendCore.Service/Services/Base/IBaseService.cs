@@ -11,19 +11,19 @@ namespace BackendCore.Service.Services.Base
         where TDto : IEntityDto<TKeyDto>
         where TGetDto : IEntityDto<TKeyDto>
     {
-        Task<IResult> GetByIdAsync(object id);
+        Task<IFinalResult> GetByIdAsync(object id);
 
-        Task<IResult> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null);
+        Task<IFinalResult> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null);
 
-        Task<IResult> AddAsync(TDto model);
+        Task<IFinalResult> AddAsync(TDto model);
 
-        Task<IResult> AddListAsync(List<TDto> model);
+        Task<IFinalResult> AddListAsync(List<TDto> model);
 
-        Task<IResult> UpdateAsync(TDto model);
+        Task<IFinalResult> UpdateAsync(TDto model);
 
-        Task<IResult> DeleteAsync(object id);
+        Task<IFinalResult> DeleteAsync(object id);
 
-        Task<IResult> DeleteSoftAsync(object id);
+        Task<IFinalResult> DeleteSoftAsync(object id);
         
     }
 }

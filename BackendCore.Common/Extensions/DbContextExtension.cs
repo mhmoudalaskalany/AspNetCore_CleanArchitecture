@@ -18,7 +18,7 @@ namespace BackendCore.Common.Extensions
             var command = rawCommandBuilder.Build(sql);
             var connection = context.GetService<IRelationalConnection>();
             var logger = context.GetService<IDiagnosticsLogger<DbLoggerCategory.Database.Command>>();
-            var parameters = new RelationalCommandParameterObject(connection, null, null, context, logger);
+            var parameters = new RelationalCommandParameterObject(connection, null, null, context, null);
             var result = command.ExecuteScalar(parameters);
             return Convert.ToInt64(result, CultureInfo.InvariantCulture);
         }

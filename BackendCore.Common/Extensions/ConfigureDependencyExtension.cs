@@ -44,7 +44,7 @@ namespace BackendCore.Common.Extensions
             services.AddScoped<IClaimService, ClaimService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IResponseResult, ResponseResult>();
-            services.AddTransient<IResult, Result>();
+            services.AddTransient<IFinalResult, Result>();
             services.AddSingleton<ISendMail, SendMail>();
             services.AddSingleton<ISendMailKit, SendMailKit>();
             services.AddTransient<ITokenGenerator, TokenGenerator>();

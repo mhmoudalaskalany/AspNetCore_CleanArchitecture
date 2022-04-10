@@ -25,14 +25,14 @@ namespace BackendCore.Api.Controllers.Lookup
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IResult> GetStatusesAsync() => await _service.GetStatusesAsync();
+        public async Task<IFinalResult> GetStatusesAsync() => await _service.GetStatusesAsync();
 
         /// <summary>
         /// Get All Actions
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IResult> GetActionsAsync() => await _service.GetStatusesAsync();
+        public async Task<IFinalResult> GetActionsAsync() => await _service.GetStatusesAsync();
 
 
     }

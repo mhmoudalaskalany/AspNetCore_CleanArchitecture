@@ -6,7 +6,7 @@ namespace BackendCore.Service.Services.Identity.Login
 {
     public interface IAccountService
     {
-        Task<IResult> Login(LoginParameters parameters);
-        Task<IResult> AdLogin(LoginParameters parameters);
+        Task<IFinalResult> Login(LoginParameters parameters);
+        Task<IFinalResult> AdLogin(LoginParameters parameters);
     }
 }

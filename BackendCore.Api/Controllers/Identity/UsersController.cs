@@ -27,7 +27,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// </summary>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<IResult> GetAsync(long id)
+        public async Task<IFinalResult> GetAsync(long id)
         {
             var result = await _userService.GetByIdAsync(id);
             return result;
@@ -38,7 +38,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _userService.GetAllAsync();
             return result;
@@ -61,7 +61,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IResult> AddAsync([FromBody] AddUserDto dto)
+        public async Task<IFinalResult> AddAsync([FromBody] AddUserDto dto)
         {
             var result = await _userService.AddAsync(dto);
             return result;
@@ -74,7 +74,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// <param name="model">Object content</param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<IResult> UpdateAsync(AddUserDto model)
+        public async Task<IFinalResult> UpdateAsync(AddUserDto model)
         {
 
             return await _userService.UpdateAsync(model);
@@ -85,7 +85,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete]
-        public async Task<IResult> DeleteAsync(long id)
+        public async Task<IFinalResult> DeleteAsync(long id)
         {
             return await _userService.DeleteAsync(id);
         }
@@ -96,7 +96,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<IResult> DeleteSoftAsync(long id)
+        public async Task<IFinalResult> DeleteSoftAsync(long id)
         {
             return await _userService.DeleteSoftAsync(id);
         }

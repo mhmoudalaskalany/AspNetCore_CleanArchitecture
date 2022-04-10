@@ -24,7 +24,7 @@ namespace BackendCore.Service.Services.Base
         protected readonly IUnitOfWork<T> UnitOfWork;
         protected readonly IMapper Mapper;
         protected readonly IResponseResult ResponseResult;
-        protected IResult Result;
+        protected IFinalResult Result;
         protected IHttpContextAccessor HttpContextAccessor;
         protected IConfiguration Configuration;
         protected ICacheRepository CacheRepository;
@@ -48,7 +48,7 @@ namespace BackendCore.Service.Services.Base
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> GetByIdAsync(object id)
+        public virtual async Task<IFinalResult> GetByIdAsync(object id)
         {
 
             T query = await UnitOfWork.Repository.GetAsync(id);
@@ -64,7 +64,7 @@ namespace BackendCore.Service.Services.Base
         /// <param name="disableTracking"></param>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null)
+        public virtual async Task<IFinalResult> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null)
         {
 
             IEnumerable<T> query;
@@ -87,13 +87,13 @@ namespace BackendCore.Service.Services.Base
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> AddAsync(TDto model)
+        public virtual async Task<IFinalResult> AddAsync(TDto model)
         {
 
             T entity = Mapper.Map<TDto, T>(model);
             SetEntityCreatedBaseProperties(entity);
             UnitOfWork.Repository.Add(entity);
-            int affectedRows = await UnitOfWork.SaveChangesAsync();
+            var affectedRows = await UnitOfWork.SaveChangesAsync();
             if (affectedRows > 0)
             {
                 Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
@@ -109,12 +109,12 @@ namespace BackendCore.Service.Services.Base
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> AddListAsync(List<TDto> model)
+        public virtual async Task<IFinalResult> AddListAsync(List<TDto> model)
         {
 
-            List<T> entities = Mapper.Map<List<TDto>, List<T>>(model);
+            var entities = Mapper.Map<List<TDto>, List<T>>(model);
             UnitOfWork.Repository.AddRange(entities);
-            int affectedRows = await UnitOfWork.SaveChangesAsync();
+            var affectedRows = await UnitOfWork.SaveChangesAsync();
             if (affectedRows > 0)
             {
                 Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
@@ -129,14 +129,14 @@ namespace BackendCore.Service.Services.Base
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> UpdateAsync(TDto model)
+        public virtual async Task<IFinalResult> UpdateAsync(TDto model)
         {
 
             T entityToUpdate = await UnitOfWork.Repository.GetAsync(model.Id);
             var newEntity = Mapper.Map(model, entityToUpdate);
             SetEntityModifiedBaseProperties(newEntity);
             UnitOfWork.Repository.Update(entityToUpdate, newEntity);
-            int affectedRows = await UnitOfWork.SaveChangesAsync();
+            var affectedRows = await UnitOfWork.SaveChangesAsync();
             if (affectedRows > 0)
             {
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
@@ -151,12 +151,12 @@ namespace BackendCore.Service.Services.Base
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> DeleteAsync(object id)
+        public virtual async Task<IFinalResult> DeleteAsync(object id)
         {
 
             var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
             UnitOfWork.Repository.Remove(entityToDelete);
-            int affectedRows = await UnitOfWork.SaveChangesAsync();
+            var affectedRows = await UnitOfWork.SaveChangesAsync();
             if (affectedRows > 0)
             {
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
@@ -171,13 +171,13 @@ namespace BackendCore.Service.Services.Base
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> DeleteSoftAsync(object id)
+        public virtual async Task<IFinalResult> DeleteSoftAsync(object id)
         {
 
             var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
             SetEntityModifiedBaseProperties(entityToDelete);
             UnitOfWork.Repository.RemoveLogical(entityToDelete);
-            int affectedRows = await UnitOfWork.SaveChangesAsync();
+            var affectedRows = await UnitOfWork.SaveChangesAsync();
             if (affectedRows > 0)
             {
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,

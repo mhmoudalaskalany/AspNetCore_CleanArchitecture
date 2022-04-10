@@ -53,7 +53,7 @@ namespace BackendCore.Api.Controllers.Common
         /// <param name="appCode"></param>
         /// <returns></returns>
         [HttpPost("{appCode}")]
-        public IResult GenerateTokenWithClaimsAsync(List<Guid> ids, string appCode)
+        public IFinalResult GenerateTokenWithClaimsAsync(List<Guid> ids, string appCode)
         {
             var secretKey = _configuration.GetValue<string>("SecurityToken:SecurityKey");
             var token = TokenHelper.GenerateJsonWebTokenWithClaims(60, secretKey, ids, appCode);
@@ -69,7 +69,7 @@ namespace BackendCore.Api.Controllers.Common
         /// <param name="appCode"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IResult> UploadToSanStorageAsync(IFormFileCollection files, StorageType storageType, bool isPublic, string appCode)
+        public async Task<IFinalResult> UploadToSanStorageAsync(IFormFileCollection files, StorageType storageType, bool isPublic, string appCode)
         {
             var result = await _fileService.UploadToSanStorage(files, storageType, isPublic, appCode);
             return result;
@@ -81,7 +81,7 @@ namespace BackendCore.Api.Controllers.Common
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IResult> UploadBytesAsync([FromBody] UploadRequestDto dto)
+        public async Task<IFinalResult> UploadBytesAsync([FromBody] UploadRequestDto dto)
         {
             var uploadResponse = await _fileService.UploadBytes(dto, 10000);
             return uploadResponse;
@@ -105,7 +105,7 @@ namespace BackendCore.Api.Controllers.Common
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<IResult> DeleteAsync(Guid id)
+        public async Task<IFinalResult> DeleteAsync(Guid id)
         {
             return await _fileService.DeletePhysicalAsync(id);
         }

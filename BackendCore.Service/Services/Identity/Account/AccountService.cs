@@ -28,7 +28,7 @@ namespace BackendCore.Service.Services.Identity.Account
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public async Task<IResult> Login(LoginParameters parameters)
+        public async Task<IFinalResult> Login(LoginParameters parameters)
         {
             var user = await UnitOfWork.Repository.FirstOrDefaultAsync(q => q.UserName == parameters.Username && !q.IsDeleted, include: source => source.Include(a => a.Role), disableTracking: false);
             if (user == null) return ResponseResult.PostResult(status: HttpStatusCode.BadRequest,
@@ -45,7 +45,7 @@ namespace BackendCore.Service.Services.Identity.Account
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public async Task<IResult> AdLogin(LoginParameters parameters)
+        public async Task<IFinalResult> AdLogin(LoginParameters parameters)
         {
             try
             {

@@ -26,7 +26,7 @@ namespace BackendCore.Service.Services.Lookups
         /// Get Statuses
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetStatusesAsync()
+        public async Task<IFinalResult> GetStatusesAsync()
         {
             var entities = await UnitOfWork.Repository.FindAsync(x => x.IsDeleted == false);
             var data = Mapper.Map<IEnumerable<Status>, List<StatusDto>>(entities);
@@ -36,7 +36,7 @@ namespace BackendCore.Service.Services.Lookups
         /// Get Actions
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetActionsAsync()
+        public async Task<IFinalResult> GetActionsAsync()
         {
             var entities = await UnitOfWork.GetRepository<Action>().FindAsync(x => x.IsDeleted == false);
             var data = Mapper.Map<IEnumerable<Action>, List<ActionDto>>(entities);

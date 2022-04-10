@@ -27,7 +27,7 @@ namespace BackendCore.Api.Controllers.Identity
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IResult> Login(LoginParameters parameter)
+        public async Task<IFinalResult> Login(LoginParameters parameter)
         {
             return await _accountService.Login(parameter);
         }

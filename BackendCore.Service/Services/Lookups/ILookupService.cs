@@ -8,7 +8,7 @@ namespace BackendCore.Service.Services.Lookups
 {
     public interface ILookupService : IBaseService<Status , AddStatusDto , StatusDto , long , long?>
     {
-        Task<IResult> GetStatusesAsync();
-        Task<IResult> GetActionsAsync();
+        Task<IFinalResult> GetStatusesAsync();
+        Task<IFinalResult> GetActionsAsync();
     }
 }
