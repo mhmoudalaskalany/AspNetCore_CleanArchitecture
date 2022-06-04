@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BackendCore.Api.Controllers.Base
 {
     /// <inheritdoc />
-    [Route("[controller]/[action]")]
+    [Route("api/v1/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class BaseController : ControllerBase
