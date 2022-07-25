@@ -43,11 +43,6 @@ namespace BackendCore.Service.Services.Base
 
         }
 
-        /// <summary>
-        /// Get By Id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public virtual async Task<IFinalResult> GetByIdAsync(object id)
         {
 
@@ -58,12 +53,6 @@ namespace BackendCore.Service.Services.Base
 
         }
 
-        /// <summary>
-        /// Get All
-        /// </summary>
-        /// <param name="disableTracking"></param>
-        /// <param name="predicate"></param>
-        /// <returns></returns>
         public virtual async Task<IFinalResult> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null)
         {
 
@@ -82,11 +71,7 @@ namespace BackendCore.Service.Services.Base
                 message: HttpStatusCode.OK.ToString());
 
         }
-        /// <summary>
-        /// Add
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+
         public virtual async Task<IFinalResult> AddAsync(TDto model)
         {
 
@@ -104,11 +89,7 @@ namespace BackendCore.Service.Services.Base
             return Result;
 
         }
-        /// <summary>
-        /// Add List
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+
         public virtual async Task<IFinalResult> AddListAsync(List<TDto> model)
         {
 
@@ -124,11 +105,7 @@ namespace BackendCore.Service.Services.Base
             return Result;
 
         }
-        /// <summary>
-        /// Update
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+
         public virtual async Task<IFinalResult> UpdateAsync(TDto model)
         {
 
@@ -146,11 +123,7 @@ namespace BackendCore.Service.Services.Base
             return Result;
 
         }
-        /// <summary>
-        /// Delete Physical
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+
         public virtual async Task<IFinalResult> DeleteAsync(object id)
         {
 
@@ -166,11 +139,7 @@ namespace BackendCore.Service.Services.Base
             return Result;
 
         }
-        /// <summary>
-        /// Delete Soft
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+
         public virtual async Task<IFinalResult> DeleteSoftAsync(object id)
         {
 
@@ -187,10 +156,7 @@ namespace BackendCore.Service.Services.Base
             return Result;
 
         }
-        /// <summary>
-        /// Set Add Audit
-        /// </summary>
-        /// <param name="entity"></param>
+
         protected void SetEntityCreatedBaseProperties(T entity)
         {
             var type = entity.GetType();
@@ -200,10 +166,7 @@ namespace BackendCore.Service.Services.Base
             if (createdDate != null) createdDate.SetValue(entity, DateTime.Now);
 
         }
-        /// <summary>
-        /// Set Update Audit
-        /// </summary>
-        /// <param name="entity"></param>
+
         protected void SetEntityModifiedBaseProperties(T entity)
         {
             var type = entity.GetType();
@@ -215,12 +178,6 @@ namespace BackendCore.Service.Services.Base
         }
 
 
-        #region Private Methods
-        /// <summary>
-        /// Get Claims From Token
-        /// </summary>
-        /// <param name="claims"></param>
-        /// <returns></returns>
         private TokenClaimDto GetTokenClaimDto(ClaimsPrincipal claims)
         {
             _ = TryParse(claims?.FindFirst(t => t.Type == "UserType")?.Value ?? "1", out UserType userType);
@@ -236,9 +193,6 @@ namespace BackendCore.Service.Services.Base
             }
             return claimData;
         }
-
-        #endregion
-
 
     }
 }
