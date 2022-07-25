@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BackendCore.Api.Controllers.Lookup
 {
     /// <summary>
-    /// Lookups Controller
+    /// Actions Controller
     /// </summary>
     public class ActionsController : BaseController
     {
