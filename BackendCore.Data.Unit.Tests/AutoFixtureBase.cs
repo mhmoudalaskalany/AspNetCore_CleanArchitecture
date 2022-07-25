@@ -1,8 +1,10 @@
-﻿using AutoFixture;
+﻿using System.Diagnostics.CodeAnalysis;
+using AutoFixture;
 using AutoFixture.AutoMoq;
 
 namespace BackendCore.Data.Unit.Tests
 {
+    [ExcludeFromCodeCoverage]
     public class AutoFixtureBase
     {
         protected Fixture Fixture { get; }
