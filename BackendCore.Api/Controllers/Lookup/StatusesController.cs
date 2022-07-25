@@ -1,21 +1,21 @@
 ﻿using System.Threading.Tasks;
 using BackendCore.Api.Controllers.Base;
 using BackendCore.Common.Core;
-using BackendCore.Service.Services.Lookups;
+using BackendCore.Service.Services.Lookups.Status;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendCore.Api.Controllers.Lookup
 {
     /// <summary>
-    /// Lookups Controller
+    /// Statuses Controller
     /// </summary>
-    public class LookupsController : BaseController
+    public class StatusesController : BaseController
     {
-        private readonly ILookupService _service;
+        private readonly IStatusService _service;
         /// <summary>
         /// Constructor
         /// </summary>
-        public LookupsController(ILookupService service)
+        public StatusesController(IStatusService service)
         {
             _service = service;
         }
@@ -27,12 +27,7 @@ namespace BackendCore.Api.Controllers.Lookup
         [HttpGet]
         public async Task<IFinalResult> GetStatusesAsync() => await _service.GetStatusesAsync();
 
-        /// <summary>
-        /// Get All Actions
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<IFinalResult> GetActionsAsync() => await _service.GetStatusesAsync();
+
 
 
     }
