@@ -1,9 +1,11 @@
-﻿using System.IO;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using Microsoft.Extensions.Configuration;
 
 namespace BackendCore.Common.Configurations
 {
-   public  static class AppSettingsConfigurations
+    [ExcludeFromCodeCoverage]
+    public static class AppSettingsConfigurations
     {
         public static IConfigurationRoot ReadConfigurationFromAppSettings()
         {

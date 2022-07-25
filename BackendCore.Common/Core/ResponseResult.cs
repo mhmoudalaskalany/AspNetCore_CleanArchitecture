@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
 namespace BackendCore.Common.Core
 {
+    [ExcludeFromCodeCoverage]
     public class ResponseResult : Result, IResponseResult
     {
         public ResponseResult(object result = null, HttpStatusCode status = HttpStatusCode.BadRequest, Exception exception = null, string message = null)

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
 namespace BackendCore.Common.Core
 {
+    [ExcludeFromCodeCoverage]
     public class Result : IFinalResult
     {
         public object Data { get; set; }

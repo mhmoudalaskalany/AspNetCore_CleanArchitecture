@@ -1,7 +1,9 @@
-﻿using System.Net;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net;
 
 namespace BackendCore.Common.Core
 {
+    [ExcludeFromCodeCoverage]
     public class DataPaging
     {
         public PagingResult Data { get; set; }
@@ -15,7 +17,7 @@ namespace BackendCore.Common.Core
         }
     }
 
-
+    [ExcludeFromCodeCoverage]
     public class PagingResult
     {
         public PagingResult(int pageNumber, int pageSize, int totalCount, object result)
