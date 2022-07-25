@@ -1,12 +1,11 @@
 using System.Net;
 using AutoFixture;
 using BackendCore.Api.Controllers.Lookup;
-using BackendCore.Api.Unit.Tests;
 using BackendCore.Common.Core;
 using BackendCore.Service.Services.Lookups;
 using Moq;
 
-namespace BackendCore.Api.Unit.Test.Controllers
+namespace BackendCore.Api.Unit.Tests.Controllers
 {
     public class LookupsControllerUnitTests : AutoFixtureBase
     {
