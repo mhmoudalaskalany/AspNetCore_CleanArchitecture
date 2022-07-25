@@ -22,11 +22,5 @@ namespace BackendCore.Service.Services.Lookups.Status
             return new ResponseResult(data, HttpStatusCode.OK, null, "Success");
         }
         
-
-
-
-
-
-
     }
 }
