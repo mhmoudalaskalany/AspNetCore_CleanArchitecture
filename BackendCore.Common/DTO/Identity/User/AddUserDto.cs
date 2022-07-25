@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using BackendCore.Common.Core;
 
 namespace BackendCore.Common.DTO.Identity.User
 {
+    [ExcludeFromCodeCoverage]
     public class AddUserDto : IEntityDto<Guid?>
     {
         public Guid? Id { get; set; }

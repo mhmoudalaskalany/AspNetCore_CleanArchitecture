@@ -1,7 +1,9 @@
-﻿using BackendCore.Entities.Enum;
+﻿using System.Diagnostics.CodeAnalysis;
+using BackendCore.Entities.Enum;
 
 namespace BackendCore.Common.DTO.Common.File
 {
+    [ExcludeFromCodeCoverage]
     public class UploadRequestDto
     {
         public byte[] FileBytes { get; set; }

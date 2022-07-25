@@ -1,7 +1,9 @@
-﻿using BackendCore.Entities.Enum;
+﻿using System.Diagnostics.CodeAnalysis;
+using BackendCore.Entities.Enum;
 
 namespace BackendCore.Common.DTO.Base
 {
+    [ExcludeFromCodeCoverage]
     public class TokenClaimDto
     {
         public string UserId { get; set; }

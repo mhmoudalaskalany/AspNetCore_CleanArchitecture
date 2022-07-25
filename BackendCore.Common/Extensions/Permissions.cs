@@ -1,5 +1,8 @@
-﻿namespace BackendCore.Common.Extensions
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace BackendCore.Common.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class Permission
     {
         public static class Users

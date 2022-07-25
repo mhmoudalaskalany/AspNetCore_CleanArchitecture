@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace BackendCore.Common.Services
+﻿namespace BackendCore.Common.Services
 {
     public interface IClaimService
     {
-        Guid UserId { get; }
+        string UserId { get; }
         string Token { get; }
     }
 }

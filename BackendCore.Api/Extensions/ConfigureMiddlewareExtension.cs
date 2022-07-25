@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using BackendCore.Data.Context;
 using BackendCore.Service.Services.BackgroundJobs.Jobs;
 using FluentScheduler;
@@ -15,6 +16,7 @@ namespace BackendCore.Api.Extensions
     /// <summary>
     /// Pipeline Extensions
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public static class ConfigureMiddlewareExtension
     {
         /// <summary>

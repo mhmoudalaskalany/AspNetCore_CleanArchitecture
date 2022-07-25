@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BackendCore.Common.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class Utilities
     {
         public static string GenerateOtp()

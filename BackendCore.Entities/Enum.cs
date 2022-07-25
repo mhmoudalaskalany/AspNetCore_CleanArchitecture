@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using BackendCore.Entities.Enum;
 
 namespace BackendCore.Entities.Enum
@@ -64,6 +65,7 @@ namespace BackendCore.Entities.Enum
     #endregion
 
 
+    [ExcludeFromCodeCoverage]
     internal class Values : Attribute
     {
         public string NameEn;
@@ -77,6 +79,7 @@ namespace BackendCore.Entities.Enum
         }
     }
 }
+[ExcludeFromCodeCoverage]
 public static class Extensions
 {
     public static EnumResult GetName(this Enum e)
@@ -104,7 +107,7 @@ public static class Extensions
         throw new ArgumentException("Name " + e + " has no Name defined!");
     }
 }
-
+[ExcludeFromCodeCoverage]
 public class EnumResult
 {
     public int Id { get; set; }

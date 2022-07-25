@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore.Update;
 
 namespace BackendCore.Common.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class DbContextExtension
     {
         public static long GetNextSequenceValue(this DbContext context, string name, string schema = null)

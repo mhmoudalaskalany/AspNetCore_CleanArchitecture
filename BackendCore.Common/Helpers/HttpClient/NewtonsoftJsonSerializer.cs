@@ -1,9 +1,11 @@
-﻿using System.IO;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using Newtonsoft.Json;
 using RestSharp.Serializers;
 
 namespace BackendCore.Common.Helpers.HttpClient
 {
+    [ExcludeFromCodeCoverage]
     public class NewtonsoftJsonSerializer : ISerializer//, IDeserializer
     {
         private readonly JsonSerializer _serializer;

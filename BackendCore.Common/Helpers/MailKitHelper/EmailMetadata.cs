@@ -1,5 +1,8 @@
-﻿namespace Cex.Common.EmailHelper
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace BackendCore.Common.Helpers.MailKitHelper
 {
+    [ExcludeFromCodeCoverage]
     public class EmailMetadata
     {
         public string Sender { get; set; }

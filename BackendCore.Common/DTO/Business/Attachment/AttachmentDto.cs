@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BackendCore.Common.DTO.Business.Attachment
 {
+    [ExcludeFromCodeCoverage]
     public class AttachmentDto
     {
-        public long? Id { get; set; }
+        public Guid? Id { get; set; }
         public Guid FileId { get; set; }
         public string Url { get; set; }
         public string FileName { get; set; }
@@ -12,6 +14,5 @@ namespace BackendCore.Common.DTO.Business.Attachment
         public string Size { get; set; }
         public bool IsPublic { get; set; }
         public string AttachmentDisplaySize { get; set; }
-        public long? LawsuitStageId { get; set; }
     }
 }

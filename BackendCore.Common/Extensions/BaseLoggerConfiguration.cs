@@ -1,11 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.MSSqlServer;
 
 namespace BackendCore.Common.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class BaseLoggerConfiguration
     {
         public static LoggerConfiguration CreateLoggerConfiguration(string applicationName)

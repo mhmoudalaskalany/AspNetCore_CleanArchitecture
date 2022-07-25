@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace BackendCore.Common.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class OrderableQueryExtensions
     {
         public static IQueryable<T> OrderBy<T>(this IQueryable<T> source, IEnumerable<SortModel> sortModels)
         {
             var expression = source.Expression;
-            int count = 0;
+            var count = 0;
             foreach (var item in sortModels)
             {
                 var parameter = Expression.Parameter(typeof(T), "x");

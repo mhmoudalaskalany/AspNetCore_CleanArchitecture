@@ -9,7 +9,7 @@ using BackendCore.Service.Services.Base;
 
 namespace BackendCore.Service.Services.Lookups
 {
-    public class LookupService : BaseService<Status, AddStatusDto, StatusDto, long, long?>, ILookupService
+    public class LookupService : BaseService<Status, AddStatusDto, StatusDto, int, int?>, ILookupService
     {
         
         public LookupService(IServiceBaseParameter<Status> parameters) : base(parameters)

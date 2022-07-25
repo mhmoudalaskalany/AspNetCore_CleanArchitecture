@@ -1,5 +1,8 @@
-﻿namespace BackendCore.Common.DTO.Identity.User
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace BackendCore.Common.DTO.Identity.User
 {
+    [ExcludeFromCodeCoverage]
     public class ActiveDirectoryUserDto
     {
         public string FirstName { get; set; }

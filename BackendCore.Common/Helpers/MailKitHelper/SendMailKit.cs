@@ -1,5 +1,4 @@
 ﻿using System;
-using Cex.Common.EmailHelper;
 using Microsoft.Extensions.Logging;
 using MimeKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;

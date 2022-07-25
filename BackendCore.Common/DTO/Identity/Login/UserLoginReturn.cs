@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BackendCore.Common.DTO.Identity.Login
 {
+    [ExcludeFromCodeCoverage]
     public class UserLoginReturn
     {
         public string Token { get; set; }

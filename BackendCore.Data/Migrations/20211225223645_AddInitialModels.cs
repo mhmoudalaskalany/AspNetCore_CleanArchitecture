@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BackendCore.Data.Migrations
 {
+    [ExcludeFromCodeCoverage]
     public partial class AddInitialModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

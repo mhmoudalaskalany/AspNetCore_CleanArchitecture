@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace BackendCore.Common.Helpers.FileHelpers.Crypto
 {
+    [ExcludeFromCodeCoverage]
     public static class CryptoHelper
     {
         private static string privatekey = "E546C8DF278CD5931069B522E695D4F2";

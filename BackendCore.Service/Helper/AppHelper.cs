@@ -1,8 +1,10 @@
-﻿using BackendCore.Common.Helpers.MediaUploader;
+﻿using System.Diagnostics.CodeAnalysis;
+using BackendCore.Common.Helpers.MediaUploader;
 
 
 namespace BackendCore.Service.Helper
 {
+    [ExcludeFromCodeCoverage]
     public class AppHelper
     {
         private readonly IUploaderConfiguration _uploader;

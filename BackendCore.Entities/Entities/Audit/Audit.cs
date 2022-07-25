@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using BackendCore.Entities.Entities.Base;
 
 namespace BackendCore.Entities.Entities.Audit
 {
+    [ExcludeFromCodeCoverage]
     public class Audit : BaseEntity<Guid>
     {
         public string UserId { get; set; }

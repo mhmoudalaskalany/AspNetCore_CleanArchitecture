@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using BackendCore.Api.Extensions;
 using BackendCore.Common.Exceptions;
 using BackendCore.Service.DependencyExtension;
@@ -13,6 +14,7 @@ namespace BackendCore.Api
     /// <summary>
     /// Start Up Class
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         private readonly Shell _shell;

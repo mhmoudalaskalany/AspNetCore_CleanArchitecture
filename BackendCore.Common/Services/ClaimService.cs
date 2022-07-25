@@ -26,7 +26,7 @@ namespace BackendCore.Common.Services
                 Email = claims?.FindFirst(t => t.Type == "Email")?.Value
             };
         }
-        public Guid UserId => ClaimData.UserId != null ? Guid.Parse(ClaimData.UserId) : Guid.Empty;
+        public string UserId => ClaimData.UserId ?? string.Empty;
 
         public string Token => _context.Request.Headers["Authorization"];
 

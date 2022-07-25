@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Headers;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Server.HttpSys;
 
 namespace BackendCore.Service.Helper
 {
+    [ExcludeFromCodeCoverage]
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class BasicAuthAttribute : TypeFilterAttribute
     {
@@ -15,6 +17,7 @@ namespace BackendCore.Service.Helper
             Arguments = new object[] { realm };
         }
     }
+    [ExcludeFromCodeCoverage]
     public class BasicAuthFilter : IAuthorizationFilter
     {
         private readonly string _realm;

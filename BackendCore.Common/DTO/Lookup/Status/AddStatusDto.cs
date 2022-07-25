@@ -1,8 +1,10 @@
-﻿using BackendCore.Common.DTO.Base;
+﻿using System.Diagnostics.CodeAnalysis;
+using BackendCore.Common.DTO.Base;
 
 namespace BackendCore.Common.DTO.Lookup.Status
 {
-    public class AddStatusDto : LookupDto<long?>
+    [ExcludeFromCodeCoverage]
+    public class AddStatusDto : LookupDto<int?>
     {
 
     }

@@ -1,7 +1,9 @@
-﻿using MimeKit;
+﻿using System.Diagnostics.CodeAnalysis;
+using MimeKit;
 
-namespace Cex.Common.EmailHelper
+namespace BackendCore.Common.Helpers.MailKitHelper
 {
+    [ExcludeFromCodeCoverage]
     public class EmailMessage
     {
         public MailboxAddress Sender { get; set; }

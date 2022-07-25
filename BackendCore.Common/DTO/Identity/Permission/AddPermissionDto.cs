@@ -1,8 +1,10 @@
-﻿using BackendCore.Common.DTO.Base;
+﻿using System.Diagnostics.CodeAnalysis;
+using BackendCore.Common.DTO.Base;
 
 namespace BackendCore.Common.DTO.Identity.Permission
 {
-    public class AddPermissionDto : LookupDto<long?>
+    [ExcludeFromCodeCoverage]
+    public class AddPermissionDto : LookupDto<int?>
     {
     }
 }

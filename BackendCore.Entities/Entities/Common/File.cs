@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using BackendCore.Entities.Entities.Base;
 
 namespace BackendCore.Entities.Entities.Common
 {
+    [ExcludeFromCodeCoverage]
     public class File : BaseEntity<Guid>
     {
         public string Name { get; set; }

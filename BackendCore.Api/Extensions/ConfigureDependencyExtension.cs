@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using BackendCore.Common.Extensions;
 using BackendCore.Common.Infrastructure.Repository.ActiveDirectory;
 using BackendCore.Common.Infrastructure.UnitOfWork;
@@ -22,6 +23,7 @@ namespace BackendCore.Api.Extensions
     /// <summary>
     /// Dependency Extensions
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public static class ConfigureDependencyExtension
     {
         private const string ConnectionStringName = "Default";

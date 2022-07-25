@@ -6,7 +6,7 @@ using BackendCore.Service.Services.Base;
 
 namespace BackendCore.Service.Services.Lookups
 {
-    public interface ILookupService : IBaseService<Status , AddStatusDto , StatusDto , long , long?>
+    public interface ILookupService : IBaseService<Status , AddStatusDto , StatusDto , int , int?>
     {
         Task<IFinalResult> GetStatusesAsync();
         Task<IFinalResult> GetActionsAsync();

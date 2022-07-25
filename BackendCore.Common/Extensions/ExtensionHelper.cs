@@ -1,8 +1,10 @@
-﻿using System.IO;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace BackendCore.Common.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class ExtensionHelper
     {
         /// <summary>

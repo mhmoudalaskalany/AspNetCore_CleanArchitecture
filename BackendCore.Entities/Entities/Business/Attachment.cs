@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using BackendCore.Entities.Entities.Base;
 
 namespace BackendCore.Entities.Entities.Business
 {
+    [ExcludeFromCodeCoverage]
     public class Attachment : BaseEntity<Guid>
     {
         public Guid FileId { get; set; }

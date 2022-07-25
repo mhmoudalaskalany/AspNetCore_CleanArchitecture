@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using BackendCore.Common.Core;
 
 namespace BackendCore.Common.DTO.Base
 {
+    [ExcludeFromCodeCoverage]
     public class LookupDto<T> : IEntityDto<T>
     {
         public T Id { get; set; }

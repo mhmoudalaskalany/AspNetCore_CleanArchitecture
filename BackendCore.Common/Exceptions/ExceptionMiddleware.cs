@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using BackendCore.Common.Core;
 using Microsoft.AspNetCore.Http;
@@ -12,21 +13,14 @@ using Task = System.Threading.Tasks.Task;
 
 namespace BackendCore.Common.Exceptions
 {
-    /// <summary>
-    /// Exception Handler Middleware
-    /// </summary>
+    [ExcludeFromCodeCoverage]
     public class ExceptionMiddleware
     {
         private readonly ILogger<ExceptionMiddleware> _logger;
         private readonly IConfiguration _configuration;
         private readonly RequestDelegate _next;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="next"></param>
-        /// <param name="loggerFactory"></param>
-        /// <param name="configuration"></param>
+       
         public ExceptionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _next = next;
@@ -34,11 +28,7 @@ namespace BackendCore.Common.Exceptions
             _logger = loggerFactory?.CreateLogger<ExceptionMiddleware>() ?? throw new ArgumentNullException(nameof(loggerFactory));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="httpContext"></param>
-        /// <returns></returns>
+   
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try

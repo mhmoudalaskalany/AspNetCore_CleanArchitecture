@@ -12,25 +12,13 @@ using LinqKit;
 
 namespace BackendCore.Service.Services.Identity.Permission
 {
-    public class PermissionService : BaseService<Entities.Entities.Identity.Permission, AddPermissionDto, PermissionDto, long, long?>, IPermissionService
+    public class PermissionService : BaseService<Entities.Entities.Identity.Permission, AddPermissionDto, PermissionDto, int, int?>, IPermissionService
     {
-        #region Properties
-        #endregion
-
-        #region Constructors
         public PermissionService(IServiceBaseParameter<Entities.Entities.Identity.Permission> parameters) : base(parameters)
         {
 
         }
-        #endregion
 
-
-        #region Public Methods
-        /// <summary>
-        /// Get All Paged
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <returns></returns>
         public async Task<DataPaging> GetAllPagedAsync(BaseParam<PermissionFilter> filter)
         {
 
@@ -42,15 +30,6 @@ namespace BackendCore.Service.Services.Identity.Permission
 
         }
 
-        #endregion
-
-
-        #region Private Methods
-        /// <summary>
-        /// Predicate Builder For Get Paged
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <returns></returns>
         static Expression<Func<Entities.Entities.Identity.Permission, bool>> PredicateBuilderFunction(PermissionFilter filter)
         {
             var predicate = PredicateBuilder.New<Entities.Entities.Identity.Permission>(true);
@@ -65,7 +44,6 @@ namespace BackendCore.Service.Services.Identity.Permission
             }
             return predicate;
         }
-        #endregion
 
     }
 }

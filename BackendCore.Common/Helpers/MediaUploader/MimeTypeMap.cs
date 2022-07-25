@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace BackendCore.Common.Helpers.MediaUploader
 {
+    [ExcludeFromCodeCoverage]
     public static class MimeTypeMap
     {
         private static readonly Lazy<IDictionary<string, string>> Mappings = new Lazy<IDictionary<string, string>>(BuildMappings);

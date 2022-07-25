@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 using BackendCore.Common.Core;
@@ -10,7 +11,6 @@ using BackendCore.Common.Helpers.MailKitHelper;
 using BackendCore.Common.Helpers.MediaUploader;
 using BackendCore.Common.Helpers.TokenGenerator;
 using BackendCore.Common.Services;
-using Cex.Common.EmailHelper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +20,7 @@ using Microsoft.OpenApi.Models;
 
 namespace BackendCore.Common.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class ConfigureDependencyExtension
     {
         public static IServiceCollection RegisterCommonServices(this IServiceCollection services, IConfiguration configuration)
@@ -34,10 +35,6 @@ namespace BackendCore.Common.Extensions
             return services;
         }
 
-        /// <summary>
-        /// Register Main Core Dependencies
-        /// </summary>
-        /// <param name="services"></param>
         private static void RegisterMainCore(this IServiceCollection services)
         {
             services.AddSingleton<MicroServicesUrls>();
@@ -51,19 +48,11 @@ namespace BackendCore.Common.Extensions
             services.AddTransient<IUploaderConfiguration, UploaderConfiguration>();
         }
 
-        /// <summary>
-        /// Register Http Client Helpers
-        /// </summary>
-        /// <param name="services"></param>
         private static void RegisterHttpClientHelpers(this IServiceCollection services)
         {
             services.AddTransient<IRestSharpContainer, RestSharpContainer>();
         }
 
-        /// <summary>
-        /// Register File Services
-        /// </summary>
-        /// <param name="services"></param>
         private static void RegisterFileServices(this IServiceCollection services)
         {
             services.AddScoped<LocalStorageService>();
@@ -79,21 +68,12 @@ namespace BackendCore.Common.Extensions
             });
         }
 
-        /// <summary>
-        /// Register Notification Meta Data
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
         private static void RegisterEmailMetadata(this IServiceCollection services, IConfiguration configuration)
         {
             var notificationMetadata = configuration.GetSection("EmailMetadata").Get<EmailMetadata>();
             services.AddSingleton(notificationMetadata);
         }
-        /// <summary>
-        /// Register Authentication
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
+
         private static void RegisterAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAuthentication(option =>
@@ -117,19 +97,15 @@ namespace BackendCore.Common.Extensions
                 };
             });
         }
-        /// <summary>
-        /// Register Api Swagger Documentation
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
+
 
         private static void AddApiDocumentationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSwaggerGen(options =>
             {
-                string title = configuration["SwaggerConfig:Title"];
-                string version = configuration["SwaggerConfig:Version"];
-                string docPath = configuration["SwaggerConfig:DocPath"];
+                var title = configuration["SwaggerConfig:Title"];
+                var version = configuration["SwaggerConfig:Version"];
+                var docPath = configuration["SwaggerConfig:DocPath"];
                 options.SwaggerDoc(version, new OpenApiInfo { Title = title, Version = version });
                 var filePath = Path.Combine(AppContext.BaseDirectory, docPath);
                 options.IncludeXmlComments(filePath);

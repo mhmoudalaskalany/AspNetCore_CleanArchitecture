@@ -7,7 +7,7 @@ using BackendCore.Service.Services.Base;
 
 namespace BackendCore.Service.Services.Identity.Permission
 {
-    public interface IPermissionService : IBaseService<Entities.Entities.Identity.Permission, AddPermissionDto, PermissionDto , long , long?>
+    public interface IPermissionService : IBaseService<Entities.Entities.Identity.Permission, AddPermissionDto, PermissionDto , int , int?>
     {
         Task<DataPaging> GetAllPagedAsync(BaseParam<PermissionFilter> filter);
     }

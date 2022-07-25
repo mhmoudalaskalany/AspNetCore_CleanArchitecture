@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Configuration;
 
 namespace BackendCore.Common.Helpers.HttpClient
 {
+    [ExcludeFromCodeCoverage]
     public class MicroServicesUrls
     {
         private readonly IConfiguration _configuration;

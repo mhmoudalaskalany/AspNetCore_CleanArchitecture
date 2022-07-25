@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -9,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BackendCore.Common.Helpers.FileHelpers.Token
 {
+    [ExcludeFromCodeCoverage]
     public static class TokenHelper
     {
         public static bool CheckToken(string token, Guid id)
@@ -30,13 +32,6 @@ namespace BackendCore.Common.Helpers.FileHelpers.Token
             return claims?.ToList();
         }
 
-        /// <summary>
-        /// Method to generate token 
-        /// </summary>
-        /// <param name="expireDate"></param>
-        /// <param name="securityKey"></param>
-        /// <param name="ids">to make specific</param>
-        /// <returns></returns>
         public static List<FileTokenDto> GenerateJsonWebToken(double expireDate, string securityKey, params Guid[] ids)
         {
             var list = new List<FileTokenDto>();
@@ -62,14 +57,6 @@ namespace BackendCore.Common.Helpers.FileHelpers.Token
             return list;
         }
 
-        /// <summary>
-        /// Method to generate token 
-        /// </summary>
-        /// <param name="expireDate"></param>
-        /// <param name="securityKey"></param>
-        /// <param name="ids">to make specific</param>
-        /// <param name="appCode"></param>
-        /// <returns></returns>
         public static List<FileTokenDto> GenerateJsonWebTokenWithClaims(double expireDate, string securityKey, List<Guid> ids , string appCode)
         {
             var list = new List<FileTokenDto>();

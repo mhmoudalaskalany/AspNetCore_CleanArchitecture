@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BackendCore.Common.DTO.Identity.Login
 {
+    [ExcludeFromCodeCoverage]
     public class LoginParameters
     {
         [Required]

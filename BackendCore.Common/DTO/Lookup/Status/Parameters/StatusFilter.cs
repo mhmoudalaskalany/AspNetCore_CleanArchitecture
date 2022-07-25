@@ -1,9 +1,11 @@
-﻿using BackendCore.Common.DTO.Base;
+﻿using System.Diagnostics.CodeAnalysis;
+using BackendCore.Common.DTO.Base;
 
 namespace BackendCore.Common.DTO.Lookup.Status.Parameters
 {
+    [ExcludeFromCodeCoverage]
     public class StatusFilter : MainFilter
     {
-        public long? Id { get; set; }
+        public int? Id { get; set; }
     }
 }

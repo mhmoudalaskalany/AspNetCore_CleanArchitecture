@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BackendCore.Service.DependencyExtension
 {
+    [ExcludeFromCodeCoverage]
     public class Shell : IDisposable
     {
         private IServiceProvider _rootProvider;

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BackendCore.Entities.Entities.Base
 {
+    [ExcludeFromCodeCoverage]
     public class BaseEntity<TKey>
     {
         public TKey Id { get; set; }
