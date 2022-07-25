@@ -20,7 +20,7 @@ namespace BackendCore.Api.Unit.Tests.Controllers
         }
 
         [Fact]
-        public async Task GetStatusesAsync_Return_Ok()
+        public async Task GetActionsAsync_Return_Ok()
         {
             // AAA
             //Arrange (set up variables 
