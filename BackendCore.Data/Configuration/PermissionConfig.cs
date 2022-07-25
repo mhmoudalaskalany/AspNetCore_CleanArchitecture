@@ -1,19 +1,16 @@
-﻿using BackendCore.Entities.Entities;
-using BackendCore.Entities.Entities.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using BackendCore.Entities.Entities.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BackendCore.Data.Configuration
 {
-    public class PermissionConfig : IEntityTypeConfiguration<Permission>
+    public class PermissionConfig : LookupConfig<Permission, int>
     {
-        public void Configure(EntityTypeBuilder<Permission> builder)
+        public override void Configure(EntityTypeBuilder<Permission> builder)
         {
+            base.Configure(builder);
             builder.Property(e => e.Id)
                 .ValueGeneratedNever();
-            builder.Property(a => a.Code).HasMaxLength(255).IsRequired();
-
-            builder.HasIndex(a => a.Code).IsUnique();
+         
         }
     }
 }

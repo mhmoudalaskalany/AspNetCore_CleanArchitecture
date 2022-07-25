@@ -2,7 +2,7 @@
 
 namespace BackendCore.Entities.Entities.Lookup
 {
-    public class Action : Lookup<long>
+    public class Action : Lookup<int>
     {
 
     }

@@ -4,7 +4,7 @@ using BackendCore.Entities.Entities.Base;
 
 namespace BackendCore.Entities.Entities.Identity
 {
-    public class Role : BaseEntity<long>
+    public class Role : BaseEntity<int>
     {
         public string NameAr { get; set; }
         public string NameEn { get; set; }

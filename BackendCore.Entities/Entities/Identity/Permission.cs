@@ -2,7 +2,7 @@
 
 namespace BackendCore.Entities.Entities.Identity
 {
-    public class Permission : Lookup<long>
+    public class Permission : Lookup<int>
     {
     }
 }

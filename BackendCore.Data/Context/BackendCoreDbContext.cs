@@ -20,45 +20,31 @@ namespace BackendCore.Data.Context
             _claimService = claimService;
         }
 
-        #region Business
+
         public virtual DbSet<Attachment> Attachments { get; set; }
-        #endregion
-
-        #region Common Entities
-
         public virtual DbSet<File> Files { get; set; }
 
-        #endregion
 
-        #region Overriden Methods
-        /// <summary>
-        /// On Model Creating
-        /// </summary>
-        /// <param name="modelBuilder"></param>
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            #region Configuration
+        
 
             modelBuilder.ApplyConfiguration(new PermissionConfig());
-
-            #endregion
-
-            #region Seed
+            modelBuilder.ApplyConfiguration(new ActionConfig());
+            modelBuilder.ApplyConfiguration(new StatusConfig());
 
             modelBuilder.Entity<Role>().HasData(_dataInitializer.SeedRoles());
             modelBuilder.Entity<User>().HasData(_dataInitializer.SeedUsers());
             modelBuilder.Entity<Permission>().HasData(_dataInitializer.SeedPermissions());
             modelBuilder.Entity<Status>().HasData(_dataInitializer.SeedStatuses());
             modelBuilder.Entity<Action>().HasData(_dataInitializer.SeedActions());
-            #endregion
+
             base.OnModelCreating(modelBuilder);
         }
         
 
-        #endregion
 
-        #region Private Methods
-        #endregion
 
     }
 }

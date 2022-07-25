@@ -12,7 +12,7 @@ namespace BackendCore.Entities.Entities.Identity
         public string Email { get; set; }
         public string Phone { get; set; }
         public string NationalId { get; set; }
-        public long RoleId { get; set; }
+        public int RoleId { get; set; }
         public virtual Role Role { get; set; }
     }
 }

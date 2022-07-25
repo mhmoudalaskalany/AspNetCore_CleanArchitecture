@@ -10,18 +10,9 @@ namespace BackendCore.Data.Context
 {
     public partial class BackendCoreDbContext
     {
-        #region Audit Entities
+
         public virtual DbSet<Audit> AuditTrails { get; set; }
-        #endregion
 
-
-        #region Overriden Methods
-
-        /// <summary>
-        /// Save Changes
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
 
@@ -51,13 +42,7 @@ namespace BackendCore.Data.Context
             return (await base.SaveChangesAsync(true, cancellationToken));
         }
 
-        #endregion
 
-        #region Private Methods
-
-        /// <summary>
-        /// Log Audit Trails Before Saving
-        /// </summary>
         private void OnBeforeSaveChanges()
         {
             ChangeTracker.DetectChanges();
@@ -114,7 +99,5 @@ namespace BackendCore.Data.Context
                 AuditTrails.Add(auditEntry.ToAudit());
             }
         }
-
-        #endregion
     }
 }
