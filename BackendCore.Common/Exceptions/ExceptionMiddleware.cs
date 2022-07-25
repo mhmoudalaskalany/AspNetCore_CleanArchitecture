@@ -76,13 +76,13 @@ namespace BackendCore.Common.Exceptions
             Log.ForContext("Message", exception.Message)
             .Error(detailedExeptionMessage);
 
-            if (typeof(BaseException).IsAssignableFrom(ex.GetType()))
+            if (ex is BaseException)
             {
                 context.Response.StatusCode = (int)HttpStatusCode.NotFound;
 
                 await context.Response.WriteAsync(JsonConvert.SerializeObject(new ResponseResult() { Message = ex.Message }));
             }
-            else if (typeof(UnauthorizedAccessException).IsAssignableFrom(ex.GetType()))
+            else if (ex is UnauthorizedAccessException)
             {
                 context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
 
@@ -129,7 +129,7 @@ namespace BackendCore.Common.Exceptions
                 }
                 else
                 {
-                    await context.Response.WriteAsync(JsonConvert.SerializeObject(new ResponseResult() { Message = ex.Message }.ToString()) ?? string.Empty);
+                    await context.Response.WriteAsync(JsonConvert.SerializeObject(new ResponseResult() { Message = ex.Message }.ToString()));
                 }
 
 
