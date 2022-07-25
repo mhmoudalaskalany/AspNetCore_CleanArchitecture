@@ -1,6 +1,7 @@
 using System.Net;
 using AutoFixture;
 using BackendCore.Api.Controllers.Lookup;
+using BackendCore.Api.Unit.Tests;
 using BackendCore.Common.Core;
 using BackendCore.Service.Services.Lookups;
 using Moq;

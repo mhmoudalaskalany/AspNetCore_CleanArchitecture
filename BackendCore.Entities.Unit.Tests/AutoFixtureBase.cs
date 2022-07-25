@@ -1,7 +1,7 @@
 ﻿using AutoFixture;
 using AutoFixture.AutoMoq;
 
-namespace BackendCore.Api.Unit.Test
+namespace BackendCore.Entities.Unit.Tests
 {
     public class AutoFixtureBase
     {
