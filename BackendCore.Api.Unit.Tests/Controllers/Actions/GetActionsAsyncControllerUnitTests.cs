@@ -5,13 +5,13 @@ using BackendCore.Common.Core;
 using BackendCore.Service.Services.Lookups.Action;
 using Moq;
 
-namespace BackendCore.Api.Unit.Tests.Controllers
+namespace BackendCore.Api.Unit.Tests.Controllers.Actions
 {
-    public class ActionsControllerUnitTests : AutoFixtureBase
+    public class GetActionsAsyncControllerUnitTests : AutoFixtureBase
     {
         private readonly Mock<IActionService> _actionServiceMock;
         private readonly ActionsController _controller;
-        public ActionsControllerUnitTests()
+        public GetActionsAsyncControllerUnitTests()
         {
             _actionServiceMock = new Mock<IActionService>();
             Fixture.Register(() => _actionServiceMock.Object);
@@ -34,6 +34,6 @@ namespace BackendCore.Api.Unit.Tests.Controllers
         }
 
 
-        
+
     }
 }

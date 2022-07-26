@@ -5,13 +5,13 @@ using BackendCore.Common.Core;
 using BackendCore.Service.Services.Lookups.Status;
 using Moq;
 
-namespace BackendCore.Api.Unit.Tests.Controllers
+namespace BackendCore.Api.Unit.Tests.Controllers.Statuses
 {
-    public class StatusesControllerUnitTests : AutoFixtureBase
+    public class GetStatusesAsyncControllerUnitTests : AutoFixtureBase
     {
         private readonly Mock<IStatusService> _statusServiceMock;
         private readonly StatusesController _controller;
-        public StatusesControllerUnitTests()
+        public GetStatusesAsyncControllerUnitTests()
         {
             _statusServiceMock = new Mock<IStatusService>();
             Fixture.Register(() => _statusServiceMock.Object);
@@ -34,6 +34,6 @@ namespace BackendCore.Api.Unit.Tests.Controllers
         }
 
 
-        
+
     }
 }
