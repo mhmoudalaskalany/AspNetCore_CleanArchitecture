@@ -167,6 +167,13 @@ namespace BackendCore.Common.Infrastructure.Repository
         /// <param name="newEntity"></param>
         void Update(T originalEntity, T newEntity);
         /// <summary>
+        /// Update Async
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="newEntity"></param>
+        /// <returns></returns>
+        Task UpdateAsync(object id, T newEntity);
+        /// <summary>
         /// Update Range
         /// </summary>
         /// <param name="newEntities"></param>

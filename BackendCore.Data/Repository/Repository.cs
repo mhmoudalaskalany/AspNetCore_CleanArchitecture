@@ -293,6 +293,17 @@ namespace BackendCore.Data.Repository
             Context.Entry(originalEntity).CurrentValues.SetValues(newEntity);
         }
         /// <summary>
+        /// Update Async
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="newEntity"></param>
+        /// <returns></returns>
+        public async Task UpdateAsync(object id, T newEntity)
+        {
+            var originalEntity = await DbSet.FindAsync(id);
+            Context.Entry(originalEntity).CurrentValues.SetValues(newEntity);
+        }
+        /// <summary>
         /// Update Range
         /// </summary>
         public void UpdateRange(IEnumerable<T> newEntities)
