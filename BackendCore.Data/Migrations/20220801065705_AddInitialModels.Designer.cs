@@ -7,19 +7,22 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace BackendCore.Data.Migrations
 {
     [DbContext(typeof(BackendCoreDbContext))]
-    [Migration("20211225223645_AddInitialModels")]
+    [Migration("20220801065705_AddInitialModels")]
     partial class AddInitialModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.10")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("BackendCore.Entities.Entities.Audit.Audit", b =>
                 {
@@ -170,15 +173,15 @@ namespace BackendCore.Data.Migrations
 
             modelBuilder.Entity("BackendCore.Entities.Entities.Identity.Permission", b =>
                 {
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint");
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<Guid?>("CreatedById")
+                        .HasMaxLength(50)
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
@@ -188,28 +191,32 @@ namespace BackendCore.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<Guid?>("ModifiedById")
+                        .HasMaxLength(50)
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NameAr")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(350)
+                        .HasColumnType("nvarchar(350)");
 
                     b.Property<string>("NameEn")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(350)
+                        .HasColumnType("nvarchar(350)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Code")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[Code] IS NOT NULL");
 
                     b.ToTable("Permissions");
 
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             Code = "Add",
                             CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -219,7 +226,7 @@ namespace BackendCore.Data.Migrations
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             Code = "Edit",
                             CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -229,7 +236,7 @@ namespace BackendCore.Data.Migrations
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             Code = "View",
                             CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -239,7 +246,7 @@ namespace BackendCore.Data.Migrations
                         },
                         new
                         {
-                            Id = 4L,
+                            Id = 4,
                             Code = "Delete",
                             CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -251,10 +258,11 @@ namespace BackendCore.Data.Migrations
 
             modelBuilder.Entity("BackendCore.Entities.Entities.Identity.Role", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<Guid?>("CreatedById")
                         .HasColumnType("uniqueidentifier");
@@ -284,7 +292,7 @@ namespace BackendCore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -332,8 +340,8 @@ namespace BackendCore.Data.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("RoleId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
@@ -354,24 +362,27 @@ namespace BackendCore.Data.Migrations
                             ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NameAr = "مدير",
                             NameEn = "Admin",
-                            Password = "AJ/7RrFHQJw5adUbk6rT4CQLp20Ytqjw2HHU+1g9yJOcR/HWbBzvQnYaBnA2dPysUw==",
+                            Password = "AJ0GSUPRPOPKd4fv2y/qUO/uO+VkpGhW1bARjm+Vd3aXbWq3Y9Xom1rLOVELPe7nxg==",
                             Phone = "01016670280",
-                            RoleId = 1L,
+                            RoleId = 1,
                             UserName = "admin"
                         });
                 });
 
             modelBuilder.Entity("BackendCore.Entities.Entities.Lookup.Action", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<Guid?>("CreatedById")
+                        .HasMaxLength(50)
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
@@ -381,25 +392,32 @@ namespace BackendCore.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<Guid?>("ModifiedById")
+                        .HasMaxLength(50)
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NameAr")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(350)
+                        .HasColumnType("nvarchar(350)");
 
                     b.Property<string>("NameEn")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(350)
+                        .HasColumnType("nvarchar(350)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique()
+                        .HasFilter("[Code] IS NOT NULL");
 
                     b.ToTable("Actions");
 
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             Code = "APPROVE",
                             CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -409,7 +427,7 @@ namespace BackendCore.Data.Migrations
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             Code = "REJECT",
                             CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -419,7 +437,7 @@ namespace BackendCore.Data.Migrations
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             Code = "CLOSE",
                             CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -431,15 +449,18 @@ namespace BackendCore.Data.Migrations
 
             modelBuilder.Entity("BackendCore.Entities.Entities.Lookup.Status", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<Guid?>("CreatedById")
+                        .HasMaxLength(50)
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
@@ -449,25 +470,32 @@ namespace BackendCore.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<Guid?>("ModifiedById")
+                        .HasMaxLength(50)
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NameAr")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(350)
+                        .HasColumnType("nvarchar(350)");
 
                     b.Property<string>("NameEn")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(350)
+                        .HasColumnType("nvarchar(350)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique()
+                        .HasFilter("[Code] IS NOT NULL");
 
                     b.ToTable("Statuses");
 
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             Code = "ACTIVE",
                             CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -477,7 +505,7 @@ namespace BackendCore.Data.Migrations
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             Code = "IN-ACTIVE",
                             CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -487,7 +515,7 @@ namespace BackendCore.Data.Migrations
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             Code = "SUSPENDED",
                             CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
