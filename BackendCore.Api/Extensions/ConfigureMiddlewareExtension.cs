@@ -72,7 +72,7 @@ namespace BackendCore.Api.Extensions
 
         }
         /// <summary>
-        /// Create Database From Migration
+        /// Add Localization
         /// </summary>
         /// <param name="app"></param>
         public static void AddLocalization(this IApplicationBuilder app)
