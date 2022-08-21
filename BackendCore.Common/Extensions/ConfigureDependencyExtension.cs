@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 using BackendCore.Common.Core;
+using BackendCore.Common.Extensions.Swagger.Headers;
 using BackendCore.Common.Helpers.EmailHelper;
 using BackendCore.Common.Helpers.FileHelpers.StorageHelper;
 using BackendCore.Common.Helpers.HttpClient;
@@ -134,7 +135,7 @@ namespace BackendCore.Common.Extensions
                     Description = "JWT Authorization header using the Bearer scheme."
                 });
                 options.AddSecurityRequirement(security);
-
+                options.OperationFilter<LanguageHeader>();
             });
             services.AddSwaggerGenNewtonsoftSupport();
         }
