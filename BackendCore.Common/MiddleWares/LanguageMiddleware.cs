@@ -28,20 +28,24 @@ namespace BackendCore.Common.MiddleWares
 
         public async Task InvokeAsync(HttpContext httpContext)
         {
-            var rqf = httpContext.Features.Get<IRequestCultureFeature>();
-            if (rqf == null)
+            var languageHeader = httpContext.Request.Headers["Accept-Language"];
+            if (string.IsNullOrEmpty(languageHeader))
             {
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-                await _next(httpContext);
+            }
+            else if(languageHeader == "ar")
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("ar-OM");
             }
             else
             {
-                // Culture contains the information of the requested culture
-                var culture = rqf.RequestCulture.Culture;
-                Thread.CurrentThread.CurrentCulture = culture;
-                await _next(httpContext);
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             }
             
+            await _next(httpContext);
+
+
+
 
 
         }
