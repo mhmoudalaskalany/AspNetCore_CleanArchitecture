@@ -77,7 +77,7 @@ namespace BackendCore.Api.Extensions
         /// <param name="app"></param>
         public static void AddLocalization(this IApplicationBuilder app)
         {
-            var supportedCultures = new[] { "en-US", "ar" };
+            var supportedCultures = new[] { "en-US", "ar-OM" };
             var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
                 .AddSupportedCultures()
                 .AddSupportedUICultures();
