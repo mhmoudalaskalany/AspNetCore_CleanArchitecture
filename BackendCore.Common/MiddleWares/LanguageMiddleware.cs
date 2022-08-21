@@ -41,7 +41,7 @@ namespace BackendCore.Common.MiddleWares
             {
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             }
-            
+
             await _next(httpContext);
 
 
