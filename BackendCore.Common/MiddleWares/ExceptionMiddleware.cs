@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using BackendCore.Common.Core;
+using BackendCore.Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using Newtonsoft.Json;
 using Serilog;
 using Task = System.Threading.Tasks.Task;
 
-namespace BackendCore.Common.Exceptions
+namespace BackendCore.Common.MiddleWares
 {
     [ExcludeFromCodeCoverage]
     public class ExceptionMiddleware
@@ -20,7 +21,7 @@ namespace BackendCore.Common.Exceptions
         private readonly IConfiguration _configuration;
         private readonly RequestDelegate _next;
 
-       
+
         public ExceptionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _next = next;
@@ -28,7 +29,7 @@ namespace BackendCore.Common.Exceptions
             _logger = loggerFactory?.CreateLogger<ExceptionMiddleware>() ?? throw new ArgumentNullException(nameof(loggerFactory));
         }
 
-   
+
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
@@ -106,7 +107,7 @@ namespace BackendCore.Common.Exceptions
                             }
                         default:
                             {
-                               
+
                                 var error = new Result
                                 {
                                     Status = HttpStatusCode.BadRequest,

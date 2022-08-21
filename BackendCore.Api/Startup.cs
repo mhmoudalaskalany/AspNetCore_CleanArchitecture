@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using BackendCore.Api.Extensions;
 using BackendCore.Common.Exceptions;
+using BackendCore.Common.MiddleWares;
 using BackendCore.Service.DependencyExtension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -51,7 +52,7 @@ namespace BackendCore.Api
         {
             _shell.ConfigureHttp(app, env);
             Shell.Start(_shell);
-            app.ConfigureCustomExceptionMiddleware();
+            app.ConfigureCustomMiddleware();
             app.Configure(env, Configuration);
             if (env.IsDevelopment())
             {
