@@ -73,13 +73,12 @@ namespace BackendCore.Api.Extensions
         }
 
         /// <summary>
-        /// register localization
+        /// Register localization
         /// </summary>
         /// <param name="services"></param>
         private static void AddLocalizationServices(this IServiceCollection services)
         {
             services.AddLocalization();
-
         }
 
         /// <summary>
