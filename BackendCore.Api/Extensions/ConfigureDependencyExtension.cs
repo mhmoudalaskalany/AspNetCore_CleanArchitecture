@@ -36,6 +36,7 @@ namespace BackendCore.Api.Extensions
         public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.RegisterDbContext(configuration);
+            services.AddLocalizationServices();
             services.RegisterCores();
             services.RegisterRepository();
             services.RegisterIntegrationRepositories();
@@ -68,6 +69,16 @@ namespace BackendCore.Api.Extensions
         private static void RegisterAutoMapper(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(MappingService));
+
+        }
+
+        /// <summary>
+        /// register localization
+        /// </summary>
+        /// <param name="services"></param>
+        private static void AddLocalizationServices(this IServiceCollection services)
+        {
+            services.AddLocalization();
 
         }
 

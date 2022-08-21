@@ -34,6 +34,7 @@ namespace BackendCore.Api.Extensions
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.AddLocalization();
             app.UseFluentScheduler(configuration);
             app.SwaggerConfig(configuration);
             return app;
@@ -70,6 +71,18 @@ namespace BackendCore.Api.Extensions
             }
 
         }
+        /// <summary>
+        /// Create Database From Migration
+        /// </summary>
+        /// <param name="app"></param>
+        public static void AddLocalization(this IApplicationBuilder app)
+        {
+            var supportedCultures = new[] { "en-US", "ar" };
+            var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+                .AddSupportedCultures()
+                .AddSupportedUICultures();
+            app.UseRequestLocalization(localizationOptions);
+        }
 
         /// <summary>
         /// User Swagger
@@ -97,7 +110,7 @@ namespace BackendCore.Api.Extensions
         public static void UseFluentScheduler(this IApplicationBuilder app, IConfiguration configuration)
         {
             var env = configuration["Environment"];
-            if (env ==Environment.Development)
+            if (env == Environment.Development)
             {
                 JobManager.Initialize(new MyRegistry());
             }
