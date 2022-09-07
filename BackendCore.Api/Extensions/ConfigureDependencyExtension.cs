@@ -42,6 +42,7 @@ namespace BackendCore.Api.Extensions
             services.RegisterIntegrationRepositories();
             services.RegisterAutoMapper();
             services.RegisterCommonServices(configuration);
+            services.AddHealthChecks();
             services.AddControllers();
             return services;
         }

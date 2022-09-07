@@ -37,6 +37,7 @@ namespace BackendCore.Api.Extensions
             app.AddLocalization();
             app.UseFluentScheduler(configuration);
             app.SwaggerConfig(configuration);
+            app.UseHealthChecks("/probe");
             return app;
         }
         /// <summary>
