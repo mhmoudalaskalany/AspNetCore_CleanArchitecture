@@ -82,7 +82,7 @@ namespace BackendCore.Service.Services.Base
             if (affectedRows > 0)
             {
                 Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
-                    message: "Data Inserted Successfully");
+                    message: "AddSuccess");
             }
 
             Result.Data = model;
@@ -99,7 +99,7 @@ namespace BackendCore.Service.Services.Base
             if (affectedRows > 0)
             {
                 Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
-                    message: "Data Inserted Successfully");
+                    message: "AddSuccess");
             }
             Result.Data = model;
             return Result;
@@ -117,7 +117,7 @@ namespace BackendCore.Service.Services.Base
             if (affectedRows > 0)
             {
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
-                    message: "Data Updated Successfully");
+                    message: "UpdateSuccess");
             }
 
             return Result;
@@ -133,7 +133,7 @@ namespace BackendCore.Service.Services.Base
             if (affectedRows > 0)
             {
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
-                    message: "Data Deleted Successfully");
+                    message: "DeleteSuccess");
             }
 
             return Result;
@@ -150,7 +150,7 @@ namespace BackendCore.Service.Services.Base
             if (affectedRows > 0)
             {
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
-                    message: "Data Deleted Successfully");
+                    message: "DeleteSuccess");
             }
 
             return Result;
@@ -161,7 +161,7 @@ namespace BackendCore.Service.Services.Base
         {
             var type = entity.GetType();
             var createdBy = type.GetProperty("CreatedById");
-            if (createdBy != null) createdBy.SetValue(entity, Guid.Parse(ClaimData.UserId));
+            if (createdBy != null) createdBy.SetValue(entity, ClaimData.UserId);
             var createdDate = type.GetProperty("CreatedDate");
             if (createdDate != null) createdDate.SetValue(entity, DateTime.Now);
 
@@ -171,7 +171,7 @@ namespace BackendCore.Service.Services.Base
         {
             var type = entity.GetType();
             var createdBy = type.GetProperty("ModifiedById");
-            if (createdBy != null) createdBy.SetValue(entity, Guid.Parse(ClaimData.UserId));
+            if (createdBy != null) createdBy.SetValue(entity, ClaimData.UserId);
             var createdDate = type.GetProperty("ModifiedDate");
             if (createdDate != null) createdDate.SetValue(entity, DateTime.Now);
 

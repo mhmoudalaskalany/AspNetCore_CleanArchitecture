@@ -34,8 +34,8 @@ namespace BackendCore.Entities.Entities.Audit
                 OldValues = OldValues.Count == 0 ? null : JsonConvert.SerializeObject(OldValues),
                 NewValues = NewValues.Count == 0 ? null : JsonConvert.SerializeObject(NewValues),
                 AffectedColumns = ChangedColumns.Count == 0 ? null : JsonConvert.SerializeObject(ChangedColumns),
-                CreatedById = Guid.Parse(UserId),
-                ModifiedById = Guid.Parse(UserId)
+                CreatedById = UserId,
+                ModifiedById = UserId
             };
             return audit;
         }
