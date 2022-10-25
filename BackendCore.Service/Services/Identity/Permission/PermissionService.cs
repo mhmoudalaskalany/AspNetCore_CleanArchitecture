@@ -32,7 +32,7 @@ namespace BackendCore.Service.Services.Identity.Permission
 
         static Expression<Func<Entities.Entities.Identity.Permission, bool>> PredicateBuilderFunction(PermissionFilter filter)
         {
-            var predicate = PredicateBuilder.New<Entities.Entities.Identity.Permission>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Identity.Permission>(x => x.IsDeleted == filter.IsDeleted);
 
             if (!string.IsNullOrWhiteSpace(filter?.NameAr))
             {

@@ -19,12 +19,6 @@ namespace BackendCore.Service.Services.Identity.User
 
         }
 
-        #region Public Methods
-        /// <summary>
-        /// Get All Paged
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <returns></returns>
         public async Task<DataPaging> GetAllPagedAsync(BaseParam<UserFilter> filter)
         {
 
@@ -36,17 +30,9 @@ namespace BackendCore.Service.Services.Identity.User
 
         }
 
-        #endregion
-
-        #region Private Methods
-        /// <summary>
-        /// Predicate Builder
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <returns></returns>
         static Expression<Func<Entities.Entities.Identity.User, bool>> PredicateBuilderFunction(UserFilter filter)
         {
-            var predicate = PredicateBuilder.New<Entities.Entities.Identity.User>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Identity.User>(x => x.IsDeleted == filter.IsDeleted);
 
             if (!string.IsNullOrWhiteSpace(filter?.NameAr))
             {
@@ -58,9 +44,6 @@ namespace BackendCore.Service.Services.Identity.User
             }
             return predicate;
         }
-
-        #endregion
-
 
     }
 }
