@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-namespace BackendCore.Api.Controllers.Common
+namespace BackendCore.Api.Controllers.Business
 {
     /// <summary>
     /// Files Controller

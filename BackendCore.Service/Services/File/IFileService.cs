@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace BackendCore.Service.Services.File
 {
-    public interface IFileService : IBaseService<Entities.Entities.Common.File, AddFileDto, FileDto, Guid, Guid?>
+    public interface IFileService : IBaseService<Entities.Entities.Business.File, AddFileDto, FileDto, Guid, Guid?>
     {
 
         /// <summary>

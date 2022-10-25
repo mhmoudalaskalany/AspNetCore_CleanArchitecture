@@ -15,7 +15,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace BackendCore.Service.Services.File
 {
-    public class FileService : BaseService<Entities.Entities.Common.File, AddFileDto, FileDto, Guid, Guid?>, IFileService
+    public class FileService : BaseService<Entities.Entities.Business.File, AddFileDto, FileDto, Guid, Guid?>, IFileService
     {
         #region Private Fields
         
@@ -27,7 +27,7 @@ namespace BackendCore.Service.Services.File
 
         #region Constructors
 
-        public FileService(IServiceBaseParameter<Entities.Entities.Common.File> parameters, IConfiguration configuration, Func<string, IStorageService> storage) : base(parameters)
+        public FileService(IServiceBaseParameter<Entities.Entities.Business.File> parameters, IConfiguration configuration, Func<string, IStorageService> storage) : base(parameters)
         {
             _configuration = configuration;
             _storage = storage;
@@ -51,7 +51,7 @@ namespace BackendCore.Service.Services.File
             _path = basePath + _configuration["StoragePaths:" + appCode];
             var fileNames = await _storage(storageType.ToString()).StoreToSharedFolder(files, _path, appCode);
             fileNames.ForEach(x => x.Id = Guid.NewGuid());
-            var entities = Mapper.Map<List<Entities.Entities.Common.File>>(fileNames);
+            var entities = Mapper.Map<List<Entities.Entities.Business.File>>(fileNames);
             entities.ForEach(x =>
             {
                 x.CreatedDate = DateTime.UtcNow;
@@ -78,7 +78,7 @@ namespace BackendCore.Service.Services.File
             var file = (FileDto)await _storage(model.StorageType.ToString()).StoreBytes(model, _path , model.AppCode);
             file.Id = Guid.NewGuid();
             file.Name = file.Name + "." + model.AttachmentExtension;
-            var fileEntity = Mapper.Map<Entities.Entities.Common.File>(file);
+            var fileEntity = Mapper.Map<Entities.Entities.Business.File>(file);
             fileEntity.CreatedDate = DateTime.UtcNow;
             fileEntity.DocumentType = model.AttachmentExtension;
             fileEntity.Url = CryptoHelper.EncryptString(DateTime.UtcNow.ToString(@"dd-MM-yyyy") + @"\" + fileEntity.Url);

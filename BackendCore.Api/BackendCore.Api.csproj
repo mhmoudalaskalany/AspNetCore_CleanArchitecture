@@ -29,9 +29,5 @@
     <ProjectReference Include="..\BackendCore.Service\BackendCore.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Business\" />
-  </ItemGroup>
-
 
 </Project>
