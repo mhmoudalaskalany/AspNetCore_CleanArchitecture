@@ -22,12 +22,6 @@ namespace BackendCore.Service.Services.Identity.Account
             _activeDirectoryRepository = activeDirectoryRepository;
         }
 
-        #region Public Methods
-        /// <summary>
-        /// Login
-        /// </summary>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
         public async Task<IFinalResult> Login(LoginParameters parameters)
         {
             var user = await UnitOfWork.Repository.FirstOrDefaultAsync(q => q.UserName == parameters.Username && !q.IsDeleted, include: source => source.Include(a => a.Role), disableTracking: false);
@@ -35,16 +29,12 @@ namespace BackendCore.Service.Services.Identity.Account
                 message: "Wrong Username or Password");
             var rightPass = CryptoHasher.VerifyHashedPassword(user.Password, parameters.Password);
             if (!rightPass) return ResponseResult.PostResult(status: HttpStatusCode.NotFound, message: "Wrong Password");
-            var role = user.RoleId;
+            var role = user.Role;
             var userDto = Mapper.Map<Entities.Entities.Identity.User, UserDto>(user);
-            var userLoginReturn = _tokenBusiness.GenerateJsonWebToken(userDto, role.ToString());
+            var userLoginReturn = _tokenBusiness.GenerateJsonWebToken(userDto, role);
             return ResponseResult.PostResult(userLoginReturn, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString());
         }
-        /// <summary>
-        /// Active Directory Login
-        /// </summary>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
+       
         public async Task<IFinalResult> AdLogin(LoginParameters parameters)
         {
             try
@@ -57,10 +47,10 @@ namespace BackendCore.Service.Services.Identity.Account
 
                 }
                 var user = await CheckIfUserInDatabase(activeDirectoryUser);
-                var role = user.RoleId;
+                var role = user.Role;
                 var userDto = Mapper.Map<Entities.Entities.Identity.User, UserDto>(user);
 
-                var userLoginReturn = _tokenBusiness.GenerateJsonWebToken(userDto, role.ToString());
+                var userLoginReturn = _tokenBusiness.GenerateJsonWebToken(userDto, role);
                 return ResponseResult.PostResult(userLoginReturn, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString());
             }
             catch (Exception e)
@@ -70,14 +60,8 @@ namespace BackendCore.Service.Services.Identity.Account
             }
         }
 
-        #endregion
 
-        #region Private Methods
-        /// <summary>
-        /// Check For Active Directory User To Be In DB
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
+
         private async Task<Entities.Entities.Identity.User> CheckIfUserInDatabase(ActiveDirectoryUserDto dto)
         {
             try
@@ -103,7 +87,7 @@ namespace BackendCore.Service.Services.Identity.Account
             }
         }
 
-        #endregion
+ 
 
     }
 }

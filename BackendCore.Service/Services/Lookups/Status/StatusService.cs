@@ -14,7 +14,6 @@ namespace BackendCore.Service.Services.Lookups.Status
         {
         }
 
-
         public async Task<IFinalResult> GetStatusesAsync()
         {
             var entities = await UnitOfWork.Repository.FindAsync(x => x.IsDeleted == false);
