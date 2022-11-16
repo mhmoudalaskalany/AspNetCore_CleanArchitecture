@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using BackendCore.Common.DTO.Identity.Login;
 using BackendCore.Common.DTO.Identity.User;
+using BackendCore.Entities.Entities.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -19,13 +20,14 @@ namespace BackendCore.Service.Services.Base
             _userLoginReturn = new UserLoginReturn();
         }
 
-        public UserLoginReturn GenerateJsonWebToken(UserDto userInfo, string role)
+        public UserLoginReturn GenerateJsonWebToken(UserDto userInfo, Role role)
         {
             var claims = new[] {
                 new Claim( JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Sub, userInfo.UserName),
                 new Claim("UserId", userInfo.Id.ToString()),
-                new Claim("Role", role)
+                new Claim("RoleEn", role.NameEn),
+                new Claim("RoleAr", role.NameAr)
             };
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:SecretKey"]));
             var expiryInHours = DateTime.Now.AddHours(Convert.ToDouble(_config["Jwt:ExpiryInHours"]));

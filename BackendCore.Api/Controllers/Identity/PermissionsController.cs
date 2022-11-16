@@ -76,7 +76,6 @@ namespace BackendCore.Api.Controllers.Identity
         [HttpPut]
         public async Task<IFinalResult> UpdateAsync(AddPermissionDto model)
         {
-
             return await _permissionService.UpdateAsync(model);
         }
         /// <summary>

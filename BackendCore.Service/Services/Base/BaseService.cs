@@ -45,17 +45,14 @@ namespace BackendCore.Service.Services.Base
 
         public virtual async Task<IFinalResult> GetByIdAsync(object id)
         {
-
             T query = await UnitOfWork.Repository.GetAsync(id);
             var data = Mapper.Map<T, TGetDto>(query);
             return ResponseResult.PostResult(result: data, status: HttpStatusCode.OK,
-                message: "Data Retrieved Successfully");
-
+                message: "Success");
         }
 
         public virtual async Task<IFinalResult> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null)
         {
-
             IEnumerable<T> query;
             if (predicate != null)
             {
@@ -65,16 +62,13 @@ namespace BackendCore.Service.Services.Base
             {
                 query = await UnitOfWork.Repository.GetAllAsync(disableTracking: disableTracking);
             }
-
             var data = Mapper.Map<IEnumerable<T>, IEnumerable<TGetDto>>(query);
             return ResponseResult.PostResult(data, status: HttpStatusCode.OK,
                 message: HttpStatusCode.OK.ToString());
-
         }
 
         public virtual async Task<IFinalResult> AddAsync(TDto model)
         {
-
             T entity = Mapper.Map<TDto, T>(model);
             SetEntityCreatedBaseProperties(entity);
             UnitOfWork.Repository.Add(entity);
@@ -84,15 +78,12 @@ namespace BackendCore.Service.Services.Base
                 Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
                     message: "AddSuccess");
             }
-
             Result.Data = model;
             return Result;
-
         }
 
         public virtual async Task<IFinalResult> AddListAsync(List<TDto> model)
         {
-
             var entities = Mapper.Map<List<TDto>, List<T>>(model);
             UnitOfWork.Repository.AddRange(entities);
             var affectedRows = await UnitOfWork.SaveChangesAsync();
@@ -103,12 +94,10 @@ namespace BackendCore.Service.Services.Base
             }
             Result.Data = model;
             return Result;
-
         }
 
         public virtual async Task<IFinalResult> UpdateAsync(TDto model)
         {
-
             T entityToUpdate = await UnitOfWork.Repository.GetAsync(model.Id);
             var newEntity = Mapper.Map(model, entityToUpdate);
             SetEntityModifiedBaseProperties(newEntity);
@@ -119,14 +108,12 @@ namespace BackendCore.Service.Services.Base
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
                     message: "UpdateSuccess");
             }
-
             return Result;
 
         }
 
         public virtual async Task<IFinalResult> DeleteAsync(object id)
         {
-
             var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
             UnitOfWork.Repository.Remove(entityToDelete);
             var affectedRows = await UnitOfWork.SaveChangesAsync();
@@ -135,14 +122,11 @@ namespace BackendCore.Service.Services.Base
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
                     message: "DeleteSuccess");
             }
-
             return Result;
-
         }
 
         public virtual async Task<IFinalResult> DeleteSoftAsync(object id)
         {
-
             var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
             SetEntityModifiedBaseProperties(entityToDelete);
             UnitOfWork.Repository.RemoveLogical(entityToDelete);
@@ -152,9 +136,7 @@ namespace BackendCore.Service.Services.Base
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
                     message: "DeleteSuccess");
             }
-
             return Result;
-
         }
 
         protected void SetEntityCreatedBaseProperties(T entity)
@@ -185,7 +167,8 @@ namespace BackendCore.Service.Services.Base
             {
                 UserId = claims?.FindFirst(t => t.Type == "UserId")?.Value,
                 Email = claims?.FindFirst(t => t.Type == "Email")?.Value,
-                UserType = userType
+                UserType = userType,
+                UserName = claims?.FindFirst(t => t.Type == "Username")?.Value
             };
             if (!string.IsNullOrWhiteSpace(claims?.FindFirst(t => t.Type == "UserTypeId")?.Value))
             {

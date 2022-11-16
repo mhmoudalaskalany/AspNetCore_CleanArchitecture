@@ -1,5 +1,5 @@
 ﻿using BackendCore.Common.DTO.Common.File;
-using BackendCore.Entities.Entities.Common;
+using BackendCore.Entities.Entities.Business;
 
 // ReSharper disable once CheckNamespace
 namespace BackendCore.Service.Mapping

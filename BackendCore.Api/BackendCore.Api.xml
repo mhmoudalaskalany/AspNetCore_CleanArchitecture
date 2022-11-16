@@ -4,21 +4,6 @@
         <name>BackendCore.Api</name>
     </assembly>
     <members>
-        <member name="T:BackendCore.Api.Controllers.AccountsController">
-            <summary>
-            App Controller
-            </summary>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.AccountsController.#ctor(BackendCore.Service.Services.Login.ILoginService,BackendCore.Service.Services.Base.ITokenService)">
-            <inheritdoc />
-        </member>
-        <member name="M:BackendCore.Api.Controllers.AccountsController.Login(BackendCore.Common.DTO.Login.LoginParameters)">
-            <summary>
-            Login 
-            </summary>
-            <param name="parameter"></param>
-            <returns></returns>
-        </member>
         <member name="T:BackendCore.Api.Controllers.Base.BaseController">
             <inheritdoc />
         </member>
@@ -33,112 +18,279 @@
         <member name="M:BackendCore.Api.Controllers.Base.BaseController.#ctor(BackendCore.Service.Services.Base.ITokenService)">
             <inheritdoc />
         </member>
-        <member name="T:BackendCore.Api.Controllers.PermissionsController">
+        <member name="T:BackendCore.Api.Controllers.Common.FilesController">
             <summary>
-            App Controller
+            Files Controller
             </summary>
         </member>
-        <member name="M:BackendCore.Api.Controllers.PermissionsController.#ctor(BackendCore.Service.Services.Permission.IPermissionService)">
+        <member name="M:BackendCore.Api.Controllers.Common.FilesController.#ctor(BackendCore.Service.Services.File.IFileService,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Constructor
             </summary>
         </member>
-        <member name="M:BackendCore.Api.Controllers.PermissionsController.GetAsync(System.Int64)">
+        <member name="M:BackendCore.Api.Controllers.Common.FilesController.DownloadWithAppCodeAsync(System.Guid,System.String)">
             <summary>
-            Get By Id 
+            Download File With App Code From  Token 
             </summary>
+            <param name="id"></param>
+            <param name="token"></param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.PermissionsController.GetAllAsync">
+        <member name="M:BackendCore.Api.Controllers.Common.FilesController.GenerateTokenWithClaimsAsync(System.Collections.Generic.List{System.Guid},System.String)">
             <summary>
-            Get All 
+            Generate Token With App Code
             </summary>
+            <param name="ids"></param>
+            <param name="appCode"></param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.PermissionsController.GetPagedAsync(BackendCore.Common.DTO.Base.BaseParam{BackendCore.Common.DTO.Permission.Parameters.PermissionFilter})">
+        <member name="M:BackendCore.Api.Controllers.Common.FilesController.UploadToSanStorageAsync(Microsoft.AspNetCore.Http.IFormFileCollection,BackendCore.Entities.Enum.StorageType,System.Boolean,System.String)">
             <summary>
-            GetAll Data paged
+            Upload To San Storage
             </summary>
-            <param name="filter">Filter responsible for search and sort</param>
+            <param name="files"></param>
+            <param name="storageType"></param>
+            <param name="isPublic"></param>
+            <param name="appCode"></param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.PermissionsController.AddAsync(BackendCore.Common.DTO.Permission.AddPermissionDto)">
+        <member name="M:BackendCore.Api.Controllers.Common.FilesController.UploadBytesAsync(BackendCore.Common.DTO.Common.File.UploadRequestDto)">
             <summary>
-            Add 
+            Upload To Bytes
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.PermissionsController.UpdateAsync(BackendCore.Common.DTO.Permission.AddPermissionDto)">
+        <member name="M:BackendCore.Api.Controllers.Common.FilesController.GetDirectories(BackendCore.Entities.Enum.StorageType)">
             <summary>
-            Update  
+            List Current Path Directories
             </summary>
-            <param name="model">Object content</param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.PermissionsController.DeleteAsync(System.Int64)">
+        <member name="M:BackendCore.Api.Controllers.Common.FilesController.DeleteAsync(System.Guid)">
             <summary>
             Remove  by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
-        <member name="T:BackendCore.Api.Controllers.UsersController">
+        <member name="T:BackendCore.Api.Controllers.Identity.AccountsController">
             <summary>
-            App Controller
+            Accounts Controller
             </summary>
         </member>
-        <member name="M:BackendCore.Api.Controllers.UsersController.#ctor(BackendCore.Service.Services.User.IUserService)">
+        <member name="M:BackendCore.Api.Controllers.Identity.AccountsController.#ctor(BackendCore.Service.Services.Identity.Login.IAccountService,BackendCore.Service.Services.Base.ITokenService)">
+            <inheritdoc />
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Identity.AccountsController.Login(BackendCore.Common.DTO.Identity.Login.LoginParameters)">
+            <summary>
+            Login 
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BackendCore.Api.Controllers.Identity.PermissionsController">
+            <summary>
+            Permissions Controller
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.#ctor(BackendCore.Service.Services.Identity.Permission.IPermissionService)">
             <summary>
             Constructor
             </summary>
         </member>
-        <member name="M:BackendCore.Api.Controllers.UsersController.GetAsync(System.Int64)">
+        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.GetAsync(System.Int64)">
             <summary>
             Get By Id 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.UsersController.GetAllAsync">
+        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.GetAllAsync">
             <summary>
             Get All 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.UsersController.GetPagedAsync(BackendCore.Common.DTO.Base.BaseParam{BackendCore.Common.DTO.User.Parameters.UserFilter})">
+        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.GetPagedAsync(BackendCore.Common.DTO.Base.BaseParam{BackendCore.Common.DTO.Identity.Permission.Parameters.PermissionFilter})">
             <summary>
             GetAll Data paged
             </summary>
             <param name="filter">Filter responsible for search and sort</param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.UsersController.AddAsync(BackendCore.Common.DTO.User.AddUserDto)">
+        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.AddAsync(BackendCore.Common.DTO.Identity.Permission.AddPermissionDto)">
             <summary>
             Add 
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.UsersController.UpdateAsync(BackendCore.Common.DTO.User.AddUserDto)">
+        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.UpdateAsync(BackendCore.Common.DTO.Identity.Permission.AddPermissionDto)">
             <summary>
             Update  
             </summary>
             <param name="model">Object content</param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.UsersController.DeleteAsync(System.Int64)">
+        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.DeleteAsync(System.Int64)">
             <summary>
             Remove  by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
-        <member name="T:BackendCore.Api.Extensions.ConfigureExtension">
+        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.DeleteSoftAsync(System.Int64)">
+            <summary>
+            Soft Remove  by id
+            </summary>
+            <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="T:BackendCore.Api.Controllers.Identity.UsersController">
+            <summary>
+            Users Controller
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.#ctor(BackendCore.Service.Services.Identity.User.IUserService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.GetAsync(System.Int64)">
+            <summary>
+            Get By Id 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.GetAllAsync">
+            <summary>
+            Get All 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.GetPagedAsync(BackendCore.Common.DTO.Base.BaseParam{BackendCore.Common.DTO.Identity.User.Parameters.UserFilter})">
+            <summary>
+            GetAll Data paged
+            </summary>
+            <param name="filter">Filter responsible for search and sort</param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.AddAsync(BackendCore.Common.DTO.Identity.User.AddUserDto)">
+            <summary>
+            Add 
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.UpdateAsync(BackendCore.Common.DTO.Identity.User.AddUserDto)">
+            <summary>
+            Update  
+            </summary>
+            <param name="model">Object content</param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.DeleteAsync(System.Int64)">
+            <summary>
+            Remove  by id
+            </summary>
+            <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.DeleteSoftAsync(System.Int64)">
+            <summary>
+            Soft Remove  by id
+            </summary>
+            <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="T:BackendCore.Api.Controllers.Lookup.ActionsController">
+            <summary>
+            Actions Controller
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Lookup.ActionsController.#ctor(BackendCore.Service.Services.Lookups.Action.IActionService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Lookup.ActionsController.GetActionsAsync">
+            <summary>
+            Get All Actions
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BackendCore.Api.Controllers.Lookup.StatusesController">
+            <summary>
+            Statuses Controller
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Lookup.StatusesController.#ctor(BackendCore.Service.Services.Lookups.Status.IStatusService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Controllers.Lookup.StatusesController.GetStatusesAsync">
+            <summary>
+            Get All Statuses
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BackendCore.Api.Extensions.ConfigureDependencyExtension">
+            <summary>
+            Dependency Extensions
+            </summary>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureDependencyExtension.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Register Extensions
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureDependencyExtension.RegisterDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Add DbContext
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureDependencyExtension.RegisterAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            register auto-mapper
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureDependencyExtension.AddLocalizationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register localization
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureDependencyExtension.RegisterRepository(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register Custom Repositories
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureDependencyExtension.RegisterIntegrationRepositories(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            register Integration Repositories
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureDependencyExtension.RegisterCores(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register Main Core
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="T:BackendCore.Api.Extensions.ConfigureMiddlewareExtension">
             <summary>
             Pipeline Extensions
             </summary>
         </member>
-        <member name="M:BackendCore.Api.Extensions.ConfigureExtension.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:BackendCore.Api.Extensions.ConfigureMiddlewareExtension.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             General Configuration Method
             </summary>
@@ -147,54 +299,46 @@
             <param name="configuration"></param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Extensions.ConfigureExtension.ConfigureCors(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:BackendCore.Api.Extensions.ConfigureMiddlewareExtension.ConfigureCors(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Configure Cors
             </summary>
             <param name="app"></param>
         </member>
-        <member name="M:BackendCore.Api.Extensions.ConfigureExtension.SwaggerConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:BackendCore.Api.Extensions.ConfigureMiddlewareExtension.CreateDatabase(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Create Database From Migration
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureMiddlewareExtension.AddLocalization(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Add Localization
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:BackendCore.Api.Extensions.ConfigureMiddlewareExtension.SwaggerConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             User Swagger
             </summary>
             <param name="app"></param>
             <param name="configuration"></param>
         </member>
-        <member name="T:BackendCore.Api.Extensions.ConfigureServiceExtension">
+        <member name="M:BackendCore.Api.Extensions.ConfigureMiddlewareExtension.UseFluentScheduler(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
-            Dependency Extensions
+            User Fluent Scheduler
             </summary>
-        </member>
-        <member name="M:BackendCore.Api.Extensions.ConfigureServiceExtension.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            Register Extensions
-            </summary>
-            <param name="services"></param>
+            <param name="app"></param>
             <param name="configuration"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Extensions.ConfigureServiceExtension.RegisterDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            Add DbContext
-            </summary>
-            <param name="services"></param>
-            <param name="configuration"></param>
-        </member>
-        <member name="M:BackendCore.Api.Extensions.ConfigureServiceExtension.RegisterAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            register auto-mapper
-            </summary>
-            <param name="services"></param>
-        </member>
-        <member name="M:BackendCore.Api.Extensions.ConfigureServiceExtension.RegisterCores(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            Register Main Core
-            </summary>
-            <param name="services"></param>
         </member>
         <member name="T:BackendCore.Api.Program">
             <summary>
             Start Point
+            </summary>
+        </member>
+        <member name="P:BackendCore.Api.Program.Configuration">
+            <summary>
+            Configuration Properties
             </summary>
         </member>
         <member name="M:BackendCore.Api.Program.Main(System.String[])">
@@ -205,7 +349,7 @@
         </member>
         <member name="M:BackendCore.Api.Program.CreateHostBuilder(System.String[])">
             <summary>
-            Build Web Host
+            Web Host Builder
             </summary>
             <param name="args"></param>
             <returns></returns>

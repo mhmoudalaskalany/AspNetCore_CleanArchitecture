@@ -76,7 +76,6 @@ namespace BackendCore.Api.Controllers.Identity
         [HttpPut]
         public async Task<IFinalResult> UpdateAsync(AddUserDto model)
         {
-
             return await _userService.UpdateAsync(model);
         }
         /// <summary>

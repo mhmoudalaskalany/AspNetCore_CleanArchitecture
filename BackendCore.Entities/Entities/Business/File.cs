@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using BackendCore.Entities.Entities.Base;
 
-namespace BackendCore.Entities.Entities.Common
+namespace BackendCore.Entities.Entities.Business
 {
     [ExcludeFromCodeCoverage]
     public class File : BaseEntity<Guid>
