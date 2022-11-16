@@ -22,7 +22,7 @@ namespace BackendCore.Common.Helpers.MailKitHelper
                 var message = new EmailMessage
                 {
                     Sender = new MailboxAddress(_emailMetadata.SenderName, _emailMetadata.Sender),
-                    Receiver = new MailboxAddress(mailTo),
+                    Receiver = new MailboxAddress(mailTo , mailTo),
                     Subject = subject,
                     Content = body
                 };
