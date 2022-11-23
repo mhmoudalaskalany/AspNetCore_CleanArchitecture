@@ -2,7 +2,7 @@
 Clean Architecture For .Net Core 7 Web Api with N-Tier Layers
 
 # Layers
-
+![layers](https://github.com/mhmoudalaskalany/Images/raw/main/clean_architecture_images/CleanArchitecture.png)
 - Web Api Layer 
 - Application Layer (Business Logic)
 - Common Layer  (Abstraction Layer Between (High Level Layer) Application Layer And (Low Level Layer) Infrastructure)
