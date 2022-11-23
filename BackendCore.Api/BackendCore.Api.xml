@@ -18,17 +18,17 @@
         <member name="M:BackendCore.Api.Controllers.Base.BaseController.#ctor(BackendCore.Service.Services.Base.ITokenService)">
             <inheritdoc />
         </member>
-        <member name="T:BackendCore.Api.Controllers.Common.FilesController">
+        <member name="T:BackendCore.Api.Controllers.Business.FilesController">
             <summary>
             Files Controller
             </summary>
         </member>
-        <member name="M:BackendCore.Api.Controllers.Common.FilesController.#ctor(BackendCore.Service.Services.File.IFileService,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:BackendCore.Api.Controllers.Business.FilesController.#ctor(BackendCore.Service.Services.File.IFileService,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Constructor
             </summary>
         </member>
-        <member name="M:BackendCore.Api.Controllers.Common.FilesController.DownloadWithAppCodeAsync(System.Guid,System.String)">
+        <member name="M:BackendCore.Api.Controllers.Business.FilesController.DownloadWithAppCodeAsync(System.Guid,System.String)">
             <summary>
             Download File With App Code From  Token 
             </summary>
@@ -36,7 +36,7 @@
             <param name="token"></param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.Common.FilesController.GenerateTokenWithClaimsAsync(System.Collections.Generic.List{System.Guid},System.String)">
+        <member name="M:BackendCore.Api.Controllers.Business.FilesController.GenerateTokenWithClaimsAsync(System.Collections.Generic.List{System.Guid},System.String)">
             <summary>
             Generate Token With App Code
             </summary>
@@ -44,7 +44,7 @@
             <param name="appCode"></param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.Common.FilesController.UploadToSanStorageAsync(Microsoft.AspNetCore.Http.IFormFileCollection,BackendCore.Entities.Enum.StorageType,System.Boolean,System.String)">
+        <member name="M:BackendCore.Api.Controllers.Business.FilesController.UploadToSanStorageAsync(Microsoft.AspNetCore.Http.IFormFileCollection,BackendCore.Entities.Enum.StorageType,System.Boolean,System.String)">
             <summary>
             Upload To San Storage
             </summary>
@@ -54,20 +54,20 @@
             <param name="appCode"></param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.Common.FilesController.UploadBytesAsync(BackendCore.Common.DTO.Common.File.UploadRequestDto)">
+        <member name="M:BackendCore.Api.Controllers.Business.FilesController.UploadBytesAsync(BackendCore.Common.DTO.Common.File.UploadRequestDto)">
             <summary>
             Upload To Bytes
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.Common.FilesController.GetDirectories(BackendCore.Entities.Enum.StorageType)">
+        <member name="M:BackendCore.Api.Controllers.Business.FilesController.GetDirectories(BackendCore.Entities.Enum.StorageType)">
             <summary>
             List Current Path Directories
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BackendCore.Api.Controllers.Common.FilesController.DeleteAsync(System.Guid)">
+        <member name="M:BackendCore.Api.Controllers.Business.FilesController.DeleteAsync(System.Guid)">
             <summary>
             Remove  by id
             </summary>

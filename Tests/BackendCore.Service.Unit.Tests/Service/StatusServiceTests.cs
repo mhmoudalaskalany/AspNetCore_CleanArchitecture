@@ -2,10 +2,8 @@
 using System.Net;
 using AutoFixture;
 using AutoMapper;
-using BackendCore.Common.Core;
 using BackendCore.Common.DTO.Lookup.Status;
 using BackendCore.Common.Extensions;
-using BackendCore.Common.Infrastructure.Repository;
 using BackendCore.Common.Infrastructure.UnitOfWork;
 using BackendCore.Entities.Entities.Lookup;
 using BackendCore.Service.Services.Base;

@@ -17,17 +17,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendCore.Integration", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Tests", "_Tests", "{56D969D8-3896-4210-91D1-B606F6F94116}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendCore.Api.Unit.Tests", "BackendCore.Api.Unit.Tests\BackendCore.Api.Unit.Tests.csproj", "{E48715FB-A86C-49BE-8CFD-A6F4E577A34C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendCore.Api.Unit.Tests", "Tests\BackendCore.Api.Unit.Tests\BackendCore.Api.Unit.Tests.csproj", "{E48715FB-A86C-49BE-8CFD-A6F4E577A34C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendCore.Data.Unit.Tests", "BackendCore.Data.Unit.Tests\BackendCore.Data.Unit.Tests.csproj", "{1C591109-EC5E-442E-A651-D023A9413257}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendCore.Data.Unit.Tests", "Tests\BackendCore.Data.Unit.Tests\BackendCore.Data.Unit.Tests.csproj", "{1C591109-EC5E-442E-A651-D023A9413257}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCore.Service.Unit.Tests", "BackendCore.Service.Unit.Tests\BackendCore.Service.Unit.Tests.csproj", "{25156AC9-A87D-4B73-AA06-CD2D34D12AAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCore.Service.Unit.Tests", "Tests\BackendCore.Service.Unit.Tests\BackendCore.Service.Unit.Tests.csproj", "{25156AC9-A87D-4B73-AA06-CD2D34D12AAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCore.Integration.Unit.Tests", "BackendCore.Integration.Unit.Tests\BackendCore.Integration.Unit.Tests.csproj", "{2C8D216B-DB6D-4876-B57B-C22C29241F2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCore.Integration.Unit.Tests", "Tests\BackendCore.Integration.Unit.Tests\BackendCore.Integration.Unit.Tests.csproj", "{2C8D216B-DB6D-4876-B57B-C22C29241F2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCore.Common.Unit.Tests", "BackendCore.Common.Unit.Tests\BackendCore.Common.Unit.Tests.csproj", "{CADEAFC9-B370-4E62-AA91-DF2762981472}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCore.Common.Unit.Tests", "Tests\BackendCore.Common.Unit.Tests\BackendCore.Common.Unit.Tests.csproj", "{CADEAFC9-B370-4E62-AA91-DF2762981472}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCore.Entities.Unit.Tests", "BackendCore.Entities.Unit.Tests\BackendCore.Entities.Unit.Tests.csproj", "{02BFC1D5-FA0E-4558-99FD-666B0E8A284C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendCore.Entities.Unit.Tests", "Tests\BackendCore.Entities.Unit.Tests\BackendCore.Entities.Unit.Tests.csproj", "{02BFC1D5-FA0E-4558-99FD-666B0E8A284C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

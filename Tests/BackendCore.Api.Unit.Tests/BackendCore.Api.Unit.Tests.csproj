@@ -24,8 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BackendCore.Common\BackendCore.Common.csproj" />
-    <ProjectReference Include="..\BackendCore.Service\BackendCore.Service.csproj" />
+    <ProjectReference Include="..\..\BackendCore.Api\BackendCore.Api.csproj" />
   </ItemGroup>
 
 </Project>
