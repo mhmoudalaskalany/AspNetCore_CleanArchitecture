@@ -1,13 +1,17 @@
 # .Net Core 7 Api Clean Architecture
 Clean Architecture For .Net Core 7 Web Api with N-Tier Layers
+
 # Layers
+
 - Web Api Layer 
 - Application Layer (Business Logic)
 - Common Layer  (Abstraction Layer Between (High Level Layer) Application Layer And (Low Level Layer) Infrastructure)
 - Domain Layers (Domain Models)
 - Infrastructure Layer (Data Access Layer)
 - Integration Layer (External Third Parties Integration)
+
 # Features
+
 - Generic crud operations
 - Auto Mapper
 - SOLID Principles Applied
@@ -21,6 +25,7 @@ Clean Architecture For .Net Core 7 Web Api with N-Tier Layers
 - JWT Authentication
 - Policy Based Authorization
 - Form Based (Username And Password) Authentication And LDAP Authentication 
+
 # Road Map
 - Add Dashboard For Audit Trails Logs
 - Add Logging Dashboard
@@ -28,6 +33,7 @@ Clean Architecture For .Net Core 7 Web Api with N-Tier Layers
 - Add AMQP (Rabbit MQ And Masstransit)
 - Add External Providers Authentication (Google , Azure AD , Facebook)
 - Divide Entities To Schemas in Database
+
 # Installation
 
 - clone the repository
