@@ -10,17 +10,16 @@ namespace Application.Services.BackgroundJobs.Jobs
 {
     public class TestJob : IJob
     {
-        private readonly IConfiguration _configuration;
         private readonly ILogger<TestJob> _logger;
         public TestJob()
         {
-            _configuration = Shell.RootInjector.GetService<IConfiguration>();
+            Shell.RootInjector.GetService<IConfiguration>();
             _logger = Shell.RootInjector.GetRequiredService<ILogger<TestJob>>();
         }
 
         #region Public Methods
 
-        public async void ExecuteTestJob()
+        public void ExecuteTestJob()
         {
         }
 
@@ -44,7 +43,7 @@ namespace Application.Services.BackgroundJobs.Jobs
                     e.InnerException
                 };
                 var exceptionJson = JsonConvert.SerializeObject(exception, serializerSettings);
-                Console.WriteLine(e);
+                _logger.LogError(exceptionJson);
             }
         }
 

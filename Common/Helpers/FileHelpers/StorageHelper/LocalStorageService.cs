@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Security.Principal;
 using System.Threading.Tasks;
@@ -43,7 +44,7 @@ namespace Common.Helpers.FileHelpers.StorageHelper
 
 
 
-            return true;
+            return await Task.FromResult(true);
         }
         public async Task<object> DownLoad(string url, string path)
         {
@@ -91,7 +92,7 @@ namespace Common.Helpers.FileHelpers.StorageHelper
                         var file = new FileDto
                         {
                             Name = item.FileName,
-                            FileSize = ((item.Length / 1024f) / 1024f).ToString(),
+                            FileSize = ((item.Length / 1024f) / 1024f).ToString(CultureInfo.InvariantCulture),
                             AppCode = appCode
                         };
                         var newFileName = Guid.NewGuid() + Path.GetExtension(item.FileName);
@@ -140,12 +141,12 @@ namespace Common.Helpers.FileHelpers.StorageHelper
                     {
                         Name = dto.FileName,
                         AppCode = appCode,
-                        FileSize = ((dto.FileBytes.Length / 1024f) / 1024f).ToString()
+                        FileSize = ((dto.FileBytes.Length / 1024f) / 1024f).ToString(CultureInfo.InvariantCulture)
                     };
                     var newFileName = Guid.NewGuid() + Path.GetExtension(dto.FileName) + "." + dto.AttachmentExtension;
                     file.Url = newFileName;
                     file.ContentType = dto.MimeType;
-                    file.DocumentType = Path.GetExtension(dto.FileName).Replace(".", "");
+                    file.DocumentType = Path.GetExtension(dto.FileName)?.Replace(".", "");
                     var filePath = Path.Combine(uploadsFolderPath, newFileName);
                     await using var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
                     await fs.WriteAsync(dto.FileBytes, 0, dto.FileBytes.Length);
@@ -176,8 +177,8 @@ namespace Common.Helpers.FileHelpers.StorageHelper
                 using SafeAccessTokenHandle userHandle = credentials.LogonUser(LogonType.Interactive);
 #pragma warning disable CA1416 // Validate platform compatibility
                 var result =
-                    await WindowsIdentity.RunImpersonatedAsync(userHandle, async () => Directory.GetFiles(@location));
-                return result;
+                    await WindowsIdentity.RunImpersonatedAsync(userHandle, () => Task.FromResult(Task.FromResult(Directory.GetFiles(@location ?? throw new InvalidOperationException("LocationIsNull")))));
+                return await result;
             }
             catch (Exception e)
             {

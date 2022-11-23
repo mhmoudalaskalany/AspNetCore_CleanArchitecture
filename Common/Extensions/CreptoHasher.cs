@@ -9,7 +9,7 @@ namespace Common.Extensions
     public static class CryptoHasher
     {
         private const int Pbkdf2IterCount = 1000; // default for Rfc2898DeriveBytes
-        private const int Pbkdf2SubkeyLength = 256 / 8; // 256 bits
+        private const int Pbkdf2SubKeyLength = 256 / 8; // 256 bits
         private const int SaltSize = 128 / 8; // 128 bits
         public static string HashPassword(string password)
         {
@@ -20,16 +20,16 @@ namespace Common.Extensions
 
             // Produce a version 0 (see comment above) text hash.
             byte[] salt;
-            byte[] subkey;
-            using (var deriveBytes = new Rfc2898DeriveBytes(password, SaltSize, Pbkdf2IterCount))
+            byte[] subKey;
+            using (var deriveBytes = new Rfc2898DeriveBytes(password, SaltSize, Pbkdf2IterCount , HashAlgorithmName.SHA256))
             {
                 salt = deriveBytes.Salt;
-                subkey = deriveBytes.GetBytes(Pbkdf2SubkeyLength);
+                subKey = deriveBytes.GetBytes(Pbkdf2SubKeyLength);
             }
 
-            var outputBytes = new byte[1 + SaltSize + Pbkdf2SubkeyLength];
+            var outputBytes = new byte[1 + SaltSize + Pbkdf2SubKeyLength];
             Buffer.BlockCopy(salt, 0, outputBytes, 1, SaltSize);
-            Buffer.BlockCopy(subkey, 0, outputBytes, 1 + SaltSize, Pbkdf2SubkeyLength);
+            Buffer.BlockCopy(subKey, 0, outputBytes, 1 + SaltSize, Pbkdf2SubKeyLength);
             return Convert.ToBase64String(outputBytes);
         }
 
@@ -49,7 +49,7 @@ namespace Common.Extensions
 
             // Verify a version 0 (see comment above) text hash.
 
-            if (hashedPasswordBytes.Length != (1 + SaltSize + Pbkdf2SubkeyLength) || hashedPasswordBytes[0] != 0x00)
+            if (hashedPasswordBytes.Length != (1 + SaltSize + Pbkdf2SubKeyLength) || hashedPasswordBytes[0] != 0x00)
             {
                 // Wrong length or version header.
                 return false;
@@ -57,15 +57,15 @@ namespace Common.Extensions
 
             var salt = new byte[SaltSize];
             Buffer.BlockCopy(hashedPasswordBytes, 1, salt, 0, SaltSize);
-            var storedSubkey = new byte[Pbkdf2SubkeyLength];
-            Buffer.BlockCopy(hashedPasswordBytes, 1 + SaltSize, storedSubkey, 0, Pbkdf2SubkeyLength);
+            var storedSubKey = new byte[Pbkdf2SubKeyLength];
+            Buffer.BlockCopy(hashedPasswordBytes, 1 + SaltSize, storedSubKey, 0, Pbkdf2SubKeyLength);
 
-            byte[] generatedSubkey;
-            using (var deriveBytes = new Rfc2898DeriveBytes(password, salt, Pbkdf2IterCount))
+            byte[] generatedSubKey;
+            using (var deriveBytes = new Rfc2898DeriveBytes(password, salt, Pbkdf2IterCount , HashAlgorithmName.SHA256))
             {
-                generatedSubkey = deriveBytes.GetBytes(Pbkdf2SubkeyLength);
+                generatedSubKey = deriveBytes.GetBytes(Pbkdf2SubKeyLength);
             }
-            return ByteArraysEqual(storedSubkey, generatedSubkey);
+            return ByteArraysEqual(storedSubKey, generatedSubKey);
         }
 
         // Compares two byte arrays for equality. The method is specifically written so that the loop is not optimized.
