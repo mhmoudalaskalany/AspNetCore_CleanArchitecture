@@ -1,15 +1,22 @@
 # .Net Core 7 Api Clean Architecture
-Clean Architecture For .Net Core 5 Web Api with N-Tier Layers
-
+Clean Architecture For .Net Core 7 Web Api with N-Tier Layers
+# Layers
+- Web Api Layer 
+- Application Layer (Business Logic)
+- Common Layer  (Abstraction Layer Between (High Level Layer) Application Layer And (Low Level Layer) Infrastructure)
+- Domain Layers (Domain Models)
+- Infrastructure Layer (Data Access Layer)
+- Integration Layer (External Third Parties Integration)
+# Features
 - Generic crud operations
 - Auto Mapper
 - SOLID Principles Applied
 - Generic Repository And Unit Of Work Pattern
-- User Management Module (manageing user role and permission per page level)
+- User Management Module (managing user role and permission per page level)
 - Redis Caching
 - Audit Trails
 - Logging Using Serilog To Sql Server Database
-- Fluent Scheduler (For Backgroud Tasks)
+- Fluent Scheduler (For Background Tasks)
 - Swagger Documentation
 - JWT Authentication
 - Policy Based Authorization
