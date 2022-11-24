@@ -7,7 +7,7 @@ using Common.DTO.Identity.Permission.Parameters;
 using Microsoft.AspNetCore.Mvc;
 using Template.Api.Controllers.Base;
 
-namespace BackendCore.Api.Controllers.Identity
+namespace Template.Api.Controllers.Identity
 {
     /// <summary>
     /// Permissions Controller
