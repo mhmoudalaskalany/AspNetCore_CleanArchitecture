@@ -6,7 +6,7 @@ using Common.DTO.Identity.User;
 using Common.Infrastructure.Repository.ActiveDirectory;
 using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.Repository.ActiveDirectory
+namespace Template.Infrastructure.Repository.ActiveDirectory
 {
     public class ActiveDirectoryRepository : IActiveDirectoryRepository
     {

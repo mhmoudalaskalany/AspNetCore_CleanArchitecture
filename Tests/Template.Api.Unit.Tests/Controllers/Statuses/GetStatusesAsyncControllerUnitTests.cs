@@ -1,11 +1,11 @@
 using System.Net;
 using Application.Services.Lookups.Status;
 using AutoFixture;
-using BackendCore.Api.Controllers.Lookup;
 using Common.Core;
 using Moq;
+using Template.Api.Controllers.Lookup;
 
-namespace Api.Unit.Tests.Controllers.Statuses
+namespace Template.Api.Unit.Tests.Controllers.Statuses
 {
     public class GetStatusesAsyncControllerUnitTests : AutoFixtureBase
     {

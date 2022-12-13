@@ -10,6 +10,7 @@ using Common.Infrastructure.UnitOfWork;
 using Domain.Entities.Lookup;
 using Microsoft.EntityFrameworkCore.Query;
 using Moq;
+using Template.Application.Unit.Tests;
 
 namespace Application.Unit.Tests.Service
 {

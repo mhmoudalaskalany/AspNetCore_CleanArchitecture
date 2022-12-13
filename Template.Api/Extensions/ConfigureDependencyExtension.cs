@@ -8,7 +8,6 @@ using Common.Extensions;
 using Common.Infrastructure.Repository.ActiveDirectory;
 using Common.Infrastructure.UnitOfWork;
 using Infrastructure.DataInitializer;
-using Infrastructure.Repository.ActiveDirectory;
 using Infrastructure.UnitOfWork;
 using Integration.CacheRepository;
 using Integration.FileRepository;
@@ -16,6 +15,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCore.AutoRegisterDi;
+using Template.Infrastructure.Repository.ActiveDirectory;
+using Template.Integration.CacheRepository;
 using BackendCoreDbContext = Infrastructure.Context.BackendCoreDbContext;
 
 namespace Api.Extensions

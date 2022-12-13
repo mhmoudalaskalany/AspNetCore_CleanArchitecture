@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Common.Caching.Redis;
 using Common.Helpers.HttpClient.RestSharp;
+using Integration.CacheRepository;
 
-namespace Integration.CacheRepository
+namespace Template.Integration.CacheRepository
 {
     public class CacheRepository : ICacheRepository
     {

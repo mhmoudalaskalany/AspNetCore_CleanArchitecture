@@ -2,7 +2,7 @@
 using AutoFixture;
 using AutoFixture.AutoMoq;
 
-namespace Integration.Unit.Tests
+namespace Template.Integration.Unit.Tests
 {
     [ExcludeFromCodeCoverage]
     public class AutoFixtureBase

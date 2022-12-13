@@ -4,192 +4,31 @@
         <name>Template.Api</name>
     </assembly>
     <members>
-        <member name="T:BackendCore.Api.Controllers.Base.BaseController">
+        <member name="T:Template.Api.Controllers.Base.BaseController">
             <inheritdoc />
         </member>
-        <member name="F:BackendCore.Api.Controllers.Base.BaseController.TokenService">
+        <member name="F:Template.Api.Controllers.Base.BaseController.TokenService">
             <summary>
             Token Business Property
             </summary>
         </member>
-        <member name="M:BackendCore.Api.Controllers.Base.BaseController.#ctor">
+        <member name="M:Template.Api.Controllers.Base.BaseController.#ctor">
             <inheritdoc />
         </member>
-        <member name="M:BackendCore.Api.Controllers.Base.BaseController.#ctor(Application.Services.Base.ITokenService)">
+        <member name="M:Template.Api.Controllers.Base.BaseController.#ctor(Application.Services.Base.ITokenService)">
             <inheritdoc />
         </member>
-        <member name="T:BackendCore.Api.Controllers.Identity.AccountsController">
-            <summary>
-            Accounts Controller
-            </summary>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.AccountsController.#ctor(Application.Services.Identity.Account.IAccountService,Application.Services.Base.ITokenService)">
-            <inheritdoc />
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.AccountsController.Login(Common.DTO.Identity.Account.LoginParameters)">
-            <summary>
-            Login 
-            </summary>
-            <param name="parameter"></param>
-            <returns></returns>
-        </member>
-        <member name="T:BackendCore.Api.Controllers.Identity.PermissionsController">
-            <summary>
-            Permissions Controller
-            </summary>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.#ctor(Application.Services.Identity.Permission.IPermissionService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.GetAsync(System.Int64)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.GetAllAsync">
-            <summary>
-            Get All 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.GetPagedAsync(Common.DTO.Base.BaseParam{Common.DTO.Identity.Permission.Parameters.PermissionFilter})">
-            <summary>
-            GetAll Data paged
-            </summary>
-            <param name="filter">Filter responsible for search and sort</param>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.AddAsync(Common.DTO.Identity.Permission.AddPermissionDto)">
-            <summary>
-            Add 
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.UpdateAsync(Common.DTO.Identity.Permission.AddPermissionDto)">
-            <summary>
-            Update  
-            </summary>
-            <param name="model">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.DeleteAsync(System.Int64)">
-            <summary>
-            Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.PermissionsController.DeleteSoftAsync(System.Int64)">
-            <summary>
-            Soft Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="T:BackendCore.Api.Controllers.Identity.UsersController">
-            <summary>
-            Users Controller
-            </summary>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.#ctor(Application.Services.Identity.User.IUserService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.GetAsync(System.Int64)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.GetAllAsync">
-            <summary>
-            Get All 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.GetPagedAsync(Common.DTO.Base.BaseParam{Common.DTO.Identity.User.Parameters.UserFilter})">
-            <summary>
-            GetAll Data paged
-            </summary>
-            <param name="filter">Filter responsible for search and sort</param>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.AddAsync(Common.DTO.Identity.User.AddUserDto)">
-            <summary>
-            Add 
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.UpdateAsync(Common.DTO.Identity.User.AddUserDto)">
-            <summary>
-            Update  
-            </summary>
-            <param name="model">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.DeleteAsync(System.Int64)">
-            <summary>
-            Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Identity.UsersController.DeleteSoftAsync(System.Int64)">
-            <summary>
-            Soft Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="T:BackendCore.Api.Controllers.Lookup.ActionsController">
-            <summary>
-            Actions Controller
-            </summary>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Lookup.ActionsController.#ctor(Application.Services.Lookups.Action.IActionService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Lookup.ActionsController.GetActionsAsync">
-            <summary>
-            Get All Actions
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:BackendCore.Api.Controllers.Lookup.StatusesController">
-            <summary>
-            Statuses Controller
-            </summary>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Lookup.StatusesController.#ctor(Application.Services.Lookups.Status.IStatusService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:BackendCore.Api.Controllers.Lookup.StatusesController.GetStatusesAsync">
-            <summary>
-            Get All Statuses
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Api.Controllers.Business.FilesController">
+        <member name="T:Template.Api.Controllers.Business.FilesController">
             <summary>
             Files Controller
             </summary>
         </member>
-        <member name="M:Api.Controllers.Business.FilesController.#ctor(Application.Services.File.IFileService,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Template.Api.Controllers.Business.FilesController.#ctor(Application.Services.File.IFileService,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Constructor
             </summary>
         </member>
-        <member name="M:Api.Controllers.Business.FilesController.DownloadWithAppCodeAsync(System.Guid,System.String)">
+        <member name="M:Template.Api.Controllers.Business.FilesController.DownloadWithAppCodeAsync(System.Guid,System.String)">
             <summary>
             Download File With App Code From  Token 
             </summary>
@@ -197,7 +36,7 @@
             <param name="token"></param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Business.FilesController.GenerateTokenWithClaimsAsync(System.Collections.Generic.List{System.Guid},System.String)">
+        <member name="M:Template.Api.Controllers.Business.FilesController.GenerateTokenWithClaimsAsync(System.Collections.Generic.List{System.Guid},System.String)">
             <summary>
             Generate Token With App Code
             </summary>
@@ -205,7 +44,7 @@
             <param name="appCode"></param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Business.FilesController.UploadToSanStorageAsync(Microsoft.AspNetCore.Http.IFormFileCollection,Domain.Enum.StorageType,System.Boolean,System.String)">
+        <member name="M:Template.Api.Controllers.Business.FilesController.UploadToSanStorageAsync(Microsoft.AspNetCore.Http.IFormFileCollection,Domain.Enum.StorageType,System.Boolean,System.String)">
             <summary>
             Upload To San Storage
             </summary>
@@ -215,24 +54,185 @@
             <param name="appCode"></param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Business.FilesController.UploadBytesAsync(Common.DTO.Common.File.UploadRequestDto)">
+        <member name="M:Template.Api.Controllers.Business.FilesController.UploadBytesAsync(Common.DTO.Common.File.UploadRequestDto)">
             <summary>
             Upload To Bytes
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Business.FilesController.GetDirectories(Domain.Enum.StorageType)">
+        <member name="M:Template.Api.Controllers.Business.FilesController.GetDirectories(Domain.Enum.StorageType)">
             <summary>
             List Current Path Directories
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Business.FilesController.DeleteAsync(System.Guid)">
+        <member name="M:Template.Api.Controllers.Business.FilesController.DeleteAsync(System.Guid)">
             <summary>
             Remove  by id
             </summary>
             <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="T:Template.Api.Controllers.Identity.AccountsController">
+            <summary>
+            Accounts Controller
+            </summary>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.AccountsController.#ctor(Application.Services.Identity.Account.IAccountService,Application.Services.Base.ITokenService)">
+            <inheritdoc />
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.AccountsController.Login(Common.DTO.Identity.Account.LoginParameters)">
+            <summary>
+            Login 
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Template.Api.Controllers.Identity.PermissionsController">
+            <summary>
+            Permissions Controller
+            </summary>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.#ctor(Application.Services.Identity.Permission.IPermissionService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.GetAsync(System.Int64)">
+            <summary>
+            Get By Id 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.GetAllAsync">
+            <summary>
+            Get All 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.GetPagedAsync(Common.DTO.Base.BaseParam{Common.DTO.Identity.Permission.Parameters.PermissionFilter})">
+            <summary>
+            GetAll Data paged
+            </summary>
+            <param name="filter">Filter responsible for search and sort</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.AddAsync(Common.DTO.Identity.Permission.AddPermissionDto)">
+            <summary>
+            Add 
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.UpdateAsync(Common.DTO.Identity.Permission.AddPermissionDto)">
+            <summary>
+            Update  
+            </summary>
+            <param name="model">Object content</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.DeleteAsync(System.Int64)">
+            <summary>
+            Remove  by id
+            </summary>
+            <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.DeleteSoftAsync(System.Int64)">
+            <summary>
+            Soft Remove  by id
+            </summary>
+            <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="T:Template.Api.Controllers.Identity.UsersController">
+            <summary>
+            Users Controller
+            </summary>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.UsersController.#ctor(Application.Services.Identity.User.IUserService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.UsersController.GetAsync(System.Int64)">
+            <summary>
+            Get By Id 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.UsersController.GetAllAsync">
+            <summary>
+            Get All 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.UsersController.GetPagedAsync(Common.DTO.Base.BaseParam{Common.DTO.Identity.User.Parameters.UserFilter})">
+            <summary>
+            GetAll Data paged
+            </summary>
+            <param name="filter">Filter responsible for search and sort</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.UsersController.AddAsync(Common.DTO.Identity.User.AddUserDto)">
+            <summary>
+            Add 
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.UsersController.UpdateAsync(Common.DTO.Identity.User.AddUserDto)">
+            <summary>
+            Update  
+            </summary>
+            <param name="model">Object content</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.UsersController.DeleteAsync(System.Int64)">
+            <summary>
+            Remove  by id
+            </summary>
+            <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Identity.UsersController.DeleteSoftAsync(System.Int64)">
+            <summary>
+            Soft Remove  by id
+            </summary>
+            <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="T:Template.Api.Controllers.Lookup.ActionsController">
+            <summary>
+            Actions Controller
+            </summary>
+        </member>
+        <member name="M:Template.Api.Controllers.Lookup.ActionsController.#ctor(Application.Services.Lookups.Action.IActionService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Template.Api.Controllers.Lookup.ActionsController.GetActionsAsync">
+            <summary>
+            Get All Actions
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Template.Api.Controllers.Lookup.StatusesController">
+            <summary>
+            Statuses Controller
+            </summary>
+        </member>
+        <member name="M:Template.Api.Controllers.Lookup.StatusesController.#ctor(Application.Services.Lookups.Status.IStatusService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Template.Api.Controllers.Lookup.StatusesController.GetStatusesAsync">
+            <summary>
+            Get All Statuses
+            </summary>
             <returns></returns>
         </member>
         <member name="T:Api.Extensions.ConfigureDependencyExtension">
