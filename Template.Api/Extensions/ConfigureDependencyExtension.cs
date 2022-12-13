@@ -3,10 +3,6 @@ using System.Reflection;
 using Template.Common.Extensions;
 using Template.Common.Infrastructure.Repository.ActiveDirectory;
 using Template.Common.Infrastructure.UnitOfWork;
-using Infrastructure.DataInitializer;
-using Infrastructure.UnitOfWork;
-using Integration.CacheRepository;
-using Integration.FileRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,8 +11,11 @@ using Template.Application.Helper;
 using Template.Application.Mapping;
 using Template.Application.Services.Base;
 using Template.Application.Services.Identity.Permission;
+using Template.Infrastructure.DataInitializer;
 using Template.Infrastructure.Repository.ActiveDirectory;
+using Template.Infrastructure.UnitOfWork;
 using Template.Integration.CacheRepository;
+using Template.Integration.FileRepository;
 using BackendCoreDbContext = Infrastructure.Context.BackendCoreDbContext;
 
 namespace Template.Api.Extensions

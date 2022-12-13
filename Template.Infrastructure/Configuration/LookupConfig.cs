@@ -1,7 +1,7 @@
-﻿using Domain.Entities.Base;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Template.Domain.Entities.Base;
 
-namespace Infrastructure.Configuration
+namespace Template.Infrastructure.Configuration
 {
     public class LookupConfig<TEntity,TId> : BaseConfig<TEntity, TId> where TEntity : Lookup<TId> where TId : struct
     {

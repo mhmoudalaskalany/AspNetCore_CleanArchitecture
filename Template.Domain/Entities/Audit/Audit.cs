@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Domain.Entities.Base;
+using Template.Domain.Entities.Base;
 
-namespace Domain.Entities.Audit
+namespace Template.Domain.Entities.Audit
 {
     [ExcludeFromCodeCoverage]
     public class Audit : BaseEntity<Guid>

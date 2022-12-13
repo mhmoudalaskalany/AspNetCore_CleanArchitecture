@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Query;
 using Template.Common.Extensions;
 using Template.Common.Infrastructure.Repository;
 
-namespace Infrastructure.Repository
+namespace Template.Infrastructure.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {

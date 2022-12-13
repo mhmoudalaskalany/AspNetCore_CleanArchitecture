@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Domain.Enum;
+using Template.Domain.Enum;
 
-namespace Domain.Enum
+namespace Template.Domain.Enum
 {
     #region Lookup Enum
 

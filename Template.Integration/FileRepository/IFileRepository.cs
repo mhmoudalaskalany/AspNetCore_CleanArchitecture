@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TokenDto = Template.Common.DTO.Common.File.TokenDto;
 
-namespace Integration.FileRepository
+namespace Template.Integration.FileRepository
 {
     public interface IFileRepository
     {

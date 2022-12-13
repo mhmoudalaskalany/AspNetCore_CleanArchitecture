@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Domain.Entities.Base;
+using Template.Domain.Entities.Base;
 
-namespace Domain.Entities.Business
+namespace Template.Domain.Entities.Business
 {
     [ExcludeFromCodeCoverage]
     public class File : BaseEntity<Guid>

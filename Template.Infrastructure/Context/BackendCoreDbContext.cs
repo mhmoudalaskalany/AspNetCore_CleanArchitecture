@@ -1,13 +1,13 @@
-﻿using Domain.Entities.Business;
-using Domain.Entities.Identity;
-using Infrastructure.Configuration;
-using Infrastructure.DataInitializer;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Template.Common.Services;
-using Action = Domain.Entities.Lookup.Action;
-using Status = Domain.Entities.Lookup.Status;
+using Template.Domain.Entities.Business;
+using Template.Domain.Entities.Identity;
+using Template.Infrastructure.Configuration;
+using Template.Infrastructure.DataInitializer;
+using Action = Template.Domain.Entities.Lookup.Action;
+using Status = Template.Domain.Entities.Lookup.Status;
 
-namespace Infrastructure.Context
+namespace Template.Infrastructure.Context
 {
     public partial  class BackendCoreDbContext : DbContext
     {

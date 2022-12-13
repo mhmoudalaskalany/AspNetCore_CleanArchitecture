@@ -1,7 +1,7 @@
-﻿using Domain.Entities.Base;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using Template.Domain.Entities.Base;
 
-namespace Domain.Entities.Lookup
+namespace Template.Domain.Entities.Lookup
 {
     [ExcludeFromCodeCoverage]
     public class Status : Lookup<int>

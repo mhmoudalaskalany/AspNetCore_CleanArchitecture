@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Template.Common.Core;
 using Template.Common.Infrastructure.UnitOfWork;
-using Integration.CacheRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Template.Integration.CacheRepository;
 
 namespace Template.Application.Services.Base
 {

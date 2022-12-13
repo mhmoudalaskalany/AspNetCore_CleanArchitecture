@@ -4,9 +4,9 @@ using System.Security.Claims;
 using System.Text;
 using Template.Common.DTO.Identity.Account;
 using Template.Common.DTO.Identity.User;
-using Domain.Entities.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Template.Domain.Entities.Identity;
 
 namespace Template.Application.Services.Base
 {

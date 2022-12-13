@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Domain.Entities.Base
+namespace Template.Domain.Entities.Base
 {
     [ExcludeFromCodeCoverage]
     public class Lookup<TKey> : BaseEntity<TKey>

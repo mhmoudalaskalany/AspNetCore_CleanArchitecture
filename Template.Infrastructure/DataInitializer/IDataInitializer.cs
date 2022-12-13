@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Domain.Entities.Identity;
-using Domain.Entities.Lookup;
+using Template.Domain.Entities.Identity;
+using Template.Domain.Entities.Lookup;
 
-namespace Infrastructure.DataInitializer
+namespace Template.Infrastructure.DataInitializer
 {
     public interface IDataInitializer
     {

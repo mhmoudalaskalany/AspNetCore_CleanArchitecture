@@ -2,7 +2,6 @@
 using System.Net;
 using AutoFixture;
 using AutoMapper;
-using Domain.Entities.Lookup;
 using Microsoft.EntityFrameworkCore.Query;
 using Moq;
 using Template.Application.Services.Base;
@@ -11,6 +10,7 @@ using Template.Application.Unit.Tests;
 using Template.Common.DTO.Lookup.Status;
 using Template.Common.Extensions;
 using Template.Common.Infrastructure.UnitOfWork;
+using Template.Domain.Entities.Lookup;
 
 namespace Application.Unit.Tests.Service
 {

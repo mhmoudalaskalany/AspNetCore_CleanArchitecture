@@ -1,8 +1,8 @@
-﻿using Domain.Entities.Base;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Template.Domain.Entities.Base;
 
-namespace Infrastructure.Configuration
+namespace Template.Infrastructure.Configuration
 {
     public class BaseConfig<TEntity , TId> : IEntityTypeConfiguration<TEntity> where TEntity : BaseEntity<TId> where TId : struct
     {

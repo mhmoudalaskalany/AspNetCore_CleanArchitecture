@@ -9,7 +9,7 @@ using Template.Common.Helpers.HttpClient;
 using Template.Common.Helpers.HttpClient.RestSharp;
 using TokenDto = Template.Common.DTO.Common.File.TokenDto;
 
-namespace Integration.FileRepository
+namespace Template.Integration.FileRepository
 {
     public class FileRepository : IFileRepository
     {

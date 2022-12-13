@@ -1,7 +1,7 @@
-﻿using Domain.Entities.Identity;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Template.Domain.Entities.Identity;
 
-namespace Infrastructure.Configuration
+namespace Template.Infrastructure.Configuration
 {
     public class PermissionConfig : LookupConfig<Permission, int>
     {

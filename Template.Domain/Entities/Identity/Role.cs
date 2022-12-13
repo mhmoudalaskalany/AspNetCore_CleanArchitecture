@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
-using Domain.Entities.Base;
+using Template.Domain.Entities.Base;
 
-namespace Domain.Entities.Identity
+namespace Template.Domain.Entities.Identity
 {
     [ExcludeFromCodeCoverage]
     public class Role : BaseEntity<int>
