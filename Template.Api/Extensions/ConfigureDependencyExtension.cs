@@ -19,7 +19,7 @@ using Template.Infrastructure.Repository.ActiveDirectory;
 using Template.Integration.CacheRepository;
 using BackendCoreDbContext = Infrastructure.Context.BackendCoreDbContext;
 
-namespace Api.Extensions
+namespace Template.Api.Extensions
 {
     /// <summary>
     /// Dependency Extensions

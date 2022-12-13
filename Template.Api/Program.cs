@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 
-namespace Api
+namespace Template.Api
 {
     /// <summary>
     /// Start Point

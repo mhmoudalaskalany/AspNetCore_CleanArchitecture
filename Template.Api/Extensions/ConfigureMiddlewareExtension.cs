@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 using BackendCoreDbContext = Infrastructure.Context.BackendCoreDbContext;
 using Environment = Common.StaticData.Environment;
 
-namespace Api.Extensions
+namespace Template.Api.Extensions
 {
     /// <summary>
     /// Pipeline Extensions
