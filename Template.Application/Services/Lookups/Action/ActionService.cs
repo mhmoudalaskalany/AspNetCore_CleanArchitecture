@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Application.Services.Base;
 using Common.Core;
 using Common.DTO.Lookup.Action;
+using Template.Application.Services.Base;
 
-namespace Application.Services.Lookups.Action
+namespace Template.Application.Services.Lookups.Action
 {
     public class ActionService : BaseService<Domain.Entities.Lookup.Action, AddActionDto, ActionDto, int, int?>, IActionService
     {

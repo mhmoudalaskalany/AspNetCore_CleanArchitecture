@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Application.Services.File;
 using Common.Core;
 using Common.DTO.Common.File;
 using Common.Helpers.FileHelpers.Token;
@@ -12,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Template.Api.Controllers.Base;
+using Template.Application.Services.File;
 
 namespace Template.Api.Controllers.Business
 {

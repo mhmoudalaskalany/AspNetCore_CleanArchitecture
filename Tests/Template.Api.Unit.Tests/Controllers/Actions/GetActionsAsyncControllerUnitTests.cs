@@ -1,9 +1,9 @@
 using System.Net;
-using Application.Services.Lookups.Action;
 using AutoFixture;
 using Common.Core;
 using Moq;
 using Template.Api.Controllers.Lookup;
+using Template.Application.Services.Lookups.Action;
 
 namespace Template.Api.Unit.Tests.Controllers.Actions
 {

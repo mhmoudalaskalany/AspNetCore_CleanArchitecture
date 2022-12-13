@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Application.Services.Base;
 using Common.Core;
 using Common.DTO.Lookup.Status;
+using Template.Application.Services.Base;
 
-namespace Application.Services.Lookups.Status
+namespace Template.Application.Services.Lookups.Status
 {
     public class StatusService : BaseService<Domain.Entities.Lookup.Status, AddStatusDto, StatusDto, int, int?>, IStatusService
     {

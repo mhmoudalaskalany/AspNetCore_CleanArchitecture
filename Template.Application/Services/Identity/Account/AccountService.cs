@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using Application.Services.Base;
 using Common.Core;
 using Common.DTO.Identity.Account;
 using Common.DTO.Identity.User;
 using Common.Extensions;
 using Common.Infrastructure.Repository.ActiveDirectory;
 using Microsoft.EntityFrameworkCore;
+using Template.Application.Services.Base;
 
-namespace Application.Services.Identity.Account
+namespace Template.Application.Services.Identity.Account
 {
     public class AccountService : BaseService<Domain.Entities.Identity.User,AddUserDto, UserDto, Guid , Guid?>, IAccountService
     {

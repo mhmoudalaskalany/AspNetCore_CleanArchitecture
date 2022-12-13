@@ -15,7 +15,7 @@
         <member name="M:Template.Api.Controllers.Base.BaseController.#ctor">
             <inheritdoc />
         </member>
-        <member name="M:Template.Api.Controllers.Base.BaseController.#ctor(Application.Services.Base.ITokenService)">
+        <member name="M:Template.Api.Controllers.Base.BaseController.#ctor(Template.Application.Services.Base.ITokenService)">
             <inheritdoc />
         </member>
         <member name="T:Template.Api.Controllers.Business.FilesController">
@@ -23,7 +23,7 @@
             Files Controller
             </summary>
         </member>
-        <member name="M:Template.Api.Controllers.Business.FilesController.#ctor(Application.Services.File.IFileService,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Template.Api.Controllers.Business.FilesController.#ctor(Template.Application.Services.File.IFileService,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Constructor
             </summary>
@@ -79,7 +79,7 @@
             Accounts Controller
             </summary>
         </member>
-        <member name="M:Template.Api.Controllers.Identity.AccountsController.#ctor(Application.Services.Identity.Account.IAccountService,Application.Services.Base.ITokenService)">
+        <member name="M:Template.Api.Controllers.Identity.AccountsController.#ctor(Template.Application.Services.Identity.Account.IAccountService,Template.Application.Services.Base.ITokenService)">
             <inheritdoc />
         </member>
         <member name="M:Template.Api.Controllers.Identity.AccountsController.Login(Common.DTO.Identity.Account.LoginParameters)">
@@ -94,7 +94,7 @@
             Permissions Controller
             </summary>
         </member>
-        <member name="M:Template.Api.Controllers.Identity.PermissionsController.#ctor(Application.Services.Identity.Permission.IPermissionService)">
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.#ctor(Template.Application.Services.Identity.Permission.IPermissionService)">
             <summary>
             Constructor
             </summary>
@@ -151,7 +151,7 @@
             Users Controller
             </summary>
         </member>
-        <member name="M:Template.Api.Controllers.Identity.UsersController.#ctor(Application.Services.Identity.User.IUserService)">
+        <member name="M:Template.Api.Controllers.Identity.UsersController.#ctor(Template.Application.Services.Identity.User.IUserService)">
             <summary>
             Constructor
             </summary>
@@ -208,7 +208,7 @@
             Actions Controller
             </summary>
         </member>
-        <member name="M:Template.Api.Controllers.Lookup.ActionsController.#ctor(Application.Services.Lookups.Action.IActionService)">
+        <member name="M:Template.Api.Controllers.Lookup.ActionsController.#ctor(Template.Application.Services.Lookups.Action.IActionService)">
             <summary>
             Constructor
             </summary>
@@ -224,7 +224,7 @@
             Statuses Controller
             </summary>
         </member>
-        <member name="M:Template.Api.Controllers.Lookup.StatusesController.#ctor(Application.Services.Lookups.Status.IStatusService)">
+        <member name="M:Template.Api.Controllers.Lookup.StatusesController.#ctor(Template.Application.Services.Lookups.Status.IStatusService)">
             <summary>
             Constructor
             </summary>
@@ -235,12 +235,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Api.Extensions.ConfigureDependencyExtension">
+        <member name="T:Template.Api.Extensions.ConfigureDependencyExtension">
             <summary>
             Dependency Extensions
             </summary>
         </member>
-        <member name="M:Api.Extensions.ConfigureDependencyExtension.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Register Extensions
             </summary>
@@ -248,49 +248,49 @@
             <param name="configuration"></param>
             <returns></returns>
         </member>
-        <member name="M:Api.Extensions.ConfigureDependencyExtension.RegisterDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Add DbContext
             </summary>
             <param name="services"></param>
             <param name="configuration"></param>
         </member>
-        <member name="M:Api.Extensions.ConfigureDependencyExtension.RegisterAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             register auto-mapper
             </summary>
             <param name="services"></param>
         </member>
-        <member name="M:Api.Extensions.ConfigureDependencyExtension.AddLocalizationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.AddLocalizationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Register localization
             </summary>
             <param name="services"></param>
         </member>
-        <member name="M:Api.Extensions.ConfigureDependencyExtension.RegisterRepository(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterRepository(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Register Custom Repositories
             </summary>
             <param name="services"></param>
         </member>
-        <member name="M:Api.Extensions.ConfigureDependencyExtension.RegisterIntegrationRepositories(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterIntegrationRepositories(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             register Integration Repositories
             </summary>
             <param name="services"></param>
         </member>
-        <member name="M:Api.Extensions.ConfigureDependencyExtension.RegisterCores(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterCores(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Register Main Core
             </summary>
             <param name="services"></param>
         </member>
-        <member name="T:Api.Extensions.ConfigureMiddlewareExtension">
+        <member name="T:Template.Api.Extensions.ConfigureMiddlewareExtension">
             <summary>
             Pipeline Extensions
             </summary>
         </member>
-        <member name="M:Api.Extensions.ConfigureMiddlewareExtension.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             General Configuration Method
             </summary>
@@ -299,84 +299,84 @@
             <param name="configuration"></param>
             <returns></returns>
         </member>
-        <member name="M:Api.Extensions.ConfigureMiddlewareExtension.ConfigureCors(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.ConfigureCors(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Configure Cors
             </summary>
             <param name="app"></param>
         </member>
-        <member name="M:Api.Extensions.ConfigureMiddlewareExtension.CreateDatabase(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.CreateDatabase(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Create Database From Migration
             </summary>
             <param name="app"></param>
         </member>
-        <member name="M:Api.Extensions.ConfigureMiddlewareExtension.AddLocalization(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.AddLocalization(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Add Localization
             </summary>
             <param name="app"></param>
         </member>
-        <member name="M:Api.Extensions.ConfigureMiddlewareExtension.SwaggerConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.SwaggerConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             User Swagger
             </summary>
             <param name="app"></param>
             <param name="configuration"></param>
         </member>
-        <member name="M:Api.Extensions.ConfigureMiddlewareExtension.UseFluentScheduler(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.UseFluentScheduler(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             User Fluent Scheduler
             </summary>
             <param name="app"></param>
             <param name="configuration"></param>
         </member>
-        <member name="T:Api.Program">
+        <member name="T:Template.Api.Program">
             <summary>
             Start Point
             </summary>
         </member>
-        <member name="P:Api.Program.Configuration">
+        <member name="P:Template.Api.Program.Configuration">
             <summary>
             Configuration Properties
             </summary>
         </member>
-        <member name="M:Api.Program.Main(System.String[])">
+        <member name="M:Template.Api.Program.Main(System.String[])">
             <summary>
             Kick Off
             </summary>
             <param name="args"></param>
         </member>
-        <member name="M:Api.Program.CreateHostBuilder(System.String[])">
+        <member name="M:Template.Api.Program.CreateHostBuilder(System.String[])">
             <summary>
             Web Host Builder
             </summary>
             <param name="args"></param>
             <returns></returns>
         </member>
-        <member name="T:Api.Startup">
+        <member name="T:Template.Api.Startup">
             <summary>
             Start Up Class
             </summary>
         </member>
-        <member name="M:Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Template.Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Constructor
             </summary>
             <param name="configuration"></param>
         </member>
-        <member name="P:Api.Startup.Configuration">
+        <member name="P:Template.Api.Startup.Configuration">
             <summary>
             Public Configuration Property
             </summary>
         </member>
-        <member name="M:Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Template.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Configure Dependencies
             </summary>
             <param name="services"></param>
         </member>
-        <member name="M:Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:Template.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
             Configure Pipeline
             </summary>

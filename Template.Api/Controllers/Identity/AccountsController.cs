@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using Application.Services.Base;
-using Application.Services.Identity.Account;
 using Common.Core;
 using Common.DTO.Identity.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Template.Api.Controllers.Base;
+using Template.Application.Services.Base;
+using Template.Application.Services.Identity.Account;
 
 namespace Template.Api.Controllers.Identity
 {

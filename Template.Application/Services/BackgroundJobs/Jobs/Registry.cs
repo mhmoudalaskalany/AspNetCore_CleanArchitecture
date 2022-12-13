@@ -1,4 +1,4 @@
-﻿namespace Application.Services.BackgroundJobs.Jobs
+﻿namespace Template.Application.Services.BackgroundJobs.Jobs
 {
 
     public class MyRegistry : FluentScheduler.Registry

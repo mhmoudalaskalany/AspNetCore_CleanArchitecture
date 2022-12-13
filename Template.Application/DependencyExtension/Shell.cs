@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.DependencyExtension
+namespace Template.Application.DependencyExtension
 {
     [ExcludeFromCodeCoverage]
     public class Shell : IDisposable

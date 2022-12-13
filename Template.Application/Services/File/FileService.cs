@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using Application.Services.Base;
 using Common.Core;
 using Common.DTO.Common.File;
 using Common.Helpers.FileHelpers.Crypto;
@@ -12,8 +11,9 @@ using Common.Helpers.FileHelpers.Token;
 using Domain.Enum;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Template.Application.Services.Base;
 
-namespace Application.Services.File
+namespace Template.Application.Services.File
 {
     public class FileService : BaseService<Domain.Entities.Business.File, AddFileDto, FileDto, Guid, Guid?>, IFileService
     {

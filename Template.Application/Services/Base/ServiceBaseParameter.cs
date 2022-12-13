@@ -5,7 +5,7 @@ using Integration.CacheRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
-namespace Application.Services.Base
+namespace Template.Application.Services.Base
 {
     public class ServiceBaseParameter<T> : IServiceBaseParameter<T> where T : class
     {

@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using Application.Services.Identity.User;
 using Common.Core;
 using Common.DTO.Base;
 using Common.DTO.Identity.User;
 using Common.DTO.Identity.User.Parameters;
 using Microsoft.AspNetCore.Mvc;
 using Template.Api.Controllers.Base;
+using Template.Application.Services.Identity.User;
 
 namespace Template.Api.Controllers.Identity
 {

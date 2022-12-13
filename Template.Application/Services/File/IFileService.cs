@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Application.Services.Base;
 using Common.Core;
 using Common.DTO.Common.File;
 using Domain.Enum;
 using Microsoft.AspNetCore.Http;
+using Template.Application.Services.Base;
 
-namespace Application.Services.File
+namespace Template.Application.Services.File
 {
     public interface IFileService : IBaseService<Domain.Entities.Business.File, AddFileDto, FileDto, Guid, Guid?>
     {

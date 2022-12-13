@@ -1,12 +1,12 @@
 ﻿using System;
-using Application.DependencyExtension;
 using FluentScheduler;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Template.Application.DependencyExtension;
 
-namespace Application.Services.BackgroundJobs.Jobs
+namespace Template.Application.Services.BackgroundJobs.Jobs
 {
     public class TestJob : IJob
     {

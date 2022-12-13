@@ -8,7 +8,7 @@ using Domain.Entities.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Application.Services.Base
+namespace Template.Application.Services.Base
 {
     public class TokenService : ITokenService
     {

@@ -3,7 +3,7 @@ using Domain.Entities.Lookup;
 
 
 // ReSharper disable once CheckNamespace
-namespace Application.Mapping
+namespace Template.Application.Mapping
 {
     public partial class MappingService
     {

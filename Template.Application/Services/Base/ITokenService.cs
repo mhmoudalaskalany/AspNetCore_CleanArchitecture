@@ -2,7 +2,7 @@
 using Common.DTO.Identity.User;
 using Domain.Entities.Identity;
 
-namespace Application.Services.Base
+namespace Template.Application.Services.Base
 {
     public interface ITokenService
     {
