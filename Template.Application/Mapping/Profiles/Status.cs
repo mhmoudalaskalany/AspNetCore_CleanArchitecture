@@ -1,5 +1,5 @@
-﻿using Common.DTO.Lookup.Status;
-using Domain.Entities.Lookup;
+﻿using Domain.Entities.Lookup;
+using Template.Common.DTO.Lookup.Status;
 
 
 // ReSharper disable once CheckNamespace

@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Template.Application.Services.BackgroundJobs.Jobs;
 using BackendCoreDbContext = Infrastructure.Context.BackendCoreDbContext;
-using Environment = Common.StaticData.Environment;
+using Environment = Template.Common.StaticData.Environment;
 
 namespace Template.Api.Extensions
 {

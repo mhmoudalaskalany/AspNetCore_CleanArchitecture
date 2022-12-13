@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Common.Core;
-using Common.DTO.Lookup.Action;
+using Template.Common.Core;
+using Template.Common.DTO.Lookup.Action;
 using Template.Application.Services.Base;
 
 namespace Template.Application.Services.Lookups.Action

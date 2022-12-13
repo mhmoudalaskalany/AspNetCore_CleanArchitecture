@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Common.Core;
-using Common.DTO.Lookup.Status;
+using Template.Common.Core;
+using Template.Common.DTO.Lookup.Status;
 using Template.Application.Services.Base;
 
 namespace Template.Application.Services.Lookups.Status

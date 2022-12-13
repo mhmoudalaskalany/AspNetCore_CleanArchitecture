@@ -1,5 +1,5 @@
-﻿using Common.DTO.Identity.User;
-using Domain.Entities.Identity;
+﻿using Domain.Entities.Identity;
+using Template.Common.DTO.Identity.User;
 
 // ReSharper disable once CheckNamespace
 namespace Template.Application.Mapping

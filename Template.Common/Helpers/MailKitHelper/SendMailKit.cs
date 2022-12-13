@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using MimeKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
-namespace Common.Helpers.MailKitHelper
+namespace Template.Common.Helpers.MailKitHelper
 {
     public class SendMailKit : ISendMailKit
     {

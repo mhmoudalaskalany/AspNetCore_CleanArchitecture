@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace Common.Core
+namespace Template.Common.Core
 {
     public interface IFinalResult
     {

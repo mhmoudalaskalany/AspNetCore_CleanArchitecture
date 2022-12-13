@@ -1,9 +1,9 @@
-﻿using Common.Services;
-using Domain.Entities.Business;
+﻿using Domain.Entities.Business;
 using Domain.Entities.Identity;
 using Infrastructure.Configuration;
 using Infrastructure.DataInitializer;
 using Microsoft.EntityFrameworkCore;
+using Template.Common.Services;
 using Action = Domain.Entities.Lookup.Action;
 using Status = Domain.Entities.Lookup.Status;
 

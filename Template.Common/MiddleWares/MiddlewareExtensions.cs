@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Builder;
 
-namespace Common.MiddleWares
+namespace Template.Common.MiddleWares
 {
     [ExcludeFromCodeCoverage]
     public static class MiddlewareExtensions

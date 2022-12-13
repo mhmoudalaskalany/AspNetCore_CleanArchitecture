@@ -1,10 +1,10 @@
 ﻿using System;
 using System.DirectoryServices;
 using System.DirectoryServices.AccountManagement;
-using Common.DTO.Identity.Account;
-using Common.DTO.Identity.User;
-using Common.Infrastructure.Repository.ActiveDirectory;
 using Microsoft.Extensions.Configuration;
+using Template.Common.DTO.Identity.Account;
+using Template.Common.DTO.Identity.User;
+using Template.Common.Infrastructure.Repository.ActiveDirectory;
 
 namespace Template.Infrastructure.Repository.ActiveDirectory
 {

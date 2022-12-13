@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Common.Extensions.Swagger.Headers
+namespace Template.Common.Extensions.Swagger.Headers
 {
     public class LanguageHeader : IOperationFilter
     {

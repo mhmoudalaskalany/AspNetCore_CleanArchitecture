@@ -1,4 +1,4 @@
-﻿namespace Common.Services
+﻿namespace Template.Common.Services
 {
     public interface IClaimService
     {

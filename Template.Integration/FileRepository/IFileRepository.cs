@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TokenDto = Common.DTO.Common.File.TokenDto;
+using TokenDto = Template.Common.DTO.Common.File.TokenDto;
 
 namespace Integration.FileRepository
 {

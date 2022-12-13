@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Domain.Enum;
 
-namespace Common.DTO.Base
+namespace Template.Common.DTO.Base
 {
     [ExcludeFromCodeCoverage]
     public class TokenClaimDto

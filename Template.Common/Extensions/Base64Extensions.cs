@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Common.Helpers.MediaUploader;
+using Template.Common.Helpers.MediaUploader;
 
-namespace Common.Extensions
+namespace Template.Common.Extensions
 {
     [ExcludeFromCodeCoverage]
     public static class Base64Extensions

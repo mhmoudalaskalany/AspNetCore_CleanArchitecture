@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Common.DTO.Common.File;
-using Common.Helpers.FileHelpers.StorageHelper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Template.Common.DTO.Common.File;
 
 namespace Template.Common.Helpers.FileHelpers.StorageHelper
 {

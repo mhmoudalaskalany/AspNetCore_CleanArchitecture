@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
-using Common.Core;
-using Common.DTO.Base;
-using Common.DTO.Identity.User;
-using Common.DTO.Identity.User.Parameters;
+using Template.Common.Core;
+using Template.Common.DTO.Base;
+using Template.Common.DTO.Identity.User;
+using Template.Common.DTO.Identity.User.Parameters;
 using LinqKit;
 using Template.Application.Services.Base;
 

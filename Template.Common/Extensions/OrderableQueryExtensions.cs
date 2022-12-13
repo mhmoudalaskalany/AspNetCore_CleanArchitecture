@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Common.Extensions
+namespace Template.Common.Extensions
 {
     [ExcludeFromCodeCoverage]
     public static class OrderableQueryExtensions

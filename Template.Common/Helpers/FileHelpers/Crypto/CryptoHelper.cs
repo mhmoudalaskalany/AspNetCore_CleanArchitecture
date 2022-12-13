@@ -4,7 +4,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Common.Helpers.FileHelpers.Crypto
+namespace Template.Common.Helpers.FileHelpers.Crypto
 {
     [ExcludeFromCodeCoverage]
     public static class CryptoHelper

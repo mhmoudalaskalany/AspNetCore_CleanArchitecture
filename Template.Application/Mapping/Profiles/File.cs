@@ -1,5 +1,5 @@
-﻿using Common.DTO.Common.File;
-using Domain.Entities.Business;
+﻿using Domain.Entities.Business;
+using Template.Common.DTO.Common.File;
 
 // ReSharper disable once CheckNamespace
 namespace Template.Application.Mapping

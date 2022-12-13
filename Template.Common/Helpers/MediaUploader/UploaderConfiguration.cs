@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using Common.Extensions;
 using Microsoft.AspNetCore.Hosting;
+using Template.Common.Extensions;
 
-namespace Common.Helpers.MediaUploader
+namespace Template.Common.Helpers.MediaUploader
 {
     public class UploaderConfiguration : IUploaderConfiguration
     {

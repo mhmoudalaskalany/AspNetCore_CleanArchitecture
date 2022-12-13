@@ -1,4 +1,4 @@
-﻿namespace Common.Core
+﻿namespace Template.Common.Core
 {
     public interface IEntityDto<TPrimaryKey>
     {

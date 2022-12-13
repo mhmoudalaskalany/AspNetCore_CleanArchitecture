@@ -1,12 +1,12 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using Common.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
+using Template.Common.Extensions;
 
 namespace Template.Api
 {

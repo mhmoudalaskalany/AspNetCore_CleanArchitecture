@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using RestSharp;
 
-namespace Common.Helpers.HttpClient.RestSharp
+namespace Template.Common.Helpers.HttpClient.RestSharp
 {
     public interface IRestSharpContainer
     {

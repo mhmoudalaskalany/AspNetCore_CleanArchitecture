@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Common.Core;
+using Template.Common.Core;
 
 namespace Template.Application.Services.Base
 {

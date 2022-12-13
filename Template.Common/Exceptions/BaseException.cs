@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Common.Exceptions
+namespace Template.Common.Exceptions
 {
     [ExcludeFromCodeCoverage]
     public class BaseException : Exception

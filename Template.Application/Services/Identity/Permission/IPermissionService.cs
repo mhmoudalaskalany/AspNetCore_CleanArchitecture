@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Common.Core;
-using Common.DTO.Base;
-using Common.DTO.Identity.Permission;
-using Common.DTO.Identity.Permission.Parameters;
+using Template.Common.Core;
+using Template.Common.DTO.Base;
+using Template.Common.DTO.Identity.Permission;
+using Template.Common.DTO.Identity.Permission.Parameters;
 using Template.Application.Services.Base;
 
 namespace Template.Application.Services.Identity.Permission

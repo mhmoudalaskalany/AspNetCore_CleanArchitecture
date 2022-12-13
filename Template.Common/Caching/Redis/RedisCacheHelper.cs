@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Common.Configurations;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 
-namespace Common.Caching.Redis
+namespace Template.Common.Caching.Redis
 {
     public static class RedisCacheHelper
     {

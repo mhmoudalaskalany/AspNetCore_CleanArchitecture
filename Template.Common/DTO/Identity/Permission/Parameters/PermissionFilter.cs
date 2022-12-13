@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Common.DTO.Base;
+using Template.Common.DTO.Base;
 
-namespace Common.DTO.Identity.Permission.Parameters
+namespace Template.Common.DTO.Identity.Permission.Parameters
 {
     [ExcludeFromCodeCoverage]
     public class PermissionFilter : MainFilter

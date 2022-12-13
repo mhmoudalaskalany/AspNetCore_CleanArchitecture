@@ -1,5 +1,5 @@
-﻿using Common.DTO.Business.Attachment;
-using Domain.Entities.Business;
+﻿using Domain.Entities.Business;
+using Template.Common.DTO.Business.Attachment;
 
 // ReSharper disable once CheckNamespace
 namespace Template.Application.Mapping

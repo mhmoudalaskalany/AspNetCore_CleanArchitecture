@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
 
-namespace Common.Helpers.HttpClient.RestSharp
+namespace Template.Common.Helpers.HttpClient.RestSharp
 {
     public class RestSharpContainer : IRestSharpContainer
     {

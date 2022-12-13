@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Common.DTO.Business.Attachment
+namespace Template.Common.DTO.Business.Attachment
 {
     [ExcludeFromCodeCoverage]
     public class AddAttachmentDto

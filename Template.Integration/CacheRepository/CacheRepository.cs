@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Common.Caching.Redis;
-using Common.Helpers.HttpClient.RestSharp;
 using Integration.CacheRepository;
+using Template.Common.Helpers.HttpClient.RestSharp;
 
 namespace Template.Integration.CacheRepository
 {

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using Common.Core;
-using Common.DTO.Identity.Account;
-using Common.DTO.Identity.User;
-using Common.Extensions;
-using Common.Infrastructure.Repository.ActiveDirectory;
+using Template.Common.Core;
+using Template.Common.DTO.Identity.Account;
+using Template.Common.DTO.Identity.User;
+using Template.Common.Extensions;
+using Template.Common.Infrastructure.Repository.ActiveDirectory;
 using Microsoft.EntityFrameworkCore;
 using Template.Application.Services.Base;
 

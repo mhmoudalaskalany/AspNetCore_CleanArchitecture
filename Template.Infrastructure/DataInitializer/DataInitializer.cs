@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Extensions;
 using Domain.Entities.Identity;
 using Domain.Entities.Lookup;
+using Template.Common.Extensions;
 using Action = Domain.Entities.Lookup.Action;
 using Permission = Domain.Entities.Identity.Permission;
 

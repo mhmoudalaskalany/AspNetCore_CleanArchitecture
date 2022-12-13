@@ -2,8 +2,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Common.DTO.Identity.Account;
-using Common.DTO.Identity.User;
+using Template.Common.DTO.Identity.Account;
+using Template.Common.DTO.Identity.User;
 using Domain.Entities.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Common.DTO.Base;
+using Template.Common.DTO.Base;
 
-namespace Common.DTO.Lookup.Action.Parameters
+namespace Template.Common.DTO.Lookup.Action.Parameters
 {
     [ExcludeFromCodeCoverage]
     public class ActionFilter : MainFilter

@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Common.Core;
 using Microsoft.AspNetCore.Mvc;
 using Template.Api.Controllers.Base;
 using Template.Application.Services.Lookups.Status;
+using Template.Common.Core;
 
 namespace Template.Api.Controllers.Lookup
 {

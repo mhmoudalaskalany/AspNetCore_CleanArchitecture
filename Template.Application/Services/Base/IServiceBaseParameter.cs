@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Common.Core;
-using Common.Infrastructure.UnitOfWork;
+using Template.Common.Core;
+using Template.Common.Infrastructure.UnitOfWork;
 using Integration.CacheRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;

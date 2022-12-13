@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using Common.Core;
+using Template.Common.Core;
 
-namespace Common.DTO.Base
+namespace Template.Common.DTO.Base
 {
     [ExcludeFromCodeCoverage]
     public class LookupDto<T> : IEntityDto<T>

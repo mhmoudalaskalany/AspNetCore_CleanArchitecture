@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Common.DTO.Identity.User
+namespace Template.Common.DTO.Identity.User
 {
     [ExcludeFromCodeCoverage]
     public class ActiveDirectoryUserDto

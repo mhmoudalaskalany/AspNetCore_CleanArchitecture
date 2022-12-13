@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Common.DTO.Base;
+using Template.Common.DTO.Base;
 
-namespace Common.DTO.Lookup.Status
+namespace Template.Common.DTO.Lookup.Status
 {
     [ExcludeFromCodeCoverage]
     public class StatusDto : LookupDto<int?>

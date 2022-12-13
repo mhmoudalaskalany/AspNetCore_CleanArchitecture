@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Common.Helpers.MediaUploader;
+using Template.Common.Helpers.MediaUploader;
 
 namespace Template.Application.Helper
 {

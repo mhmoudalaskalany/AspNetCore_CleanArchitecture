@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using Common.Extensions;
-using Common.Infrastructure.Repository.ActiveDirectory;
-using Common.Infrastructure.UnitOfWork;
+using Template.Common.Extensions;
+using Template.Common.Infrastructure.Repository.ActiveDirectory;
+using Template.Common.Infrastructure.UnitOfWork;
 using Infrastructure.DataInitializer;
 using Infrastructure.UnitOfWork;
 using Integration.CacheRepository;

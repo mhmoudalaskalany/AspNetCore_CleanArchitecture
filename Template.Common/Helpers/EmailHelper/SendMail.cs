@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
-using Common.Helpers.EmailHelper;
 using Microsoft.Extensions.Configuration;
 
-namespace Common.Helpers.EmailHelper
+namespace Template.Common.Helpers.EmailHelper
 {
     public class SendMail : ISendMail
     {

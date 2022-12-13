@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-namespace Common.Helpers.MediaUploader
+namespace Template.Common.Helpers.MediaUploader
 {
     [ExcludeFromCodeCoverage]
     public static class MimeTypeMap

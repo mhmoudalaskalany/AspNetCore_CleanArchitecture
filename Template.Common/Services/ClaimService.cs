@@ -1,8 +1,7 @@
-﻿using System;
-using Common.DTO.Base;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using Template.Common.DTO.Base;
 
-namespace Common.Services
+namespace Template.Common.Services
 {
     public class ClaimService : IClaimService
     {

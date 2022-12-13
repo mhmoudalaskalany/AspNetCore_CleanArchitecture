@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Common.Infrastructure.Repository;
-using Common.Infrastructure.UnitOfWork;
 using Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Template.Common.Infrastructure.Repository;
+using Template.Common.Infrastructure.UnitOfWork;
 
 namespace Infrastructure.UnitOfWork
 {

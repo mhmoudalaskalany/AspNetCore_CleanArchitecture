@@ -1,5 +1,5 @@
-﻿using Common.DTO.Identity.Permission;
-using Domain.Entities.Identity;
+﻿using Domain.Entities.Identity;
+using Template.Common.DTO.Identity.Permission;
 
 
 // ReSharper disable once CheckNamespace
