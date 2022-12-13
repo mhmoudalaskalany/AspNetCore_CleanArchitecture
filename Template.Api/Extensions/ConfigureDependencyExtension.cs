@@ -11,12 +11,12 @@ using Template.Application.Helper;
 using Template.Application.Mapping;
 using Template.Application.Services.Base;
 using Template.Application.Services.Identity.Permission;
+using Template.Infrastructure.Context;
 using Template.Infrastructure.DataInitializer;
 using Template.Infrastructure.Repository.ActiveDirectory;
 using Template.Infrastructure.UnitOfWork;
 using Template.Integration.CacheRepository;
 using Template.Integration.FileRepository;
-using BackendCoreDbContext = Infrastructure.Context.BackendCoreDbContext;
 
 namespace Template.Api.Extensions
 {

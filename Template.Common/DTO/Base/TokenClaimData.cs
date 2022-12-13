@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Domain.Enum;
+using Template.Domain.Enum;
 
 namespace Template.Common.DTO.Base
 {

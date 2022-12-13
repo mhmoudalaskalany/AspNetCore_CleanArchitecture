@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using StackExchange.Redis;
+using Template.Common.Configurations;
 
 namespace Template.Common.Caching.Redis
 {

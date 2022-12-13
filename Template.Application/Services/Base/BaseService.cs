@@ -5,12 +5,12 @@ using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
-using Domain.Enum;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Template.Common.Core;
 using Template.Common.DTO.Base;
 using Template.Common.Infrastructure.UnitOfWork;
+using Template.Domain.Enum;
 using Template.Integration.CacheRepository;
 using static System.Enum;
 namespace Template.Application.Services.Base

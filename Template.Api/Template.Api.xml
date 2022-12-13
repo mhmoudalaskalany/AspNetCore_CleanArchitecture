@@ -44,7 +44,7 @@
             <param name="appCode"></param>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Business.FilesController.UploadToSanStorageAsync(Microsoft.AspNetCore.Http.IFormFileCollection,Domain.Enum.StorageType,System.Boolean,System.String)">
+        <member name="M:Template.Api.Controllers.Business.FilesController.UploadToSanStorageAsync(Microsoft.AspNetCore.Http.IFormFileCollection,Template.Domain.Enum.StorageType,System.Boolean,System.String)">
             <summary>
             Upload To San Storage
             </summary>
@@ -54,14 +54,14 @@
             <param name="appCode"></param>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Business.FilesController.UploadBytesAsync(Common.DTO.Common.File.UploadRequestDto)">
+        <member name="M:Template.Api.Controllers.Business.FilesController.UploadBytesAsync(Template.Common.DTO.Common.File.UploadRequestDto)">
             <summary>
             Upload To Bytes
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Business.FilesController.GetDirectories(Domain.Enum.StorageType)">
+        <member name="M:Template.Api.Controllers.Business.FilesController.GetDirectories(Template.Domain.Enum.StorageType)">
             <summary>
             List Current Path Directories
             </summary>
@@ -82,7 +82,7 @@
         <member name="M:Template.Api.Controllers.Identity.AccountsController.#ctor(Template.Application.Services.Identity.Account.IAccountService,Template.Application.Services.Base.ITokenService)">
             <inheritdoc />
         </member>
-        <member name="M:Template.Api.Controllers.Identity.AccountsController.Login(Common.DTO.Identity.Account.LoginParameters)">
+        <member name="M:Template.Api.Controllers.Identity.AccountsController.Login(Template.Common.DTO.Identity.Account.LoginParameters)">
             <summary>
             Login 
             </summary>
@@ -111,21 +111,21 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Identity.PermissionsController.GetPagedAsync(Common.DTO.Base.BaseParam{Common.DTO.Identity.Permission.Parameters.PermissionFilter})">
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.GetPagedAsync(Template.Common.DTO.Base.BaseParam{Template.Common.DTO.Identity.Permission.Parameters.PermissionFilter})">
             <summary>
             GetAll Data paged
             </summary>
             <param name="filter">Filter responsible for search and sort</param>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Identity.PermissionsController.AddAsync(Common.DTO.Identity.Permission.AddPermissionDto)">
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.AddAsync(Template.Common.DTO.Identity.Permission.AddPermissionDto)">
             <summary>
             Add 
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Identity.PermissionsController.UpdateAsync(Common.DTO.Identity.Permission.AddPermissionDto)">
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.UpdateAsync(Template.Common.DTO.Identity.Permission.AddPermissionDto)">
             <summary>
             Update  
             </summary>
@@ -168,21 +168,21 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Identity.UsersController.GetPagedAsync(Common.DTO.Base.BaseParam{Common.DTO.Identity.User.Parameters.UserFilter})">
+        <member name="M:Template.Api.Controllers.Identity.UsersController.GetPagedAsync(Template.Common.DTO.Base.BaseParam{Template.Common.DTO.Identity.User.Parameters.UserFilter})">
             <summary>
             GetAll Data paged
             </summary>
             <param name="filter">Filter responsible for search and sort</param>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Identity.UsersController.AddAsync(Common.DTO.Identity.User.AddUserDto)">
+        <member name="M:Template.Api.Controllers.Identity.UsersController.AddAsync(Template.Common.DTO.Identity.User.AddUserDto)">
             <summary>
             Add 
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Identity.UsersController.UpdateAsync(Common.DTO.Identity.User.AddUserDto)">
+        <member name="M:Template.Api.Controllers.Identity.UsersController.UpdateAsync(Template.Common.DTO.Identity.User.AddUserDto)">
             <summary>
             Update  
             </summary>

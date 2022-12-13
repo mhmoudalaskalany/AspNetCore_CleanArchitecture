@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Template.Common.Core;
-using Template.Common.DTO.Template.Common.File;
-using Domain.Enum;
 using Microsoft.AspNetCore.Http;
 using Template.Application.Services.Base;
+using Template.Common.DTO.Common.File;
+using Template.Domain.Enum;
 
 namespace Template.Application.Services.File
 {
