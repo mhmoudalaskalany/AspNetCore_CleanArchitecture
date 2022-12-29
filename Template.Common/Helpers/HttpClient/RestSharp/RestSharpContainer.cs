@@ -45,7 +45,6 @@ namespace Template.Common.Helpers.HttpClient.RestSharp
                 else
                 {
                     SetJsonContent(request, obj);
-                    request.AddJsonBody(obj);
                 }
             }
             _logger.LogInformation($"Rest-Sharp: Url  {url}");
