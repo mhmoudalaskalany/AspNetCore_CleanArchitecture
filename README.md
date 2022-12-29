@@ -34,7 +34,9 @@ Clean Architecture For .Net Core 7 Web Api
 - Add External Providers Authentication (Google , Azure AD , Facebook)
 - Divide Entities To Schemas in Database
 - Use File-Scoped Namespaces to make refactor easier
-- Run Unit Tests using Iteration Count like (1000) case for the test till it fails  
+- Run Unit Tests using Iteration Count like (1000) case for the test till it fails 
+- Move Logging Mechanism To Different Nuget SDK
+- Move Date Layer Access To Separate Nuget SDK  
 
 # Installation
 
