@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Common.DTO.Common.File;
 using Microsoft.AspNetCore.Http;
+using Template.Common.DTO.Common.File;
 
-namespace Common.Helpers.FileHelpers.StorageHelper
+namespace Template.Common.Helpers.FileHelpers.StorageHelper
 {
     public interface IStorageService
     {

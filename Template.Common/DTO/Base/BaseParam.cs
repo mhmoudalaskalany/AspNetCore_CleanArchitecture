@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Common.Extensions;
+using Template.Common.Extensions;
 
-namespace Common.DTO.Base
+namespace Template.Common.DTO.Base
 {
     [ExcludeFromCodeCoverage]
     public class BaseParam<T>

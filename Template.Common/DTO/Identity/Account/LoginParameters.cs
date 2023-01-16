@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Common.DTO.Identity.Account
+namespace Template.Common.DTO.Identity.Account
 {
     [ExcludeFromCodeCoverage]
     public class LoginParameters

@@ -1,4 +1,4 @@
-﻿namespace Common.Helpers.EmailHelper
+﻿namespace Template.Common.Helpers.EmailHelper
 {
     public interface ISendMail
     {

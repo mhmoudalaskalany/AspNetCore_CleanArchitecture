@@ -1,9 +1,9 @@
-﻿using Common.DTO.Identity.Permission;
-using Domain.Entities.Identity;
+﻿using Template.Common.DTO.Identity.Permission;
+using Template.Domain.Entities.Identity;
 
 
 // ReSharper disable once CheckNamespace
-namespace Application.Mapping
+namespace Template.Application.Mapping
 {
     public partial class MappingService
     {

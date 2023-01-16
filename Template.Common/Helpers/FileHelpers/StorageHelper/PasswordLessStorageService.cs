@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Common.DTO.Common.File;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Template.Common.DTO.Common.File;
 
-namespace Common.Helpers.FileHelpers.StorageHelper
+namespace Template.Common.Helpers.FileHelpers.StorageHelper
 {
     public class PasswordLessStorageService : IStorageService
     {

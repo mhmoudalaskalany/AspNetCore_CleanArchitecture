@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Common.Extensions
+namespace Template.Common.Extensions
 {
     [ExcludeFromCodeCoverage]
     public static class ServiceProviderExtension

@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
 
-namespace Common.Helpers.HttpClient.RestSharp
+namespace Template.Common.Helpers.HttpClient.RestSharp
 {
     public class RestSharpContainer : IRestSharpContainer
     {
@@ -45,7 +45,6 @@ namespace Common.Helpers.HttpClient.RestSharp
                 else
                 {
                     SetJsonContent(request, obj);
-                    request.AddJsonBody(obj);
                 }
             }
             _logger.LogInformation($"Rest-Sharp: Url  {url}");

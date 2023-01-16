@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 
-namespace Common.Helpers.HttpClient
+namespace Template.Common.Helpers.HttpClient
 {
     [ExcludeFromCodeCoverage]
     public class MicroServicesUrls

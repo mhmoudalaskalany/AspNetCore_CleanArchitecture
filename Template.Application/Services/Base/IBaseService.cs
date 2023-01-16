@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Common.Core;
+using Template.Common.Core;
 
-namespace Application.Services.Base
+namespace Template.Application.Services.Base
 {
     public interface IBaseService<T, TDto, TGetDto, TKey , TKeyDto>
         where T : class

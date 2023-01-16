@@ -4,12 +4,12 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Common.Extensions;
-using Common.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using Template.Common.Extensions;
+using Template.Common.Infrastructure.Repository;
 
-namespace Infrastructure.Repository
+namespace Template.Infrastructure.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {

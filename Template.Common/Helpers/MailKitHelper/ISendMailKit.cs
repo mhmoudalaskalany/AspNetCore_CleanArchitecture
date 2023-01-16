@@ -1,4 +1,4 @@
-﻿namespace Common.Helpers.MailKitHelper
+﻿namespace Template.Common.Helpers.MailKitHelper
 {
     public interface ISendMailKit
     {

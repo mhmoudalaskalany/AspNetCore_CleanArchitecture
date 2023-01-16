@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Common.Core;
-using Common.Helpers.HttpClient;
-using Common.Helpers.HttpClient.RestSharp;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RestSharp;
-using TokenDto = Common.DTO.Common.File.TokenDto;
+using Template.Common.Core;
+using Template.Common.Helpers.HttpClient;
+using Template.Common.Helpers.HttpClient.RestSharp;
+using TokenDto = Template.Common.DTO.Common.File.TokenDto;
 
-namespace Integration.FileRepository
+namespace Template.Integration.FileRepository
 {
     public class FileRepository : IFileRepository
     {

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Integration.CacheRepository
+namespace Template.Integration.CacheRepository
 {
     public interface ICacheRepository
     {

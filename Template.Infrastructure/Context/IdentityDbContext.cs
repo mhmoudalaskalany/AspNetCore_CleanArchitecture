@@ -1,7 +1,7 @@
-﻿using Domain.Entities.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Template.Domain.Entities.Identity;
 
-namespace Infrastructure.Context
+namespace Template.Infrastructure.Context
 {
     public partial class BackendCoreDbContext
     {

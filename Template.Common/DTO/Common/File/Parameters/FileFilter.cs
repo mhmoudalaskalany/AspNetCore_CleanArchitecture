@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Common.DTO.Base;
+using Template.Common.DTO.Base;
 
-namespace Common.DTO.Common.File.Parameters
+namespace Template.Common.DTO.Common.File.Parameters
 {
     [ExcludeFromCodeCoverage]
     public class FileFilter : MainFilter

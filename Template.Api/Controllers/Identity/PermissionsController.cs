@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using Application.Services.Identity.Permission;
-using Common.Core;
-using Common.DTO.Base;
-using Common.DTO.Identity.Permission;
-using Common.DTO.Identity.Permission.Parameters;
 using Microsoft.AspNetCore.Mvc;
 using Template.Api.Controllers.Base;
+using Template.Application.Services.Identity.Permission;
+using Template.Common.Core;
+using Template.Common.DTO.Base;
+using Template.Common.DTO.Identity.Permission;
+using Template.Common.DTO.Identity.Permission.Parameters;
 
 namespace Template.Api.Controllers.Identity
 {

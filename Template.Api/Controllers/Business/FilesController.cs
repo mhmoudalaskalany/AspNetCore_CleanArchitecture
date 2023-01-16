@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Application.Services.File;
-using Common.Core;
-using Common.DTO.Common.File;
-using Common.Helpers.FileHelpers.Token;
-using Domain.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Template.Api.Controllers.Base;
+using Template.Application.Services.File;
+using Template.Common.Core;
+using Template.Common.DTO.Common.File;
+using Template.Common.Helpers.FileHelpers.Token;
+using Template.Domain.Enum;
 
 namespace Template.Api.Controllers.Business
 {

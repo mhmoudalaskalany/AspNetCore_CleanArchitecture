@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Application.Mapping
+namespace Template.Application.Mapping
 {
     public partial class MappingService : Profile
     {

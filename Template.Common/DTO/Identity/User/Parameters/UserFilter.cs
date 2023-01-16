@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Common.DTO.Base;
+using Template.Common.DTO.Base;
 
-namespace Common.DTO.Identity.User.Parameters
+namespace Template.Common.DTO.Identity.User.Parameters
 {
     [ExcludeFromCodeCoverage]
     public class UserFilter : MainFilter

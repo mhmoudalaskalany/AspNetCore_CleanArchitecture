@@ -5,7 +5,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.MSSqlServer;
 
-namespace Common.Extensions
+namespace Template.Common.Extensions
 {
     [ExcludeFromCodeCoverage]
     public static class BaseLoggerConfiguration

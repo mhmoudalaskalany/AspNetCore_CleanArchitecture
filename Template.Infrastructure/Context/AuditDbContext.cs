@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.Entities.Audit;
-using Domain.Enum;
-using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Context
+using Microsoft.EntityFrameworkCore;
+using Template.Domain.Entities.Audit;
+using Template.Domain.Enum;
+
+namespace Template.Infrastructure.Context
 {
     public partial class BackendCoreDbContext
     {

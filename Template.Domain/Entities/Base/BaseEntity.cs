@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Domain.Entities.Base
+namespace Template.Domain.Entities.Base
 {
     [ExcludeFromCodeCoverage]
     public class BaseEntity<TKey>

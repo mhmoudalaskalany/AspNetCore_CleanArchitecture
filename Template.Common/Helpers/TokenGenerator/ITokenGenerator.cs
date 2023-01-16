@@ -1,4 +1,4 @@
-﻿namespace Common.Helpers.TokenGenerator
+﻿namespace Template.Common.Helpers.TokenGenerator
 {   
     public interface ITokenGenerator
     {

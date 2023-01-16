@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Common.Core;
+using Template.Common.Core;
 
-namespace Common.DTO.Common.File
+namespace Template.Common.DTO.Common.File
 {
     [ExcludeFromCodeCoverage]
     public class FileDto :  IEntityDto<Guid?>

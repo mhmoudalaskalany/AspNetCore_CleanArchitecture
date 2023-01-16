@@ -1,10 +1,9 @@
 using System.Net;
-using Api.Unit.Tests;
-using Application.Services.Lookups.Status;
 using AutoFixture;
-using Template.Api.Controllers.Lookup;
-using Common.Core;
 using Moq;
+using Template.Api.Controllers.Lookup;
+using Template.Application.Services.Lookups.Status;
+using Template.Common.Core;
 
 namespace Template.Api.Unit.Tests.Controllers.Statuses
 {
@@ -23,7 +22,7 @@ namespace Template.Api.Unit.Tests.Controllers.Statuses
         public async Task GetActionsAsync_Return_Ok()
         {
             //Arrange (set up variables 
-            var result = (IFinalResult)Fixture.Build<Result>().With(p => p.Status, HttpStatusCode.OK).Create();
+            var result = (IFinalResult)Fixture.Build<FinalResult>().With(p => p.Status, HttpStatusCode.OK).Create();
             _statusServiceMock.Setup(x => x.GetStatusesAsync())
                 .Returns(Task.FromResult(result));
 

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Extensions;
-using Domain.Entities.Identity;
-using Domain.Entities.Lookup;
-using Action = Domain.Entities.Lookup.Action;
-using Permission = Domain.Entities.Identity.Permission;
+using Template.Common.Extensions;
+using Template.Domain.Entities.Identity;
+using Template.Domain.Entities.Lookup;
+using Action = Template.Domain.Entities.Lookup.Action;
+using Permission = Template.Domain.Entities.Identity.Permission;
 
-namespace Infrastructure.DataInitializer
+namespace Template.Infrastructure.DataInitializer
 {
     public class DataInitializer : IDataInitializer
     {

@@ -4,7 +4,7 @@ using System.Threading;
 using Microsoft.AspNetCore.Http;
 using Task = System.Threading.Tasks.Task;
 
-namespace Common.MiddleWares
+namespace Template.Common.MiddleWares
 {
     [ExcludeFromCodeCoverage]
     public class LanguageMiddleware

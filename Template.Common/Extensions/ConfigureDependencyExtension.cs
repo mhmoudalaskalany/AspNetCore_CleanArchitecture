@@ -2,24 +2,24 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
-using Common.Core;
-using Common.Extensions.Swagger.Headers;
-using Common.Helpers.EmailHelper;
-using Common.Helpers.FileHelpers.StorageHelper;
-using Common.Helpers.HttpClient;
-using Common.Helpers.HttpClient.RestSharp;
-using Common.Helpers.MailKitHelper;
-using Common.Helpers.MediaUploader;
-using Common.Helpers.TokenGenerator;
-using Common.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Template.Common.Core;
+using Template.Common.Extensions.Swagger.Headers;
+using Template.Common.Helpers.EmailHelper;
+using Template.Common.Helpers.FileHelpers.StorageHelper;
+using Template.Common.Helpers.HttpClient;
+using Template.Common.Helpers.HttpClient.RestSharp;
+using Template.Common.Helpers.MailKitHelper;
+using Template.Common.Helpers.MediaUploader;
+using Template.Common.Helpers.TokenGenerator;
+using Template.Common.Services;
 
-namespace Common.Extensions
+namespace Template.Common.Extensions
 {
     [ExcludeFromCodeCoverage]
     public static class ConfigureDependencyExtension
@@ -42,7 +42,7 @@ namespace Common.Extensions
             services.AddScoped<IClaimService, ClaimService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IResponseResult, ResponseResult>();
-            services.AddTransient<IFinalResult, Result>();
+            services.AddTransient<IFinalResult, FinalResult>();
             services.AddSingleton<ISendMail, SendMail>();
             services.AddSingleton<ISendMailKit, SendMailKit>();
             services.AddTransient<ITokenGenerator, TokenGenerator>();

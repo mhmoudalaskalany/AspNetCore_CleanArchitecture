@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Common.Helpers.MailKitHelper
+namespace Template.Common.Helpers.MailKitHelper
 {
     [ExcludeFromCodeCoverage]
     public class EmailMetadata

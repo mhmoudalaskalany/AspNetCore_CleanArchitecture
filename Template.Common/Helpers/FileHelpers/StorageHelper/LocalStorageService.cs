@@ -4,15 +4,15 @@ using System.Globalization;
 using System.IO;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using Common.DTO.Common.File;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32.SafeHandles;
 using Newtonsoft.Json;
 using SimpleImpersonation;
+using Template.Common.DTO.Common.File;
 
-namespace Common.Helpers.FileHelpers.StorageHelper
+namespace Template.Common.Helpers.FileHelpers.StorageHelper
 {
     public class LocalStorageService : IStorageService
     {

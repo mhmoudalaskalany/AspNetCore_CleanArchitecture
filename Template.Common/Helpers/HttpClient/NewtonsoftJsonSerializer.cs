@@ -3,7 +3,7 @@ using System.IO;
 using Newtonsoft.Json;
 using RestSharp.Serializers;
 
-namespace Common.Helpers.HttpClient
+namespace Template.Common.Helpers.HttpClient
 {
     [ExcludeFromCodeCoverage]
     public class NewtonsoftJsonSerializer : ISerializer//, IDeserializer

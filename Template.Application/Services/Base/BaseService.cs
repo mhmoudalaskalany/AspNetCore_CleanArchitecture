@@ -5,15 +5,15 @@ using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
-using Common.Core;
-using Common.DTO.Base;
-using Common.Infrastructure.UnitOfWork;
-using Domain.Enum;
-using Integration.CacheRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Template.Common.Core;
+using Template.Common.DTO.Base;
+using Template.Common.Infrastructure.UnitOfWork;
+using Template.Domain.Enum;
+using Template.Integration.CacheRepository;
 using static System.Enum;
-namespace Application.Services.Base
+namespace Template.Application.Services.Base
 {
     public class BaseService<T, TDto, TGetDto, TKey, TKeyDto>
         : IBaseService<T, TDto, TGetDto, TKey, TKeyDto>

@@ -1,9 +1,9 @@
-﻿using Common.DTO.Lookup.Status;
-using Domain.Entities.Lookup;
+﻿using Template.Common.DTO.Lookup.Status;
+using Template.Domain.Entities.Lookup;
 
 
 // ReSharper disable once CheckNamespace
-namespace Application.Mapping
+namespace Template.Application.Mapping
 {
     public partial class MappingService
     {

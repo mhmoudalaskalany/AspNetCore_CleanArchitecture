@@ -1,8 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
-using Common.Core;
-using Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +8,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Serilog;
+using Template.Common.Core;
+using Template.Common.Exceptions;
 using Task = System.Threading.Tasks.Task;
 
-namespace Common.MiddleWares
+namespace Template.Common.MiddleWares
 {
     [ExcludeFromCodeCoverage]
     public class ExceptionMiddleware
@@ -96,7 +96,7 @@ namespace Common.MiddleWares
                             {
                                 var table = dbException.Message.Split("table");
                                 var column = table[1].Split("column");
-                                var error = new Result
+                                var error = new FinalResult
                                 {
                                     Status = HttpStatusCode.BadRequest,
                                     Message = $"Wrong Foreign Key (Id) For Entity {column[0]}"
@@ -108,7 +108,7 @@ namespace Common.MiddleWares
                         default:
                             {
 
-                                var error = new Result
+                                var error = new FinalResult
                                 {
                                     Status = HttpStatusCode.BadRequest,
                                     Message = dbException.Message

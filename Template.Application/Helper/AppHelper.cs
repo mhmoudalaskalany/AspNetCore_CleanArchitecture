@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Common.Helpers.MediaUploader;
+using Template.Common.Helpers.MediaUploader;
 
-namespace Application.Helper
+namespace Template.Application.Helper
 {
     [ExcludeFromCodeCoverage]
     public class AppHelper

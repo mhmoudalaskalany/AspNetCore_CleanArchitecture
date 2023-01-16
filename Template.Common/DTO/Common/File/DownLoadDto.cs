@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
-namespace Common.DTO.Common.File
+namespace Template.Common.DTO.Common.File
 {
     [ExcludeFromCodeCoverage]
     public class DownLoadDto

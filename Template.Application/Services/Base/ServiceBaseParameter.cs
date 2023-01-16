@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Common.Core;
-using Common.Infrastructure.UnitOfWork;
-using Integration.CacheRepository;
+using Template.Common.Core;
+using Template.Common.Infrastructure.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Template.Integration.CacheRepository;
 
-namespace Application.Services.Base
+namespace Template.Application.Services.Base
 {
     public class ServiceBaseParameter<T> : IServiceBaseParameter<T> where T : class
     {

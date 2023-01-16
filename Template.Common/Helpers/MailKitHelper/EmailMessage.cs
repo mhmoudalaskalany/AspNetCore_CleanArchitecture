@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using MimeKit;
 
-namespace Common.Helpers.MailKitHelper
+namespace Template.Common.Helpers.MailKitHelper
 {
     [ExcludeFromCodeCoverage]
     public class EmailMessage

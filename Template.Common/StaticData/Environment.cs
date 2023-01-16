@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Common.StaticData
+namespace Template.Common.StaticData
 {
     [ExcludeFromCodeCoverage]
     public static class Environment

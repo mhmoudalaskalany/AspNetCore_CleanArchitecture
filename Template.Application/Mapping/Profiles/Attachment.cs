@@ -1,8 +1,8 @@
-﻿using Common.DTO.Business.Attachment;
-using Domain.Entities.Business;
+﻿using Template.Common.DTO.Business.Attachment;
+using Template.Domain.Entities.Business;
 
 // ReSharper disable once CheckNamespace
-namespace Application.Mapping
+namespace Template.Application.Mapping
 {
     public partial class MappingService
     {

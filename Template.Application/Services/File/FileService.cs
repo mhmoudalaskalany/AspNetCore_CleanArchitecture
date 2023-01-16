@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using Application.Services.Base;
-using Common.Core;
-using Common.DTO.Common.File;
-using Common.Helpers.FileHelpers.Crypto;
-using Common.Helpers.FileHelpers.StorageHelper;
-using Common.Helpers.FileHelpers.Token;
-using Domain.Enum;
+using Template.Common.Core;
+using Template.Common.Helpers.FileHelpers.Crypto;
+using Template.Common.Helpers.FileHelpers.StorageHelper;
+using Template.Common.Helpers.FileHelpers.Token;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Template.Application.Services.Base;
+using Template.Common.DTO.Common.File;
+using Template.Domain.Enum;
 
-namespace Application.Services.File
+namespace Template.Application.Services.File
 {
     public class FileService : BaseService<Domain.Entities.Business.File, AddFileDto, FileDto, Guid, Guid?>, IFileService
     {

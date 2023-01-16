@@ -1,6 +1,6 @@
-﻿using Domain.Entities.Lookup;
+﻿using Template.Domain.Entities.Lookup;
 
-namespace Infrastructure.Configuration
+namespace Template.Infrastructure.Configuration
 {
     public class StatusConfig : LookupConfig<Status, int>
     {

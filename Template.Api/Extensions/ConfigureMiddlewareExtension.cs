@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Application.Services.BackgroundJobs.Jobs;
 using FluentScheduler;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,10 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using BackendCoreDbContext = Infrastructure.Context.BackendCoreDbContext;
-using Environment = Common.StaticData.Environment;
+using Template.Application.Services.BackgroundJobs.Jobs;
+using Template.Infrastructure.Context;
+using Environment = Template.Common.StaticData.Environment;
 
-namespace Api.Extensions
+namespace Template.Api.Extensions
 {
     /// <summary>
     /// Pipeline Extensions

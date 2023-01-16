@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
-namespace Common.Core
+namespace Template.Common.Core
 {
     [ExcludeFromCodeCoverage]
     public class DataPaging

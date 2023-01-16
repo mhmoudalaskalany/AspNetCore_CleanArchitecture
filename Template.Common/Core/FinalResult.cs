@@ -2,10 +2,10 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
-namespace Common.Core
+namespace Template.Common.Core
 {
     [ExcludeFromCodeCoverage]
-    public class Result : IFinalResult
+    public class FinalResult : IFinalResult
     {
         public object Data { get; set; }
         public HttpStatusCode Status { get; set; }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Common.Extensions;
 using Microsoft.EntityFrameworkCore.Query;
+using Template.Common.Extensions;
 
-namespace Common.Infrastructure.Repository
+namespace Template.Common.Infrastructure.Repository
 {
     public interface IRepository<T> where T : class
     {

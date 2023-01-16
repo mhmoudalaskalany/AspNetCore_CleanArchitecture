@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Domain.Enum;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
+using Template.Domain.Enum;
 
-namespace Domain.Entities.Audit
+namespace Template.Domain.Entities.Audit
 {
     [ExcludeFromCodeCoverage]
     public class AuditEntry
@@ -22,9 +22,9 @@ namespace Domain.Entities.Audit
         public Dictionary<string, object> NewValues { get; } = new();
         public AuditType AuditType { get; set; }
         public List<string> ChangedColumns { get; } = new List<string>();
-        public Audit ToAudit()
+        public Template.Domain.Entities.Audit.Audit ToAudit()
         {
-            var audit = new Audit
+            var audit = new Template.Domain.Entities.Audit.Audit
             {
                 UserId = UserId,
                 Type = AuditType.ToString(),

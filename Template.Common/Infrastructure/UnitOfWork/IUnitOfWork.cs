@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Common.Infrastructure.Repository;
+using Template.Common.Infrastructure.Repository;
 
-namespace Common.Infrastructure.UnitOfWork
+namespace Template.Common.Infrastructure.UnitOfWork
 {
     public interface IUnitOfWork<T> : IDisposable where T : class
     {

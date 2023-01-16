@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Common.Helpers.TokenGenerator
+namespace Template.Common.Helpers.TokenGenerator
 {
     public class TokenGenerator : ITokenGenerator
     {

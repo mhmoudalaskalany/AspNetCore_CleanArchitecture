@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Common.DTO.Base
+namespace Template.Common.DTO.Base
 {
     [ExcludeFromCodeCoverage]
     public class MainFilter

@@ -1,6 +1,6 @@
-﻿using Application.Services.Base;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Template.Application.Services.Base;
 
 namespace Template.Api.Controllers.Base
 {

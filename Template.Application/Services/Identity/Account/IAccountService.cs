@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Common.Core;
-using Common.DTO.Identity.Account;
+using Template.Common.Core;
+using Template.Common.DTO.Identity.Account;
 
-namespace Application.Services.Identity.Account
+namespace Template.Application.Services.Identity.Account
 {
     public interface IAccountService
     {

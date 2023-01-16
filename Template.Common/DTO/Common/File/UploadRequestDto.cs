@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Domain.Enum;
+using Template.Domain.Enum;
 
-namespace Common.DTO.Common.File
+namespace Template.Common.DTO.Common.File
 {
     [ExcludeFromCodeCoverage]
     public class UploadRequestDto

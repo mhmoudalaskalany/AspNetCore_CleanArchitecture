@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Common.DTO.Common.File
+namespace Template.Common.DTO.Common.File
 {
     [ExcludeFromCodeCoverage]
     public class FileTokenDto

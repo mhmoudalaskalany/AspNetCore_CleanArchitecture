@@ -2,10 +2,10 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
-namespace Common.Core
+namespace Template.Common.Core
 {
     [ExcludeFromCodeCoverage]
-    public class ResponseResult : Result, IResponseResult
+    public class ResponseResult : FinalResult, IResponseResult
     {
         public ResponseResult(object result = null, HttpStatusCode status = HttpStatusCode.BadRequest, Exception exception = null, string message = null)
         {

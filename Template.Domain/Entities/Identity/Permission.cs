@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Domain.Entities.Base;
+using Template.Domain.Entities.Base;
 
-namespace Domain.Entities.Identity
+namespace Template.Domain.Entities.Identity
 {
     [ExcludeFromCodeCoverage]
     public class Permission : Lookup<int>

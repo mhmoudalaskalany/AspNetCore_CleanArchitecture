@@ -2,7 +2,7 @@
 using System.IO;
 using Microsoft.Extensions.Configuration;
 
-namespace Common.Configurations
+namespace Template.Common.Configurations
 {
     [ExcludeFromCodeCoverage]
     public static class AppSettingsConfigurations

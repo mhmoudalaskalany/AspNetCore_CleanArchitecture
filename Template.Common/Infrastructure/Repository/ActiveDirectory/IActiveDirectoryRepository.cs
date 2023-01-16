@@ -1,7 +1,7 @@
-﻿using Common.DTO.Identity.Account;
-using Common.DTO.Identity.User;
+﻿using Template.Common.DTO.Identity.Account;
+using Template.Common.DTO.Identity.User;
 
-namespace Common.Infrastructure.Repository.ActiveDirectory
+namespace Template.Common.Infrastructure.Repository.ActiveDirectory
 {
     public interface IActiveDirectoryRepository
     {

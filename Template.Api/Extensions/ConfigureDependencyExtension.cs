@@ -1,24 +1,24 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using Application.Helper;
-using Application.Mapping;
-using Application.Services.Base;
-using Application.Services.Identity.Permission;
-using Common.Extensions;
-using Common.Infrastructure.Repository.ActiveDirectory;
-using Common.Infrastructure.UnitOfWork;
-using Infrastructure.DataInitializer;
-using Infrastructure.Repository.ActiveDirectory;
-using Infrastructure.UnitOfWork;
-using Integration.CacheRepository;
-using Integration.FileRepository;
+using Template.Common.Extensions;
+using Template.Common.Infrastructure.Repository.ActiveDirectory;
+using Template.Common.Infrastructure.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCore.AutoRegisterDi;
-using BackendCoreDbContext = Infrastructure.Context.BackendCoreDbContext;
+using Template.Application.Helper;
+using Template.Application.Mapping;
+using Template.Application.Services.Base;
+using Template.Application.Services.Identity.Permission;
+using Template.Infrastructure.Context;
+using Template.Infrastructure.DataInitializer;
+using Template.Infrastructure.Repository.ActiveDirectory;
+using Template.Infrastructure.UnitOfWork;
+using Template.Integration.CacheRepository;
+using Template.Integration.FileRepository;
 
-namespace Api.Extensions
+namespace Template.Api.Extensions
 {
     /// <summary>
     /// Dependency Extensions

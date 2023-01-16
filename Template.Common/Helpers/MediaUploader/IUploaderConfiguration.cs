@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Common.Helpers.MediaUploader
+namespace Template.Common.Helpers.MediaUploader
 {
     public interface IUploaderConfiguration
     {
