@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using LinqKit;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
 using Template.Application.Services.Base;
 using Template.Common.Core;
+using Template.Common.DTO.Base;
 using Template.Common.DTO.Lookup.Category;
+using Template.Common.DTO.Lookup.Category.Parameters;
 
 namespace Template.Application.Services.Lookups.Category
 {
@@ -20,6 +25,32 @@ namespace Template.Application.Services.Lookups.Category
             var entities = await UnitOfWork.GetRepository<Domain.Entities.Lookup.Category>().FindAsync(x => x.IsDeleted == false);
             var data = Mapper.Map<IEnumerable<Domain.Entities.Lookup.Category>, List<CategoryDto>>(entities);
             return new ResponseResult(data, HttpStatusCode.OK, null, "Success");
+        }
+
+        public async Task<DataPaging> GetAllPagedAsync(BaseParam<CategoryFilter> filter)
+        {
+
+            var limit = filter.PageSize;
+            var offset = ((--filter.PageNumber) * filter.PageSize);
+            var query = await UnitOfWork.Repository.FindPagedAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
+            var data = Mapper.Map<IEnumerable<Domain.Entities.Lookup.Category>, IEnumerable<CategoryDto>>(query.Item2);
+            return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, result: data, status: HttpStatusCode.OK, HttpStatusCode.OK.ToString());
+
+        }
+
+        static Expression<Func<Domain.Entities.Lookup.Category, bool>> PredicateBuilderFunction(CategoryFilter filter)
+        {
+            var predicate = PredicateBuilder.New<Domain.Entities.Lookup.Category>(x => x.IsDeleted == filter.IsDeleted);
+
+            if (!string.IsNullOrWhiteSpace(filter?.NameAr))
+            {
+                predicate = predicate.And(b => b.NameAr.ToLower().Contains(filter.NameAr.ToLower()));
+            }
+            if (!string.IsNullOrWhiteSpace(filter?.NameEn))
+            {
+                predicate = predicate.And(b => b.NameEn.ToLower().Contains(filter.NameEn.ToLower()));
+            }
+            return predicate;
         }
 
     }

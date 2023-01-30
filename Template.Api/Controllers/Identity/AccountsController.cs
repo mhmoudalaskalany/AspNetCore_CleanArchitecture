@@ -14,11 +14,11 @@ namespace Template.Api.Controllers.Identity
     /// </summary>
     public class AccountsController : BaseController
     {
-        private readonly IAccountService _accountService;
+        private readonly IAccountService _service;
         /// <inheritdoc />
         public AccountsController(IAccountService accountService, ITokenService tokenService) : base(tokenService)
         {
-            _accountService = accountService;
+            _service = accountService;
         }
         /// <summary>
         /// Login 
@@ -29,7 +29,7 @@ namespace Template.Api.Controllers.Identity
         [AllowAnonymous]
         public async Task<IFinalResult> Login(LoginParameters parameter)
         {
-            return await _accountService.Login(parameter);
+            return await _service.Login(parameter);
         }
     }
 }

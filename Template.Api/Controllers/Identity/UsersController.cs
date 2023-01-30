@@ -14,13 +14,13 @@ namespace Template.Api.Controllers.Identity
     /// </summary>
     public class UsersController : BaseController
     {
-        private readonly IUserService _userService;
+        private readonly IUserService _service;
         /// <summary>
         /// Constructor
         /// </summary>
         public UsersController(IUserService userService)
         {
-            _userService = userService;
+            _service = userService;
         }
         /// <summary>
         /// Get By Id 
@@ -29,7 +29,7 @@ namespace Template.Api.Controllers.Identity
         [HttpGet("{id}")]
         public async Task<IFinalResult> GetAsync(long id)
         {
-            var result = await _userService.GetByIdAsync(id);
+            var result = await _service.GetByIdAsync(id);
             return result;
         }
 
@@ -40,19 +40,19 @@ namespace Template.Api.Controllers.Identity
         [HttpGet]
         public async Task<IFinalResult> GetAllAsync()
         {
-            var result = await _userService.GetAllAsync();
+            var result = await _service.GetAllAsync();
             return result;
         }
 
         /// <summary>
-        /// GetAll Data paged
+        /// Get Paged
         /// </summary>
         /// <param name="filter">Filter responsible for search and sort</param>
         /// <returns></returns>
         [HttpPost]
         public async Task<DataPaging> GetPagedAsync([FromBody] BaseParam<UserFilter> filter)
         {
-            return await _userService.GetAllPagedAsync(filter);
+            return await _service.GetAllPagedAsync(filter);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Template.Api.Controllers.Identity
         [HttpPost]
         public async Task<IFinalResult> AddAsync([FromBody] AddUserDto dto)
         {
-            var result = await _userService.AddAsync(dto);
+            var result = await _service.AddAsync(dto);
             return result;
         }
 
@@ -76,7 +76,7 @@ namespace Template.Api.Controllers.Identity
         [HttpPut]
         public async Task<IFinalResult> UpdateAsync(AddUserDto model)
         {
-            return await _userService.UpdateAsync(model);
+            return await _service.UpdateAsync(model);
         }
         /// <summary>
         /// Remove  by id
@@ -86,18 +86,18 @@ namespace Template.Api.Controllers.Identity
         [HttpDelete]
         public async Task<IFinalResult> DeleteAsync(long id)
         {
-            return await _userService.DeleteAsync(id);
+            return await _service.DeleteAsync(id);
         }
 
         /// <summary>
-        /// Soft Remove  by id
+        /// Soft Remove by id
         /// </summary>
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IFinalResult> DeleteSoftAsync(long id)
         {
-            return await _userService.DeleteSoftAsync(id);
+            return await _service.DeleteSoftAsync(id);
         }
 
 

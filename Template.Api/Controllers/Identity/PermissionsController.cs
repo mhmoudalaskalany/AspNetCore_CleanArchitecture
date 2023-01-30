@@ -14,13 +14,13 @@ namespace Template.Api.Controllers.Identity
     /// </summary>
     public class PermissionsController : BaseController
     {
-        private readonly IPermissionService _permissionService;
+        private readonly IPermissionService _service;
         /// <summary>
         /// Constructor
         /// </summary>
         public PermissionsController(IPermissionService permissionService)
         {
-            _permissionService = permissionService;
+            _service = permissionService;
         }
         /// <summary>
         /// Get By Id 
@@ -29,7 +29,18 @@ namespace Template.Api.Controllers.Identity
         [HttpGet("{id}")]
         public async Task<IFinalResult> GetAsync(long id)
         {
-            var result = await _permissionService.GetByIdAsync(id);
+            var result = await _service.GetByIdAsync(id);
+            return result;
+        }
+
+        /// <summary>
+        /// Get By Id For Edit 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<IFinalResult> GetEditAsync(long id)
+        {
+            var result = await _service.GetEditByIdAsync(id);
             return result;
         }
 
@@ -40,19 +51,19 @@ namespace Template.Api.Controllers.Identity
         [HttpGet]
         public async Task<IFinalResult> GetAllAsync()
         {
-            var result = await _permissionService.GetAllAsync();
+            var result = await _service.GetAllAsync();
             return result;
         }
 
         /// <summary>
-        /// GetAll Data paged
+        /// Get Paged
         /// </summary>
         /// <param name="filter">Filter responsible for search and sort</param>
         /// <returns></returns>
         [HttpPost]
         public async Task<DataPaging> GetPagedAsync([FromBody] BaseParam<PermissionFilter> filter)
         {
-            return await _permissionService.GetAllPagedAsync(filter);
+            return await _service.GetAllPagedAsync(filter);
         }
 
         /// <summary>
@@ -63,7 +74,7 @@ namespace Template.Api.Controllers.Identity
         [HttpPost]
         public async Task<IFinalResult> AddAsync([FromBody] AddPermissionDto dto)
         {
-            var result = await _permissionService.AddAsync(dto);
+            var result = await _service.AddAsync(dto);
             return result;
         }
 
@@ -76,7 +87,7 @@ namespace Template.Api.Controllers.Identity
         [HttpPut]
         public async Task<IFinalResult> UpdateAsync(AddPermissionDto model)
         {
-            return await _permissionService.UpdateAsync(model);
+            return await _service.UpdateAsync(model);
         }
         /// <summary>
         /// Remove  by id
@@ -86,7 +97,7 @@ namespace Template.Api.Controllers.Identity
         [HttpDelete("{id}")]
         public async Task<IFinalResult> DeleteAsync(long id)
         {
-            return await _permissionService.DeleteAsync(id);
+            return await _service.DeleteAsync(id);
         }
 
         /// <summary>
@@ -97,7 +108,7 @@ namespace Template.Api.Controllers.Identity
         [HttpDelete("{id}")]
         public async Task<IFinalResult> DeleteSoftAsync(long id)
         {
-            return await _permissionService.DeleteSoftAsync(id);
+            return await _service.DeleteSoftAsync(id);
         }
 
 

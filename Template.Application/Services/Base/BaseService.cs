@@ -49,7 +49,7 @@ namespace Template.Application.Services.Base
             T query = await UnitOfWork.Repository.GetAsync(id);
             var data = Mapper.Map<T, TGetDto>(query);
             return ResponseResult.PostResult(result: data, status: HttpStatusCode.OK,
-                message: "Success");
+                message: "SUCCESS");
         }
 
         public virtual async Task<IFinalResult> GetEditByIdAsync(object id)
@@ -57,7 +57,7 @@ namespace Template.Application.Services.Base
             T query = await UnitOfWork.Repository.GetAsync(id);
             var data = Mapper.Map<T, TEditDto>(query);
             return ResponseResult.PostResult(result: data, status: HttpStatusCode.OK,
-                message: "Success");
+                message: "SUCCESS");
         }
 
         public virtual async Task<IFinalResult> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null)
@@ -85,7 +85,7 @@ namespace Template.Application.Services.Base
             if (affectedRows > 0)
             {
                 Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
-                    message: "AddSuccess");
+                    message: "ADD_SUCCESS");
             }
             Result.Data = model;
             return Result;
@@ -99,7 +99,7 @@ namespace Template.Application.Services.Base
             if (affectedRows > 0)
             {
                 Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
-                    message: "AddSuccess");
+                    message: "ADD_SUCCESS");
             }
             Result.Data = model;
             return Result;
@@ -115,7 +115,7 @@ namespace Template.Application.Services.Base
             if (affectedRows > 0)
             {
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
-                    message: "UpdateSuccess");
+                    message: "UPDATE_SUCCESS");
             }
             return Result;
 
@@ -129,7 +129,7 @@ namespace Template.Application.Services.Base
             if (affectedRows > 0)
             {
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
-                    message: "DeleteSuccess");
+                    message: "DELETE_SUCCESS");
             }
             return Result;
         }
@@ -143,7 +143,7 @@ namespace Template.Application.Services.Base
             if (affectedRows > 0)
             {
                 Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
-                    message: "DeleteSuccess");
+                    message: "DELETE_SUCCESS");
             }
             return Result;
         }
