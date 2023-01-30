@@ -8,7 +8,7 @@ using Template.Domain.Enum;
 
 namespace Template.Application.Services.File
 {
-    public interface IFileService : IBaseService<Domain.Entities.Business.File, AddFileDto, FileDto, Guid, Guid?>
+    public interface IFileService : IBaseService<Domain.Entities.Business.File, AddFileDto , EditFileDto, FileDto, Guid, Guid?>
     {
 
         /// <summary>

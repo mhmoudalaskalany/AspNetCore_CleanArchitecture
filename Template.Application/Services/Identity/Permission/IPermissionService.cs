@@ -7,7 +7,7 @@ using Template.Application.Services.Base;
 
 namespace Template.Application.Services.Identity.Permission
 {
-    public interface IPermissionService : IBaseService<Domain.Entities.Identity.Permission, AddPermissionDto, PermissionDto , int , int?>
+    public interface IPermissionService : IBaseService<Domain.Entities.Identity.Permission, AddPermissionDto , EditPermissionDto, PermissionDto , int , int?>
     {
         Task<DataPaging> GetAllPagedAsync(BaseParam<PermissionFilter> filter);
     }

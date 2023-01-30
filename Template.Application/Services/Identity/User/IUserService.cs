@@ -8,7 +8,7 @@ using Template.Application.Services.Base;
 
 namespace Template.Application.Services.Identity.User
 {
-    public interface IUserService : IBaseService<Domain.Entities.Identity.User, AddUserDto, UserDto , Guid, Guid?>
+    public interface IUserService : IBaseService<Domain.Entities.Identity.User, AddUserDto , EditUserDto, UserDto , Guid, Guid?>
     {
         /// <summary>
         /// Get All Paged

@@ -12,7 +12,7 @@ using Template.Application.Services.Base;
 
 namespace Template.Application.Services.Identity.User
 {
-    public class UserService : BaseService<Domain.Entities.Identity.User, AddUserDto, UserDto, Guid, Guid?>, IUserService
+    public class UserService : BaseService<Domain.Entities.Identity.User, AddUserDto , EditUserDto, UserDto, Guid, Guid?>, IUserService
     {
         public UserService(IServiceBaseParameter<Domain.Entities.Identity.User> parameters) : base(parameters)
         {

@@ -12,7 +12,7 @@ using Template.Application.Services.Base;
 
 namespace Template.Application.Services.Identity.Permission
 {
-    public class PermissionService : BaseService<Domain.Entities.Identity.Permission, AddPermissionDto, PermissionDto, int, int?>, IPermissionService
+    public class PermissionService : BaseService<Domain.Entities.Identity.Permission, AddPermissionDto , EditPermissionDto, PermissionDto, int, int?>, IPermissionService
     {
         public PermissionService(IServiceBaseParameter<Domain.Entities.Identity.Permission> parameters) : base(parameters)
         {

@@ -108,7 +108,7 @@ namespace Template.Api.Extensions
         private static void RegisterCores(this IServiceCollection services)
         {
             services.AddSingleton<AppHelper>();
-            services.AddTransient(typeof(IBaseService<,,,,>), typeof(BaseService<,,,,>));
+            services.AddTransient(typeof(IBaseService<,,,,,>), typeof(BaseService<,,,,,>));
             services.AddTransient(typeof(IServiceBaseParameter<>), typeof(ServiceBaseParameter<>));
             services.AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
             var servicesToScan = Assembly.GetAssembly(typeof(PermissionService)); //..or whatever assembly you need

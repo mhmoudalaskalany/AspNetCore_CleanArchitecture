@@ -11,7 +11,7 @@ using Template.Application.Services.Base;
 
 namespace Template.Application.Services.Identity.Account
 {
-    public class AccountService : BaseService<Domain.Entities.Identity.User,AddUserDto, UserDto, Guid , Guid?>, IAccountService
+    public class AccountService : BaseService<Domain.Entities.Identity.User,AddUserDto , EditUserDto, UserDto, Guid , Guid?>, IAccountService
     {
         private readonly ITokenService _tokenBusiness;
         private readonly IActiveDirectoryRepository _activeDirectoryRepository;

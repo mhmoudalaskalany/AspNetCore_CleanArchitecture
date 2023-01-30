@@ -15,17 +15,17 @@ using Template.Domain.Enum;
 
 namespace Template.Application.Services.File
 {
-    public class FileService : BaseService<Domain.Entities.Business.File, AddFileDto, FileDto, Guid, Guid?>, IFileService
+    public class FileService : BaseService<Domain.Entities.Business.File, AddFileDto , EditFileDto, FileDto, Guid, Guid?>, IFileService
     {
-        #region Private Fields
+
         
         private readonly Func<string, IStorageService> _storage;
         private readonly IConfiguration _configuration;
         private string _path;
 
-        #endregion
 
-        #region Constructors
+
+
 
         public FileService(IServiceBaseParameter<Domain.Entities.Business.File> parameters, IConfiguration configuration, Func<string, IStorageService> storage) : base(parameters)
         {
@@ -33,9 +33,9 @@ namespace Template.Application.Services.File
             _storage = storage;
         }
 
-        #endregion
 
-        #region Public Methods
+
+
         /// <summary>
         /// Upload To Shared Storage
         /// </summary>
@@ -150,9 +150,5 @@ namespace Template.Application.Services.File
 
         }
 
-        #endregion
-
-        #region Private Methods
-        #endregion
     }
 }
