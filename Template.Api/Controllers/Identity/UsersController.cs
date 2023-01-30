@@ -34,6 +34,17 @@ namespace Template.Api.Controllers.Identity
         }
 
         /// <summary>
+        /// Get By Id For Edit 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<IFinalResult> GetEditAsync(long id)
+        {
+            var result = await _service.GetEditByIdAsync(id);
+            return result;
+        }
+
+        /// <summary>
         /// Get All 
         /// </summary>
         /// <returns></returns>

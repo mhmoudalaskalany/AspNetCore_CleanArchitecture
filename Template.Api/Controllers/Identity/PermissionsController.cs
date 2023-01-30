@@ -33,6 +33,7 @@ namespace Template.Api.Controllers.Identity
             return result;
         }
 
+
         /// <summary>
         /// Get By Id For Edit 
         /// </summary>
