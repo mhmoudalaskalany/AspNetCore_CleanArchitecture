@@ -105,6 +105,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Template.Api.Controllers.Identity.PermissionsController.GetEditAsync(System.Int64)">
+            <summary>
+            Get By Id For Edit 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Template.Api.Controllers.Identity.PermissionsController.GetAllAsync">
             <summary>
             Get All 
@@ -113,7 +119,7 @@
         </member>
         <member name="M:Template.Api.Controllers.Identity.PermissionsController.GetPagedAsync(Template.Common.DTO.Base.BaseParam{Template.Common.DTO.Identity.Permission.Parameters.PermissionFilter})">
             <summary>
-            GetAll Data paged
+            Get Paged
             </summary>
             <param name="filter">Filter responsible for search and sort</param>
             <returns></returns>
@@ -162,6 +168,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Template.Api.Controllers.Identity.UsersController.GetEditAsync(System.Int64)">
+            <summary>
+            Get By Id For Edit 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Template.Api.Controllers.Identity.UsersController.GetAllAsync">
             <summary>
             Get All 
@@ -170,7 +182,7 @@
         </member>
         <member name="M:Template.Api.Controllers.Identity.UsersController.GetPagedAsync(Template.Common.DTO.Base.BaseParam{Template.Common.DTO.Identity.User.Parameters.UserFilter})">
             <summary>
-            GetAll Data paged
+            Get Paged
             </summary>
             <param name="filter">Filter responsible for search and sort</param>
             <returns></returns>
@@ -198,7 +210,7 @@
         </member>
         <member name="M:Template.Api.Controllers.Identity.UsersController.DeleteSoftAsync(System.Int64)">
             <summary>
-            Soft Remove  by id
+            Soft Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
@@ -221,7 +233,7 @@
         </member>
         <member name="T:Template.Api.Controllers.Lookup.CategoriesController">
             <summary>
-            Actions Controller
+            Categories Controller
             </summary>
         </member>
         <member name="M:Template.Api.Controllers.Lookup.CategoriesController.#ctor(Template.Application.Services.Lookups.Category.ICategoryService)">
@@ -229,10 +241,57 @@
             Constructor
             </summary>
         </member>
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.GetAsync(System.Int64)">
+            <summary>
+            Get By Id 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.GetEditAsync(System.Int64)">
+            <summary>
+            Get By Id For Edit 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Template.Api.Controllers.Lookup.CategoriesController.GetCategoriesAsync">
             <summary>
             Get All Categories
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.GetPagedAsync(Template.Common.DTO.Base.BaseParam{Template.Common.DTO.Lookup.Category.Parameters.CategoryFilter})">
+            <summary>
+            Get Paged
+            </summary>
+            <param name="filter">Filter responsible for search and sort</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.AddAsync(Template.Common.DTO.Lookup.Category.AddCategoryDto)">
+            <summary>
+            Add 
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.UpdateAsync(Template.Common.DTO.Lookup.Category.AddCategoryDto)">
+            <summary>
+            Update  
+            </summary>
+            <param name="model">Object content</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.DeleteAsync(System.Int64)">
+            <summary>
+            Remove  by id
+            </summary>
+            <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.DeleteSoftAsync(System.Int64)">
+            <summary>
+            Soft Remove  by id
+            </summary>
+            <param name="id">PK</param>
             <returns></returns>
         </member>
         <member name="T:Template.Api.Controllers.Lookup.StatusesController">
