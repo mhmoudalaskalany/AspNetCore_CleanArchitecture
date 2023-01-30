@@ -7,7 +7,7 @@ using Template.Application.Services.Base;
 
 namespace Template.Application.Services.Lookups.Status
 {
-    public class StatusService : BaseService<Domain.Entities.Lookup.Status, AddStatusDto, StatusDto, int, int?>, IStatusService
+    public class StatusService : BaseService<Domain.Entities.Lookup.Status, AddStatusDto, StatusDto, EditStatusDto, int, int?>, IStatusService
     {
         
         public StatusService(IServiceBaseParameter<Domain.Entities.Lookup.Status> parameters) : base(parameters)

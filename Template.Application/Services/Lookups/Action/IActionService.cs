@@ -5,7 +5,7 @@ using Template.Application.Services.Base;
 
 namespace Template.Application.Services.Lookups.Action
 {
-    public interface IActionService : IBaseService<Domain.Entities.Lookup.Action, AddActionDto , ActionDto , int , int?>
+    public interface IActionService : IBaseService<Domain.Entities.Lookup.Action, AddActionDto , EditActionDto , ActionDto , int , int?>
     {
         Task<IFinalResult> GetActionsAsync();
     }

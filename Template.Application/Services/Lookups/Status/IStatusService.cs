@@ -5,7 +5,7 @@ using Template.Application.Services.Base;
 
 namespace Template.Application.Services.Lookups.Status
 {
-    public interface IStatusService : IBaseService<Domain.Entities.Lookup.Status , AddStatusDto , StatusDto , int , int?>
+    public interface IStatusService : IBaseService<Domain.Entities.Lookup.Status , AddStatusDto ,EditStatusDto, StatusDto , int , int?>
     {
         Task<IFinalResult> GetStatusesAsync();
     }

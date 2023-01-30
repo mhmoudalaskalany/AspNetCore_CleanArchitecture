@@ -15,10 +15,11 @@ using Template.Integration.CacheRepository;
 using static System.Enum;
 namespace Template.Application.Services.Base
 {
-    public class BaseService<T, TDto, TGetDto, TKey, TKeyDto>
-        : IBaseService<T, TDto, TGetDto, TKey, TKeyDto>
+    public class BaseService<T, TAddDto , TEditDto, TGetDto, TKey, TKeyDto>
+        : IBaseService<T, TAddDto , TEditDto, TGetDto, TKey, TKeyDto>
         where T : class
-        where TDto : IEntityDto<TKeyDto>
+        where TAddDto : IEntityDto<TKeyDto>
+        where TEditDto : IEntityDto<TKeyDto>
         where TGetDto : IEntityDto<TKeyDto>
     {
         protected readonly IUnitOfWork<T> UnitOfWork;
@@ -51,6 +52,14 @@ namespace Template.Application.Services.Base
                 message: "Success");
         }
 
+        public virtual async Task<IFinalResult> GetEditByIdAsync(object id)
+        {
+            T query = await UnitOfWork.Repository.GetAsync(id);
+            var data = Mapper.Map<T, TEditDto>(query);
+            return ResponseResult.PostResult(result: data, status: HttpStatusCode.OK,
+                message: "Success");
+        }
+
         public virtual async Task<IFinalResult> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null)
         {
             IEnumerable<T> query;
@@ -67,9 +76,9 @@ namespace Template.Application.Services.Base
                 message: HttpStatusCode.OK.ToString());
         }
 
-        public virtual async Task<IFinalResult> AddAsync(TDto model)
+        public virtual async Task<IFinalResult> AddAsync(TAddDto model)
         {
-            T entity = Mapper.Map<TDto, T>(model);
+            T entity = Mapper.Map<TAddDto, T>(model);
             SetEntityCreatedBaseProperties(entity);
             UnitOfWork.Repository.Add(entity);
             var affectedRows = await UnitOfWork.SaveChangesAsync();
@@ -82,9 +91,9 @@ namespace Template.Application.Services.Base
             return Result;
         }
 
-        public virtual async Task<IFinalResult> AddListAsync(List<TDto> model)
+        public virtual async Task<IFinalResult> AddListAsync(List<TAddDto> model)
         {
-            var entities = Mapper.Map<List<TDto>, List<T>>(model);
+            var entities = Mapper.Map<List<TAddDto>, List<T>>(model);
             UnitOfWork.Repository.AddRange(entities);
             var affectedRows = await UnitOfWork.SaveChangesAsync();
             if (affectedRows > 0)
@@ -96,7 +105,7 @@ namespace Template.Application.Services.Base
             return Result;
         }
 
-        public virtual async Task<IFinalResult> UpdateAsync(TDto model)
+        public virtual async Task<IFinalResult> UpdateAsync(TAddDto model)
         {
             T entityToUpdate = await UnitOfWork.Repository.GetAsync(model.Id);
             var newEntity = Mapper.Map(model, entityToUpdate);

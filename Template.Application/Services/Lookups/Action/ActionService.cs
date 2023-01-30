@@ -5,9 +5,10 @@ using Template.Common.Core;
 using Template.Common.DTO.Lookup.Action;
 using Template.Application.Services.Base;
 
+
 namespace Template.Application.Services.Lookups.Action
 {
-    public class ActionService : BaseService<Domain.Entities.Lookup.Action, AddActionDto, ActionDto, int, int?>, IActionService
+    public class ActionService : BaseService<Domain.Entities.Lookup.Action, AddActionDto, EditActionDto , ActionDto, int, int?>, IActionService
     {
         
         public ActionService(IServiceBaseParameter<Domain.Entities.Lookup.Action> parameters) : base(parameters)
