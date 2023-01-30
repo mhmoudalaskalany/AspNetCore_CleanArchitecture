@@ -1,4 +1,4 @@
-﻿using Template.Common.DTO.Lookup.Action;
+﻿using Template.Common.DTO.Lookup.Category;
 using Template.Domain.Entities.Lookup;
 
 
@@ -7,15 +7,15 @@ namespace Template.Application.Mapping
 {
     public partial class MappingService
     {
-        public void MapAction()
+        public void MapCategory()
         {
-            CreateMap<Action, ActionDto>()
+            CreateMap<Category, CategoryDto>()
                 .ReverseMap();
 
-            CreateMap<Action, AddActionDto>()
+            CreateMap<Category, AddCategoryDto>()
                 .ReverseMap();
 
-            CreateMap<Action, EditActionDto>()
+            CreateMap<Category, EditCategoryDto>()
                 .ReverseMap();
         }
     }

@@ -14,6 +14,9 @@ namespace Template.Application.Mapping
             CreateMap<File, AddFileDto>()
                 .ReverseMap();
 
+            CreateMap<File, EditFileDto>()
+                .ReverseMap();
+
             CreateMap<File, DownLoadDto>().ReverseMap();
         }
     }

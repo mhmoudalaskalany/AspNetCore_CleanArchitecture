@@ -14,6 +14,9 @@ namespace Template.Application.Mapping
             CreateMap<User, AddUserDto>()
                 .ReverseMap();
 
+            CreateMap<User, EditUserDto>()
+                .ReverseMap();
+
             CreateMap<User, ActiveDirectoryUserDto>()
                 .ReverseMap();
             CreateMap<ActiveDirectoryUserDto, User>()

@@ -6,32 +6,13 @@ namespace Template.Application.Mapping
     {
         public MappingService()
         {
-            #region Identity Profiles
-
             MapUser();
             MapPermission();
-
-            #endregion
-
-            #region Lookups Profiles
-
             MapAction();
             MapStatus();
-
-            #endregion
-
-            #region Business Profiles
-
+            MapCategory();
             MapAttachment();
-
-            #endregion
-
-            #region Common Profiles
-
             MapFile();
-
-            #endregion
-
         }
     }
 }

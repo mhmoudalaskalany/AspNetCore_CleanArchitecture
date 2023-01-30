@@ -14,6 +14,9 @@ namespace Template.Application.Mapping
 
             CreateMap<Permission, AddPermissionDto>()
                 .ReverseMap();
+
+            CreateMap<Permission, EditPermissionDto>()
+                .ReverseMap();
         }
     }
 }

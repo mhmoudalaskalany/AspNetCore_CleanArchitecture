@@ -13,6 +13,9 @@ namespace Template.Application.Mapping
 
             CreateMap<Attachment, AddAttachmentDto>()
                 .ReverseMap();
+
+            CreateMap<Attachment, EditAttachmentDto>()
+                .ReverseMap();
         }
     }
 }

@@ -14,6 +14,9 @@ namespace Template.Application.Mapping
 
             CreateMap<Status, StatusDto>()
                 .ReverseMap();
+
+            CreateMap<Status, EditStatusDto>()
+                .ReverseMap();
         }
     }
 }
