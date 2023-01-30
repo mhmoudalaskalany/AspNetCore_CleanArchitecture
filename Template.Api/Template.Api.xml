@@ -219,6 +219,22 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Template.Api.Controllers.Lookup.CategoriesController">
+            <summary>
+            Actions Controller
+            </summary>
+        </member>
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.#ctor(Template.Application.Services.Lookups.Category.ICategoryService)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.GetCategoriesAsync">
+            <summary>
+            Get All Categories
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Template.Api.Controllers.Lookup.StatusesController">
             <summary>
             Statuses Controller
