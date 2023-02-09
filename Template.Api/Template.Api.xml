@@ -241,13 +241,13 @@
             Constructor
             </summary>
         </member>
-        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.GetAsync(System.Int64)">
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.GetAsync(System.Int32)">
             <summary>
             Get By Id 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.GetEditAsync(System.Int64)">
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.GetEditAsync(System.Int32)">
             <summary>
             Get By Id For Edit 
             </summary>
@@ -280,14 +280,14 @@
             <param name="model">Object content</param>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.DeleteAsync(System.Int64)">
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.DeleteAsync(System.Int32)">
             <summary>
             Remove  by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.DeleteSoftAsync(System.Int64)">
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.DeleteSoftAsync(System.Int32)">
             <summary>
             Soft Remove  by id
             </summary>
