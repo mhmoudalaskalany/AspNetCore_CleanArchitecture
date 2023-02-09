@@ -29,7 +29,7 @@ namespace Template.Api.Controllers.Lookup
         /// </summary>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<IFinalResult> GetAsync(long id)
+        public async Task<IFinalResult> GetAsync(int id)
         {
             var result = await _service.GetByIdAsync(id);
             return result;
@@ -40,7 +40,7 @@ namespace Template.Api.Controllers.Lookup
         /// </summary>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<IFinalResult> GetEditAsync(long id)
+        public async Task<IFinalResult> GetEditAsync(int id)
         {
             var result = await _service.GetEditByIdAsync(id);
             return result;
@@ -94,7 +94,7 @@ namespace Template.Api.Controllers.Lookup
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<IFinalResult> DeleteAsync(long id)
+        public async Task<IFinalResult> DeleteAsync(int id)
         {
             return await _service.DeleteAsync(id);
         }
@@ -105,7 +105,7 @@ namespace Template.Api.Controllers.Lookup
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<IFinalResult> DeleteSoftAsync(long id)
+        public async Task<IFinalResult> DeleteSoftAsync(int id)
         {
             return await _service.DeleteSoftAsync(id);
         }
