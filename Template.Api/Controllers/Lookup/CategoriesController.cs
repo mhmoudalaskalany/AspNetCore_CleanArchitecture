@@ -51,7 +51,7 @@ namespace Template.Api.Controllers.Lookup
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IFinalResult> GetCategoriesAsync() => await _service.GetCategoriesAsync();
+        public async Task<IFinalResult> GetAllAsync() => await _service.GetAllAsync();
 
 
         /// <summary>
