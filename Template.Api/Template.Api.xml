@@ -253,7 +253,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.GetCategoriesAsync">
+        <member name="M:Template.Api.Controllers.Lookup.CategoriesController.GetAllAsync">
             <summary>
             Get All Categories
             </summary>
