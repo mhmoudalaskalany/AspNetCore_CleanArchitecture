@@ -12,8 +12,11 @@ using Template.Common.Core;
 using Template.Common.Exceptions;
 using Task = System.Threading.Tasks.Task;
 
-namespace Template.Common.MiddleWares
+namespace Template.Api.MiddleWares
 {
+    /// <summary>
+    /// Exception Middleware
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public class ExceptionMiddleware
     {
@@ -21,7 +24,9 @@ namespace Template.Common.MiddleWares
         private readonly IConfiguration _configuration;
         private readonly RequestDelegate _next;
 
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ExceptionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _next = next;
@@ -29,7 +34,9 @@ namespace Template.Common.MiddleWares
             _logger = loggerFactory?.CreateLogger<ExceptionMiddleware>() ?? throw new ArgumentNullException(nameof(loggerFactory));
         }
 
-
+        /// <summary>
+        /// Invoke
+        /// </summary>
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
@@ -42,6 +49,9 @@ namespace Template.Common.MiddleWares
             }
         }
 
+        /// <summary>
+        /// Handle
+        /// </summary>
         private async Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
 
@@ -63,9 +73,9 @@ namespace Template.Common.MiddleWares
 
             context.Response.ContentType = "application/json";
 
-            string detailedExeptionMessage = $"----------Exception---------{exceptionJson}---------";
+            var detailedExceptionMessage = $"----------Exception---------{exceptionJson}---------";
             Log.ForContext("Message", exception.Message)
-            .Error(detailedExeptionMessage);
+            .Error(detailedExceptionMessage);
 
             if (ex is BaseException)
             {

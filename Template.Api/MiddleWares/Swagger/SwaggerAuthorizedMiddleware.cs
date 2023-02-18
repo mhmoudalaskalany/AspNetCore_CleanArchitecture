@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
-namespace Template.Common.MiddleWares.Swagger
+namespace Template.Api.MiddleWares.Swagger
 {
     /// <summary>
     /// Swagger Middleware

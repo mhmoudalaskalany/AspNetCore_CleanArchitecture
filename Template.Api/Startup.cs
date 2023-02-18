@@ -6,9 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Template.Api.Extensions;
+using Template.Api.MiddleWares;
+using Template.Api.MiddleWares.Swagger;
 using Template.Application.DependencyExtension;
-using Template.Common.MiddleWares;
-using Template.Common.MiddleWares.Swagger;
 
 namespace Template.Api
 {
