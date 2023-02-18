@@ -62,7 +62,7 @@ namespace Template.Api.Extensions
             {
                 using var scope =
                     app.ApplicationServices.CreateScope();
-                using var context = scope.ServiceProvider.GetService<TemplateDbContextDbContext>();
+                using var context = scope.ServiceProvider.GetService<TemplateDbContext>();
                 context?.Database.Migrate();
             }
             catch (Exception e)

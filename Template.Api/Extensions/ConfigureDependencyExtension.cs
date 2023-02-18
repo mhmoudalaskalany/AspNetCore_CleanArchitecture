@@ -54,11 +54,11 @@ namespace Template.Api.Extensions
         /// <param name="configuration"></param>
         private static void RegisterDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<TemplateDbContextDbContext>(options =>
+            services.AddDbContext<TemplateDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString(ConnectionStringName));
             });
-            services.AddScoped<DbContext, TemplateDbContextDbContext>();
+            services.AddScoped<DbContext, TemplateDbContext>();
             services.AddSingleton<IDataInitializer, DataInitializer>();
         }
 

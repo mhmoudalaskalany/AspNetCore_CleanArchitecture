@@ -3,24 +3,32 @@
     "Id": 1,
     "NameAr": "اضافة",
     "NameEn": "Add",
-    "IsDeleted": false
+    "IsDeleted": false,
+    "CreatedDate": "01/01/2023",
+    "CreatedById": 1 
   },
   {
     "Id": 2,
     "NameAr": "تعديل",
     "NameEn": "Edit",
-    "IsDeleted": false
+    "IsDeleted": false,
+    "CreatedDate": "01/01/2023",
+    "CreatedById": 1
   },
   {
     "Id": 3,
     "NameAr": "عرض",
     "NameEn": "View",
-    "IsDeleted": false
+    "IsDeleted": false,
+    "CreatedDate": "01/01/2023",
+    "CreatedById": 1
   },
   {
     "Id": 4,
     "NameAr": "حذف",
     "NameEn": "Delete",
-    "IsDeleted": false
+    "IsDeleted": false,
+    "CreatedDate": "01/01/2023",
+    "CreatedById": 1
   }
 ]

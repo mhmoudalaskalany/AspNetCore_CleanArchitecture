@@ -9,11 +9,11 @@ using Status = Template.Domain.Entities.Lookup.Status;
 
 namespace Template.Infrastructure.Context
 {
-    public partial  class TemplateDbContextDbContext : DbContext
+    public partial  class TemplateDbContext : DbContext
     {
         private readonly IDataInitializer _dataInitializer;
         private readonly IClaimService _claimService;
-        public TemplateDbContextDbContext(DbContextOptions<TemplateDbContextDbContext> options, IDataInitializer dataInitializer, IClaimService claimService) : base(options)
+        public TemplateDbContext(DbContextOptions<TemplateDbContext> options, IDataInitializer dataInitializer, IClaimService claimService) : base(options)
         {
             _dataInitializer = dataInitializer;
             _claimService = claimService;

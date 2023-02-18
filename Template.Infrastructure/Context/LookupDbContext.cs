@@ -3,7 +3,7 @@ using Template.Domain.Entities.Lookup;
 
 namespace Template.Infrastructure.Context
 {
-    public partial class TemplateDbContextDbContext
+    public partial class TemplateDbContext
     {
 
         public virtual DbSet<Status> Statuses { get; set; }

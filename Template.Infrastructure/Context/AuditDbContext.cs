@@ -9,7 +9,7 @@ using Template.Domain.Enum;
 
 namespace Template.Infrastructure.Context
 {
-    public partial class TemplateDbContextDbContext
+    public partial class TemplateDbContext
     {
 
         public virtual DbSet<Audit> AuditTrails { get; set; }

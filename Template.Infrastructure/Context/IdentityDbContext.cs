@@ -3,7 +3,7 @@ using Template.Domain.Entities.Identity;
 
 namespace Template.Infrastructure.Context
 {
-    public partial class TemplateDbContextDbContext
+    public partial class TemplateDbContext
     {
         public virtual DbSet<User> Users { get; set; }
 
