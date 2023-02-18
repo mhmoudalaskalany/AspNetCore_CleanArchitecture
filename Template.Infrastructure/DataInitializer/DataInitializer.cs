@@ -11,7 +11,7 @@ namespace Template.Infrastructure.DataInitializer
 {
     public class DataInitializer : IDataInitializer
     {
-        #region Public Methods
+
         public IEnumerable<Role> SeedRoles()
         {
             var roleList = new List<Role>();
@@ -95,9 +95,5 @@ namespace Template.Infrastructure.DataInitializer
 
                 }).ToList();
         }
-
-
-        #endregion
-
     }
 }
