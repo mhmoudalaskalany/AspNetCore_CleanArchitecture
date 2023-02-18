@@ -37,7 +37,6 @@ Clean Architecture For .Net Core 7 Web Api
 - Run Unit Tests using Iteration Count like (1000) case for the test till it fails 
 - Move Logging Mechanism To Different Nuget SDK
 - Move Date Layer Access To Separate Nuget SDK  
-- Move Microsoft.AspNetCore.Http nuget usage from low level layer to api layer (http layer)
 
 # Installation
 
