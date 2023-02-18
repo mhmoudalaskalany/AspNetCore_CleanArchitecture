@@ -5,7 +5,9 @@
     "NameEn": "Add",
     "IsDeleted": false,
     "CreatedDate": "01/01/2023",
-    "CreatedById": 1 
+    "ModifiedDate": "01/01/2023",
+    "CreatedById": 1,
+    "Code": "ADD"
   },
   {
     "Id": 2,
@@ -13,7 +15,9 @@
     "NameEn": "Edit",
     "IsDeleted": false,
     "CreatedDate": "01/01/2023",
-    "CreatedById": 1
+    "ModifiedDate": "01/01/2023",
+    "CreatedById": 1,
+    "Code": "EDIT"
   },
   {
     "Id": 3,
@@ -21,7 +25,9 @@
     "NameEn": "View",
     "IsDeleted": false,
     "CreatedDate": "01/01/2023",
-    "CreatedById": 1
+    "ModifiedDate": "01/01/2023",
+    "CreatedById": 1,
+    "Code": "VIEW"
   },
   {
     "Id": 4,
@@ -29,6 +35,8 @@
     "NameEn": "Delete",
     "IsDeleted": false,
     "CreatedDate": "01/01/2023",
-    "CreatedById": 1
+    "ModifiedDate": "01/01/2023",
+    "CreatedById": 1,
+    "Code": "DELETE"
   }
 ]
