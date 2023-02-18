@@ -72,7 +72,7 @@ namespace Template.Common.Extensions
         private static void RegisterEmailMetadata(this IServiceCollection services, IConfiguration configuration)
         {
             var notificationMetadata = configuration.GetSection("EmailMetadata").Get<EmailMetadata>();
-            services.AddSingleton(notificationMetadata);
+            if (notificationMetadata != null) services.AddSingleton(notificationMetadata);
         }
 
         private static void RegisterAuthentication(this IServiceCollection services, IConfiguration configuration)
@@ -94,7 +94,7 @@ namespace Template.Common.Extensions
                     ValidAudience = configuration["Jwt:Audience"],
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"])),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"] ?? string.Empty)),
                 };
             });
         }
@@ -108,8 +108,12 @@ namespace Template.Common.Extensions
                 var version = configuration["SwaggerConfig:Version"];
                 var docPath = configuration["SwaggerConfig:DocPath"];
                 options.SwaggerDoc(version, new OpenApiInfo { Title = title, Version = version });
-                var filePath = Path.Combine(AppContext.BaseDirectory, docPath);
-                options.IncludeXmlComments(filePath);
+                if (docPath != null)
+                {
+                    var filePath = Path.Combine(AppContext.BaseDirectory, docPath);
+                    options.IncludeXmlComments(filePath);
+                }
+
                 var security = new OpenApiSecurityRequirement
                 {
                     {

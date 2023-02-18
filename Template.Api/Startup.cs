@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Template.Api.Extensions;
 using Template.Application.DependencyExtension;
 using Template.Common.MiddleWares;
+using Template.Common.MiddleWares.Swagger;
 
 namespace Template.Api
 {
@@ -52,6 +53,7 @@ namespace Template.Api
             _shell.ConfigureHttp(app, env);
             Shell.Start(_shell);
             app.ConfigureCustomMiddleware();
+            app.UseMiddleware<SwaggerBasicAuthMiddleware>();
             app.Configure(env, Configuration);
             if (env.IsDevelopment())
             {

@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 1,
+    "NameAr": "اضافة",
+    "NameEn": "Add",
+    "IsDeleted": false
+  },
+  {
+    "Id": 2,
+    "NameAr": "تعديل",
+    "NameEn": "Edit",
+    "IsDeleted": false
+  },
+  {
+    "Id": 3,
+    "NameAr": "عرض",
+    "NameEn": "View",
+    "IsDeleted": false
+  },
+  {
+    "Id": 4,
+    "NameAr": "حذف",
+    "NameEn": "Delete",
+    "IsDeleted": false
+  }
+]

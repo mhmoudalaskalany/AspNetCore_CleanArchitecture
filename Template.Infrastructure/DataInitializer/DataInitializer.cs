@@ -12,10 +12,6 @@ namespace Template.Infrastructure.DataInitializer
     public class DataInitializer : IDataInitializer
     {
         #region Public Methods
-        /// <summary>
-        /// Seed Roles
-        /// </summary>
-        /// <returns></returns>
         public IEnumerable<Role> SeedRoles()
         {
             var roleList = new List<Role>();
@@ -34,10 +30,7 @@ namespace Template.Infrastructure.DataInitializer
 
             return roleList.ToArray();
         }
-        /// <summary>
-        /// Seed Users
-        /// </summary>
-        /// <returns></returns>
+      
         public IEnumerable<User> SeedUsers()
         {
             var userList = new List<User>();
@@ -63,60 +56,14 @@ namespace Template.Infrastructure.DataInitializer
             return userList.ToArray();
         }
 
-        /// <summary>
-        /// Seed Permissions
-        /// </summary>
-        /// <returns></returns>
+       
         public IEnumerable<Permission> SeedPermissions()
         {
-            var permissionList = new List<Permission>();
-            permissionList.AddRange(new[]
-            {
-                new Permission
-                {
-                    Id = 1,
-                    NameEn = "Add",
-                    NameAr = "اضافة",
-                    Code = "Add",
-                    CreatedDate = new DateTime(2021, 1, 1),
-                    ModifiedDate = new DateTime(2021, 1, 1)
-                },
-                new Permission
-                {
-                    Id = 2,
-                    NameEn = "Edit",
-                    NameAr = "تعديل",
-                    Code = "Edit",
-                    CreatedDate = new DateTime(2021, 1, 1),
-                    ModifiedDate = new DateTime(2021, 1, 1)
-                },
-                new Permission
-                {
-                    Id = 3,
-                    NameEn = "View",
-                    NameAr = "عرض",
-                    Code = "View",
-                    CreatedDate = new DateTime(2021, 1, 1),
-                    ModifiedDate = new DateTime(2021, 1, 1)
-                },
-                new Permission
-                {
-                    Id = 4,
-                    NameEn = "Delete",
-                    NameAr = "حذف",
-                    Code = "Delete",
-                    CreatedDate = new DateTime(2021, 1, 1),
-                    ModifiedDate = new DateTime(2021, 1, 1)
-                }
-
-            });
-
-            return permissionList.ToArray();
+            var dataText = System.IO.File.ReadAllText(@"Seed/Permissions.json");
+            var permissions = Seeder<List<Permission>>.SeedIt(dataText);
+            return permissions;
         }
-        /// <summary>
-        /// Seed Actions
-        /// </summary>
-        /// <returns></returns>
+       
         public IEnumerable<Action> SeedActions()
         {
             var enums = Enum.GetValues(typeof(Domain.Enum.Action));
@@ -132,10 +79,7 @@ namespace Template.Infrastructure.DataInitializer
 
                 }).ToList();
         }
-        /// <summary>
-        /// Seed Statuses
-        /// </summary>
-        /// <returns></returns>
+       
         public IEnumerable<Status> SeedStatuses()
         {
             var enums = Enum.GetValues(typeof(Domain.Enum.Status));
@@ -151,6 +95,7 @@ namespace Template.Infrastructure.DataInitializer
 
                 }).ToList();
         }
+
 
         #endregion
 
