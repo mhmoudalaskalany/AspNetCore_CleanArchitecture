@@ -21,10 +21,10 @@ namespace Template.Domain.Entities.Audit
         public Dictionary<string, object> OldValues { get; } = new();
         public Dictionary<string, object> NewValues { get; } = new();
         public AuditType AuditType { get; set; }
-        public List<string> ChangedColumns { get; } = new List<string>();
-        public Template.Domain.Entities.Audit.Audit ToAudit()
+        public List<string> ChangedColumns { get; } = new();
+        public Audit ToAudit()
         {
-            var audit = new Template.Domain.Entities.Audit.Audit
+            var audit = new Audit
             {
                 UserId = UserId,
                 Type = AuditType.ToString(),

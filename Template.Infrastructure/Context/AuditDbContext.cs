@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-
 using Microsoft.EntityFrameworkCore;
 using Template.Domain.Entities.Audit;
 using Template.Domain.Enum;
@@ -14,7 +13,7 @@ namespace Template.Infrastructure.Context
 
         public virtual DbSet<Audit> AuditTrails { get; set; }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {
 
             var entries = ChangeTracker.Entries();
@@ -24,7 +23,7 @@ namespace Template.Infrastructure.Context
                     continue;
                 foreach (var property in entry.Properties)
                 {
-                    string propertyName = property.Metadata.Name;
+                    var propertyName = property.Metadata.Name;
                     switch (entry.State)
                     {
                         case EntityState.Added:
@@ -53,7 +52,7 @@ namespace Template.Infrastructure.Context
                 if (entry.Entity is Audit || entry.State == EntityState.Detached ||
                     entry.State == EntityState.Unchanged)
                     continue;
-                var userId = _claimService?.UserId.ToString();
+                var userId = _claimService?.UserId;
                 var auditEntry = new AuditEntry(entry)
                 {
                     TableName = entry.Entity.GetType().Name,
@@ -64,7 +63,7 @@ namespace Template.Infrastructure.Context
                 auditEntries.Add(auditEntry);
                 foreach (var property in entry.Properties)
                 {
-                    string propertyName = property.Metadata.Name;
+                    var propertyName = property.Metadata.Name;
                     if (property.Metadata.IsPrimaryKey())
                     {
                         auditEntry.KeyValues[propertyName] = property.CurrentValue;
