@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Diagnostics.CodeAnalysis;
+using AutoMapper;
 using Template.Common.Core;
 using Template.Common.Infrastructure.UnitOfWork;
 using Microsoft.AspNetCore.Http;
@@ -7,6 +8,7 @@ using Template.Integration.CacheRepository;
 
 namespace Template.Application.Services.Base
 {
+    [ExcludeFromCodeCoverage]
     public class ServiceBaseParameter<T> : IServiceBaseParameter<T> where T : class
     {
 
