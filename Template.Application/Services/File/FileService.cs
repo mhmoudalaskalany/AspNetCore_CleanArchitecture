@@ -17,15 +17,9 @@ namespace Template.Application.Services.File
 {
     public class FileService : BaseService<Domain.Entities.Business.File, AddFileDto , EditFileDto, FileDto, Guid, Guid?>, IFileService
     {
-
-        
         private readonly Func<string, IStorageService> _storage;
         private readonly IConfiguration _configuration;
         private string _path;
-
-
-
-
 
         public FileService(IServiceBaseParameter<Domain.Entities.Business.File> parameters, IConfiguration configuration, Func<string, IStorageService> storage) : base(parameters)
         {
@@ -34,15 +28,9 @@ namespace Template.Application.Services.File
         }
 
 
-
-
         /// <summary>
         /// Upload To Shared Storage
         /// </summary>
-        /// <param name="files"></param>
-        /// <param name="storageType"></param>
-        /// <param name="isPublic"></param>
-        /// <param name="appCode"></param>
         /// <returns></returns>
         public async Task<IFinalResult> UploadToSanStorage(IFormFileCollection files, StorageType storageType, bool isPublic, string appCode)
         {
@@ -65,11 +53,10 @@ namespace Template.Application.Services.File
             var result = Mapper.Map<List<FileDto>>(entities);
             return new ResponseResult(result, HttpStatusCode.Created, null, "AddSuccess");
         }
+
         /// <summary>
         /// Upload Bytes
         /// </summary>
-        /// <param name="model"></param>
-        /// <param name="length"></param>
         /// <returns></returns>
         public async Task<IFinalResult> UploadBytes(UploadRequestDto model, int length)
         {
@@ -98,13 +85,10 @@ namespace Template.Application.Services.File
             return new ResponseResult(response, HttpStatusCode.Created, null, "AddSuccess");
         }
 
-       
-       
+        
         /// <summary>
         /// Download With App Code From Token
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="token"></param>
         /// <returns></returns>
         public async Task<object> DownloadWithAppCode(Guid id, string token)
         {
@@ -124,7 +108,6 @@ namespace Template.Application.Services.File
         /// <summary>
         /// Get Directories
         /// </summary>
-        /// <param name="storageType"></param>
         /// <returns></returns>
         public async Task<object> GetDirectoriesAsync(StorageType storageType)
         {
@@ -135,7 +118,6 @@ namespace Template.Application.Services.File
         /// <summary>
         /// Delete File Physical From Database And Folder
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         public async Task<IFinalResult> DeletePhysicalAsync(Guid id)
         {
