@@ -8,6 +8,7 @@ namespace Template.Common.DTO.Common.File.Parameters
     public class FileFilter : MainFilter
     {
         public Guid? Id { get; set; }
+
         public string AppCode { get; set; }
     }
 }

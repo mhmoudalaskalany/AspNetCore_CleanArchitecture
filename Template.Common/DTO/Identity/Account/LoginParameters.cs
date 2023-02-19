@@ -8,6 +8,7 @@ namespace Template.Common.DTO.Identity.Account
     {
         [Required]
         public string Username { get; set; }
+
         [Required]
         public string Password { get; set; }
     }

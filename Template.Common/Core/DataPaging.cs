@@ -7,8 +7,11 @@ namespace Template.Common.Core
     public class DataPaging
     {
         public PagingResult Data { get; set; }
+
         public HttpStatusCode Status { get; set; }
+
         public string Message { get; set; }
+
         public DataPaging(int pageNumber, int pageSize, int totalCount, object result, HttpStatusCode status, string message)
         {
             Data = new PagingResult(pageNumber, pageSize, totalCount, result);
@@ -28,8 +31,11 @@ namespace Template.Common.Core
             Data = result;
         }
         public int PageNumber { get; set; }
+
         public int PageSize { get; set; }
+
         public int TotalCount { get; set; }
+
         public object Data { get; set; }
     }
 }
