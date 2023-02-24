@@ -37,6 +37,7 @@ Clean Architecture For .Net Core 7 Web Api
 - Run Unit Tests using Iteration Count like (1000) case for the test till it fails 
 - Move Logging Mechanism To Different Nuget SDK
 - Move Date Layer Access To Separate Nuget SDK  
+- Use ClaimPrincipalExtensions to add better extension methods to get claim values from token
 
 # Installation
 
