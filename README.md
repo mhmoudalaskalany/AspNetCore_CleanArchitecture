@@ -38,6 +38,7 @@ Clean Architecture For .Net Core 7 Web Api
 - Move Logging Mechanism To Different Nuget SDK
 - Move Date Layer Access To Separate Nuget SDK  
 - Use ClaimPrincipalExtensions to add better extension methods to get claim values from token
+- Refactor BaseService to remove the inputs to the service
 
 # Installation
 
