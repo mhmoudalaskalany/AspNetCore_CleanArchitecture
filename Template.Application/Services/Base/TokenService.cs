@@ -30,7 +30,7 @@ namespace Template.Application.Services.Base
                 new Claim("RoleAr", role.NameAr)
             };
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:SecretKey"]));
-            var expiryInHours = DateTime.Now.AddHours(Convert.ToDouble(_config["Jwt:ExpiryInHours"]));
+            var expiryInHours = DateTime.UtcNow.AddHours(Convert.ToDouble(_config["Jwt:ExpiryInHours"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(

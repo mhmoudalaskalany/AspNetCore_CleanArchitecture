@@ -154,7 +154,7 @@ namespace Template.Application.Services.Base
             var createdBy = type.GetProperty("CreatedById");
             if (createdBy != null) createdBy.SetValue(entity, ClaimData.UserId);
             var createdDate = type.GetProperty("CreatedDate");
-            if (createdDate != null) createdDate.SetValue(entity, DateTime.Now);
+            if (createdDate != null) createdDate.SetValue(entity, DateTime.UtcNow);
 
         }
 
@@ -164,7 +164,7 @@ namespace Template.Application.Services.Base
             var createdBy = type.GetProperty("ModifiedById");
             if (createdBy != null) createdBy.SetValue(entity, ClaimData.UserId);
             var createdDate = type.GetProperty("ModifiedDate");
-            if (createdDate != null) createdDate.SetValue(entity, DateTime.Now);
+            if (createdDate != null) createdDate.SetValue(entity, DateTime.UtcNow);
 
         }
 
