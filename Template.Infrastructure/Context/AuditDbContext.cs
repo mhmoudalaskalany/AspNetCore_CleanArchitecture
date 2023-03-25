@@ -28,11 +28,11 @@ namespace Template.Infrastructure.Context
                     {
                         case EntityState.Added:
                             if (propertyName == "CreatedById") property.CurrentValue = _claimService?.UserId;
-                            else if (propertyName == "CreatedDate") property.CurrentValue = DateTime.Now;
+                            else if (propertyName == "CreatedDate") property.CurrentValue = DateTime.UtcNow;
                             break;
                         case EntityState.Modified:
                             if (propertyName == "ModifiedById") property.CurrentValue = _claimService?.UserId;
-                            else if (propertyName == "ModifiedDate") property.CurrentValue = DateTime.Now;
+                            else if (propertyName == "ModifiedDate") property.CurrentValue = DateTime.UtcNow;
                             break;
                     }
                 }

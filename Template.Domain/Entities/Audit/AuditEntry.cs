@@ -37,7 +37,7 @@ namespace Template.Domain.Entities.Audit
                 UserId = UserId,
                 Type = AuditType.ToString(),
                 TableName = TableName,
-                DateTime = DateTime.Now,
+                DateTime = DateTime.UtcNow,
                 PrimaryKey = JsonConvert.SerializeObject(KeyValues),
                 OldValues = OldValues.Count == 0 ? null : JsonConvert.SerializeObject(OldValues),
                 NewValues = NewValues.Count == 0 ? null : JsonConvert.SerializeObject(NewValues),
