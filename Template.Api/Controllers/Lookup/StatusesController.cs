@@ -26,9 +26,5 @@ namespace Template.Api.Controllers.Lookup
         /// <returns></returns>
         [HttpGet]
         public async Task<IFinalResult> GetStatusesAsync() => await _service.GetStatusesAsync();
-
-
-
-
     }
 }

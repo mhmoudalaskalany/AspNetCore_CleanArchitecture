@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using RestSharp;
@@ -14,13 +13,15 @@ namespace Template.Common.Helpers.HttpClient.RestSharp
     public class RestSharpContainer : IRestSharpContainer
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IConfiguration _configuration;
         private readonly ILogger<RestSharpContainer> _logger;
         private readonly RestClient _client;
-        public RestSharpContainer(IHttpContextAccessor httpContextAccessor, IConfiguration configuration, ILogger<RestSharpContainer> logger)
+        private readonly JsonSerializerSettings _serializerSettings = new()
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        };
+        public RestSharpContainer(IHttpContextAccessor httpContextAccessor, ILogger<RestSharpContainer> logger)
         {
             _httpContextAccessor = httpContextAccessor;
-            _configuration = configuration;
             _logger = logger;
             _client = new RestClient();
         }
@@ -50,7 +51,7 @@ namespace Template.Common.Helpers.HttpClient.RestSharp
             _logger.LogInformation($"Rest-Sharp: Url  {url}");
             if (_httpContextAccessor.HttpContext != null)
             {
-                var accessToken = await _httpContextAccessor?.HttpContext?.GetTokenAsync("access_token");
+                var accessToken = await _httpContextAccessor?.HttpContext?.GetTokenAsync("access_token")!;
                 if (accessToken != null) request.AddHeader("Authorization", "Bearer " + accessToken);
             }
 
@@ -58,7 +59,7 @@ namespace Template.Common.Helpers.HttpClient.RestSharp
             T data;
             try
             {
-                data = JsonConvert.DeserializeObject<T>(response.Content);
+                data = JsonConvert.DeserializeObject<T>(response.Content!);
             }
             catch (Exception) { data = default(T); }
             return data == null ? response.Data : data;
@@ -68,10 +69,11 @@ namespace Template.Common.Helpers.HttpClient.RestSharp
         {
             try
             {
-                _client.Authenticator =
-                    new HttpBasicAuthenticator(username, password);
 
-                var request = new RestRequest(url, method);
+                var request = new RestRequest(url, method)
+                {
+                    Authenticator = new HttpBasicAuthenticator(username, password)
+                };
 
 
                 request.AddHeader("Accept", "application/json");
@@ -92,19 +94,20 @@ namespace Template.Common.Helpers.HttpClient.RestSharp
                 T data;
                 try
                 {
-                    data = JsonConvert.DeserializeObject<T>(response.Content);
+                    data = JsonConvert.DeserializeObject<T>(response.Content!);
 
                 }
                 catch (Exception e)
                 {
                     data = default(T);
-                    _logger.LogInformation($"Rest-Sharp: Error At Exception Data  {JsonConvert.SerializeObject(response.StatusCode)}");
+                    _logger.LogInformation($"Rest-Sharp:ErrorAtExceptionDataAndRequestStatus  {JsonConvert.SerializeObject(response.StatusCode)}");
+                    _logger.LogInformation($"Rest-Sharp:ErrorAtParsingData  {JsonConvert.SerializeObject(e , _serializerSettings)}");
                 }
                 return data == null ? response.Data : data;
             }
             catch (Exception e)
             {
-                _logger.LogError("Error At Rest Sharp Container" + JsonConvert.SerializeObject(e.Message));
+                _logger.LogInformation($"Rest-Sharp:ExceptionSendingRequest  {JsonConvert.SerializeObject(e, _serializerSettings)}");
                 throw;
             }
 
