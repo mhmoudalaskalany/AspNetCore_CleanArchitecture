@@ -39,7 +39,7 @@ Clean Architecture For .Net Core 7 Web Api
 - Move Date Layer Access To Separate Nuget SDK  
 - Use ClaimPrincipalExtensions to add better extension methods to get claim values from token
 - Refactor BaseService to remove the inputs to the service
-
+- Add https://www.flagsmith.com/
 # Installation
 
 - clone the repository
