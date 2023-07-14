@@ -40,7 +40,7 @@ Clean Architecture For .Net Core 7 Web Api
 - Use ClaimPrincipalExtensions to add better extension methods to get claim values from token
 - Refactor BaseService to remove the inputs to the service
 - Add https://www.flagsmith.com/
--Use https://youtube.com/shorts/NLopFJ-EtKA?feature=share
+- Use https://youtube.com/shorts/NLopFJ-EtKA?feature=share
 # Installation
 
 - clone the repository
