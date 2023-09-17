@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Newtonsoft.Json;
+using RestSharp;
 using RestSharp.Serializers;
 
 namespace Template.Common.Helpers.HttpClient
@@ -15,7 +16,7 @@ namespace Template.Common.Helpers.HttpClient
             this._serializer = serializer;
         }
 
-        public string ContentType
+        public ContentType ContentType
         {
             get => "application/json";
 // Probably used for Serialization?
