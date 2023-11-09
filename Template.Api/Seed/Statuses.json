@@ -1,0 +1,57 @@
+[
+  {
+    "Id": 1,
+    "NameAr": "جديدة",
+    "NameEn": "New",
+    "IsDeleted": false,
+    "CreatedDate": "01/01/2023",
+    "ModifiedDate": "01/01/2023",
+    "CreatedById": 1,
+    "Code": "NEW",
+    "CssClass": "status-success"
+  },
+  {
+    "Id": 2,
+    "NameAr": "قيد الإنتظار",
+    "NameEn": "Pending",
+    "IsDeleted": false,
+    "CreatedDate": "01/01/2023",
+    "ModifiedDate": "01/01/2023",
+    "CreatedById": 1,
+    "Code": "PENDING",
+    "CssClass": "status-info"
+  },
+  {
+    "Id": 3,
+    "NameAr": "مغلقة",
+    "NameEn": "Closed",
+    "IsDeleted": false,
+    "CreatedDate": "01/01/2023",
+    "ModifiedDate": "01/01/2023",
+    "CreatedById": 1,
+    "Code": "CLOSED",
+    "CssClass": "status-warning"
+  },
+  {
+    "Id": 4,
+    "NameAr": "مكتملة",
+    "NameEn": "Completed",
+    "IsDeleted": false,
+    "CreatedDate": "01/01/2023",
+    "ModifiedDate": "01/01/2023",
+    "CreatedById": 1,
+    "Code": "COMPLETED",
+    "CssClass": "status-warning"
+  },
+  {
+    "Id": 5,
+    "NameAr": "مرفوض",
+    "NameEn": "Rejected",
+    "IsDeleted": false,
+    "CreatedDate": "01/01/2023",
+    "ModifiedDate": "01/01/2023",
+    "CreatedById": 1,
+    "Code": "REJECTED",
+    "CssClass": "status-warning"
+  }
+]

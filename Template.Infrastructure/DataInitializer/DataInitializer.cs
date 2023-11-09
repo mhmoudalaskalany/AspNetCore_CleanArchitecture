@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Template.Common.Extensions;
 using Template.Domain.Entities.Identity;
 using Template.Domain.Entities.Lookup;
@@ -30,7 +31,7 @@ namespace Template.Infrastructure.DataInitializer
 
             return roleList.ToArray();
         }
-      
+
         public IEnumerable<User> SeedUsers()
         {
             var userList = new List<User>();
@@ -56,44 +57,27 @@ namespace Template.Infrastructure.DataInitializer
             return userList.ToArray();
         }
 
-       
-        public IEnumerable<Permission> SeedPermissions()
+
+        public async Task<IEnumerable<Permission>> SeedPermissionsAsync()
         {
-            var dataText = System.IO.File.ReadAllText(@"Seed/Permissions.json");
+            var dataText = await System.IO.File.ReadAllTextAsync(@"Seed/Permissions.json");
             var permissions = Seeder<List<Permission>>.SeedIt(dataText);
             return permissions;
         }
-       
-        public IEnumerable<Action> SeedActions()
-        {
-            var enums = Enum.GetValues(typeof(Domain.Enum.Action));
-            return (from object enumItem in enums
-                select new Action
-                {
-                    Id = (int)(Domain.Enum.Action)enumItem,
-                    NameEn = ((Domain.Enum.Action)enumItem).GetName().NameEn,
-                    NameAr = ((Domain.Enum.Action)enumItem).GetName().NameAr,
-                    Code = ((Domain.Enum.Action)enumItem).GetName().Code,
-                    CreatedDate = new DateTime(2021, 1, 1),
-                    ModifiedDate = new DateTime(2021, 1, 1)
 
-                }).ToList();
-        }
-       
-        public IEnumerable<Status> SeedStatuses()
+        public async Task<IEnumerable<Permission>> SeedActionsAsync()
         {
-            var enums = Enum.GetValues(typeof(Domain.Enum.Status));
-            return (from object enumItem in enums
-                select new Status
-                {
-                    Id = (int)(Domain.Enum.Status)enumItem,
-                    NameEn = ((Domain.Enum.Status)enumItem).GetName().NameEn,
-                    NameAr = ((Domain.Enum.Status)enumItem).GetName().NameAr,
-                    Code = ((Domain.Enum.Status)enumItem).GetName().Code,
-                    CreatedDate = new DateTime(2021, 1, 1),
-                    ModifiedDate = new DateTime(2021, 1, 1)
-
-                }).ToList();
+            var dataText = await System.IO.File.ReadAllTextAsync(@"Seed/Actions.json");
+            var permissions = Seeder<List<Permission>>.SeedIt(dataText);
+            return permissions;
         }
+
+        public async Task<IEnumerable<Permission>> SeedStatusesAsync()
+        {
+            var dataText = await System.IO.File.ReadAllTextAsync(@"Seed/Statuses.json");
+            var permissions = Seeder<List<Permission>>.SeedIt(dataText);
+            return permissions;
+        }
+
     }
 }
