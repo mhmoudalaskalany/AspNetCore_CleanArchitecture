@@ -1,0 +1,35 @@
+[
+  {
+    "Id": 1,
+    "NameAr": "إضافة",
+    "NameEn": "Add",
+    "IsDeleted": false,
+    "CreatedDate": "01/01/2023",
+    "ModifiedDate": "01/01/2023",
+    "CreatedById": 1,
+    "Code": "ADD",
+    "CssClass": "action-info"
+  },
+  {
+    "Id": 2,
+    "NameAr": "موافقة",
+    "NameEn": "Approve",
+    "IsDeleted": false,
+    "CreatedDate": "01/01/2023",
+    "ModifiedDate": "01/01/2023",
+    "CreatedById": 1,
+    "Code": "APPROVE",
+    "CssClass": "action-secondary"
+  },
+  {
+    "Id": 3,
+    "NameAr": "رفض",
+    "NameEn": "Reject",
+    "IsDeleted": false,
+    "CreatedDate": "01/01/2023",
+    "ModifiedDate": "01/01/2023",
+    "CreatedById": 1,
+    "Code": "REJECT",
+    "CssClass": "action-secondary"
+  }
+]

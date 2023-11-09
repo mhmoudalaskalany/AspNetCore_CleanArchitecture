@@ -35,9 +35,9 @@ namespace Template.Infrastructure.Context
 
             modelBuilder.Entity<Role>().HasData(_dataInitializer.SeedRoles());
             modelBuilder.Entity<User>().HasData(_dataInitializer.SeedUsers());
-            modelBuilder.Entity<Permission>().HasData(_dataInitializer.SeedPermissions());
-            modelBuilder.Entity<Status>().HasData(_dataInitializer.SeedStatuses());
-            modelBuilder.Entity<Action>().HasData(_dataInitializer.SeedActions());
+            modelBuilder.Entity<Permission>().HasData(_dataInitializer.SeedPermissionsAsync());
+            modelBuilder.Entity<Status>().HasData(_dataInitializer.SeedStatusesAsync());
+            modelBuilder.Entity<Action>().HasData(_dataInitializer.SeedActionsAsync());
 
             base.OnModelCreating(modelBuilder);
         }
