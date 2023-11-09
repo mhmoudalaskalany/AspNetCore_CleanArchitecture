@@ -1,1 +1,1 @@
-- migration of seeds are failing
+- migration of seeds are failing --- done , the ReadAllTextAsync is causing error , try to find another solution later
