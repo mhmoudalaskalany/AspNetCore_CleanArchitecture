@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using Template.Domain.Entities.Identity;
 using Template.Domain.Entities.Lookup;
 
@@ -11,11 +10,11 @@ namespace Template.Infrastructure.DataInitializer
 
         IEnumerable<User> SeedUsers();
 
-        Task<IEnumerable<Permission>> SeedPermissionsAsync();
+        IEnumerable<Permission> SeedPermissionsAsync();
 
-        Task<IEnumerable<Action>> SeedActionsAsync();
+        IEnumerable<Action> SeedActionsAsync();
 
-        Task<IEnumerable<Status>> SeedStatusesAsync();
+        IEnumerable<Status> SeedStatusesAsync();
 
     }
 }
