@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Template.Common.Extensions;
 using Template.Domain.Entities.Identity;
@@ -65,18 +64,18 @@ namespace Template.Infrastructure.DataInitializer
             return permissions;
         }
 
-        public async Task<IEnumerable<Permission>> SeedActionsAsync()
+        public async Task<IEnumerable<Action>> SeedActionsAsync()
         {
             var dataText = await System.IO.File.ReadAllTextAsync(@"Seed/Actions.json");
-            var permissions = Seeder<List<Permission>>.SeedIt(dataText);
-            return permissions;
+            var actions = Seeder<List<Action>>.SeedIt(dataText);
+            return actions;
         }
 
-        public async Task<IEnumerable<Permission>> SeedStatusesAsync()
+        public async Task<IEnumerable<Status>> SeedStatusesAsync()
         {
             var dataText = await System.IO.File.ReadAllTextAsync(@"Seed/Statuses.json");
-            var permissions = Seeder<List<Permission>>.SeedIt(dataText);
-            return permissions;
+            var statuses = Seeder<List<Status>>.SeedIt(dataText);
+            return statuses;
         }
 
     }
