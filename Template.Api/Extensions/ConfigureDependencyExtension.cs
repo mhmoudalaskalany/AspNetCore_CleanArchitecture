@@ -51,7 +51,7 @@ namespace Template.Api.Extensions
             services.RegisterIntegrationRepositories();
             services.RegisterAutoMapper();
             services.RegisterCommonServices(configuration);
-            services.AddHealthChecks();
+            services.RegisterApiMonitoring();
             services.AddControllers();
             services.RegisterApiVersioning();
             services.RegisterSwaggerConfig();
@@ -72,6 +72,16 @@ namespace Template.Api.Extensions
             });
             services.AddScoped<DbContext, TemplateDbContext>();
             services.AddSingleton<IDataInitializer, DataInitializer>();
+        }
+
+        /// <summary>
+        /// Add DbContext
+        /// </summary>
+        /// <param name="services"></param>
+        private static void RegisterApiMonitoring(this IServiceCollection services)
+        {
+            services.AddHealthChecks()
+                .AddDbContextCheck<TemplateDbContext>();
         }
 
 
