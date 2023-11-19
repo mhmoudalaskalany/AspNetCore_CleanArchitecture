@@ -666,6 +666,18 @@
             </summary>
             <param name="services"></param>
         </member>
+        <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterLowerCaseUrls(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Lower Case Urls
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterSwaggerConfig(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Swagger Config
+            </summary>
+            <param name="services"></param>
+        </member>
         <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterCores(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Register Main Core

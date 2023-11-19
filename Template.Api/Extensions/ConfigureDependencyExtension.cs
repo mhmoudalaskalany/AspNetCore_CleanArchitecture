@@ -25,6 +25,7 @@ using Microsoft.OpenApi.Models;
 using Template.Common.Extensions.Swagger.Headers;
 using System.IO;
 using System;
+using Microsoft.AspNetCore.Routing;
 
 namespace Template.Api.Extensions
 {
@@ -54,6 +55,7 @@ namespace Template.Api.Extensions
             services.AddControllers();
             services.RegisterApiVersioning();
             services.RegisterSwaggerConfig();
+            services.RegisterLowerCaseUrls();
             return services;
         }
 
@@ -130,6 +132,21 @@ namespace Template.Api.Extensions
                 config.SubstituteApiVersionInUrl = true;
             });
         }
+
+
+        /// <summary>
+        /// Lower Case Urls
+        /// </summary>
+        /// <param name="services"></param>
+        private static void RegisterLowerCaseUrls(this IServiceCollection services)
+        {
+            services.Configure<RouteOptions>(options => { options.LowercaseUrls = true; });
+        }
+
+        /// <summary>
+        /// Swagger Config
+        /// </summary>
+        /// <param name="services"></param>
 
         private static void RegisterSwaggerConfig(this IServiceCollection services)
         {
