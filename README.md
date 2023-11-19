@@ -1,4 +1,4 @@
-# .Net Core 7 Api Clean Architecture
+# .Net Core 8 Api Clean Architecture
 Clean Architecture For .Net Core 7 Web Api
 
 # Layers
