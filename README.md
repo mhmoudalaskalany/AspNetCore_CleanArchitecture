@@ -24,7 +24,8 @@ Clean Architecture For .Net Core 7 Web Api
 - Swagger Documentation
 - JWT Authentication
 - Policy Based Authorization
-- Form Based (Username And Password) Authentication And LDAP Authentication 
+- Form Based (Username And Password) Authentication And LDAP Authentication
+- Api Versioning
 
 # Road Map
 - Add Dashboard For Audit Trails Logs
