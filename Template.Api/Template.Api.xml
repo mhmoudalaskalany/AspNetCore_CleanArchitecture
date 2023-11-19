@@ -731,6 +731,38 @@
             <param name="app"></param>
             <param name="configuration"></param>
         </member>
+        <member name="T:Template.Api.Extensions.Swagger.Headers.LanguageHeader">
+            <summary>
+            Language Header
+            </summary>
+        </member>
+        <member name="M:Template.Api.Extensions.Swagger.Headers.LanguageHeader.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Apply
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Template.Api.Extensions.Swagger.Options.SwaggerConfigureOptions">
+            <summary>
+              Configures the Swagger generation options.
+            </summary>
+            <remarks>
+              This allows API versioning to define a Swagger document per API version after the <see
+              cref="T:Asp.Versioning.ApiExplorer.IApiVersionDescriptionProvider"/> service has been resolved from the service container.
+            </remarks>
+        </member>
+        <member name="M:Template.Api.Extensions.Swagger.Options.SwaggerConfigureOptions.#ctor(Asp.Versioning.ApiExplorer.IApiVersionDescriptionProvider)">
+            <summary>
+              Initializes a new instance of the <see cref="T:Template.Api.Extensions.Swagger.Options.SwaggerConfigureOptions"/> class.
+            </summary>
+            <param name="provider">
+              The <see cref="T:Asp.Versioning.ApiExplorer.IApiVersionDescriptionProvider">provider</see> used to generate Swagger documents.
+            </param>
+        </member>
+        <member name="M:Template.Api.Extensions.Swagger.Options.SwaggerConfigureOptions.Configure(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Template.Api.MiddleWares.ExceptionMiddleware">
             <summary>
             Exception Middleware
@@ -860,26 +892,6 @@
             <param name="app"></param>
             <param name="env"></param>
             <param name="provider"></param>
-        </member>
-        <member name="T:Template.Api.Swagger.SwaggerConfigureOptions">
-            <summary>
-              Configures the Swagger generation options.
-            </summary>
-            <remarks>
-              This allows API versioning to define a Swagger document per API version after the <see
-              cref="T:Asp.Versioning.ApiExplorer.IApiVersionDescriptionProvider"/> service has been resolved from the service container.
-            </remarks>
-        </member>
-        <member name="M:Template.Api.Swagger.SwaggerConfigureOptions.#ctor(Asp.Versioning.ApiExplorer.IApiVersionDescriptionProvider)">
-            <summary>
-              Initializes a new instance of the <see cref="T:Template.Api.Swagger.SwaggerConfigureOptions"/> class.
-            </summary>
-            <param name="provider">
-              The <see cref="T:Asp.Versioning.ApiExplorer.IApiVersionDescriptionProvider">provider</see> used to generate Swagger documents.
-            </param>
-        </member>
-        <member name="M:Template.Api.Swagger.SwaggerConfigureOptions.Configure(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions)">
-            <inheritdoc/>
         </member>
     </members>
 </doc>
