@@ -2,10 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Template.Application.Services.Base;
 
-namespace Template.Api.Controllers.Base
+namespace Template.Api.Controllers.Base.V1
 {
     /// <inheritdoc />
-    [Route("api/v1/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class BaseController : ControllerBase

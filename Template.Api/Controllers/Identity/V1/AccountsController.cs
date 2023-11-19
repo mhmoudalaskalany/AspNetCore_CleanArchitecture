@@ -1,17 +1,20 @@
 ﻿using System.Threading.Tasks;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Template.Api.Controllers.Base;
+using Template.Api.Controllers.Base.V1;
 using Template.Application.Services.Base;
 using Template.Application.Services.Identity.Account;
 using Template.Common.Core;
 using Template.Common.DTO.Identity.Account;
 
-namespace Template.Api.Controllers.Identity
+namespace Template.Api.Controllers.Identity.V1
 {
     /// <summary>
     /// Accounts Controller
     /// </summary>
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class AccountsController : BaseController
     {
         private readonly IAccountService _service;
@@ -25,7 +28,7 @@ namespace Template.Api.Controllers.Identity
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("login")]
         [AllowAnonymous]
         public async Task<IFinalResult> Login(LoginParameters parameter)
         {

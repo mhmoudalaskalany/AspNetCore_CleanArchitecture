@@ -1,14 +1,17 @@
 ﻿using System.Threading.Tasks;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Template.Api.Controllers.Base;
+using Template.Api.Controllers.Base.V1;
 using Template.Application.Services.Lookups.Action;
 using Template.Common.Core;
 
-namespace Template.Api.Controllers.Lookup
+namespace Template.Api.Controllers.Lookup.V1
 {
     /// <summary>
     /// Actions Controller
     /// </summary>
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ActionsController : BaseController
     {
         private readonly IActionService _service;
@@ -25,7 +28,7 @@ namespace Template.Api.Controllers.Lookup
         /// Get All Actions
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("getActions")]
         public async Task<IFinalResult> GetActionsAsync() => await _service.GetActionsAsync();
 
 

@@ -1,7 +1,7 @@
 using System.Net;
 using AutoFixture;
 using Moq;
-using Template.Api.Controllers.Lookup;
+using Template.Api.Controllers.Lookup.V1;
 using Template.Application.Services.Lookups.Status;
 using Template.Common.Core;
 

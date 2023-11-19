@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Template.Api.Controllers.Base;
+using Template.Api.Controllers.Base.V1;
 using Template.Application.Services.File;
 using Template.Common.Core;
 using Template.Common.DTO.Common.File;
 using Template.Common.Helpers.FileHelpers.Token;
 using Template.Domain.Enum;
 
-namespace Template.Api.Controllers.Business
+namespace Template.Api.Controllers.Business.V1
 {
     /// <summary>
     /// Files Controller
     /// </summary>
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class FilesController : BaseController
     {
         private readonly IConfiguration _configuration;
@@ -38,7 +41,7 @@ namespace Template.Api.Controllers.Business
         /// <param name="id"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        [HttpGet("{id:guid}")]
+        [HttpGet("downloadWithAppCode/{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> DownloadWithAppCodeAsync(Guid id, string token)
         {
@@ -52,7 +55,7 @@ namespace Template.Api.Controllers.Business
         /// <param name="ids"></param>
         /// <param name="appCode"></param>
         /// <returns></returns>
-        [HttpPost("{appCode}")]
+        [HttpPost("generateTokenWithClaims/{appCode}")]
         public IFinalResult GenerateTokenWithClaimsAsync(List<Guid> ids, string appCode)
         {
             var secretKey = _configuration.GetValue<string>("SecurityToken:SecurityKey");
@@ -68,7 +71,7 @@ namespace Template.Api.Controllers.Business
         /// <param name="isPublic"></param>
         /// <param name="appCode"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("uploadToSanStorage")]
         public async Task<IFinalResult> UploadToSanStorageAsync(IFormFileCollection files, StorageType storageType, bool isPublic, string appCode)
         {
             var result = await _fileService.UploadToSanStorage(files, storageType, isPublic, appCode);
@@ -80,7 +83,7 @@ namespace Template.Api.Controllers.Business
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("uploadBytes")]
         public async Task<IFinalResult> UploadBytesAsync([FromBody] UploadRequestDto dto)
         {
             var uploadResponse = await _fileService.UploadBytes(dto, 10000);
@@ -92,7 +95,7 @@ namespace Template.Api.Controllers.Business
         /// </summary>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpGet]
+        [HttpGet("getDirectories")]
         public async Task<IActionResult> GetDirectories(StorageType storageType)
         {
             var directories = await _fileService.GetDirectoriesAsync(storageType);
@@ -104,7 +107,7 @@ namespace Template.Api.Controllers.Business
         /// </summary>
         /// <param name="id">PK</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("delete/{id}")]
         public async Task<IFinalResult> DeleteAsync(Guid id)
         {
             return await _fileService.DeletePhysicalAsync(id);
