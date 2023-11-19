@@ -30,7 +30,7 @@ namespace Template.Common.Extensions
             services.RegisterFileServices();
             services.RegisterMainCore();
             services.RegisterEmailMetadata(configuration);
-            services.AddApiDocumentationServices(configuration);
+            //services.AddApiDocumentationServices(configuration);
             services.RegisterAuthentication(configuration);
             services.RegisterHttpClientHelpers();
             return services;
@@ -100,48 +100,48 @@ namespace Template.Common.Extensions
         }
 
 
-        private static void AddApiDocumentationServices(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddSwaggerGen(options =>
-            {
-                var title = configuration["SwaggerConfig:Title"];
-                var version = configuration["SwaggerConfig:Version"];
-                var docPath = configuration["SwaggerConfig:DocPath"];
-                options.SwaggerDoc(version, new OpenApiInfo { Title = title, Version = version });
-                if (docPath != null)
-                {
-                    var filePath = Path.Combine(AppContext.BaseDirectory, docPath);
-                    options.IncludeXmlComments(filePath);
-                }
+        //private static void AddApiDocumentationServices(this IServiceCollection services, IConfiguration configuration)
+        //{
+        //    services.AddSwaggerGen(options =>
+        //    {
+        //        var title = configuration["SwaggerConfig:Title"];
+        //        var version = configuration["SwaggerConfig:Version"];
+        //        var docPath = configuration["SwaggerConfig:DocPath"];
+        //        options.SwaggerDoc(version, new OpenApiInfo { Title = title, Version = version });
+        //        if (docPath != null)
+        //        {
+        //            var filePath = Path.Combine(AppContext.BaseDirectory, docPath);
+        //            options.IncludeXmlComments(filePath);
+        //        }
 
-                var security = new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        new string[] { }
+        //        var security = new OpenApiSecurityRequirement
+        //        {
+        //            {
+        //                new OpenApiSecurityScheme
+        //                {
+        //                    Reference = new OpenApiReference
+        //                    {
+        //                        Type = ReferenceType.SecurityScheme,
+        //                        Id = "Bearer"
+        //                    }
+        //                },
+        //                new string[] { }
 
-                    }
-                };
-                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
-                    In = ParameterLocation.Header,
-                    Description = "JWT Authorization header using the Bearer scheme."
-                });
-                options.AddSecurityRequirement(security);
-                options.OperationFilter<LanguageHeader>();
-            });
-            services.AddSwaggerGenNewtonsoftSupport();
-        }
+        //            }
+        //        };
+        //        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        //        {
+        //            Name = "Authorization",
+        //            Type = SecuritySchemeType.ApiKey,
+        //            Scheme = "Bearer",
+        //            BearerFormat = "JWT",
+        //            In = ParameterLocation.Header,
+        //            Description = "JWT Authorization header using the Bearer scheme."
+        //        });
+        //        options.AddSecurityRequirement(security);
+        //        options.OperationFilter<LanguageHeader>();
+        //    });
+        //    services.AddSwaggerGenNewtonsoftSupport();
+        //}
     }
 }

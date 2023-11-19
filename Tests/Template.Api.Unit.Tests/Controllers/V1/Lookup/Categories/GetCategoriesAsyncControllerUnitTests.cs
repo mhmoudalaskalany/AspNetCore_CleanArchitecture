@@ -1,11 +1,11 @@
 using System.Net;
 using AutoFixture;
 using Moq;
-using Template.Api.Controllers.Lookup.V1;
+using Template.Api.Controllers.V1.Lookup;
 using Template.Application.Services.Lookups.Category;
 using Template.Common.Core;
 
-namespace Template.Api.Unit.Tests.Controllers.Categories
+namespace Template.Api.Unit.Tests.Controllers.V1.Lookup.Categories
 {
     public class GetCategoriesAsyncControllerUnitTests : AutoFixtureBase
     {

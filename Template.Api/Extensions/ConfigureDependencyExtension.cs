@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using Asp.Versioning;
 using Template.Common.Extensions;
 using Template.Common.Infrastructure.Repository.ActiveDirectory;
 using Template.Common.Infrastructure.UnitOfWork;
@@ -17,6 +18,13 @@ using Template.Infrastructure.Repository.ActiveDirectory;
 using Template.Infrastructure.UnitOfWork;
 using Template.Integration.CacheRepository;
 using Template.Integration.FileRepository;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Template.Api.Swagger;
+using Microsoft.OpenApi.Models;
+using Template.Common.Extensions.Swagger.Headers;
+using System.IO;
+using System;
 
 namespace Template.Api.Extensions
 {
@@ -44,6 +52,8 @@ namespace Template.Api.Extensions
             services.RegisterCommonServices(configuration);
             services.AddHealthChecks();
             services.AddControllers();
+            services.RegisterApiVersioning();
+            services.RegisterSwaggerConfig();
             return services;
         }
 
@@ -99,6 +109,65 @@ namespace Template.Api.Extensions
         {
             services.AddTransient<IFileRepository, FileRepository>();
             services.AddTransient<ICacheRepository, CacheRepository>();
+        }
+
+        /// <summary>
+        /// Register Api Versioning
+        /// </summary>
+        /// <param name="services"></param>
+        private static void RegisterApiVersioning(this IServiceCollection services)
+        {
+            services.AddEndpointsApiExplorer();
+            services.AddApiVersioning(config =>
+            {
+                config.DefaultApiVersion = new ApiVersion(1, 0);
+                config.AssumeDefaultVersionWhenUnspecified = true;
+                config.ReportApiVersions = true;
+            })
+            .AddApiExplorer(config =>
+            {
+                config.GroupNameFormat = "'v'VVV";
+                config.SubstituteApiVersionInUrl = true;
+            });
+        }
+
+        private static void RegisterSwaggerConfig(this IServiceCollection services)
+        {
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigureOptions>();
+            services.AddSwaggerGen(options =>
+            {
+                var security = new OpenApiSecurityRequirement
+                        {
+                            {
+                                new OpenApiSecurityScheme
+                                {
+                                    Reference = new OpenApiReference
+                                    {
+                                        Type = ReferenceType.SecurityScheme,
+                                        Id = "Bearer"
+                                    }
+                                },
+                                new string[] { }
+
+                            }
+                        };
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme."
+                });
+                options.AddSecurityRequirement(security);
+                options.OperationFilter<LanguageHeader>();
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+            });
+          
+            services.AddSwaggerGenNewtonsoftSupport();
         }
 
         /// <summary>

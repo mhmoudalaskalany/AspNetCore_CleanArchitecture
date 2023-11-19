@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using Asp.Versioning.ApiExplorer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -48,13 +49,14 @@ namespace Template.Api
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        /// <param name="provider"></param>
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             _shell.ConfigureHttp(app, env);
             Shell.Start(_shell);
             app.ConfigureCustomMiddleware();
             app.UseMiddleware<SwaggerBasicAuthMiddleware>();
-            app.Configure(env, Configuration);
+            app.Configure(env, Configuration , provider);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -7,19 +7,19 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Template.Api.Controllers.Base.V1;
+using Template.Api.Controllers.V1.Base;
 using Template.Application.Services.File;
 using Template.Common.Core;
 using Template.Common.DTO.Common.File;
 using Template.Common.Helpers.FileHelpers.Token;
 using Template.Domain.Enum;
 
-namespace Template.Api.Controllers.Business.V1
+namespace Template.Api.Controllers.V2.Business
 {
     /// <summary>
     /// Files Controller
     /// </summary>
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class FilesController : BaseController
     {

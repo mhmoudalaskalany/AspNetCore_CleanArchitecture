@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Template.Application.Services.Base;
 
-namespace Template.Api.Controllers.Base.V1
+namespace Template.Api.Controllers.V2.Base
 {
     /// <inheritdoc />
     [ApiController]

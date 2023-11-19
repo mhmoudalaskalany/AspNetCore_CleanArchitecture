@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using Asp.Versioning.ApiExplorer;
 using FluentScheduler;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,8 +26,9 @@ namespace Template.Api.Extensions
         /// <param name="app"></param>
         /// <param name="env"></param>
         /// <param name="configuration"></param>
+        /// <param name="provider"></param>
         /// <returns></returns>
-        public static IApplicationBuilder Configure(this IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration)
+        public static IApplicationBuilder Configure(this IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration, IApiVersionDescriptionProvider provider)
         {
             app.ConfigureCors();
             app.CreateDatabase();
@@ -36,7 +38,7 @@ namespace Template.Api.Extensions
             app.UseAuthorization();
             app.AddLocalization();
             app.UseFluentScheduler(configuration);
-            app.SwaggerConfig(configuration);
+            app.SwaggerConfig(provider);
             app.UseHealthChecks("/probe");
             return app;
         }
@@ -89,17 +91,20 @@ namespace Template.Api.Extensions
         /// User Swagger
         /// </summary>
         /// <param name="app"></param>
-        /// <param name="configuration"></param>
-        private static void SwaggerConfig(this IApplicationBuilder app, IConfiguration configuration)
+        /// <param name="provider"></param>
+        private static void SwaggerConfig(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(options =>
             {
-                string endPoint = configuration["SwaggerConfig:EndPoint"];
-                string title = configuration["SwaggerConfig:Title"];
-                c.SwaggerEndpoint(endPoint, title);
-                c.DocumentTitle = $"{title} Documentation";
-                c.DocExpansion(DocExpansion.None);
+                foreach (var description in provider.ApiVersionDescriptions)
+                {
+                    options.SwaggerEndpoint(
+                        $"/swagger/{description.GroupName}/swagger.json",
+                        description.GroupName.ToUpperInvariant()
+                    );
+                }
+                options.DocExpansion(DocExpansion.List);
             });
         }
 

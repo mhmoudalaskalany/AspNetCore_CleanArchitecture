@@ -1,48 +1,48 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Template.Api.Controllers.Base.V1;
-using Template.Application.Services.Identity.Permission;
+using Template.Api.Controllers.V1.Base;
+using Template.Application.Services.Identity.User;
 using Template.Common.Core;
 using Template.Common.DTO.Base;
-using Template.Common.DTO.Identity.Permission;
-using Template.Common.DTO.Identity.Permission.Parameters;
+using Template.Common.DTO.Identity.User;
+using Template.Common.DTO.Identity.User.Parameters;
 
-namespace Template.Api.Controllers.Identity.V1
+namespace Template.Api.Controllers.V1.Identity
 {
     /// <summary>
-    /// Permissions Controller
+    /// Users Controller
     /// </summary>
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public class PermissionsController : BaseController
+    public class UsersController : BaseController
     {
-        private readonly IPermissionService _service;
+        private readonly IUserService _service;
         /// <summary>
         /// Constructor
         /// </summary>
-        public PermissionsController(IPermissionService permissionService)
+        public UsersController(IUserService userService)
         {
-            _service = permissionService;
+            _service = userService;
         }
         /// <summary>
         /// Get By Id 
         /// </summary>
         /// <returns></returns>
         [HttpGet("get/{id}")]
-        public async Task<IFinalResult> GetAsync(long id)
+        public async Task<IFinalResult> GetAsync(Guid id)
         {
             var result = await _service.GetByIdAsync(id);
             return result;
         }
-
 
         /// <summary>
         /// Get By Id For Edit 
         /// </summary>
         /// <returns></returns>
         [HttpGet("getEdit/{id}")]
-        public async Task<IFinalResult> GetEditAsync(long id)
+        public async Task<IFinalResult> GetEditAsync(Guid id)
         {
             var result = await _service.GetEditByIdAsync(id);
             return result;
@@ -65,7 +65,7 @@ namespace Template.Api.Controllers.Identity.V1
         /// <param name="filter">Filter responsible for search and sort</param>
         /// <returns></returns>
         [HttpPost("getPaged")]
-        public async Task<DataPaging> GetPagedAsync([FromBody] BaseParam<PermissionFilter> filter)
+        public async Task<DataPaging> GetPagedAsync([FromBody] BaseParam<UserFilter> filter)
         {
             return await _service.GetAllPagedAsync(filter);
         }
@@ -76,7 +76,7 @@ namespace Template.Api.Controllers.Identity.V1
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost("add")]
-        public async Task<IFinalResult> AddAsync([FromBody] AddPermissionDto dto)
+        public async Task<IFinalResult> AddAsync([FromBody] AddUserDto dto)
         {
             var result = await _service.AddAsync(dto);
             return result;
@@ -89,7 +89,7 @@ namespace Template.Api.Controllers.Identity.V1
         /// <param name="model">Object content</param>
         /// <returns></returns>
         [HttpPut("update")]
-        public async Task<IFinalResult> UpdateAsync(AddPermissionDto model)
+        public async Task<IFinalResult> UpdateAsync(AddUserDto model)
         {
             return await _service.UpdateAsync(model);
         }
@@ -99,18 +99,18 @@ namespace Template.Api.Controllers.Identity.V1
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("delete/{id}")]
-        public async Task<IFinalResult> DeleteAsync(long id)
+        public async Task<IFinalResult> DeleteAsync(Guid id)
         {
             return await _service.DeleteAsync(id);
         }
 
         /// <summary>
-        /// Soft Remove  by id
+        /// Soft Remove by id
         /// </summary>
         /// <param name="id">PK</param>
         /// <returns></returns>
-        [HttpDelete("deleteSoft{id}")]
-        public async Task<IFinalResult> DeleteSoftAsync(long id)
+        [HttpDelete("deleteSoft/{id}")]
+        public async Task<IFinalResult> DeleteSoftAsync(Guid id)
         {
             return await _service.DeleteSoftAsync(id);
         }

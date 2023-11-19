@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Template.Api.Controllers.Base.V1;
+using Template.Api.Controllers.V1.Base;
 using Template.Application.Services.Lookups.Action;
 using Template.Common.Core;
 
-namespace Template.Api.Controllers.Lookup.V1
+namespace Template.Api.Controllers.V1.Lookup
 {
     /// <summary>
     /// Actions Controller
