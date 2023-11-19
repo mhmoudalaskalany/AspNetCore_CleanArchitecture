@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using Template.Common.Core;
-using Template.Common.Extensions.Swagger.Headers;
 using Template.Common.Helpers.EmailHelper;
 using Template.Common.Helpers.FileHelpers.StorageHelper;
 using Template.Common.Helpers.HttpClient;

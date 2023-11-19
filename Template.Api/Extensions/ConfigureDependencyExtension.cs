@@ -20,12 +20,12 @@ using Template.Integration.CacheRepository;
 using Template.Integration.FileRepository;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using Template.Api.Swagger;
 using Microsoft.OpenApi.Models;
-using Template.Common.Extensions.Swagger.Headers;
 using System.IO;
 using System;
 using Microsoft.AspNetCore.Routing;
+using Template.Api.Extensions.Swagger.Headers;
+using Template.Api.Extensions.Swagger.Options;
 
 namespace Template.Api.Extensions
 {
