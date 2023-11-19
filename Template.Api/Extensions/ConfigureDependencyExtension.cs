@@ -75,7 +75,7 @@ namespace Template.Api.Extensions
         }
 
         /// <summary>
-        /// Add DbContext
+        /// Add Health Checks
         /// </summary>
         /// <param name="services"></param>
         private static void RegisterApiMonitoring(this IServiceCollection services)

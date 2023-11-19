@@ -636,6 +636,12 @@
             <param name="services"></param>
             <param name="configuration"></param>
         </member>
+        <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterApiMonitoring(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add Health Checks
+            </summary>
+            <param name="services"></param>
+        </member>
         <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             register auto-mapper
