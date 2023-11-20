@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Builder;
+using Template.Api.MiddleWares.Swagger;
 
 namespace Template.Api.MiddleWares
 {
@@ -16,7 +17,9 @@ namespace Template.Api.MiddleWares
         public static void ConfigureCustomMiddleware(this IApplicationBuilder app)
         {
             app.UseMiddleware<LanguageMiddleware>();
+            app.UseMiddleware<SwaggerBasicAuthMiddleware>();
             app.UseMiddleware<ExceptionMiddleware>();
+
         }
     }
 }

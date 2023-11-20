@@ -54,13 +54,15 @@ namespace Template.Api
         {
             _shell.ConfigureHttp(app, env);
             Shell.Start(_shell);
-            app.ConfigureCustomMiddleware();
-            app.UseMiddleware<SwaggerBasicAuthMiddleware>();
+            
             app.Configure(env, Configuration , provider);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.ConfigureCustomMiddleware();
+
 
             app.UseEndpoints(endpoints =>
             {
