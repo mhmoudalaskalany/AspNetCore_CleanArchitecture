@@ -80,7 +80,7 @@ namespace Template.Application.Services.Base
         {
             T entity = Mapper.Map<TAddDto, T>(model);
             SetEntityCreatedBaseProperties(entity);
-            UnitOfWork.Repository.Add(entity);
+            await UnitOfWork.Repository.AddAsync(entity);
             var affectedRows = await UnitOfWork.SaveChangesAsync();
             if (affectedRows > 0)
             {

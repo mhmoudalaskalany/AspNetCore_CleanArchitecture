@@ -155,6 +155,14 @@ namespace Template.Common.Infrastructure.Repository
         /// <param name="newEntity"></param>
         /// <returns></returns>
         T Add(T newEntity);
+
+        /// <summary>
+        /// Add Async
+        /// </summary>
+        /// <param name="newEntity"></param>
+        /// <returns></returns>
+        Task<T> AddAsync(T newEntity);
+
         /// <summary>
         /// Add Range
         /// </summary>

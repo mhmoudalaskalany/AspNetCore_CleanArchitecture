@@ -75,7 +75,7 @@ namespace Template.Application.Services.Identity.Account
                 var user = Mapper.Map<ActiveDirectoryUserDto, Domain.Entities.Identity.User>(dto);
                 // add default user role to user we can change it after that
                 user.RoleId = 2;
-                UnitOfWork.Repository.Add(user);
+                await UnitOfWork.Repository.AddAsync(user);
                 await UnitOfWork.SaveChangesAsync();
                 return user;
             }

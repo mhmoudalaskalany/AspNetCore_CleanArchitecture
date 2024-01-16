@@ -72,7 +72,7 @@ namespace Template.Application.Services.File
             fileEntity.StorageType = model.StorageType.ToString();
             fileEntity.IsPublic = model.IsPublic;
             SetEntityCreatedBaseProperties(fileEntity);
-            UnitOfWork.Repository.Add(fileEntity);
+            await UnitOfWork.Repository.AddAsync(fileEntity);
             await UnitOfWork.SaveChangesAsync();
             var response = new UploadResponseDto
             {

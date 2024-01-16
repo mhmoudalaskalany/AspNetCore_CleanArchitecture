@@ -279,6 +279,16 @@ namespace Template.Infrastructure.Repository
             return DbSet.Add(newEntity).Entity;
         }
         /// <summary>
+        /// Add Async
+        /// </summary>
+        /// <param name="newEntity"></param>
+        /// <returns></returns>
+        public async Task<T> AddAsync(T newEntity)
+        {
+            var result = await DbSet.AddAsync(newEntity);
+            return result.Entity;
+        }
+        /// <summary>
         /// Add Range
         /// </summary>
         public void AddRange(IEnumerable<T> entities)
