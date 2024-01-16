@@ -23,7 +23,7 @@ namespace Template.Api.Unit.Tests.Controllers.V1.Lookup.Categories
         {
             //Arrange (set up variables 
             var result = (IFinalResult)Fixture.Build<FinalResult>().With(p => p.Status, HttpStatusCode.OK).Create();
-            _categoryServiceMock.Setup(x => x.GetCategoriesAsync())
+            _categoryServiceMock.Setup(x => x.GetAllAsync(false , null))
                 .Returns(Task.FromResult(result));
 
             //Act ( execute the target method )
