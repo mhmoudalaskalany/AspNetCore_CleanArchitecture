@@ -117,7 +117,7 @@ namespace Template.Application.Services.Base
             {
                 List<T> entities = Mapper.Map<List<TAddDto>, List<T>>(model);
                 UnitOfWork.Repository.AddRange(entities);
-                int affectedRows = await UnitOfWork.SaveChangesAsync();
+                var affectedRows = await UnitOfWork.SaveChangesAsync();
                 if (affectedRows > 0)
                 {
                     Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
@@ -190,7 +190,7 @@ namespace Template.Application.Services.Base
                 var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
                 SetEntityModifiedBaseProperties(entityToDelete);
                 UnitOfWork.Repository.RemoveLogical(entityToDelete);
-                int affectedRows = await UnitOfWork.SaveChangesAsync();
+                var affectedRows = await UnitOfWork.SaveChangesAsync();
                 if (affectedRows > 0)
                 {
                     Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
