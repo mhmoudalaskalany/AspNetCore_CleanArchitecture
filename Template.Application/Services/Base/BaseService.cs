@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Template.Common.Core;
 using Template.Common.DTO.Base;
 using Template.Common.Infrastructure.UnitOfWork;
@@ -30,10 +32,17 @@ namespace Template.Application.Services.Base
         protected IHttpContextAccessor HttpContextAccessor;
         protected IConfiguration Configuration;
         protected ICacheRepository CacheRepository;
+        private readonly ILogger _logger;
+        private readonly JsonSerializerSettings _serializerSettings = new()
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        };
+
         protected TokenClaimDto ClaimData { get; set; }
 
         protected internal BaseService(IServiceBaseParameter<T> businessBaseParameter)
         {
+            _logger = businessBaseParameter.Logger ?? throw new ArgumentNullException(nameof(businessBaseParameter.Logger));
             HttpContextAccessor = businessBaseParameter.HttpContextAccessor;
             UnitOfWork = businessBaseParameter.UnitOfWork;
             ResponseResult = businessBaseParameter.ResponseResult;
@@ -79,74 +88,123 @@ namespace Template.Application.Services.Base
 
         public virtual async Task<IFinalResult> AddAsync(TAddDto model)
         {
-            T entity = Mapper.Map<TAddDto, T>(model);
-            SetEntityCreatedBaseProperties(entity);
-            await UnitOfWork.Repository.AddAsync(entity);
-            var affectedRows = await UnitOfWork.SaveChangesAsync();
-            if (affectedRows > 0)
+            try
             {
-                Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
-                    message: MessagesConstants.AddSuccess);
+                T entity = Mapper.Map<TAddDto, T>(model);
+                SetEntityCreatedBaseProperties(entity);
+                await UnitOfWork.Repository.AddAsync(entity);
+                var affectedRows = await UnitOfWork.SaveChangesAsync();
+                if (affectedRows > 0)
+                {
+                    Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
+                        message: MessagesConstants.AddSuccess);
+                }
+
+                Result.Data = model;
+                return Result;
             }
-            Result.Data = model;
-            return Result;
+            catch (Exception e)
+            {
+                _logger.LogError($"{MessagesConstants.AddError}-{nameof(AddAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                throw;
+            }
         }
 
         public virtual async Task<IFinalResult> AddListAsync(List<TAddDto> model)
         {
-            var entities = Mapper.Map<List<TAddDto>, List<T>>(model);
-            UnitOfWork.Repository.AddRange(entities);
-            var affectedRows = await UnitOfWork.SaveChangesAsync();
-            if (affectedRows > 0)
+            try
             {
-                Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
-                    message: MessagesConstants.AddSuccess);
+                List<T> entities = Mapper.Map<List<TAddDto>, List<T>>(model);
+                UnitOfWork.Repository.AddRange(entities);
+                int affectedRows = await UnitOfWork.SaveChangesAsync();
+                if (affectedRows > 0)
+                {
+                    Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
+                        message: MessagesConstants.AddError);
+                }
+                Result.Data = model;
+                return Result;
             }
-            Result.Data = model;
-            return Result;
+            catch (Exception e)
+            {
+                _logger.LogError($"{MessagesConstants.AddError}-{nameof(AddListAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                throw;
+            }
         }
 
         public virtual async Task<IFinalResult> UpdateAsync(TAddDto model)
         {
-            T entityToUpdate = await UnitOfWork.Repository.GetAsync(model.Id);
-            var newEntity = Mapper.Map(model, entityToUpdate);
-            SetEntityModifiedBaseProperties(newEntity);
-            UnitOfWork.Repository.Update(entityToUpdate, newEntity);
-            var affectedRows = await UnitOfWork.SaveChangesAsync();
-            if (affectedRows > 0)
+            try
             {
-                Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
-                    message: MessagesConstants.UpdateSuccess);
+                T entityToUpdate = await UnitOfWork.Repository.GetAsync(model.Id);
+                var newEntity = Mapper.Map(model, entityToUpdate);
+                SetEntityModifiedBaseProperties(newEntity);
+                UnitOfWork.Repository.Update(entityToUpdate, newEntity);
+                var affectedRows = await UnitOfWork.SaveChangesAsync();
+                if (affectedRows > 0)
+                {
+                    Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
+                        message: MessagesConstants.UpdateSuccess);
+                }
+
+                return Result;
             }
-            return Result;
+            catch (Exception e)
+            {
+                _logger.LogError($"{MessagesConstants.UpdateError}-{nameof(UpdateAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                throw;
+            }
 
         }
 
         public virtual async Task<IFinalResult> DeleteAsync(object id)
         {
-            var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
-            UnitOfWork.Repository.Remove(entityToDelete);
-            var affectedRows = await UnitOfWork.SaveChangesAsync();
-            if (affectedRows > 0)
+            try
             {
-                Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
-                    message: MessagesConstants.DeleteSuccess);
+                var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
+                UnitOfWork.Repository.Remove(entityToDelete);
+                int affectedRows = await UnitOfWork.SaveChangesAsync();
+                if (affectedRows > 0)
+                {
+                    Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
+                        message: MessagesConstants.DeleteSuccess);
+                }
+
+                return Result;
             }
-            return Result;
+            catch (Exception e)
+            {
+                _logger.LogError($"{MessagesConstants.DeleteError}-{nameof(DeleteAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                throw;
+            }
         }
 
         public virtual async Task<IFinalResult> DeleteSoftAsync(object id)
         {
-            var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
-            SetEntityModifiedBaseProperties(entityToDelete);
-            UnitOfWork.Repository.RemoveLogical(entityToDelete);
-            var affectedRows = await UnitOfWork.SaveChangesAsync();
-            if (affectedRows > 0)
+            try
             {
-                Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
-                    message: MessagesConstants.DeleteSuccess);
+                var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
+                SetEntityModifiedBaseProperties(entityToDelete);
+                UnitOfWork.Repository.RemoveLogical(entityToDelete);
+                int affectedRows = await UnitOfWork.SaveChangesAsync();
+                if (affectedRows > 0)
+                {
+                    Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
+                        message: MessagesConstants.DeleteSuccess);
+                }
+
+                return Result;
             }
-            return Result;
+            catch (Exception e)
+            {
+                _logger.LogError($"{MessagesConstants.DeleteError}-{nameof(DeleteSoftAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                throw;
+            }
         }
 
         protected void SetEntityCreatedBaseProperties(T entity)
