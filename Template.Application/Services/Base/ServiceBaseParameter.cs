@@ -33,11 +33,17 @@ namespace Template.Application.Services.Base
         }
 
         public IMapper Mapper { get; set; }
+
         public IUnitOfWork<T> UnitOfWork { get; set; }
+
         public IResponseResult ResponseResult { get; set; }
+
         public IHttpContextAccessor HttpContextAccessor { get; set; }
+
         public ICacheRepository CacheRepository { get; set; }
+
         public IConfiguration Configuration { get; set; }
+
         public ILogger<T> Logger { get; set; }
     }
 }
