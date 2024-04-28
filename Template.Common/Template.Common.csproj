@@ -39,9 +39,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Template.Domain\Template.Domain.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensions\Swagger\" />
-  </ItemGroup>
 
 
 
