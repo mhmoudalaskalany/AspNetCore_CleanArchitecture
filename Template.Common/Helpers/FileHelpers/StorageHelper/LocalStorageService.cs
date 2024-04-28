@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Security.Principal;
@@ -14,6 +15,7 @@ using Template.Common.DTO.Common.File;
 
 namespace Template.Common.Helpers.FileHelpers.StorageHelper
 {
+    [ExcludeFromCodeCoverage]
     public class LocalStorageService : IStorageService
     {
         private readonly ILogger<LocalStorageService> _logger;

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
 using MimeKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
 namespace Template.Common.Helpers.MailKitHelper
 {
+    [ExcludeFromCodeCoverage]
     public class SendMailKit : ISendMailKit
     {
         private readonly EmailMetadata _emailMetadata;

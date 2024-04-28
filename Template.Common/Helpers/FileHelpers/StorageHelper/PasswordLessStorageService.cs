@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +10,7 @@ using Template.Common.DTO.Common.File;
 
 namespace Template.Common.Helpers.FileHelpers.StorageHelper
 {
+    [ExcludeFromCodeCoverage]
     public class PasswordLessStorageService : IStorageService
     {
         private readonly ILogger<PasswordLessStorageService> _logger;

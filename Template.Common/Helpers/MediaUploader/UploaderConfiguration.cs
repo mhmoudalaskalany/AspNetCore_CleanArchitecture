@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Template.Common.Extensions;
 
 namespace Template.Common.Helpers.MediaUploader
 {
+    [ExcludeFromCodeCoverage]
     public class UploaderConfiguration : IUploaderConfiguration
     {
         private readonly IWebHostEnvironment _hostingEnvironment;

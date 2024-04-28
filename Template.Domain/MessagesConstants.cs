@@ -1,5 +1,8 @@
-﻿namespace Template.Domain
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Template.Domain
 {
+    [ExcludeFromCodeCoverage]
     public static  class MessagesConstants
     {
         public const string Success = "SUCCESS";

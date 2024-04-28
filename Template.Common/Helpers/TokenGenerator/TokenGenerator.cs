@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -7,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Template.Common.Helpers.TokenGenerator
 {
+    [ExcludeFromCodeCoverage]
     public class TokenGenerator : ITokenGenerator
     {
         private readonly IConfiguration _configuration;

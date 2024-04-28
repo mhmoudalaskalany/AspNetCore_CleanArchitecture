@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Mail;
 using Microsoft.Extensions.Configuration;
 
 namespace Template.Common.Helpers.EmailHelper
 {
+    [ExcludeFromCodeCoverage]
     public class SendMail : ISendMail
     {
         private readonly IConfiguration _configuration;

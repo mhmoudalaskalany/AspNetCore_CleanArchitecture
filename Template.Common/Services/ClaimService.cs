@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System.Diagnostics.CodeAnalysis;
 using Template.Common.DTO.Base;
 
 namespace Template.Common.Services
 {
+    [ExcludeFromCodeCoverage]
     public class ClaimService : IClaimService
     {
         private readonly HttpContext _context;

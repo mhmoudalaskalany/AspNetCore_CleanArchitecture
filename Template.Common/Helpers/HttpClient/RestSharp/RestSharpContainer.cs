@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,7 @@ using RestSharp.Authenticators;
 
 namespace Template.Common.Helpers.HttpClient.RestSharp
 {
+    [ExcludeFromCodeCoverage]
     public class RestSharpContainer : IRestSharpContainer
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
