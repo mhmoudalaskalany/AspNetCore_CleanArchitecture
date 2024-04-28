@@ -7,11 +7,11 @@ using Template.Common.Core;
 
 namespace Template.Api.Unit.Tests.Controllers.V1.Lookup.Categories
 {
-    public class GetCategoriesAsyncControllerUnitTests : AutoFixtureBase
+    public class CategoriesControllerUnitTests : AutoFixtureBase
     {
         private readonly Mock<ICategoryService> _categoryServiceMock;
         private readonly CategoriesController _controller;
-        public GetCategoriesAsyncControllerUnitTests()
+        public CategoriesControllerUnitTests()
         {
             _categoryServiceMock = new Mock<ICategoryService>();
             Fixture.Register(() => _categoryServiceMock.Object);
@@ -21,7 +21,7 @@ namespace Template.Api.Unit.Tests.Controllers.V1.Lookup.Categories
         [Fact]
         public async Task GetAllAsync_Return_Ok()
         {
-            //Arrange (set up variables 
+            //Arrange (set up variables) 
             var result = (IFinalResult)Fixture.Build<FinalResult>().With(p => p.Status, HttpStatusCode.OK).Create();
             _categoryServiceMock.Setup(x => x.GetAllAsync(false , null))
                 .Returns(Task.FromResult(result));

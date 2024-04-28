@@ -22,6 +22,6 @@ namespace Template.Application.Services.Base
 
         ICacheRepository CacheRepository { get; set; }
 
-        ILogger<T> Logger { get; set; }
+        ILogger Logger { get; set; }
     }
 }

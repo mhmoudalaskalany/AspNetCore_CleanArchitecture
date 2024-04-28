@@ -20,7 +20,7 @@ namespace Template.Application.Services.Base
             IHttpContextAccessor httpContextAccessor,
             ICacheRepository cacheRepository,
             IConfiguration configuration,
-            ILogger<T> logger
+            ILogger logger
         )
         {
             Mapper = mapper;
@@ -44,6 +44,6 @@ namespace Template.Application.Services.Base
 
         public IConfiguration Configuration { get; set; }
 
-        public ILogger<T> Logger { get; set; }
+        public ILogger Logger { get; set; }
     }
 }

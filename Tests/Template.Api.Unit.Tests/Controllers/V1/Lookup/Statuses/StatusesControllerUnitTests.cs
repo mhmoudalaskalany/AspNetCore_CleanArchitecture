@@ -7,11 +7,11 @@ using Template.Common.Core;
 
 namespace Template.Api.Unit.Tests.Controllers.V1.Lookup.Statuses
 {
-    public class GetStatusesAsyncControllerUnitTests : AutoFixtureBase
+    public class StatusesControllerUnitTests : AutoFixtureBase
     {
         private readonly Mock<IStatusService> _statusServiceMock;
         private readonly StatusesController _controller;
-        public GetStatusesAsyncControllerUnitTests()
+        public StatusesControllerUnitTests()
         {
             _statusServiceMock = new Mock<IStatusService>();
             Fixture.Register(() => _statusServiceMock.Object);
@@ -19,15 +19,15 @@ namespace Template.Api.Unit.Tests.Controllers.V1.Lookup.Statuses
         }
 
         [Fact]
-        public async Task GetActionsAsync_Return_Ok()
+        public async Task GetAllAsync_Return_Ok()
         {
-            //Arrange (set up variables 
+            //Arrange (set up variables)
             var result = (IFinalResult)Fixture.Build<FinalResult>().With(p => p.Status, HttpStatusCode.OK).Create();
-            _statusServiceMock.Setup(x => x.GetStatusesAsync())
+            _statusServiceMock.Setup(x => x.GetAllAsync(It.IsAny<bool>() , null))
                 .Returns(Task.FromResult(result));
 
             //Act ( execute the target method )
-            var finalResult = await _controller.GetStatusesAsync();
+            var finalResult = await _controller.GetAllAsync();
 
             //Assert
             Assert.Equal(HttpStatusCode.OK, finalResult.Status);
