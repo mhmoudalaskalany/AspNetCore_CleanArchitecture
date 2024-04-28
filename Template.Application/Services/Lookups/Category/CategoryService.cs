@@ -19,14 +19,6 @@ namespace Template.Application.Services.Lookups.Category
         {
         }
 
-
-        public async Task<IFinalResult> GetCategoriesAsync()
-        {
-            var entities = await UnitOfWork.GetRepository<Domain.Entities.Lookup.Category>().FindAsync(x => x.IsDeleted == false);
-            var data = Mapper.Map<IEnumerable<Domain.Entities.Lookup.Category>, List<CategoryDto>>(entities);
-            return new ResponseResult(data, HttpStatusCode.OK, null, "Success");
-        }
-
         public async Task<DataPaging> GetAllPagedAsync(BaseParam<CategoryFilter> filter)
         {
 

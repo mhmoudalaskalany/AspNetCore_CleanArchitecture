@@ -9,8 +9,6 @@ namespace Template.Application.Services.Lookups.Category
 {
     public interface ICategoryService : IBaseService<Domain.Entities.Lookup.Category, AddCategoryDto , EditCategoryDto , CategoryDto , int , int?>
     {
-        Task<IFinalResult> GetCategoriesAsync();
-
         Task<DataPaging> GetAllPagedAsync(BaseParam<CategoryFilter> filter);
     }
 }
