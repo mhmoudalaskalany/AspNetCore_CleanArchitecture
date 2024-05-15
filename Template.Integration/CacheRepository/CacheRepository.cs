@@ -6,24 +6,18 @@ namespace Template.Integration.CacheRepository
 {
     public class CacheRepository : ICacheRepository
     {
-        private readonly IRestSharpContainer _restSharpContainer;
-        public CacheRepository(IRestSharpContainer restSharpContainer)
+        private readonly IRestSharpClient _restSharpClient;
+        public CacheRepository(IRestSharpClient restSharpClient)
         {
-            _restSharpContainer = restSharpContainer;
+            _restSharpClient = restSharpClient;
         }
 
-        #region Public Methods
-        /// <summary>
-        /// Get Employee From Cache By National Id
-        /// </summary>
-        /// <param name="nationalId"></param>
-        /// <returns></returns>
         public async Task<object> GetEmployeeAsync(string nationalId)
         {
             var employee = RedisCacheHelper.GetT<object>(nationalId);
             return employee;
         }
 
-        #endregion
+
     }
 }

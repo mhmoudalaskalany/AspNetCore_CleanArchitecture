@@ -12,16 +12,16 @@ using RestSharp.Authenticators;
 namespace Template.Common.Helpers.HttpClient.RestSharp
 {
     [ExcludeFromCodeCoverage]
-    public class RestSharpContainer : IRestSharpContainer
+    public class RestSharpClient : IRestSharpClient
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly ILogger<RestSharpContainer> _logger;
+        private readonly ILogger<RestSharpClient> _logger;
         private readonly RestClient _client;
         private readonly JsonSerializerSettings _serializerSettings = new()
         {
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
         };
-        public RestSharpContainer(IHttpContextAccessor httpContextAccessor, ILogger<RestSharpContainer> logger)
+        public RestSharpClient(IHttpContextAccessor httpContextAccessor, ILogger<RestSharpClient> logger)
         {
             _httpContextAccessor = httpContextAccessor;
             _logger = logger;

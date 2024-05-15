@@ -13,39 +13,26 @@ namespace Template.Integration.FileRepository
 {
     public class FileRepository : IFileRepository
     {
-        #region Properties
-        private readonly IRestSharpContainer _restSharpContainer;
+
+        private readonly IRestSharpClient _restSharpClient;
         private readonly MicroServicesUrls _urls;
         private readonly IConfiguration _configuration;
-        #endregion
 
-        #region Constructors
-        public FileRepository(IRestSharpContainer restSharpContainer, IConfiguration configuration, MicroServicesUrls urls)
+
+        public FileRepository(IRestSharpClient restSharpClient, IConfiguration configuration, MicroServicesUrls urls)
         {
-            _restSharpContainer = restSharpContainer;
+            _restSharpClient = restSharpClient;
             _configuration = configuration;
             _urls = urls;
         }
-        #endregion
 
-        #region Public Methods
-        /// <summary>
-        /// Get File Tokens Using File Ids
-        /// </summary>
-        /// <param name="ids"></param>
-        /// <returns></returns>
         public async Task<List<TokenDto>> GetTokens(List<Guid> ids)
         {
             var appCode = _configuration["AppCode"];
-            var result = await _restSharpContainer.SendRequest<ResponseResult>(_urls.GenerateTokenWithClaims + "/" + appCode, Method.Post, ids);
+            var result = await _restSharpClient.SendRequest<ResponseResult>(_urls.GenerateTokenWithClaims + "/" + appCode, Method.Post, ids);
             var tokens = JsonConvert.DeserializeObject<List<TokenDto>>(JsonConvert.SerializeObject(result.Data));
             return tokens;
         }
-
-        #endregion
-
-
-
 
     }
 }

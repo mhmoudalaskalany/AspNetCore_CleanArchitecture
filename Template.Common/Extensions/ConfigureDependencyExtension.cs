@@ -48,7 +48,7 @@ namespace Template.Common.Extensions
 
         private static void RegisterHttpClientHelpers(this IServiceCollection services)
         {
-            services.AddTransient<IRestSharpContainer, RestSharpContainer>();
+            services.AddTransient<IRestSharpClient, RestSharpClient>();
         }
 
         private static void RegisterFileServices(this IServiceCollection services)

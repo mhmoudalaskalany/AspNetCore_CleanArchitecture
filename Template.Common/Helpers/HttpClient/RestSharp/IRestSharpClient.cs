@@ -4,7 +4,7 @@ using RestSharp;
 
 namespace Template.Common.Helpers.HttpClient.RestSharp
 {
-    public interface IRestSharpContainer
+    public interface IRestSharpClient
     {
         Task<T> SendRequest<T>(string url, Method method, object obj = null, string urlEncoded = null,
             Dictionary<string, string> headers = null);
