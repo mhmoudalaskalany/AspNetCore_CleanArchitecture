@@ -27,7 +27,17 @@ namespace Template.Infrastructure.Repository
         {
             return await DbSet.FindAsync(keys);
         }
-        
+
+        public IQueryable<T> GetAllQueryable(Expression<Func<T, bool>> predicate = null)
+        {
+            if (predicate != null)
+            {
+                return DbSet.Where(predicate);
+            }
+            return DbSet;
+        }
+
+
         public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true)
         {
             IQueryable<T> query = DbSet;

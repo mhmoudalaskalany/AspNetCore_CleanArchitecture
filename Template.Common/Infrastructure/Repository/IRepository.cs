@@ -17,14 +17,19 @@ namespace Template.Common.Infrastructure.Repository
         /// <returns></returns>
         Task<T> GetAsync(params object[] keys);
         /// <summary>
+        /// Return DbSet As Queryable
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<T> GetAllQueryable(Expression<Func<T, bool>> predicate = null);
+        /// <summary>
         /// First Or Default
         /// </summary>
         /// <param name="predicate"></param>
-        /// <param name="orderby"></param>
+        /// <param name="orderBy"></param>
         /// <param name="include"></param>
         /// <param name="disableTracking"></param>
         /// <returns></returns>
-        Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true);
+        Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true);
         /// <summary>
         /// Get All
         /// </summary>
