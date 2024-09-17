@@ -169,6 +169,11 @@ namespace Template.Common.Infrastructure.Repository
         /// <param name="entities"></param>
         void AddRange(IEnumerable<T> entities);
         /// <summary>
+        /// Add Range
+        /// </summary>
+        /// <param name="entities"></param>
+        Task AddRangeAsync(IEnumerable<T> entities);
+        /// <summary>
         /// Update
         /// </summary>
         /// <param name="originalEntity"></param>
