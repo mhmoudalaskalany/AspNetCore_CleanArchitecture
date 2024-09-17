@@ -169,7 +169,7 @@ namespace Template.Common.Infrastructure.Repository
         /// <param name="entities"></param>
         void AddRange(IEnumerable<T> entities);
         /// <summary>
-        /// Add Range
+        /// Add Range Async
         /// </summary>
         /// <param name="entities"></param>
         Task AddRangeAsync(IEnumerable<T> entities);
