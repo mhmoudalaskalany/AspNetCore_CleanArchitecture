@@ -42,6 +42,7 @@ Clean Architecture For .Net Core 8 Web Api
 - Refactor BaseService to remove the inputs to the service
 - Add https://www.flagsmith.com/
 - Use https://youtube.com/shorts/NLopFJ-EtKA?feature=share
+- Token Management With Identity Provider with OAuth 2
 # Installation
 
 - clone the repository
