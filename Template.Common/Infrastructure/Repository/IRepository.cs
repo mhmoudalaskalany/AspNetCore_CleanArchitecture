@@ -135,6 +135,12 @@ namespace Template.Common.Infrastructure.Repository
         /// <returns></returns>
         Task<int> ExecWithStoreProcedure(string query);
         /// <summary>
+        /// Get Next Sequence Number
+        /// </summary>
+        /// <param name="sequenceName"></param>
+        /// <returns></returns>
+        long GetNextSequenceValue(string sequenceName);
+        /// <summary>
         /// Any
         /// </summary>
         /// <param name="predicate"></param>
@@ -154,6 +160,12 @@ namespace Template.Common.Infrastructure.Repository
         /// <param name="predicate"></param>
         /// <returns></returns>
         Task<TB> Max<TB>(Expression<Func<T, TB>> selector, Expression<Func<T, bool>> predicate = null);
+        /// <summary>
+        /// union Operator
+        /// </summary>
+        /// <param name="queries"></param>
+        /// <returns></returns>
+        IQueryable<T> Union(params IQueryable<T>[] queries);
         /// <summary>
         /// Add
         /// </summary>

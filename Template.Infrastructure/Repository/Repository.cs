@@ -13,14 +13,14 @@ namespace Template.Infrastructure.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly DbContext Context;
+        protected readonly DbContext DbContext;
         protected DbSet<T> DbSet;
 
 
         public Repository(DbContext context)
         {
-            Context = context;
-            DbSet = Context.Set<T>();
+            DbContext = context;
+            DbSet = DbContext.Set<T>();
         }
 
         public async Task<T> GetAsync(params object[] keys)
@@ -198,18 +198,18 @@ namespace Template.Infrastructure.Repository
         
         public IEnumerable<TB> ExecuteStored<TB>(string sql) where TB : class
         {
-            var result = Context.Set<TB>().FromSqlRaw(sql);
+            var result = DbContext.Set<TB>().FromSqlRaw(sql);
             return result;
         }
         
         public async Task<int> ExecWithStoreProcedure(string query)
         {
-            return await Context.Database.ExecuteSqlRawAsync(query);
+            return await DbContext.Database.ExecuteSqlRawAsync(query);
         }
         
         public long GetNextSequenceValue(string sequenceName)
         {
-            var value = Context.GetNextSequenceValue(sequenceName);
+            var value = DbContext.GetNextSequenceValue(sequenceName);
             return value;
         }
 
@@ -224,7 +224,23 @@ namespace Template.Infrastructure.Repository
         }
        
         public async Task<bool> Any(Expression<Func<T, bool>> predicate = null) => predicate == null ? await DbSet.AnyAsync() : await DbSet.AnyAsync(predicate);
-        
+
+        public IQueryable<T> Union(params IQueryable<T>[] queries)
+        {
+            if (queries == null || queries.Length == 0)
+            {
+                throw new ArgumentException("At least one queryable must be provided", nameof(queries));
+            }
+
+            IQueryable<T> result = queries[0];
+            for (int i = 1; i < queries.Length; i++)
+            {
+                result = result.Union(queries[i]);
+            }
+
+            return result;
+        }
+
         public T Add(T newEntity)
         {
             return DbSet.Add(newEntity).Entity;
@@ -248,18 +264,21 @@ namespace Template.Infrastructure.Repository
 
         public void Update(T originalEntity, T newEntity)
         {
-            Context.Entry(originalEntity).CurrentValues.SetValues(newEntity);
+            DbContext.Entry(originalEntity).CurrentValues.SetValues(newEntity);
         }
        
         public async Task UpdateAsync(object id, T newEntity)
         {
             var originalEntity = await DbSet.FindAsync(id);
-            Context.Entry(originalEntity).CurrentValues.SetValues(newEntity);
+            if (originalEntity != null)
+            {
+                DbContext.Entry(originalEntity).CurrentValues.SetValues(newEntity);
+            }
         }
         
         public void UpdateRange(IEnumerable<T> newEntities)
         {
-            Context.UpdateRange(newEntities);
+            DbContext.UpdateRange(newEntities);
         }
         
         public void Remove(T entity)
@@ -280,7 +299,10 @@ namespace Template.Infrastructure.Repository
         public async void Remove(Expression<Func<T, bool>> predicate)
         {
             var objects = await DbSet.FindAsync(predicate);
-            DbSet.RemoveRange(objects);
+            if (objects != null)
+            {
+                DbSet.RemoveRange(objects);
+            }
         }
        
         public void RemoveRange(IEnumerable<T> entities)
