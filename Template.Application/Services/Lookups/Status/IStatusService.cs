@@ -7,7 +7,7 @@ using Template.Common.DTO.Lookup.Status.Parameters;
 
 namespace Template.Application.Services.Lookups.Status
 {
-    public interface IStatusService : IBaseService<Domain.Entities.Lookup.Status , AddStatusDto ,EditStatusDto, StatusDto , int , int?>
+    public interface IStatusService : IBaseService<Domain.Entities.Lookup.Status, AddStatusDto, EditStatusDto, StatusDto, int, int?>
     {
         Task<DataPaging> GetAllPagedAsync(BaseParam<StatusFilter> filter);
     }

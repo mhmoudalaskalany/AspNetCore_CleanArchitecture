@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Template.Application.Services.Base;
 using Template.Application.Services.Lookups.Status;
+using Template.Common.Core;
 using Template.Common.DTO.Lookup.Status;
 using Template.Common.Extensions;
 using Template.Common.Infrastructure.UnitOfWork;
@@ -21,6 +22,7 @@ namespace Template.Application.Unit.Tests.Service
         private readonly StatusService _statusServiceMock;
         private readonly Mock<IServiceBaseParameter<Status>> _baseParamsMock;
         private readonly Mock<IMapper> _mapperMock;
+        private readonly Mock<IResponseResult> _responseResultMock;
         public StatusServiceTests()
         {
             _uowMock = new Mock<IUnitOfWork<Status>>();
@@ -32,6 +34,9 @@ namespace Template.Application.Unit.Tests.Service
             _loggerMock = new Mock<ILogger<StatusService>>();
             Fixture.Register(() => _loggerMock.Object);
 
+            _responseResultMock = new Mock<IResponseResult>();
+            Fixture.Register(() => _responseResultMock.Object);
+
             _baseParamsMock = new Mock<IServiceBaseParameter<Status>>().SetupAllProperties();
 
             Fixture.Register(() => _baseParamsMock.Object);
@@ -41,6 +46,8 @@ namespace Template.Application.Unit.Tests.Service
             _baseParamsMock.Object.Mapper = _mapperMock.Object;
 
             _baseParamsMock.Object.Logger = _loggerMock.Object;
+
+            _baseParamsMock.Object.ResponseResult = _responseResultMock.Object;
 
             _statusServiceMock = new StatusService(_baseParamsMock.Object);
         }
@@ -60,6 +67,15 @@ namespace Template.Application.Unit.Tests.Service
 
             _mapperMock.Setup(x => x.Map<IEnumerable<Status>, List<StatusDto>>(It.IsAny<IEnumerable<Status>>()))
                 .Returns(mapped);
+
+            var finalResult = new Mock<IFinalResult>();
+            finalResult.SetupAllProperties();
+            finalResult.Object.Data = mapped;
+            finalResult.Object.Status = HttpStatusCode.OK;
+            finalResult.Object.Message = "Success";
+
+            _responseResultMock.Setup(x => x.PostResult(It.IsAny<object>(), It.IsAny<HttpStatusCode>(), It.IsAny<Exception>(), It.IsAny<string>()))
+                .Returns(finalResult.Object);
 
             // act
             var result = await _statusServiceMock.GetAllAsync();
@@ -86,8 +102,17 @@ namespace Template.Application.Unit.Tests.Service
                 .ReturnsAsync(entities);
 
 
-            _mapperMock.Setup(x => x.Map<IEnumerable<Status>, List<StatusDto>>(It.IsAny<IEnumerable<Status>>()))
+            _mapperMock.Setup(x => x.Map<IEnumerable<Status>, IEnumerable<StatusDto>>(It.IsAny<IEnumerable<Status>>()))
                 .Returns(mapped);
+
+            var finalResult = new Mock<IFinalResult>();
+            finalResult.SetupAllProperties();
+            finalResult.Object.Data = mapped;
+            finalResult.Object.Status = HttpStatusCode.OK;
+            finalResult.Object.Message = "Success";
+
+            _responseResultMock.Setup(x => x.PostResult(It.IsAny<object>(), It.IsAny<HttpStatusCode>(), It.IsAny<Exception>(), It.IsAny<string>()))
+                .Returns(finalResult.Object);
 
             // act
             var result = await _statusServiceMock.GetAllAsync(predicate: predicate);
