@@ -23,9 +23,13 @@ namespace Template.Application.Services.Identity.Permission
         {
 
             var limit = filter.PageSize;
+
             var offset = ((--filter.PageNumber) * filter.PageSize);
-            var query = await UnitOfWork.Repository.FindPagedAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
+
+            var query = await UnitOfWork.Repository.FindPagedAsync(predicate: PredicateBuilderFunction(filter.Filter), pageNumber: offset, pageSize: limit, filter.OrderByValue);
+
             var data = Mapper.Map<IEnumerable<Domain.Entities.Identity.Permission>, IEnumerable<PermissionDto>>(query.Item2);
+
             return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, result: data, status: HttpStatusCode.OK, HttpStatusCode.OK.ToString());
 
         }
@@ -36,11 +40,11 @@ namespace Template.Application.Services.Identity.Permission
 
             if (!string.IsNullOrWhiteSpace(filter?.NameAr))
             {
-                predicate = predicate.And(b => b.NameAr.ToLower().Contains(filter.NameAr.ToLower()));
+                predicate = predicate.And(b => b.NameAr.Contains(filter.NameAr));
             }
             if (!string.IsNullOrWhiteSpace(filter?.NameEn))
             {
-                predicate = predicate.And(b => b.NameEn.ToLower().Contains(filter.NameEn.ToLower()));
+                predicate = predicate.And(b => b.NameEn.Contains(filter.NameEn));
             }
             return predicate;
         }

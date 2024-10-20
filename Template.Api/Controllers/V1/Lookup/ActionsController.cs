@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Web.Services.Description;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Template.Api.Controllers.V1.Base;
@@ -58,6 +59,17 @@ namespace Template.Api.Controllers.V1.Lookup
         /// <returns></returns>
         [HttpPost("getPaged")]
         public async Task<DataPaging> GetPagedAsync([FromBody] BaseParam<ActionFilter> filter) => await _actionService.GetAllPagedAsync(filter);
+
+
+        /// <summary>
+        /// Get All Data paged For Drop Down
+        /// </summary>
+        /// <param name="filter">Filter responsible for search and sort</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("getDropDown")]
+        public async Task<DataPaging> GetDropDownAsync([FromBody] BaseParam<SearchCriteriaFilter> filter) => await _actionService.GetDropDownAsync(filter);
+        
 
 
         /// <summary>

@@ -250,6 +250,13 @@
             <param name="filter">Filter responsible for search and sort</param>
             <returns></returns>
         </member>
+        <member name="M:Template.Api.Controllers.V1.Lookup.ActionsController.GetDropDownAsync(Template.Common.DTO.Base.BaseParam{Template.Common.DTO.Base.SearchCriteriaFilter})">
+            <summary>
+            Get All Data paged For Drop Down
+            </summary>
+            <param name="filter">Filter responsible for search and sort</param>
+            <returns></returns>
+        </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.ActionsController.AddAsync(Template.Common.DTO.Lookup.Action.AddActionDto)">
             <summary>
             Add 

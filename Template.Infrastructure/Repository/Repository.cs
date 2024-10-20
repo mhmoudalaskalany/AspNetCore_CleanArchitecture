@@ -83,9 +83,10 @@ namespace Template.Infrastructure.Repository
             return await query.ToListAsync();
         }
         
-        public async Task<(int, IEnumerable<T>)> FindPagedAsync(Expression<Func<T, bool>> predicate = null, int skip = 0, int take = 0, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true)
+        public async Task<(int, IEnumerable<T>)> FindPagedAsync(Expression<Func<T, bool>> predicate = null, int pageNumber = 0, int pageSize = 0, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true)
         {
             IQueryable<T> query = DbSet;
+
             if (disableTracking)
             {
                 query = query.AsNoTracking();
@@ -94,22 +95,26 @@ namespace Template.Infrastructure.Repository
             {
                 query = query.Where(predicate);
             }
-            var count = query.Count();
+            
             if (orderByCriteria != null)
             {
                 var field = orderByCriteria.First().PairAsSqlExpression;
-                query = query.OrderBy(field).Skip(skip).Take(take);
+                query = query.OrderBy(field);
             }
             if (include != null)
             {
                 query = include(query).AsSplitQuery();
             }
-            return (count, await query.ToListAsync());
+
+            var count = query.Count();
+
+            return (count, await query.Skip(pageNumber).Take(pageSize).ToListAsync());
         }
       
         public async Task<IEnumerable<T>> GetAllAsync(IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true)
         {
             IQueryable<T> query = DbSet;
+
             if (disableTracking)
             {
                 query = query.AsNoTracking();
@@ -134,6 +139,7 @@ namespace Template.Infrastructure.Repository
         public async Task<IEnumerable<TType>> FindSelectAsync<TType>(Expression<Func<T, TType>> select, Expression<Func<T, bool>> predicate = null, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true) where TType : class
         {
             IQueryable<T> query = DbSet;
+
             if (disableTracking)
             {
                 query = query.AsNoTracking();
@@ -153,9 +159,10 @@ namespace Template.Infrastructure.Repository
             return await query.Select(select).ToListAsync();
         }
         
-        public async Task<(int, IEnumerable<TType>)> FindPagedSelectAsync<TType>(Expression<Func<T, TType>> select, Expression<Func<T, bool>> predicate = null, int skip = 0, int take = 0, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true) where TType : class
+        public async Task<(int, IEnumerable<TType>)> FindPagedSelectAsync<TType>(Expression<Func<T, TType>> select, Expression<Func<T, bool>> predicate = null, int pageNumber = 0, int pageSize = 0, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true) where TType : class
         {
             IQueryable<T> query = DbSet;
+
             if (disableTracking)
             {
                 query = query.AsNoTracking();
@@ -169,11 +176,14 @@ namespace Template.Infrastructure.Repository
                 query = include(query).AsSplitQuery();
             }
             var count = query.Count();
-            if (orderByCriteria == null) return (count, await query.Skip(skip).Take(take).Select(select).ToListAsync());
-            var field = orderByCriteria.First().PairAsSqlExpression;
-            query = query.OrderBy(field).Skip(skip).Take(take);
 
-            return (count, await query.Select(select).ToListAsync());
+            if (orderByCriteria == null) return (count, await query.Skip(pageNumber).Take(pageSize).Select(select).ToListAsync());
+
+            var field = orderByCriteria.First().PairAsSqlExpression;
+
+            query = query.OrderBy(field);
+
+            return (count, await query.Skip(pageNumber).Take(pageSize).Select(select).ToListAsync());
         }
       
         public IList<TReturn> FindGrouped<TResult, TKey, TGroup, TReturn>(

@@ -51,13 +51,13 @@ namespace Template.Common.Infrastructure.Repository
         /// Find Paged
         /// </summary>
         /// <param name="predicate"></param>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
         /// <param name="orderByCriteria"></param>
         /// <param name="include"></param>
         /// <param name="disableTracking"></param>
         /// <returns></returns>
-        Task<(int, IEnumerable<T>)> FindPagedAsync(Expression<Func<T, bool>> predicate = null, int skip = 0, int take = 0, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true);
+        Task<(int, IEnumerable<T>)> FindPagedAsync(Expression<Func<T, bool>> predicate = null, int pageNumber = 0, int pageSize = 0, IEnumerable<SortModel> orderByCriteria = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true);
         /// <summary>
         /// Get Select
         /// </summary>
@@ -86,14 +86,14 @@ namespace Template.Common.Infrastructure.Repository
         /// <typeparam name="TType"></typeparam>
         /// <param name="select"></param>
         /// <param name="predicate"></param>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
         /// <param name="orderByCriteria"></param>
         /// <param name="include"></param>
         /// <param name="disableTracking"></param>
         /// <returns></returns>
         Task<(int, IEnumerable<TType>)> FindPagedSelectAsync<TType>(Expression<Func<T, TType>> select,
-            Expression<Func<T, bool>> predicate = null, int skip = 0, int take = 0,
+            Expression<Func<T, bool>> predicate = null, int pageNumber = 0, int pageSize = 0,
             IEnumerable<SortModel> orderByCriteria = null,
             Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true)
             where TType : class;
