@@ -71,7 +71,7 @@ namespace Template.Application.Services.Lookups.Action
         static Expression<Func<Domain.Entities.Lookup.Action, bool>> DropDownPredicateBuilderFunction(SearchCriteriaFilter filter)
         {
             var predicate = PredicateBuilder.New<Domain.Entities.Lookup.Action>(true);
-            if (!string.IsNullOrWhiteSpace(filter.SearchCriteria))
+            if (!string.IsNullOrWhiteSpace(filter?.SearchCriteria))
             {
                 predicate = predicate.And(b => b.NameAr.Contains(filter.SearchCriteria));
                 predicate = predicate.Or(b => b.NameEn.Contains(filter.SearchCriteria));
