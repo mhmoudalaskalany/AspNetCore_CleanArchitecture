@@ -10,11 +10,8 @@ namespace Template.Application.Services.Identity.User
 {
     public interface IUserService : IBaseService<Domain.Entities.Identity.User, AddUserDto , EditUserDto, UserDto , Guid, Guid?>
     {
-        /// <summary>
-        /// Get All Paged
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <returns></returns>
         Task<DataPaging> GetAllPagedAsync(BaseParam<UserFilter> filter);
+
+        Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter);
     }
 }

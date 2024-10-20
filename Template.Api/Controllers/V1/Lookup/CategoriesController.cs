@@ -58,7 +58,16 @@ namespace Template.Api.Controllers.V1.Lookup
         /// <returns></returns>
         [HttpPost("getPaged")]
         public async Task<DataPaging> GetPagedAsync([FromBody] BaseParam<CategoryFilter> filter) => await _categoryService.GetAllPagedAsync(filter);
- 
+
+        /// <summary>
+        /// Get All Data paged For Drop Down
+        /// </summary>
+        /// <param name="filter">Filter responsible for search and sort</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("getDropDown")]
+        public async Task<DataPaging> GetDropDownAsync([FromBody] BaseParam<SearchCriteriaFilter> filter) => await _categoryService.GetDropDownAsync(filter);
+
 
         /// <summary>
         /// Add 

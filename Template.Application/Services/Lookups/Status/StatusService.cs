@@ -9,6 +9,7 @@ using System.Linq.Expressions;
 using System;
 using Template.Common.DTO.Base;
 using Template.Common.DTO.Lookup.Status.Parameters;
+using Template.Domain;
 
 namespace Template.Application.Services.Lookups.Status
 {
@@ -34,6 +35,24 @@ namespace Template.Application.Services.Lookups.Status
 
         }
 
+
+        public async Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter)
+        {
+
+            var limit = filter.PageSize;
+
+            var offset = ((--filter.PageNumber) * filter.PageSize);
+
+            var predicate = DropDownPredicateBuilderFunction(filter.Filter);
+
+            var query = await UnitOfWork.Repository.FindPagedAsync(predicate: predicate, pageNumber: offset, pageSize: limit);
+
+            var data = Mapper.Map<IEnumerable<Domain.Entities.Lookup.Status>, IEnumerable<StatusDto>>(query.Item2);
+
+            return new DataPaging(filter.PageNumber, filter.PageSize, query.Item1, data, status: HttpStatusCode.OK, MessagesConstants.Success);
+
+        }
+
         static Expression<Func<Domain.Entities.Lookup.Status, bool>> PredicateBuilderFunction(StatusFilter filter)
         {
             var predicate = PredicateBuilder.New<Domain.Entities.Lookup.Status>(x => x.IsDeleted == filter.IsDeleted);
@@ -45,6 +64,17 @@ namespace Template.Application.Services.Lookups.Status
             if (!string.IsNullOrWhiteSpace(filter?.NameEn))
             {
                 predicate = predicate.And(b => b.NameEn.Contains(filter.NameEn));
+            }
+            return predicate;
+        }
+
+        static Expression<Func<Domain.Entities.Lookup.Status, bool>> DropDownPredicateBuilderFunction(SearchCriteriaFilter filter)
+        {
+            var predicate = PredicateBuilder.New<Domain.Entities.Lookup.Status>(true);
+            if (!string.IsNullOrWhiteSpace(filter?.SearchCriteria))
+            {
+                predicate = predicate.And(b => b.NameAr.Contains(filter.SearchCriteria));
+                predicate = predicate.Or(b => b.NameEn.Contains(filter.SearchCriteria));
             }
             return predicate;
         }

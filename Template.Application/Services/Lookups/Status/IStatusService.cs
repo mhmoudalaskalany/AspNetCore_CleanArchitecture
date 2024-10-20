@@ -10,5 +10,7 @@ namespace Template.Application.Services.Lookups.Status
     public interface IStatusService : IBaseService<Domain.Entities.Lookup.Status, AddStatusDto, EditStatusDto, StatusDto, int, int?>
     {
         Task<DataPaging> GetAllPagedAsync(BaseParam<StatusFilter> filter);
+
+        Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter);
     }
 }

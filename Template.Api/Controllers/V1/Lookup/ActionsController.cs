@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using System.Web.Services.Description;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Template.Api.Controllers.V1.Base;

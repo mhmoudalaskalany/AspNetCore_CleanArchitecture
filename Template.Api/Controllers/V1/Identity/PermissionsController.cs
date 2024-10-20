@@ -30,11 +30,9 @@ namespace Template.Api.Controllers.V1.Identity
         /// </summary>
         /// <returns></returns>
         [HttpGet("get/{id}")]
-        public async Task<IFinalResult> GetAsync(long id)
-        {
-            var result = await _service.GetByIdAsync(id);
-            return result;
-        }
+        public async Task<IFinalResult> GetAsync(long id) => await _service.GetByIdAsync(id);
+
+
 
 
         /// <summary>
@@ -42,22 +40,18 @@ namespace Template.Api.Controllers.V1.Identity
         /// </summary>
         /// <returns></returns>
         [HttpGet("getEdit/{id}")]
-        public async Task<IFinalResult> GetEditAsync(long id)
-        {
-            var result = await _service.GetEditByIdAsync(id);
-            return result;
-        }
+        public async Task<IFinalResult> GetEditAsync(long id) => await _service.GetEditByIdAsync(id);
+
+
 
         /// <summary>
         /// Get All 
         /// </summary>
         /// <returns></returns>
         [HttpGet("getAll")]
-        public async Task<IFinalResult> GetAllAsync()
-        {
-            var result = await _service.GetAllAsync();
-            return result;
-        }
+        public async Task<IFinalResult> GetAllAsync() => await _service.GetAllAsync();
+
+
 
         /// <summary>
         /// Get Paged
@@ -65,10 +59,19 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="filter">Filter responsible for search and sort</param>
         /// <returns></returns>
         [HttpPost("getPaged")]
-        public async Task<DataPaging> GetPagedAsync([FromBody] BaseParam<PermissionFilter> filter)
-        {
-            return await _service.GetAllPagedAsync(filter);
-        }
+        public async Task<DataPaging> GetPagedAsync([FromBody] BaseParam<PermissionFilter> filter) => await _service.GetAllPagedAsync(filter);
+
+
+        /// <summary>
+        /// Get All Data paged For Drop Down
+        /// </summary>
+        /// <param name="filter">Filter responsible for search and sort</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("getDropDown")]
+        public async Task<DataPaging> GetDropDownAsync([FromBody] BaseParam<SearchCriteriaFilter> filter) => await _service.GetDropDownAsync(filter);
+
+
 
         /// <summary>
         /// Add 
@@ -76,11 +79,9 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost("add")]
-        public async Task<IFinalResult> AddAsync([FromBody] AddPermissionDto dto)
-        {
-            var result = await _service.AddAsync(dto);
-            return result;
-        }
+        public async Task<IFinalResult> AddAsync([FromBody] AddPermissionDto dto) => await _service.AddAsync(dto);
+
+
 
 
         /// <summary>
@@ -89,20 +90,16 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="model">Object content</param>
         /// <returns></returns>
         [HttpPut("update")]
-        public async Task<IFinalResult> UpdateAsync(AddPermissionDto model)
-        {
-            return await _service.UpdateAsync(model);
-        }
+        public async Task<IFinalResult> UpdateAsync(AddPermissionDto model) => await _service.UpdateAsync(model);
+
         /// <summary>
         /// Remove  by id
         /// </summary>
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("delete/{id}")]
-        public async Task<IFinalResult> DeleteAsync(long id)
-        {
-            return await _service.DeleteAsync(id);
-        }
+        public async Task<IFinalResult> DeleteAsync(long id) => await _service.DeleteAsync(id);
+
 
         /// <summary>
         /// Soft Remove  by id
@@ -110,10 +107,8 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("deleteSoft{id}")]
-        public async Task<IFinalResult> DeleteSoftAsync(long id)
-        {
-            return await _service.DeleteSoftAsync(id);
-        }
+        public async Task<IFinalResult> DeleteSoftAsync(long id) => await _service.DeleteSoftAsync(id);
+
 
 
     }

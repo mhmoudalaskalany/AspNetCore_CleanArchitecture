@@ -10,5 +10,7 @@ namespace Template.Application.Services.Lookups.Category
     public interface ICategoryService : IBaseService<Domain.Entities.Lookup.Category, AddCategoryDto , EditCategoryDto , CategoryDto , int , int?>
     {
         Task<DataPaging> GetAllPagedAsync(BaseParam<CategoryFilter> filter);
+
+        Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter);
     }
 }

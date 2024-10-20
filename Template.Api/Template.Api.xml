@@ -124,6 +124,13 @@
             <param name="filter">Filter responsible for search and sort</param>
             <returns></returns>
         </member>
+        <member name="M:Template.Api.Controllers.V1.Identity.PermissionsController.GetDropDownAsync(Template.Common.DTO.Base.BaseParam{Template.Common.DTO.Base.SearchCriteriaFilter})">
+            <summary>
+            Get All Data paged For Drop Down
+            </summary>
+            <param name="filter">Filter responsible for search and sort</param>
+            <returns></returns>
+        </member>
         <member name="M:Template.Api.Controllers.V1.Identity.PermissionsController.AddAsync(Template.Common.DTO.Identity.Permission.AddPermissionDto)">
             <summary>
             Add 
@@ -183,6 +190,13 @@
         <member name="M:Template.Api.Controllers.V1.Identity.UsersController.GetPagedAsync(Template.Common.DTO.Base.BaseParam{Template.Common.DTO.Identity.User.Parameters.UserFilter})">
             <summary>
             Get Paged
+            </summary>
+            <param name="filter">Filter responsible for search and sort</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.V1.Identity.UsersController.GetDropDownAsync(Template.Common.DTO.Base.BaseParam{Template.Common.DTO.Base.SearchCriteriaFilter})">
+            <summary>
+            Get All Data paged For Drop Down
             </summary>
             <param name="filter">Filter responsible for search and sort</param>
             <returns></returns>
@@ -320,6 +334,13 @@
             <param name="filter">Filter responsible for search and sort</param>
             <returns></returns>
         </member>
+        <member name="M:Template.Api.Controllers.V1.Lookup.CategoriesController.GetDropDownAsync(Template.Common.DTO.Base.BaseParam{Template.Common.DTO.Base.SearchCriteriaFilter})">
+            <summary>
+            Get All Data paged For Drop Down
+            </summary>
+            <param name="filter">Filter responsible for search and sort</param>
+            <returns></returns>
+        </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.CategoriesController.AddAsync(Template.Common.DTO.Lookup.Category.AddCategoryDto)">
             <summary>
             Add 
@@ -379,6 +400,13 @@
         <member name="M:Template.Api.Controllers.V1.Lookup.StatusesController.GetPagedAsync(Template.Common.DTO.Base.BaseParam{Template.Common.DTO.Lookup.Status.Parameters.StatusFilter})">
             <summary>
             Get Paged
+            </summary>
+            <param name="filter">Filter responsible for search and sort</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.V1.Lookup.StatusesController.GetDropDownAsync(Template.Common.DTO.Base.BaseParam{Template.Common.DTO.Base.SearchCriteriaFilter})">
+            <summary>
+            Get All Data paged For Drop Down
             </summary>
             <param name="filter">Filter responsible for search and sort</param>
             <returns></returns>

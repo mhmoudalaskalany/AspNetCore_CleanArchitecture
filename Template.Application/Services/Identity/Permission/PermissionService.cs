@@ -9,6 +9,7 @@ using Template.Common.DTO.Identity.Permission;
 using Template.Common.DTO.Identity.Permission.Parameters;
 using LinqKit;
 using Template.Application.Services.Base;
+using Template.Domain;
 
 namespace Template.Application.Services.Identity.Permission
 {
@@ -34,6 +35,24 @@ namespace Template.Application.Services.Identity.Permission
 
         }
 
+
+        public async Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter)
+        {
+
+            var limit = filter.PageSize;
+
+            var offset = ((--filter.PageNumber) * filter.PageSize);
+
+            var predicate = DropDownPredicateBuilderFunction(filter.Filter);
+
+            var query = await UnitOfWork.Repository.FindPagedAsync(predicate: predicate, pageNumber: offset, pageSize: limit);
+
+            var data = Mapper.Map<IEnumerable<Domain.Entities.Identity.Permission>, IEnumerable<PermissionDto>>(query.Item2);
+
+            return new DataPaging(filter.PageNumber, filter.PageSize, query.Item1, data, status: HttpStatusCode.OK, MessagesConstants.Success);
+
+        }
+
         static Expression<Func<Domain.Entities.Identity.Permission, bool>> PredicateBuilderFunction(PermissionFilter filter)
         {
             var predicate = PredicateBuilder.New<Domain.Entities.Identity.Permission>(x => x.IsDeleted == filter.IsDeleted);
@@ -45,6 +64,17 @@ namespace Template.Application.Services.Identity.Permission
             if (!string.IsNullOrWhiteSpace(filter?.NameEn))
             {
                 predicate = predicate.And(b => b.NameEn.Contains(filter.NameEn));
+            }
+            return predicate;
+        }
+
+        static Expression<Func<Domain.Entities.Identity.Permission, bool>> DropDownPredicateBuilderFunction(SearchCriteriaFilter filter)
+        {
+            var predicate = PredicateBuilder.New<Domain.Entities.Identity.Permission>(true);
+            if (!string.IsNullOrWhiteSpace(filter?.SearchCriteria))
+            {
+                predicate = predicate.And(b => b.NameAr.Contains(filter.SearchCriteria));
+                predicate = predicate.Or(b => b.NameEn.Contains(filter.SearchCriteria));
             }
             return predicate;
         }

@@ -9,6 +9,7 @@ using Template.Common.DTO.Identity.User;
 using Template.Common.DTO.Identity.User.Parameters;
 using LinqKit;
 using Template.Application.Services.Base;
+using Template.Domain;
 
 namespace Template.Application.Services.Identity.User
 {
@@ -34,6 +35,24 @@ namespace Template.Application.Services.Identity.User
 
         }
 
+
+        public async Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter)
+        {
+
+            var limit = filter.PageSize;
+
+            var offset = ((--filter.PageNumber) * filter.PageSize);
+
+            var predicate = DropDownPredicateBuilderFunction(filter.Filter);
+
+            var query = await UnitOfWork.Repository.FindPagedAsync(predicate: predicate, pageNumber: offset, pageSize: limit);
+
+            var data = Mapper.Map<IEnumerable<Domain.Entities.Identity.User>, IEnumerable<UserDto>>(query.Item2);
+
+            return new DataPaging(filter.PageNumber, filter.PageSize, query.Item1, data, status: HttpStatusCode.OK, MessagesConstants.Success);
+
+        }
+
         static Expression<Func<Domain.Entities.Identity.User, bool>> PredicateBuilderFunction(UserFilter filter)
         {
             var predicate = PredicateBuilder.New<Domain.Entities.Identity.User>(x => x.IsDeleted == filter.IsDeleted);
@@ -48,6 +67,18 @@ namespace Template.Application.Services.Identity.User
             }
             return predicate;
         }
+
+        static Expression<Func<Domain.Entities.Identity.User, bool>> DropDownPredicateBuilderFunction(SearchCriteriaFilter filter)
+        {
+            var predicate = PredicateBuilder.New<Domain.Entities.Identity.User>(true);
+            if (!string.IsNullOrWhiteSpace(filter?.SearchCriteria))
+            {
+                predicate = predicate.And(b => b.NameAr.Contains(filter.SearchCriteria));
+                predicate = predicate.Or(b => b.NameEn.Contains(filter.SearchCriteria));
+            }
+            return predicate;
+        }
+
 
     }
 }
