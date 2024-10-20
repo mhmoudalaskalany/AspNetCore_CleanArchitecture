@@ -49,5 +49,5 @@ Clean Architecture For .Net Core 8 Web Api
 - run Update-Database through PMC(Package Manager Console)
 - try login using Username: Admin ; Password:123456
 
-  # Releases
-  - current release version is 1.0.0
+# Releases
+- current release version is 1.0.0
