@@ -4,7 +4,6 @@ using Template.Common.Infrastructure.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Template.Integration.CacheRepository;
-using Microsoft.Extensions.Logging;
 
 namespace Template.Application.Services.Base
 {
@@ -21,7 +20,5 @@ namespace Template.Application.Services.Base
         IConfiguration Configuration { get; set; }
 
         ICacheRepository CacheRepository { get; set; }
-
-        ILogger Logger { get; set; }
     }
 }

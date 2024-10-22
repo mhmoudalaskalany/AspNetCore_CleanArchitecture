@@ -3,7 +3,6 @@ using System.Net;
 using AutoFixture;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.Extensions.Logging;
 using Moq;
 using Template.Application.Services.Base;
 using Template.Application.Services.Lookups.Status;
@@ -18,7 +17,6 @@ namespace Template.Application.Unit.Tests.Service
     public class StatusServiceTests : AutoFixtureBase
     {
         private readonly Mock<IUnitOfWork<Status>> _uowMock;
-        private readonly Mock<ILogger<StatusService>> _loggerMock;
         private readonly StatusService _statusServiceMock;
         private readonly Mock<IServiceBaseParameter<Status>> _baseParamsMock;
         private readonly Mock<IMapper> _mapperMock;
@@ -31,8 +29,6 @@ namespace Template.Application.Unit.Tests.Service
             _mapperMock = new Mock<IMapper>();
             Fixture.Register(() => _mapperMock.Object);
 
-            _loggerMock = new Mock<ILogger<StatusService>>();
-            Fixture.Register(() => _loggerMock.Object);
 
             _responseResultMock = new Mock<IResponseResult>();
             Fixture.Register(() => _responseResultMock.Object);
@@ -45,7 +41,6 @@ namespace Template.Application.Unit.Tests.Service
 
             _baseParamsMock.Object.Mapper = _mapperMock.Object;
 
-            _baseParamsMock.Object.Logger = _loggerMock.Object;
 
             _baseParamsMock.Object.ResponseResult = _responseResultMock.Object;
 

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Serilog;
 using Template.Common.Core;
 using Template.Common.DTO.Base;
 using Template.Common.Infrastructure.UnitOfWork;
@@ -32,7 +32,6 @@ namespace Template.Application.Services.Base
         protected IHttpContextAccessor HttpContextAccessor;
         protected IConfiguration Configuration;
         protected ICacheRepository CacheRepository;
-        private readonly ILogger _logger;
         private readonly JsonSerializerSettings _serializerSettings = new()
         {
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -42,7 +41,6 @@ namespace Template.Application.Services.Base
 
         protected internal BaseService(IServiceBaseParameter<T> businessBaseParameter)
         {
-            _logger = businessBaseParameter.Logger ?? throw new ArgumentNullException(nameof(businessBaseParameter.Logger));
             HttpContextAccessor = businessBaseParameter.HttpContextAccessor;
             UnitOfWork = businessBaseParameter.UnitOfWork;
             ResponseResult = businessBaseParameter.ResponseResult;
@@ -105,8 +103,8 @@ namespace Template.Application.Services.Base
             }
             catch (Exception e)
             {
-                _logger.LogError($"{MessagesConstants.AddError}-{nameof(AddAsync)}");
-                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                Log.Error($"{MessagesConstants.AddError}-{nameof(AddAsync)}");
+                Log.Error(JsonConvert.SerializeObject(e, _serializerSettings));
                 throw;
             }
         }
@@ -128,8 +126,8 @@ namespace Template.Application.Services.Base
             }
             catch (Exception e)
             {
-                _logger.LogError($"{MessagesConstants.AddError}-{nameof(AddListAsync)}");
-                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                Log.Error($"{MessagesConstants.AddError}-{nameof(AddListAsync)}");
+                Log.Error(JsonConvert.SerializeObject(e, _serializerSettings));
                 throw;
             }
         }
@@ -153,8 +151,8 @@ namespace Template.Application.Services.Base
             }
             catch (Exception e)
             {
-                _logger.LogError($"{MessagesConstants.UpdateError}-{nameof(UpdateAsync)}");
-                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                Log.Error($"{MessagesConstants.UpdateError}-{nameof(UpdateAsync)}");
+                Log.Error(JsonConvert.SerializeObject(e, _serializerSettings));
                 throw;
             }
 
@@ -177,8 +175,8 @@ namespace Template.Application.Services.Base
             }
             catch (Exception e)
             {
-                _logger.LogError($"{MessagesConstants.DeleteError}-{nameof(DeleteAsync)}");
-                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                Log.Error($"{MessagesConstants.DeleteError}-{nameof(DeleteAsync)}");
+                Log.Error(JsonConvert.SerializeObject(e, _serializerSettings));
                 throw;
             }
         }
@@ -201,8 +199,8 @@ namespace Template.Application.Services.Base
             }
             catch (Exception e)
             {
-                _logger.LogError($"{MessagesConstants.DeleteError}-{nameof(DeleteSoftAsync)}");
-                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                Log.Error($"{MessagesConstants.DeleteError}-{nameof(DeleteSoftAsync)}");
+                Log.Error(JsonConvert.SerializeObject(e, _serializerSettings));
                 throw;
             }
         }

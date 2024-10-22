@@ -5,7 +5,6 @@ using Template.Common.Infrastructure.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Template.Integration.CacheRepository;
-using Microsoft.Extensions.Logging;
 
 namespace Template.Application.Services.Base
 {
@@ -19,8 +18,7 @@ namespace Template.Application.Services.Base
             IResponseResult responseResult,
             IHttpContextAccessor httpContextAccessor,
             ICacheRepository cacheRepository,
-            IConfiguration configuration,
-            ILogger logger
+            IConfiguration configuration
         )
         {
             Mapper = mapper;
@@ -29,7 +27,6 @@ namespace Template.Application.Services.Base
             HttpContextAccessor = httpContextAccessor;
             CacheRepository = cacheRepository;
             Configuration = configuration;
-            Logger = logger;
         }
 
         public IMapper Mapper { get; set; }
@@ -44,6 +41,5 @@ namespace Template.Application.Services.Base
 
         public IConfiguration Configuration { get; set; }
 
-        public ILogger Logger { get; set; }
     }
 }
