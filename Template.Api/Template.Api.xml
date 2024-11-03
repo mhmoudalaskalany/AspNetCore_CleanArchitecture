@@ -69,7 +69,7 @@
         </member>
         <member name="M:Template.Api.Controllers.V1.Business.FilesController.DeleteAsync(System.Guid)">
             <summary>
-            Remove  by id
+            Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
@@ -101,13 +101,13 @@
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.PermissionsController.GetAsync(System.Int64)">
             <summary>
-            Get By Id 
+            Get By id 
             </summary>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.PermissionsController.GetEditAsync(System.Int64)">
             <summary>
-            Get By Id For Edit 
+            Get By id for edit 
             </summary>
             <returns></returns>
         </member>
@@ -147,14 +147,14 @@
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.PermissionsController.DeleteAsync(System.Int64)">
             <summary>
-            Remove  by id
+            Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.PermissionsController.DeleteSoftAsync(System.Int64)">
             <summary>
-            Soft Remove  by id
+            Soft Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
@@ -171,13 +171,13 @@
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.UsersController.GetAsync(System.Guid)">
             <summary>
-            Get By Id 
+            Get By id
             </summary>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.UsersController.GetEditAsync(System.Guid)">
             <summary>
-            Get By Id For Edit 
+            Get By id for edit 
             </summary>
             <returns></returns>
         </member>
@@ -217,7 +217,7 @@
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.UsersController.DeleteAsync(System.Guid)">
             <summary>
-            Remove  by id
+            Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
@@ -241,13 +241,13 @@
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.ActionsController.GetAsync(System.Int32)">
             <summary>
-            Get By Id 
+            Get By id
             </summary>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.ActionsController.GetEditAsync(System.Int32)">
             <summary>
-            Get By Id For Edit 
+            Get By id for edit 
             </summary>
             <returns></returns>
         </member>
@@ -287,14 +287,14 @@
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.ActionsController.DeleteAsync(System.Int32)">
             <summary>
-            Remove  by id
+            Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.ActionsController.DeleteSoftAsync(System.Int32)">
             <summary>
-            Soft Remove  by id
+            Soft Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
@@ -311,13 +311,13 @@
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.CategoriesController.GetAsync(System.Int32)">
             <summary>
-            Get By Id 
+            Get By id
             </summary>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.CategoriesController.GetEditAsync(System.Int32)">
             <summary>
-            Get By Id For Edit 
+            Get By id for edit 
             </summary>
             <returns></returns>
         </member>
@@ -357,14 +357,14 @@
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.CategoriesController.DeleteAsync(System.Int32)">
             <summary>
-            Remove  by id
+            Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.CategoriesController.DeleteSoftAsync(System.Int32)">
             <summary>
-            Soft Remove  by id
+            Soft Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
@@ -381,13 +381,13 @@
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.StatusesController.GetAsync(System.Int32)">
             <summary>
-            Get By Id 
+            Get By id
             </summary>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.StatusesController.GetEditAsync(System.Int32)">
             <summary>
-            Get By Id For Edit 
+            Get By id for edit 
             </summary>
             <returns></returns>
         </member>
@@ -427,14 +427,14 @@
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.StatusesController.DeleteAsync(System.Int32)">
             <summary>
-            Remove  by id
+            Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.StatusesController.DeleteSoftAsync(System.Int32)">
             <summary>
-            Soft Remove  by id
+            Soft Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
@@ -504,7 +504,7 @@
         </member>
         <member name="M:Template.Api.Controllers.V2.Business.FilesController.DeleteAsync(System.Guid)">
             <summary>
-            Remove  by id
+            Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
@@ -536,13 +536,13 @@
         </member>
         <member name="M:Template.Api.Controllers.V2.Identity.PermissionsController.GetAsync(System.Int64)">
             <summary>
-            Get By Id 
+            Get By id
             </summary>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Identity.PermissionsController.GetEditAsync(System.Int64)">
             <summary>
-            Get By Id For Edit 
+            Get By id for edit 
             </summary>
             <returns></returns>
         </member>
@@ -575,14 +575,14 @@
         </member>
         <member name="M:Template.Api.Controllers.V2.Identity.PermissionsController.DeleteAsync(System.Int64)">
             <summary>
-            Remove  by id
+            Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Identity.PermissionsController.DeleteSoftAsync(System.Int64)">
             <summary>
-            Soft Remove  by id
+            Soft Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
