@@ -725,13 +725,13 @@
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.CategoriesController.GetAsync(System.Int32)">
             <summary>
-            Get By Id 
+            Get By id
             </summary>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.CategoriesController.GetEditAsync(System.Int32)">
             <summary>
-            Get By Id For Edit 
+            Get By id for edit 
             </summary>
             <returns></returns>
         </member>
@@ -764,14 +764,14 @@
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.CategoriesController.DeleteAsync(System.Int32)">
             <summary>
-            Remove  by id
+            Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.CategoriesController.DeleteSoftAsync(System.Int32)">
             <summary>
-            Soft Remove  by id
+            Soft Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
@@ -788,13 +788,13 @@
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.StatusesController.GetAsync(System.Int32)">
             <summary>
-            Get By Id 
+            Get By id
             </summary>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.StatusesController.GetEditAsync(System.Int32)">
             <summary>
-            Get By Id For Edit 
+            Get By id for edit 
             </summary>
             <returns></returns>
         </member>
@@ -827,14 +827,14 @@
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.StatusesController.DeleteAsync(System.Int32)">
             <summary>
-            Remove  by id
+            Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.StatusesController.DeleteSoftAsync(System.Int32)">
             <summary>
-            Soft Remove  by id
+            Soft Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>

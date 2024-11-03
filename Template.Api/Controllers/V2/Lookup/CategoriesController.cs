@@ -27,7 +27,7 @@ namespace Template.Api.Controllers.V2.Lookup
         }
 
         /// <summary>
-        /// Get By Id 
+        /// Get By id
         /// </summary>
         /// <returns></returns>
         [HttpGet("get/{id}")]
@@ -35,7 +35,7 @@ namespace Template.Api.Controllers.V2.Lookup
 
 
         /// <summary>
-        /// Get By Id For Edit 
+        /// Get By id for edit 
         /// </summary>
         /// <returns></returns>
         [HttpGet("getEdit/{id}")]
@@ -77,7 +77,7 @@ namespace Template.Api.Controllers.V2.Lookup
         public async Task<IFinalResult> UpdateAsync(AddCategoryDto model) => await _categoryService.UpdateAsync(model);
 
         /// <summary>
-        /// Remove  by id
+        /// Remove by id
         /// </summary>
         /// <param name="id">PK</param>
         /// <returns></returns>
@@ -86,7 +86,7 @@ namespace Template.Api.Controllers.V2.Lookup
 
 
         /// <summary>
-        /// Soft Remove  by id
+        /// Soft Remove by id
         /// </summary>
         /// <param name="id">PK</param>
         /// <returns></returns>
