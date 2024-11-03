@@ -662,13 +662,13 @@
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.ActionsController.GetAsync(System.Int32)">
             <summary>
-            Get By Id 
+            Get By id 
             </summary>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.ActionsController.GetEditAsync(System.Int32)">
             <summary>
-            Get By Id For Edit 
+            Get By id for edit 
             </summary>
             <returns></returns>
         </member>
@@ -701,14 +701,14 @@
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.ActionsController.DeleteAsync(System.Int32)">
             <summary>
-            Remove  by id
+            Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.ActionsController.DeleteSoftAsync(System.Int32)">
             <summary>
-            Soft Remove  by id
+            Soft Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
