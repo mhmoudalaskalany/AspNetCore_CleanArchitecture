@@ -27,7 +27,7 @@ namespace Template.Api.Controllers.V2.Identity
             _service = userService;
         }
         /// <summary>
-        /// Get By Id 
+        /// Get By id
         /// </summary>
         /// <returns></returns>
         [HttpGet("get/{id}")]
@@ -38,7 +38,7 @@ namespace Template.Api.Controllers.V2.Identity
         }
 
         /// <summary>
-        /// Get By Id For Edit 
+        /// Get By id for edit 
         /// </summary>
         /// <returns></returns>
         [HttpGet("getEdit/{id}")]
@@ -94,7 +94,7 @@ namespace Template.Api.Controllers.V2.Identity
             return await _service.UpdateAsync(model);
         }
         /// <summary>
-        /// Remove  by id
+        /// Remove by id
         /// </summary>
         /// <param name="id">PK</param>
         /// <returns></returns>
