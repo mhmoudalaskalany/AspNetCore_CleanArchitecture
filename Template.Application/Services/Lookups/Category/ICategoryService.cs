@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Template.Application.Services.Base;
 using Template.Common.Core;
 using Template.Common.DTO.Base;
@@ -12,5 +13,7 @@ namespace Template.Application.Services.Lookups.Category
         Task<DataPaging> GetAllPagedAsync(BaseParam<CategoryFilter> filter);
 
         Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter);
+
+        Task<IFinalResult> DeleteRangeAsync(List<int> ids);
     }
 }

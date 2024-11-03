@@ -53,6 +53,16 @@ namespace Template.Application.Services.Lookups.Status
 
         }
 
+        public async Task<IFinalResult> DeleteRangeAsync(List<int> ids)
+        {
+            var rows = await UnitOfWork.Repository.RemoveBulkAsync(x => ids.Contains(x.Id));
+            if (rows > 0)
+            {
+                return new ResponseResult().PostResult(result: true, status: HttpStatusCode.OK, message: MessagesConstants.DeleteSuccess);
+            }
+            return new ResponseResult().PostResult(result: false, status: HttpStatusCode.BadRequest, message: MessagesConstants.DeleteError);
+        }
+
         static Expression<Func<Domain.Entities.Lookup.Status, bool>> PredicateBuilderFunction(StatusFilter filter)
         {
             var predicate = PredicateBuilder.New<Domain.Entities.Lookup.Status>(x => x.IsDeleted == filter.IsDeleted);

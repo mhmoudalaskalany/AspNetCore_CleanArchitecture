@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Template.Api.Controllers.V1.Base;
@@ -101,5 +102,13 @@ namespace Template.Api.Controllers.V1.Lookup
         /// <returns></returns>
         [HttpDelete("deleteSoft/{id}")]
         public async Task<IFinalResult> DeleteSoftAsync(int id) => await _statusService.DeleteSoftAsync(id);
+
+        /// <summary>
+        /// Bulk Remove by ids
+        /// </summary>
+        /// <param name="ids">PK</param>
+        /// <returns></returns>
+        [HttpDelete("deleteRange")]
+        public async Task<IFinalResult> DeleteRangeAsync(List<int> ids) => await _statusService.DeleteRangeAsync(ids);
     }
 }

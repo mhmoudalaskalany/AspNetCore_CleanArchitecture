@@ -4,6 +4,7 @@ using Template.Common.DTO.Lookup.Status;
 using Template.Application.Services.Base;
 using Template.Common.DTO.Base;
 using Template.Common.DTO.Lookup.Status.Parameters;
+using System.Collections.Generic;
 
 namespace Template.Application.Services.Lookups.Status
 {
@@ -12,5 +13,7 @@ namespace Template.Application.Services.Lookups.Status
         Task<DataPaging> GetAllPagedAsync(BaseParam<StatusFilter> filter);
 
         Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter);
+
+        Task<IFinalResult> DeleteRangeAsync(List<int> ids);
     }
 }

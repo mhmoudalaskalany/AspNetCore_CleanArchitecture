@@ -53,6 +53,16 @@ namespace Template.Application.Services.Identity.User
 
         }
 
+        public async Task<IFinalResult> DeleteRangeAsync(List<Guid> ids)
+        {
+            var rows = await UnitOfWork.Repository.RemoveBulkAsync(x => ids.Contains(x.Id));
+            if (rows > 0)
+            {
+                return new ResponseResult().PostResult(result: true, status: HttpStatusCode.OK, message: MessagesConstants.DeleteSuccess);
+            }
+            return new ResponseResult().PostResult(result: false, status: HttpStatusCode.BadRequest, message: MessagesConstants.DeleteError);
+        }
+
         static Expression<Func<Domain.Entities.Identity.User, bool>> PredicateBuilderFunction(UserFilter filter)
         {
             var predicate = PredicateBuilder.New<Domain.Entities.Identity.User>(x => x.IsDeleted == filter.IsDeleted);
