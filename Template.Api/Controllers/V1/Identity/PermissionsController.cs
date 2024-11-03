@@ -26,17 +26,15 @@ namespace Template.Api.Controllers.V1.Identity
             _service = permissionService;
         }
         /// <summary>
-        /// Get By Id 
+        /// Get By id 
         /// </summary>
         /// <returns></returns>
         [HttpGet("get/{id}")]
         public async Task<IFinalResult> GetAsync(long id) => await _service.GetByIdAsync(id);
 
 
-
-
         /// <summary>
-        /// Get By Id For Edit 
+        /// Get By id for edit 
         /// </summary>
         /// <returns></returns>
         [HttpGet("getEdit/{id}")]
@@ -50,7 +48,6 @@ namespace Template.Api.Controllers.V1.Identity
         /// <returns></returns>
         [HttpGet("getAll")]
         public async Task<IFinalResult> GetAllAsync() => await _service.GetAllAsync();
-
 
 
         /// <summary>
@@ -72,7 +69,6 @@ namespace Template.Api.Controllers.V1.Identity
         public async Task<DataPaging> GetDropDownAsync([FromBody] BaseParam<SearchCriteriaFilter> filter) => await _service.GetDropDownAsync(filter);
 
 
-
         /// <summary>
         /// Add 
         /// </summary>
@@ -80,8 +76,6 @@ namespace Template.Api.Controllers.V1.Identity
         /// <returns></returns>
         [HttpPost("add")]
         public async Task<IFinalResult> AddAsync([FromBody] AddPermissionDto dto) => await _service.AddAsync(dto);
-
-
 
 
         /// <summary>
@@ -93,7 +87,7 @@ namespace Template.Api.Controllers.V1.Identity
         public async Task<IFinalResult> UpdateAsync(AddPermissionDto model) => await _service.UpdateAsync(model);
 
         /// <summary>
-        /// Remove  by id
+        /// Remove by id
         /// </summary>
         /// <param name="id">PK</param>
         /// <returns></returns>
@@ -102,7 +96,7 @@ namespace Template.Api.Controllers.V1.Identity
 
 
         /// <summary>
-        /// Soft Remove  by id
+        /// Soft Remove by id
         /// </summary>
         /// <param name="id">PK</param>
         /// <returns></returns>

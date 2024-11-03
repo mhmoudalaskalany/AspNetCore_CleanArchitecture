@@ -103,7 +103,7 @@ namespace Template.Api.Controllers.V2.Business
         }
 
         /// <summary>
-        /// Remove  by id
+        /// Remove by id
         /// </summary>
         /// <param name="id">PK</param>
         /// <returns></returns>

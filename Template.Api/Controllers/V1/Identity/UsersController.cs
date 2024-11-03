@@ -27,7 +27,7 @@ namespace Template.Api.Controllers.V1.Identity
             _service = userService;
         }
         /// <summary>
-        /// Get By Id 
+        /// Get By id
         /// </summary>
         /// <returns></returns>
         [HttpGet("get/{id}")]
@@ -35,7 +35,7 @@ namespace Template.Api.Controllers.V1.Identity
 
 
         /// <summary>
-        /// Get By Id For Edit 
+        /// Get By id for edit 
         /// </summary>
         /// <returns></returns>
         [HttpGet("getEdit/{id}")]
@@ -69,7 +69,6 @@ namespace Template.Api.Controllers.V1.Identity
         public async Task<DataPaging> GetDropDownAsync([FromBody] BaseParam<SearchCriteriaFilter> filter) => await _service.GetDropDownAsync(filter);
 
 
-
         /// <summary>
         /// Add 
         /// </summary>
@@ -77,8 +76,6 @@ namespace Template.Api.Controllers.V1.Identity
         /// <returns></returns>
         [HttpPost("add")]
         public async Task<IFinalResult> AddAsync([FromBody] AddUserDto dto) => await _service.AddAsync(dto);
-
-
 
 
         /// <summary>
@@ -90,7 +87,7 @@ namespace Template.Api.Controllers.V1.Identity
         public async Task<IFinalResult> UpdateAsync(AddUserDto model) => await _service.UpdateAsync(model);
 
         /// <summary>
-        /// Remove  by id
+        /// Remove by id
         /// </summary>
         /// <param name="id">PK</param>
         /// <returns></returns>
