@@ -6,7 +6,7 @@
   <ItemGroup>
     <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
     <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="Azure.Identity" Version="1.13.0" />
+    <PackageReference Include="Azure.Identity" Version="1.13.1" />
     <PackageReference Include="FluentScheduler" Version="5.5.1" />
     <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0" />
     <PackageReference Include="LinqKit.Core" Version="1.2.5" />
@@ -34,7 +34,7 @@
     <PackageReference Include="StackExchange.Redis" Version="2.8.16" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.9.0" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.4.6" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.4.8" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Template.Domain\Template.Domain.csproj" />
