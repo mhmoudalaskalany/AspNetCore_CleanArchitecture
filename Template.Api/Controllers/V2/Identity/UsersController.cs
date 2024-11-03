@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
@@ -114,6 +115,14 @@ namespace Template.Api.Controllers.V2.Identity
         {
             return await _service.DeleteSoftAsync(id);
         }
+
+        /// <summary>
+        /// Bulk Remove by ids
+        /// </summary>
+        /// <param name="ids">PK</param>
+        /// <returns></returns>
+        [HttpDelete("deleteRange")]
+        public async Task<IFinalResult> DeleteRangeAsync(List<Guid> ids) => await _service.DeleteRangeAsync(ids);
 
 
     }

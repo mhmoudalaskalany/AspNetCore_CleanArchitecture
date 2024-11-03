@@ -622,6 +622,13 @@
             <param name="id">PK</param>
             <returns></returns>
         </member>
+        <member name="M:Template.Api.Controllers.V2.Identity.PermissionsController.DeleteRangeAsync(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Bulk Remove by ids
+            </summary>
+            <param name="ids">PK</param>
+            <returns></returns>
+        </member>
         <member name="T:Template.Api.Controllers.V2.Identity.UsersController">
             <summary>
             Users Controller
@@ -683,6 +690,13 @@
             Soft Remove by id
             </summary>
             <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.V2.Identity.UsersController.DeleteRangeAsync(System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Bulk Remove by ids
+            </summary>
+            <param name="ids">PK</param>
             <returns></returns>
         </member>
         <member name="T:Template.Api.Controllers.V2.Lookup.ActionsController">
@@ -748,6 +762,13 @@
             <param name="id">PK</param>
             <returns></returns>
         </member>
+        <member name="M:Template.Api.Controllers.V2.Lookup.ActionsController.DeleteRangeAsync(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Bulk Remove by ids
+            </summary>
+            <param name="ids">PK</param>
+            <returns></returns>
+        </member>
         <member name="T:Template.Api.Controllers.V2.Lookup.CategoriesController">
             <summary>
             Categories Controller
@@ -811,6 +832,13 @@
             <param name="id">PK</param>
             <returns></returns>
         </member>
+        <member name="M:Template.Api.Controllers.V2.Lookup.CategoriesController.DeleteRangeAsync(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Bulk Remove by ids
+            </summary>
+            <param name="ids">PK</param>
+            <returns></returns>
+        </member>
         <member name="T:Template.Api.Controllers.V2.Lookup.StatusesController">
             <summary>
             Statuses Controller
@@ -872,6 +900,13 @@
             Soft Remove by id
             </summary>
             <param name="id">PK</param>
+            <returns></returns>
+        </member>
+        <member name="M:Template.Api.Controllers.V2.Lookup.StatusesController.DeleteRangeAsync(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Bulk Remove by ids
+            </summary>
+            <param name="ids">PK</param>
             <returns></returns>
         </member>
         <member name="T:Template.Api.Extensions.ConfigureDependencyExtension">

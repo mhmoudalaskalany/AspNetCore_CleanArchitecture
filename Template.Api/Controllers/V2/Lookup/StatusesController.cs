@@ -7,6 +7,7 @@ using Template.Common.Core;
 using Template.Common.DTO.Base;
 using Template.Common.DTO.Lookup.Status.Parameters;
 using Template.Common.DTO.Lookup.Status;
+using System.Collections.Generic;
 
 namespace Template.Api.Controllers.V2.Lookup
 {
@@ -93,5 +94,14 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <returns></returns>
         [HttpDelete("deleteSoft/{id}")]
         public async Task<IFinalResult> DeleteSoftAsync(int id) => await _statusService.DeleteSoftAsync(id);
+
+
+        /// <summary>
+        /// Bulk Remove by ids
+        /// </summary>
+        /// <param name="ids">PK</param>
+        /// <returns></returns>
+        [HttpDelete("deleteRange")]
+        public async Task<IFinalResult> DeleteRangeAsync(List<int> ids) => await _statusService.DeleteRangeAsync(ids);
     }
 }
