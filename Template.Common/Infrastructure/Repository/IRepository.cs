@@ -228,5 +228,11 @@ namespace Template.Common.Infrastructure.Repository
         /// </summary>
         /// <param name="entities"></param>
         void RemoveRange(IEnumerable<T> entities);
+
+        /// <summary>
+        /// Remove Bulk With Predicate
+        /// </summary>
+        /// <param name="predicate"></param>
+        Task<int> RemoveBulk(Expression<Func<T, bool>> predicate);
     }
 }
