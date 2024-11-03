@@ -599,13 +599,13 @@
         </member>
         <member name="M:Template.Api.Controllers.V2.Identity.UsersController.GetAsync(System.Guid)">
             <summary>
-            Get By Id 
+            Get By id
             </summary>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Identity.UsersController.GetEditAsync(System.Guid)">
             <summary>
-            Get By Id For Edit 
+            Get By id for edit 
             </summary>
             <returns></returns>
         </member>
@@ -638,7 +638,7 @@
         </member>
         <member name="M:Template.Api.Controllers.V2.Identity.UsersController.DeleteAsync(System.Guid)">
             <summary>
-            Remove  by id
+            Remove by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
