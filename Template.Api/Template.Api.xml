@@ -299,6 +299,13 @@
             <param name="id">PK</param>
             <returns></returns>
         </member>
+        <member name="M:Template.Api.Controllers.V1.Lookup.ActionsController.DeleteRangeAsync(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Bulk Remove by ids
+            </summary>
+            <param name="ids">PK</param>
+            <returns></returns>
+        </member>
         <member name="T:Template.Api.Controllers.V1.Lookup.CategoriesController">
             <summary>
             Categories Controller

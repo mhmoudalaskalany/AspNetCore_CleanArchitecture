@@ -233,6 +233,6 @@ namespace Template.Common.Infrastructure.Repository
         /// Remove Bulk With Predicate
         /// </summary>
         /// <param name="predicate"></param>
-        Task<int> RemoveBulk(Expression<Func<T, bool>> predicate);
+        Task<int> RemoveBulkAsync(Expression<Func<T, bool>> predicate);
     }
 }

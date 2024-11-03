@@ -320,7 +320,7 @@ namespace Template.Infrastructure.Repository
             DbSet.RemoveRange(entities);
         }
 
-        public async Task<int> RemoveBulk(Expression<Func<T, bool>> predicate)
+         public async Task<int> RemoveBulkAsync(Expression<Func<T, bool>> predicate)
         {
             return await DbSet.Where(predicate).ExecuteDeleteAsync();
         }

@@ -27,6 +27,7 @@ namespace Template.Application.Services.Base
         Task<IFinalResult> DeleteAsync(object id);
 
         Task<IFinalResult> DeleteSoftAsync(object id);
-        
+
+
     }
 }
