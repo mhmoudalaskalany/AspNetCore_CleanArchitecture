@@ -21,8 +21,6 @@ namespace Template.Domain
 
         public const string ApplyingNewMigrations = "APPLYING_NEW_MIGRATIONS_TO_DATABASE";
 
-        //public const string NoNewMigrations = "Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning";
-
         public const string NoNewMigrations = "NO_NEW_MIGRATIONS_TO_APPLY";
 
     }
