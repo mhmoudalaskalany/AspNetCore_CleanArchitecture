@@ -19,6 +19,8 @@ namespace Template.Domain
 
         public const string DeleteError = "DELETE_SUCCESS";
 
+        public const string NotFound = "NOT_FOUND";
+
         public const string ApplyingNewMigrations = "APPLYING_NEW_MIGRATIONS_TO_DATABASE";
 
         public const string NoNewMigrations = "NO_NEW_MIGRATIONS_TO_APPLY";
