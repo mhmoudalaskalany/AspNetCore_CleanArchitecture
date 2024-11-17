@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Asp.Versioning.ApiExplorer;
 using FluentScheduler;
 using Microsoft.AspNetCore.Builder;
@@ -7,8 +8,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Template.Application.Services.BackgroundJobs.Jobs;
+using Template.Domain;
 using Template.Infrastructure.Context;
 using Environment = Template.Common.StaticData.Environment;
 
@@ -65,11 +68,21 @@ namespace Template.Api.Extensions
                 using var scope =
                     app.ApplicationServices.CreateScope();
                 using var context = scope.ServiceProvider.GetService<TemplateDbContext>();
-                context?.Database.Migrate();
+
+                var pendingMigrations = context.Database.GetPendingMigrations();
+                if (pendingMigrations.Any())
+                {
+                    Log.Information(MessagesConstants.ApplyingNewMigrations);
+                    context.Database.Migrate();
+                }
+                else
+                {
+                    Log.Information(MessagesConstants.NoNewMigrations);
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Log.Error(e, "Error Running Database Migrations");
                 throw;
             }
 
