@@ -1,5 +1,5 @@
-# .Net 9 Api Clean Architecture
-Clean Architecture For .Net 9 Web Api
+# .NET 9 Api Clean Architecture
+Clean Architecture For .NET 9 Web Api
 
 # Layers
 ![layers](https://github.com/mhmoudalaskalany/Images/raw/main/clean_architecture_images/CleanArchitecture.png)
@@ -36,8 +36,8 @@ Clean Architecture For .Net 9 Web Api
 - Divide Entities To Schemas in Database
 - Use File-Scoped Namespaces to make refactor easier
 - Run Unit Tests using Iteration Count like (1000) case for the test till it fails 
-- Move Logging Mechanism To Different Nuget SDK
-- Move Date Layer Access To Separate Nuget SDK  
+- Add Seq Logging
+- Add Postgress SQL Database Support along with Sql Server 
 - Use ClaimPrincipalExtensions to add better extension methods to get claim values from token
 - Refactor BaseService to remove the inputs to the service
 - Add https://www.flagsmith.com/
