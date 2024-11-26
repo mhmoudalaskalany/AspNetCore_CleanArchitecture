@@ -1,5 +1,5 @@
-# .Net Core 8 Api Clean Architecture
-Clean Architecture For .Net Core 8 Web Api
+# .Net 9 Api Clean Architecture
+Clean Architecture For .Net 9 Web Api
 
 # Layers
 ![layers](https://github.com/mhmoudalaskalany/Images/raw/main/clean_architecture_images/CleanArchitecture.png)
