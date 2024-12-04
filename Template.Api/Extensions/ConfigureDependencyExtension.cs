@@ -26,6 +26,7 @@ using System;
 using Microsoft.AspNetCore.Routing;
 using Template.Api.Extensions.Swagger.Headers;
 using Template.Api.Extensions.Swagger.Options;
+using Hangfire;
 
 namespace Template.Api.Extensions
 {
@@ -211,6 +212,20 @@ namespace Template.Api.Extensions
             services.RegisterAssemblyPublicNonGenericClasses(servicesToScan)
                 .Where(c => c.Name.EndsWith("Service"))
                 .AsPublicImplementedInterfaces();
+        }
+
+        /// <summary>
+        /// Register HangFire
+        /// </summary>
+        private static void AddHangFire(this IServiceCollection services, IConfiguration configuration)
+        {
+            var connection = configuration.GetConnectionString(ConnectionStringName);
+            services.AddHangfire(config => config
+                .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseRecommendedSerializerSettings()
+                .UseSqlServerStorage(connection));
+            services.AddHangfireServer();
         }
     }
 }
