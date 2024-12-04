@@ -1,4 +1,4 @@
-# .NET 9 Api Clean Architecture
+# .NET 9 Clean Architecture
 Clean Architecture For .NET 9 Web Api
 
 # Layers
