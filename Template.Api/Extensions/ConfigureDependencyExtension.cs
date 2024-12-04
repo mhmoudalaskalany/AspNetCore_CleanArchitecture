@@ -27,6 +27,8 @@ using Microsoft.AspNetCore.Routing;
 using Template.Api.Extensions.Swagger.Headers;
 using Template.Api.Extensions.Swagger.Options;
 using Hangfire;
+using Microsoft.FeatureManagement;
+using Template.Common.FeatureFlags;
 
 namespace Template.Api.Extensions
 {
@@ -40,12 +42,10 @@ namespace Template.Api.Extensions
         /// <summary>
         /// Register Extensions
         /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        /// <returns></returns>
         public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.RegisterDbContext(configuration);
+            services.AddFeatureManagement();
             services.AddLocalizationServices();
             services.RegisterCores();
             services.RegisterRepository();
@@ -56,6 +56,7 @@ namespace Template.Api.Extensions
             services.RegisterApiVersioning();
             services.RegisterSwaggerConfig();
             services.RegisterLowerCaseUrls();
+            services.RegisterHangFire(configuration);
             services.AddControllers();
             return services;
         }
@@ -63,8 +64,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// Add DbContext
         /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
         private static void RegisterDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<TemplateDbContext>(options =>
@@ -78,7 +77,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// Add Health Checks
         /// </summary>
-        /// <param name="services"></param>
         private static void RegisterApiMonitoring(this IServiceCollection services)
         {
             services.AddHealthChecks()
@@ -89,7 +87,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// register auto-mapper
         /// </summary>
-        /// <param name="services"></param>
         private static void RegisterAutoMapper(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(MappingService));
@@ -99,7 +96,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// Register localization
         /// </summary>
-        /// <param name="services"></param>
         private static void AddLocalizationServices(this IServiceCollection services)
         {
             services.AddLocalization();
@@ -108,7 +104,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// Register Custom Repositories
         /// </summary>
-        /// <param name="services"></param>
         private static void RegisterRepository(this IServiceCollection services)
         {
             services.AddScoped<IActiveDirectoryRepository, ActiveDirectoryRepository>();
@@ -117,7 +112,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// register Integration Repositories
         /// </summary>
-        /// <param name="services"></param>
         private static void RegisterIntegrationRepositories(this IServiceCollection services)
         {
             services.AddTransient<IFileRepository, FileRepository>();
@@ -127,7 +121,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// Register Api Versioning
         /// </summary>
-        /// <param name="services"></param>
         private static void RegisterApiVersioning(this IServiceCollection services)
         {
             services.AddEndpointsApiExplorer();
@@ -148,7 +141,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// Lower Case Urls
         /// </summary>
-        /// <param name="services"></param>
         private static void RegisterLowerCaseUrls(this IServiceCollection services)
         {
             services.Configure<RouteOptions>(options => { options.LowercaseUrls = true; });
@@ -157,7 +149,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// Swagger Config
         /// </summary>
-        /// <param name="services"></param>
 
         private static void RegisterSwaggerConfig(this IServiceCollection services)
         {
@@ -194,14 +185,13 @@ namespace Template.Api.Extensions
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);
             });
-          
+
             services.AddSwaggerGenNewtonsoftSupport();
         }
 
         /// <summary>
-        /// Register Main Core
+        /// Register Core Dependencies
         /// </summary>
-        /// <param name="services"></param>
         private static void RegisterCores(this IServiceCollection services)
         {
             services.AddSingleton<AppHelper>();
@@ -215,17 +205,22 @@ namespace Template.Api.Extensions
         }
 
         /// <summary>
-        /// Register HangFire
+        /// Register Hang Fire
         /// </summary>
-        private static void AddHangFire(this IServiceCollection services, IConfiguration configuration)
+        private static void RegisterHangFire(this IServiceCollection services, IConfiguration configuration)
         {
-            var connection = configuration.GetConnectionString(ConnectionStringName);
-            services.AddHangfire(config => config
-                .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
-                .UseSimpleAssemblyNameTypeSerializer()
-                .UseRecommendedSerializerSettings()
-                .UseSqlServerStorage(connection));
-            services.AddHangfireServer();
+            var featureManager = services.BuildServiceProvider().GetRequiredService<IFeatureManager>();
+            if (featureManager.IsEnabledAsync(nameof(FeatureFlags.EnableHangFire)).Result)
+            {
+                var connection = configuration.GetConnectionString(ConnectionStringName);
+                services.AddHangfire(config => config
+                    .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+                    .UseSimpleAssemblyNameTypeSerializer()
+                    .UseRecommendedSerializerSettings()
+                    .UseSqlServerStorage(connection));
+                services.AddHangfireServer();
+            }
+
         }
     }
 }

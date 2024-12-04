@@ -4,6 +4,18 @@
         <name>Template.Api</name>
     </assembly>
     <members>
+        <member name="T:Template.Api.Authorization.HangFireAuthorizationFilter">
+            <summary>
+            Hang Fire
+            </summary>
+        </member>
+        <member name="M:Template.Api.Authorization.HangFireAuthorizationFilter.Authorize(Hangfire.Dashboard.DashboardContext)">
+            <summary>
+            Authorize
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
         <member name="T:Template.Api.Controllers.V1.Base.BaseController">
             <inheritdoc />
         </member>
@@ -918,70 +930,61 @@
             <summary>
             Register Extensions
             </summary>
-            <param name="services"></param>
-            <param name="configuration"></param>
-            <returns></returns>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Add DbContext
             </summary>
-            <param name="services"></param>
-            <param name="configuration"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterApiMonitoring(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Add Health Checks
             </summary>
-            <param name="services"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             register auto-mapper
             </summary>
-            <param name="services"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.AddLocalizationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Register localization
             </summary>
-            <param name="services"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterRepository(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Register Custom Repositories
             </summary>
-            <param name="services"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterIntegrationRepositories(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             register Integration Repositories
             </summary>
-            <param name="services"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterApiVersioning(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Register Api Versioning
             </summary>
-            <param name="services"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterLowerCaseUrls(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Lower Case Urls
             </summary>
-            <param name="services"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterSwaggerConfig(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Swagger Config
             </summary>
-            <param name="services"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterCores(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Register Main Core
+            Register Core Dependencies
             </summary>
-            <param name="services"></param>
+        </member>
+        <member name="M:Template.Api.Extensions.ConfigureDependencyExtension.RegisterHangFire(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Register Hang Fire
+            </summary>
         </member>
         <member name="T:Template.Api.Extensions.ConfigureMiddlewareExtension">
             <summary>
@@ -992,43 +995,36 @@
             <summary>
             General Configuration Method
             </summary>
-            <param name="app"></param>
-            <param name="env"></param>
-            <param name="configuration"></param>
-            <param name="provider"></param>
-            <returns></returns>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.ConfigureCors(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Configure Cors
             </summary>
-            <param name="app"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.CreateDatabase(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Create Database From Migration
             </summary>
-            <param name="app"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.AddLocalization(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Add Localization
             </summary>
-            <param name="app"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.SwaggerConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder,Asp.Versioning.ApiExplorer.IApiVersionDescriptionProvider)">
             <summary>
             User Swagger
             </summary>
-            <param name="app"></param>
-            <param name="provider"></param>
         </member>
         <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.UseFluentScheduler(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             User Fluent Scheduler
             </summary>
-            <param name="app"></param>
-            <param name="configuration"></param>
+        </member>
+        <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.UseHangFire(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Add Hang fire
+            </summary>
         </member>
         <member name="T:Template.Api.Extensions.Swagger.Headers.LanguageHeader">
             <summary>

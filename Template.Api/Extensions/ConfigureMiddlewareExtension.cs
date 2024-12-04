@@ -9,10 +9,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.FeatureManagement;
 using Serilog;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Template.Api.Authorization;
 using Template.Application.Services.BackgroundJobs.Jobs;
+using Template.Common.FeatureFlags;
 using Template.Domain;
 using Template.Infrastructure.Context;
 using Environment = Template.Common.StaticData.Environment;
@@ -28,11 +30,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// General Configuration Method
         /// </summary>
-        /// <param name="app"></param>
-        /// <param name="env"></param>
-        /// <param name="configuration"></param>
-        /// <param name="provider"></param>
-        /// <returns></returns>
         public static IApplicationBuilder Configure(this IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration, IApiVersionDescriptionProvider provider)
         {
             app.ConfigureCors();
@@ -44,13 +41,13 @@ namespace Template.Api.Extensions
             app.AddLocalization();
             app.UseFluentScheduler(configuration);
             app.SwaggerConfig(provider);
+            app.UseHangFire();
             app.UseHealthChecks("/probe");
             return app;
         }
         /// <summary>
         /// Configure Cors
         /// </summary>
-        /// <param name="app"></param>
         public static void ConfigureCors(this IApplicationBuilder app)
         {
             app.UseCors(builder => builder
@@ -62,7 +59,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// Create Database From Migration
         /// </summary>
-        /// <param name="app"></param>
         public static void CreateDatabase(this IApplicationBuilder app)
         {
             try
@@ -92,7 +88,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// Add Localization
         /// </summary>
-        /// <param name="app"></param>
         public static void AddLocalization(this IApplicationBuilder app)
         {
             var supportedCultures = new[] { "en-US", "ar-OM" };
@@ -105,8 +100,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// User Swagger
         /// </summary>
-        /// <param name="app"></param>
-        /// <param name="provider"></param>
         private static void SwaggerConfig(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
             app.UseSwagger();
@@ -126,8 +119,6 @@ namespace Template.Api.Extensions
         /// <summary>
         /// User Fluent Scheduler
         /// </summary>
-        /// <param name="app"></param>
-        /// <param name="configuration"></param>
         public static void UseFluentScheduler(this IApplicationBuilder app, IConfiguration configuration)
         {
             var env = configuration["Environment"];
@@ -137,13 +128,18 @@ namespace Template.Api.Extensions
             }
         }
 
+        /// <summary>
+        /// Add Hang fire
+        /// </summary>
         public static void UseHangFire(this IApplicationBuilder app)
         {
-            app.UseHangfireDashboard("/hangfire", new DashboardOptions()
-            {
-                Authorization = new[] { new HangFireAuthorizationFilter() }
+            var featureManager = app.ApplicationServices.GetRequiredService<IFeatureManager>();
+            if (featureManager.IsEnabledAsync(nameof(FeatureFlags.EnableHangFire)).Result)
+                app.UseHangfireDashboard("/hangfire", new DashboardOptions()
+                {
+                    Authorization = new[] { new HangFireAuthorizationFilter() }
 
-            });
+                });
         }
     }
 }
