@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Asp.Versioning.ApiExplorer;
 using FluentScheduler;
+using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using Template.Api.Authorization;
 using Template.Application.Services.BackgroundJobs.Jobs;
 using Template.Domain;
 using Template.Infrastructure.Context;
@@ -133,7 +135,15 @@ namespace Template.Api.Extensions
             {
                 JobManager.Initialize(new MyRegistry());
             }
+        }
 
+        public static void UseHangFire(this IApplicationBuilder app)
+        {
+            app.UseHangfireDashboard("/hangfire", new DashboardOptions()
+            {
+                Authorization = new[] { new HangFireAuthorizationFilter() }
+
+            });
         }
     }
 }

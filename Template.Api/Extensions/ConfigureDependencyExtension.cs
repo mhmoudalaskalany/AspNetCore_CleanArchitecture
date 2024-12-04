@@ -53,10 +53,10 @@ namespace Template.Api.Extensions
             services.RegisterAutoMapper();
             services.RegisterCommonServices(configuration);
             services.RegisterApiMonitoring();
-            services.AddControllers();
             services.RegisterApiVersioning();
             services.RegisterSwaggerConfig();
             services.RegisterLowerCaseUrls();
+            services.AddControllers();
             return services;
         }
 

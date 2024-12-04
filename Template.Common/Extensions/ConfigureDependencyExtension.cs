@@ -11,7 +11,6 @@ using Template.Common.Helpers.EmailHelper;
 using Template.Common.Helpers.FileHelpers.StorageHelper;
 using Template.Common.Helpers.HttpClient;
 using Template.Common.Helpers.HttpClient.RestSharp;
-using Template.Common.Helpers.MailKitHelper;
 using Template.Common.Helpers.MediaUploader;
 using Template.Common.Helpers.TokenGenerator;
 using Template.Common.Services;
@@ -21,13 +20,13 @@ namespace Template.Common.Extensions
     [ExcludeFromCodeCoverage]
     public static class ConfigureDependencyExtension
     {
-        public static IServiceCollection RegisterCommonServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection RegisterCommonServices(this IServiceCollection services,
+            IConfiguration configuration)
         {
             services.AddCors();
             services.RegisterFileServices();
             services.RegisterMainCore();
             services.RegisterEmailMetadata(configuration);
-            //services.AddApiDocumentationServices(configuration);
             services.RegisterAuthentication(configuration);
             services.RegisterHttpClientHelpers();
             return services;
@@ -41,7 +40,6 @@ namespace Template.Common.Extensions
             services.AddTransient<IResponseResult, ResponseResult>();
             services.AddTransient<IFinalResult, FinalResult>();
             services.AddSingleton<ISendMail, SendMail>();
-            services.AddSingleton<ISendMailKit, SendMailKit>();
             services.AddTransient<ITokenGenerator, TokenGenerator>();
             services.AddTransient<IUploaderConfiguration, UploaderConfiguration>();
         }
@@ -91,54 +89,13 @@ namespace Template.Common.Extensions
                     ValidAudience = configuration["Jwt:Audience"],
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"] ?? string.Empty)),
+                    IssuerSigningKey =
+                        new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"] ?? string.Empty)),
                 };
             });
         }
-
-
-        //private static void AddApiDocumentationServices(this IServiceCollection services, IConfiguration configuration)
-        //{
-        //    services.AddSwaggerGen(options =>
-        //    {
-        //        var title = configuration["SwaggerConfig:Title"];
-        //        var version = configuration["SwaggerConfig:Version"];
-        //        var docPath = configuration["SwaggerConfig:DocPath"];
-        //        options.SwaggerDoc(version, new OpenApiInfo { Title = title, Version = version });
-        //        if (docPath != null)
-        //        {
-        //            var filePath = Path.Combine(AppContext.BaseDirectory, docPath);
-        //            options.IncludeXmlComments(filePath);
-        //        }
-
-        //        var security = new OpenApiSecurityRequirement
-        //        {
-        //            {
-        //                new OpenApiSecurityScheme
-        //                {
-        //                    Reference = new OpenApiReference
-        //                    {
-        //                        Type = ReferenceType.SecurityScheme,
-        //                        Id = "Bearer"
-        //                    }
-        //                },
-        //                new string[] { }
-
-        //            }
-        //        };
-        //        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-        //        {
-        //            Name = "Authorization",
-        //            Type = SecuritySchemeType.ApiKey,
-        //            Scheme = "Bearer",
-        //            BearerFormat = "JWT",
-        //            In = ParameterLocation.Header,
-        //            Description = "JWT Authorization header using the Bearer scheme."
-        //        });
-        //        options.AddSecurityRequirement(security);
-        //        options.OperationFilter<LanguageHeader>();
-        //    });
-        //    services.AddSwaggerGenNewtonsoftSupport();
-        //}
     }
+
+
 }
