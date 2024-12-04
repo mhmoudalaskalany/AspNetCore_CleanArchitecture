@@ -40,12 +40,12 @@ namespace Template.Api
 
             try
             {
-                Log.Information("-----Starting web host at  Api------");
+                Log.Information("-----Starting web host at {0} Api------" , Configuration["ApplicationName"]);
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception e)
             {
-                Log.Fatal(e, "Host terminated unexpectedly");
+                Log.Fatal(e, "Host {0} terminated unexpectedly", Configuration["ApplicationName"]);
             }
             finally
             {
