@@ -166,7 +166,7 @@ namespace Template.Api.Extensions
                                         Id = "Bearer"
                                     }
                                 },
-                                new string[] { }
+                                []
 
                             }
                         };
