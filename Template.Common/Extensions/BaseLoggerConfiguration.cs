@@ -10,14 +10,15 @@ namespace Template.Common.Extensions
     [ExcludeFromCodeCoverage]
     public static class BaseLoggerConfiguration
     {
-        public static LoggerConfiguration CreateLoggerConfiguration(string applicationName)
+        public static LoggerConfiguration CreateLoggerConfiguration(string applicationName, string applicationVersion)
         {
             var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Information()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
                 .MinimumLevel.Override("System", LogEventLevel.Error)
                 .Enrich.FromLogContext()
-                .Enrich.WithProperty("ApplicationName", applicationName);
+                .Enrich.WithProperty("ApplicationName", applicationName)
+                .Enrich.WithProperty("ApplicationVersion", applicationVersion);
             return loggerConfiguration;
         }
 
@@ -33,7 +34,8 @@ namespace Template.Common.Extensions
             {
                 AdditionalColumns = new Collection<SqlColumn>
                 {
-                    new SqlColumn { ColumnName = "ApplicationName", DataType = SqlDbType.NVarChar, DataLength = 64, AllowNull = true },
+                    new() { ColumnName = "ApplicationName", DataType = SqlDbType.NVarChar, DataLength = 64, AllowNull = true },
+                    new() { ColumnName = "ApplicationVersion", DataType = SqlDbType.NVarChar, DataLength = 32, AllowNull = true }
                 }
             };
             columnOptions.Store.Remove(StandardColumn.Properties);

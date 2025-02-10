@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -31,8 +32,10 @@ namespace Template.Api
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
+            var applicationVersion = GetApplicationVersion();
+            var applicationName = Configuration["ApplicationName"];
             Log.Logger = BaseLoggerConfiguration
-                .CreateLoggerConfiguration(Configuration["ApplicationName"])
+                .CreateLoggerConfiguration(applicationName, applicationVersion)
                 .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Error)
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
                 .WriteToSql(Configuration["LoggingDbConnectionString"])
@@ -40,12 +43,12 @@ namespace Template.Api
 
             try
             {
-                Log.Information("-----Starting web host at {0} Api------" , Configuration["ApplicationName"]);
+                Log.Information("-----Starting web host at {0} Api------", applicationName + "-" + applicationVersion);
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception e)
             {
-                Log.Fatal(e, "Host {0} terminated unexpectedly", Configuration["ApplicationName"]);
+                Log.Fatal(e, "Host {0} terminated unexpectedly", applicationName + "-" + applicationVersion);
             }
             finally
             {
@@ -63,5 +66,19 @@ namespace Template.Api
                 {
                     webBuilder.UseStartup<Startup>();
                 }).UseSerilog();
+
+        private static string GetApplicationVersion()
+        {
+            var version = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+            if (version != null)
+            {
+                var plusIndex = version.IndexOf('+');
+                if (plusIndex > 0)
+                {
+                    version = version.Substring(0, plusIndex);
+                }
+            }
+            return version ?? "1.0.0"; // Default version if not found
+        }
     }
 }
