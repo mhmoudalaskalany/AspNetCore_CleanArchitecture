@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -30,7 +31,7 @@ namespace Template.Api
         /// Kick Off
         /// </summary>
         /// <param name="args"></param>
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var applicationVersion = GetApplicationVersion();
             var applicationName = Configuration["ApplicationName"];
@@ -44,7 +45,7 @@ namespace Template.Api
             try
             {
                 Log.Information("-----Starting web host at {0} Api------", applicationName + "-" + applicationVersion);
-                CreateHostBuilder(args).Build().Run();
+                await CreateHostBuilder(args).Build().RunAsync();
             }
             catch (Exception e)
             {
@@ -52,7 +53,7 @@ namespace Template.Api
             }
             finally
             {
-                Log.CloseAndFlush();
+                await Log.CloseAndFlushAsync();
             }
         }
         /// <summary>
