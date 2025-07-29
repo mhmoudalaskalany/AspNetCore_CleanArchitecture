@@ -115,12 +115,14 @@
             <summary>
             Get By id 
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.PermissionsController.GetEditAsync(System.Int64)">
             <summary>
             Get By id for edit 
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.PermissionsController.GetAllAsync">
@@ -168,6 +170,7 @@
             <summary>
             Soft Remove by id
             </summary>
+            <param name="id">PK</param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.PermissionsController.DeleteRangeAsync(System.Collections.Generic.List{System.Int32})">
@@ -191,12 +194,14 @@
             <summary>
             Get By id
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.UsersController.GetEditAsync(System.Guid)">
             <summary>
             Get By id for edit 
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.UsersController.GetAllAsync">
@@ -590,12 +595,14 @@
             <summary>
             Get By id
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Identity.PermissionsController.GetEditAsync(System.Int64)">
             <summary>
             Get By id for edit 
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Identity.PermissionsController.GetAllAsync">
@@ -660,12 +667,14 @@
             <summary>
             Get By id
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Identity.UsersController.GetEditAsync(System.Guid)">
             <summary>
             Get By id for edit 
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Identity.UsersController.GetAllAsync">
