@@ -1,10 +1,14 @@
-﻿using System.Linq.Expressions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using AutoFixture;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore.Query;
 using Moq;
 using Template.Application.Services.Base;
 using Template.Application.Services.Lookups.Status;
+using Template.Common.Core;
 using Template.Common.DTO.Base;
 using Template.Common.DTO.Lookup.Status;
 using Template.Common.DTO.Lookup.Status.Parameters;
@@ -58,7 +62,8 @@ namespace Template.Application.Unit.Tests.Service
             Assert.True(result.IsSuccess);
             Assert.NotNull(result.Data);
             Assert.True(result.Data.Any());
-            Assert.Null(result.Errors);
+            Assert.NotNull(result.Errors);
+            Assert.Empty(result.Errors);
         }
 
         [Fact]
@@ -87,7 +92,8 @@ namespace Template.Application.Unit.Tests.Service
             Assert.True(result.IsSuccess);
             Assert.NotNull(result.Data);
             Assert.True(result.Data.Any());
-            Assert.Null(result.Errors);
+            Assert.NotNull(result.Errors);
+            Assert.Empty(result.Errors);
         }
 
         [Fact]
