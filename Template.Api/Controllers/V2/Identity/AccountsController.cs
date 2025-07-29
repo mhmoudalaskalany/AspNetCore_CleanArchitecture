@@ -31,6 +31,9 @@ namespace Template.Api.Controllers.V2.Identity
         /// <returns></returns>
         [HttpPost("login")]
         [AllowAnonymous]
+        [ProducesResponseType(typeof(ApiResponse<LoginResponse>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<LoginResponse>), 400)]
+        [ProducesResponseType(typeof(ApiResponse<LoginResponse>), 401)]
         public async Task<ActionResult<ApiResponse<LoginResponse>>> Login(LoginParameters parameter)
         {
             var result = await _service.Login(parameter);

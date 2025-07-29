@@ -31,8 +31,11 @@ namespace Template.Api.Controllers.V1.Identity
         /// <summary>
         /// Get By id
         /// </summary>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("get/{id}")]
+        [ProducesResponseType(typeof(ApiResponse<UserDto>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<UserDto>), 404)]
         public async Task<ActionResult<ApiResponse<UserDto>>> GetAsync(Guid id)
         {
             var result = await _service.GetByIdAsync(id);
@@ -42,8 +45,11 @@ namespace Template.Api.Controllers.V1.Identity
         /// <summary>
         /// Get By id for edit 
         /// </summary>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("getEdit/{id}")]
+        [ProducesResponseType(typeof(ApiResponse<EditUserDto>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<EditUserDto>), 404)]
         public async Task<ActionResult<ApiResponse<EditUserDto>>> GetEditAsync(Guid id)
         {
             var result = await _service.GetEditByIdAsync(id);
@@ -55,6 +61,8 @@ namespace Template.Api.Controllers.V1.Identity
         /// </summary>
         /// <returns></returns>
         [HttpGet("getAll")]
+        [ProducesResponseType(typeof(ApiResponse<IEnumerable<UserDto>>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<IEnumerable<UserDto>>), 400)]
         public async Task<ActionResult<ApiResponse<IEnumerable<UserDto>>>> GetAllAsync()
         {
             var result = await _service.GetAllAsync();
@@ -67,6 +75,8 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="filter">Filter responsible for search and sort</param>
         /// <returns></returns>
         [HttpPost("getPaged")]
+        [ProducesResponseType(typeof(ApiPagedResponse<IEnumerable<UserDto>>), 200)]
+        [ProducesResponseType(typeof(ApiPagedResponse<IEnumerable<UserDto>>), 400)]
         public async Task<ActionResult<ApiPagedResponse<IEnumerable<UserDto>>>> GetPagedAsync([FromBody] BaseParam<UserFilter> filter)
         {
             var result = await _service.GetAllPagedAsync(filter);
@@ -80,6 +90,8 @@ namespace Template.Api.Controllers.V1.Identity
         /// <returns></returns>
         [HttpPost]
         [Route("getDropDown")]
+        [ProducesResponseType(typeof(ApiPagedResponse<IEnumerable<UserDto>>), 200)]
+        [ProducesResponseType(typeof(ApiPagedResponse<IEnumerable<UserDto>>), 400)]
         public async Task<ActionResult<ApiPagedResponse<IEnumerable<UserDto>>>> GetDropDownAsync([FromBody] BaseParam<SearchCriteriaFilter> filter)
         {
             var result = await _service.GetDropDownAsync(filter);
@@ -92,6 +104,8 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost("add")]
+        [ProducesResponseType(typeof(ApiResponse<Guid?>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<Guid?>), 400)]
         public async Task<ActionResult<ApiResponse<Guid?>>> AddAsync([FromBody] AddUserDto dto)
         {
             var result = await _service.AddAsync(dto);
@@ -104,6 +118,8 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="model">Object content</param>
         /// <returns></returns>
         [HttpPut("update")]
+        [ProducesResponseType(typeof(ApiResponse<Guid?>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<Guid?>), 400)]
         public async Task<ActionResult<ApiResponse<Guid?>>> UpdateAsync(AddUserDto model)
         {
             var result = await _service.UpdateAsync(model);
@@ -116,6 +132,8 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("delete/{id}")]
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 404)]
         public async Task<ActionResult<ApiResponse>> DeleteAsync(Guid id)
         {
             var result = await _service.DeleteAsync(id);
@@ -128,6 +146,8 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("deleteSoft/{id}")]
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 404)]
         public async Task<ActionResult<ApiResponse>> DeleteSoftAsync(Guid id)
         {
             var result = await _service.DeleteSoftAsync(id);
@@ -140,6 +160,8 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="ids">PK</param>
         /// <returns></returns>
         [HttpDelete("deleteRange")]
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
         public async Task<ActionResult<ApiResponse>> DeleteRangeAsync(List<Guid> ids)
         {
             var result = await _service.DeleteRangeAsync(ids);
