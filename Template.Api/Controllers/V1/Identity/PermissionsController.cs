@@ -9,6 +9,7 @@ using Template.Common.Core;
 using Template.Common.DTO.Base;
 using Template.Common.DTO.Identity.Permission;
 using Template.Common.DTO.Identity.Permission.Parameters;
+using Template.Common.Extensions;
 
 namespace Template.Api.Controllers.V1.Identity
 {
@@ -32,25 +33,33 @@ namespace Template.Api.Controllers.V1.Identity
         /// </summary>
         /// <returns></returns>
         [HttpGet("get/{id}")]
-        public async Task<IFinalResult> GetAsync(long id) => await _service.GetByIdAsync(id);
-
+        public async Task<ActionResult<ApiResponse<PermissionDto>>> GetAsync(long id)
+        {
+            var result = await _service.GetByIdAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Get By id for edit 
         /// </summary>
         /// <returns></returns>
         [HttpGet("getEdit/{id}")]
-        public async Task<IFinalResult> GetEditAsync(long id) => await _service.GetEditByIdAsync(id);
-
-
+        public async Task<ActionResult<ApiResponse<EditPermissionDto>>> GetEditAsync(long id)
+        {
+            var result = await _service.GetEditByIdAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Get All 
         /// </summary>
         /// <returns></returns>
         [HttpGet("getAll")]
-        public async Task<IFinalResult> GetAllAsync() => await _service.GetAllAsync();
-
+        public async Task<ActionResult<ApiResponse<IEnumerable<PermissionDto>>>> GetAllAsync()
+        {
+            var result = await _service.GetAllAsync();
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Get Paged
@@ -58,8 +67,11 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="filter">Filter responsible for search and sort</param>
         /// <returns></returns>
         [HttpPost("getPaged")]
-        public async Task<DataPaging> GetPagedAsync([FromBody] BaseParam<PermissionFilter> filter) => await _service.GetAllPagedAsync(filter);
-
+        public async Task<ActionResult<ApiPagedResponse<IEnumerable<PermissionDto>>>> GetPagedAsync([FromBody] BaseParam<PermissionFilter> filter)
+        {
+            var result = await _service.GetAllPagedAsync(filter);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Get All Data paged For Drop Down
@@ -68,8 +80,11 @@ namespace Template.Api.Controllers.V1.Identity
         /// <returns></returns>
         [HttpPost]
         [Route("getDropDown")]
-        public async Task<DataPaging> GetDropDownAsync([FromBody] BaseParam<SearchCriteriaFilter> filter) => await _service.GetDropDownAsync(filter);
-
+        public async Task<ActionResult<ApiPagedResponse<IEnumerable<PermissionDto>>>> GetDropDownAsync([FromBody] BaseParam<SearchCriteriaFilter> filter)
+        {
+            var result = await _service.GetDropDownAsync(filter);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Add 
@@ -77,8 +92,11 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost("add")]
-        public async Task<IFinalResult> AddAsync([FromBody] AddPermissionDto dto) => await _service.AddAsync(dto);
-
+        public async Task<ActionResult<ApiResponse<int?>>> AddAsync([FromBody] AddPermissionDto dto)
+        {
+            var result = await _service.AddAsync(dto);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Update  
@@ -86,7 +104,11 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="model">Object content</param>
         /// <returns></returns>
         [HttpPut("update")]
-        public async Task<IFinalResult> UpdateAsync(AddPermissionDto model) => await _service.UpdateAsync(model);
+        public async Task<ActionResult<ApiResponse<int?>>> UpdateAsync(AddPermissionDto model)
+        {
+            var result = await _service.UpdateAsync(model);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Remove by id
@@ -94,16 +116,22 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("delete/{id}")]
-        public async Task<IFinalResult> DeleteAsync(long id) => await _service.DeleteAsync(id);
-
+        public async Task<ActionResult<ApiResponse>> DeleteAsync(long id)
+        {
+            var result = await _service.DeleteAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Soft Remove by id
         /// </summary>
-        /// <param name="id">PK</param>
         /// <returns></returns>
-        [HttpDelete("deleteSoft{id}")]
-        public async Task<IFinalResult> DeleteSoftAsync(long id) => await _service.DeleteSoftAsync(id);
+        [HttpDelete("deleteSoft/{id}")]
+        public async Task<ActionResult<ApiResponse>> DeleteSoftAsync(long id)
+        {
+            var result = await _service.DeleteSoftAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Bulk Remove by ids
@@ -111,9 +139,10 @@ namespace Template.Api.Controllers.V1.Identity
         /// <param name="ids">PK</param>
         /// <returns></returns>
         [HttpDelete("deleteRange")]
-        public async Task<IFinalResult> DeleteRangeAsync(List<int> ids) => await _service.DeleteRangeAsync(ids);
-
-
-
+        public async Task<ActionResult<ApiResponse>> DeleteRangeAsync(List<int> ids)
+        {
+            var result = await _service.DeleteRangeAsync(ids);
+            return result.ToActionResult();
+        }
     }
 }

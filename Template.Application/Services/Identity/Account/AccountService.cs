@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using System.Threading.Tasks;
 using Template.Common.Core;
 using Template.Common.DTO.Identity.Account;
@@ -8,6 +7,7 @@ using Template.Common.Extensions;
 using Template.Common.Infrastructure.Repository.ActiveDirectory;
 using Microsoft.EntityFrameworkCore;
 using Template.Application.Services.Base;
+using Template.Domain;
 
 namespace Template.Application.Services.Identity.Account
 {
@@ -21,36 +21,47 @@ namespace Template.Application.Services.Identity.Account
             _activeDirectoryRepository = activeDirectoryRepository;
         }
 
-        public async Task<IFinalResult> Login(LoginParameters parameters)
+        public async Task<Result<LoginResponse>> Login(LoginParameters parameters)
         {
             var user = await UnitOfWork.Repository.FirstOrDefaultAsync(q => q.UserName == parameters.Username && !q.IsDeleted, include: source => source.Include(a => a.Role), disableTracking: false);
-            if (user == null) return ResponseResult.PostResult(status: HttpStatusCode.BadRequest,
-                message: "Wrong Username or Password");
+
+            if (user == null)
+            {
+                return Result<LoginResponse>.Failure(message: MessagesConstants.WrongUserOrPassword);
+            }
+            
+
             var rightPass = CryptoHasher.VerifyHashedPassword(user.Password, parameters.Password);
-            if (!rightPass) return ResponseResult.PostResult(status: HttpStatusCode.NotFound, message: "Wrong Password");
+            if (!rightPass)
+            {
+                return Result<LoginResponse>.Failure(message: MessagesConstants.WrongUserOrPassword);
+            }
             var role = user.Role;
+
             var userDto = Mapper.Map<Domain.Entities.Identity.User, UserDto>(user);
-            var userLoginReturn = _tokenBusiness.GenerateJsonWebToken(userDto, role);
-            return ResponseResult.PostResult(userLoginReturn, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString());
+
+            var loginResponse = _tokenBusiness.GenerateJsonWebToken(userDto, role);
+
+            return Result<LoginResponse>.Success(loginResponse , MessagesConstants.Success);
         }
        
-        public async Task<IFinalResult> AdLogin(LoginParameters parameters)
+        public async Task<Result<LoginResponse>> AdLogin(LoginParameters parameters)
         {
             try
             {
                 var activeDirectoryUser = _activeDirectoryRepository.LoginAsync(parameters);
                 if (activeDirectoryUser == null)
                 {
-                    return ResponseResult.PostResult(status: HttpStatusCode.BadRequest,
-                        message: "Wrong Username or Password");
+                    return Result<LoginResponse>.Failure(message: MessagesConstants.WrongUserOrPassword);
 
                 }
                 var user = await CheckIfUserInDatabase(activeDirectoryUser);
                 var role = user.Role;
                 var userDto = Mapper.Map<Domain.Entities.Identity.User, UserDto>(user);
 
-                var userLoginReturn = _tokenBusiness.GenerateJsonWebToken(userDto, role);
-                return ResponseResult.PostResult(userLoginReturn, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString());
+                var loginResponse = _tokenBusiness.GenerateJsonWebToken(userDto, role);
+
+                return Result<LoginResponse>.Success(loginResponse, MessagesConstants.Success);
             }
             catch (Exception e)
             {

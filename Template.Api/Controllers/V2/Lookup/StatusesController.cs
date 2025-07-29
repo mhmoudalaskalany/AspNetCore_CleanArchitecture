@@ -1,13 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Template.Api.Controllers.V1.Base;
 using Template.Application.Services.Lookups.Status;
 using Template.Common.Core;
 using Template.Common.DTO.Base;
-using Template.Common.DTO.Lookup.Status.Parameters;
 using Template.Common.DTO.Lookup.Status;
-using System.Collections.Generic;
+using Template.Common.DTO.Lookup.Status.Parameters;
+using Template.Common.Extensions;
 
 namespace Template.Api.Controllers.V2.Lookup
 {
@@ -27,30 +28,46 @@ namespace Template.Api.Controllers.V2.Lookup
             _statusService = statusService;
         }
 
-
         /// <summary>
         /// Get By id
         /// </summary>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("get/{id}")]
-        public async Task<IFinalResult> GetAsync(int id) => await _statusService.GetByIdAsync(id);
-
+        [ProducesResponseType(typeof(ApiResponse<StatusDto>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<StatusDto>), 404)]
+        public async Task<ActionResult<ApiResponse<StatusDto>>> GetAsync(int id)
+        {
+            var result = await _statusService.GetByIdAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Get By id for edit 
         /// </summary>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("getEdit/{id}")]
-        public async Task<IFinalResult> GetEditAsync(int id) => await _statusService.GetEditByIdAsync(id);
-
+        [ProducesResponseType(typeof(ApiResponse<EditStatusDto>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<EditStatusDto>), 404)]
+        public async Task<ActionResult<ApiResponse<EditStatusDto>>> GetEditAsync(int id)
+        {
+            var result = await _statusService.GetEditByIdAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
-        /// Get All Categories
+        /// Get All Statuses
         /// </summary>
         /// <returns></returns>
         [HttpGet("getAll")]
-        public async Task<IFinalResult> GetAllAsync() => await _statusService.GetAllAsync();
-
+        [ProducesResponseType(typeof(ApiResponse<IEnumerable<StatusDto>>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<IEnumerable<StatusDto>>), 400)]
+        public async Task<ActionResult<ApiResponse<IEnumerable<StatusDto>>>> GetAllAsync()
+        {
+            var result = await _statusService.GetAllAsync();
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Get Paged
@@ -58,8 +75,13 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <param name="filter">Filter responsible for search and sort</param>
         /// <returns></returns>
         [HttpPost("getPaged")]
-        public async Task<DataPaging> GetPagedAsync([FromBody] BaseParam<StatusFilter> filter) => await _statusService.GetAllPagedAsync(filter);
-
+        [ProducesResponseType(typeof(ApiPagedResponse<IEnumerable<StatusDto>>), 200)]
+        [ProducesResponseType(typeof(ApiPagedResponse<IEnumerable<StatusDto>>), 400)]
+        public async Task<ActionResult<ApiPagedResponse<IEnumerable<StatusDto>>>> GetPagedAsync([FromBody] BaseParam<StatusFilter> filter)
+        {
+            var result = await _statusService.GetAllPagedAsync(filter);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Add 
@@ -67,8 +89,13 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost("add")]
-        public async Task<IFinalResult> AddAsync([FromBody] AddStatusDto dto) => await _statusService.AddAsync(dto);
-
+        [ProducesResponseType(typeof(ApiResponse<int?>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<int?>), 400)]
+        public async Task<ActionResult<ApiResponse<int?>>> AddAsync([FromBody] AddStatusDto dto)
+        {
+            var result = await _statusService.AddAsync(dto);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Update  
@@ -76,7 +103,13 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <param name="model">Object content</param>
         /// <returns></returns>
         [HttpPut("update")]
-        public async Task<IFinalResult> UpdateAsync(AddStatusDto model) => await _statusService.UpdateAsync(model);
+        [ProducesResponseType(typeof(ApiResponse<int?>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<int?>), 400)]
+        public async Task<ActionResult<ApiResponse<int?>>> UpdateAsync(AddStatusDto model)
+        {
+            var result = await _statusService.UpdateAsync(model);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Remove by id
@@ -84,8 +117,13 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("delete/{id}")]
-        public async Task<IFinalResult> DeleteAsync(int id) => await _statusService.DeleteAsync(id);
-
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 404)]
+        public async Task<ActionResult<ApiResponse>> DeleteAsync(int id)
+        {
+            var result = await _statusService.DeleteAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Soft Remove by id
@@ -93,8 +131,13 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("deleteSoft/{id}")]
-        public async Task<IFinalResult> DeleteSoftAsync(int id) => await _statusService.DeleteSoftAsync(id);
-
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 404)]
+        public async Task<ActionResult<ApiResponse>> DeleteSoftAsync(int id)
+        {
+            var result = await _statusService.DeleteSoftAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Bulk Remove by ids
@@ -102,6 +145,12 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <param name="ids">PK</param>
         /// <returns></returns>
         [HttpDelete("deleteRange")]
-        public async Task<IFinalResult> DeleteRangeAsync(List<int> ids) => await _statusService.DeleteRangeAsync(ids);
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        public async Task<ActionResult<ApiResponse>> DeleteRangeAsync(List<int> ids)
+        {
+            var result = await _statusService.DeleteRangeAsync(ids);
+            return result.ToActionResult();
+        }
     }
 }

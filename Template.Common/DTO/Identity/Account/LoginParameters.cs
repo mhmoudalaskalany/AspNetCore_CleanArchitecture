@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Template.Common.DTO.Identity.Account
 {
     [ExcludeFromCodeCoverage]
-    public class LoginParameters
+    public record LoginParameters
     {
         [Required]
         public string Username { get; set; }

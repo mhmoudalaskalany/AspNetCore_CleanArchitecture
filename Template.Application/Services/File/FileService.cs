@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using System.Threading.Tasks;
+using Template.Application.Services.Base;
 using Template.Common.Core;
+using Template.Common.DTO.Common.File;
 using Template.Common.Helpers.FileHelpers.Crypto;
 using Template.Common.Helpers.FileHelpers.StorageHelper;
 using Template.Common.Helpers.FileHelpers.Token;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Template.Application.Services.Base;
-using Template.Common.DTO.Common.File;
+using Template.Domain;
 using Template.Domain.Enum;
 
 namespace Template.Application.Services.File
@@ -32,7 +32,7 @@ namespace Template.Application.Services.File
         /// Upload To Shared Storage
         /// </summary>
         /// <returns></returns>
-        public async Task<IFinalResult> UploadToSanStorage(IFormFileCollection files, StorageType storageType, bool isPublic, string appCode)
+        public async Task<Result<List<FileDto>>> UploadToSanStorage(IFormFileCollection files, StorageType storageType, bool isPublic, string appCode)
         {
           
             var basePath = _configuration["StoragePaths:Base"];
@@ -51,14 +51,14 @@ namespace Template.Application.Services.File
             UnitOfWork.Repository.AddRange(entities);
             await UnitOfWork.SaveChangesAsync();
             var result = Mapper.Map<List<FileDto>>(entities);
-            return new ResponseResult(result, HttpStatusCode.Created, null, "AddSuccess");
+            return Result<List<FileDto>>.Success(result, MessagesConstants.AddSuccess);
         }
 
         /// <summary>
         /// Upload Bytes
         /// </summary>
         /// <returns></returns>
-        public async Task<IFinalResult> UploadBytes(UploadRequestDto model, int length)
+        public async Task<Result<UploadResponseDto>> UploadBytes(UploadRequestDto model, int length)
         {
             var basePath = _configuration["StoragePaths:Base"];
             _path = basePath + _configuration["StoragePaths:" + model.AppCode];
@@ -82,7 +82,7 @@ namespace Template.Application.Services.File
                 AttachmentSize = fileEntity.FileSize,
                 FileId = fileEntity.Id
             };
-            return new ResponseResult(response, HttpStatusCode.Created, null, "AddSuccess");
+            return Result<UploadResponseDto>.Success(response, MessagesConstants.AddSuccess);
         }
 
         
@@ -90,7 +90,7 @@ namespace Template.Application.Services.File
         /// Download With App Code From Token
         /// </summary>
         /// <returns></returns>
-        public async Task<object> DownloadWithAppCode(Guid id, string token)
+        public async Task<Result<object>> DownloadWithAppCode(Guid id, string token)
         {
             var file = await UnitOfWork.Repository.GetAsync(id);
             if (file == null) return null;
@@ -102,24 +102,25 @@ namespace Template.Application.Services.File
             var memory = (MemoryStream)await _storage(file.StorageType).DownLoad(fileUrl, path);
             var downloadFile = Mapper.Map<DownLoadDto>(file);
             downloadFile.MemoryStream = memory;
-            return downloadFile;
+            return Result<object>.Success(downloadFile, MessagesConstants.AddSuccess);
         }
       
         /// <summary>
         /// Get Directories
         /// </summary>
         /// <returns></returns>
-        public async Task<object> GetDirectoriesAsync(StorageType storageType)
+        public async Task<Result<object>> GetDirectoriesAsync(StorageType storageType)
         {
             var result = await _storage(storageType.ToString()).GetDirectoriesAsync();
-            return result;
+            return Result<object>.Success(result, MessagesConstants.AddSuccess);
+  
         }
 
         /// <summary>
         /// Delete File Physical From Database And Folder
         /// </summary>
         /// <returns></returns>
-        public async Task<IFinalResult> DeletePhysicalAsync(Guid id)
+        public async Task<Result<bool>> DeletePhysicalAsync(Guid id)
         {
             var file = await UnitOfWork.Repository.GetAsync(id);
             var decryptedUrl = CryptoHelper.DecryptString(file.Url);
@@ -127,8 +128,7 @@ namespace Template.Application.Services.File
             var path = basePath + _configuration["StoragePaths:" + file.AppCode] + decryptedUrl;
             await _storage(file.StorageType).Delete(path);
             await DeleteAsync(file.Id);
-            return ResponseResult.PostResult(true, status: HttpStatusCode.OK,
-                message: HttpStatusCode.OK.ToString());
+            return Result<bool>.Success(true, MessagesConstants.DeleteSuccess);
 
         }
 

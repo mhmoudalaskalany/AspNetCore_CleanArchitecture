@@ -13,14 +13,14 @@ namespace Template.Application.Services.Base
     public class TokenService : ITokenService
     {
         private readonly IConfiguration _config;
-        private readonly UserLoginReturn _userLoginReturn;
+        private readonly LoginResponse _userLoginReturn;
         public TokenService(IConfiguration config)
         {
             _config = config;
-            _userLoginReturn = new UserLoginReturn();
+            _userLoginReturn = new LoginResponse();
         }
 
-        public UserLoginReturn GenerateJsonWebToken(UserDto userInfo, Role role)
+        public LoginResponse GenerateJsonWebToken(UserDto userInfo, Role role)
         {
             var claims = new[] {
                 new Claim( JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),

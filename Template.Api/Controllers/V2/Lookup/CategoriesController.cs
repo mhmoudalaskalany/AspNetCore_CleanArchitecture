@@ -8,6 +8,7 @@ using Template.Common.Core;
 using Template.Common.DTO.Base;
 using Template.Common.DTO.Lookup.Category;
 using Template.Common.DTO.Lookup.Category.Parameters;
+using Template.Common.Extensions;
 
 namespace Template.Api.Controllers.V2.Lookup
 {
@@ -30,17 +31,31 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <summary>
         /// Get By id
         /// </summary>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("get/{id}")]
-        public async Task<IFinalResult> GetAsync(int id) => await _categoryService.GetByIdAsync(id);
+        [ProducesResponseType(typeof(ApiResponse<CategoryDto>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<CategoryDto>), 404)]
+        public async Task<ActionResult<ApiResponse<CategoryDto>>> GetAsync(int id)
+        {
+            var result = await _categoryService.GetByIdAsync(id);
+            return result.ToActionResult();
+        }
 
 
         /// <summary>
         /// Get By id for edit 
         /// </summary>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("getEdit/{id}")]
-        public async Task<IFinalResult> GetEditAsync(int id) => await _categoryService.GetEditByIdAsync(id);
+        [ProducesResponseType(typeof(ApiResponse<EditCategoryDto>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<EditCategoryDto>), 404)]
+        public async Task<ActionResult<ApiResponse<EditCategoryDto>>> GetEditAsync(int id)
+        {
+            var result = await _categoryService.GetEditByIdAsync(id);
+            return result.ToActionResult();
+        }
 
 
         /// <summary>
@@ -48,8 +63,13 @@ namespace Template.Api.Controllers.V2.Lookup
         /// </summary>
         /// <returns></returns>
         [HttpGet("getAll")]
-        public async Task<IFinalResult> GetAllAsync() => await _categoryService.GetAllAsync();
-
+        [ProducesResponseType(typeof(ApiResponse<IEnumerable<CategoryDto>>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<IEnumerable<CategoryDto>>), 400)]
+        public async Task<ActionResult<ApiResponse<IEnumerable<CategoryDto>>>> GetAllAsync()
+        {
+            var result = await _categoryService.GetAllAsync();
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Get Paged
@@ -57,8 +77,13 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <param name="filter">Filter responsible for search and sort</param>
         /// <returns></returns>
         [HttpPost("getPaged")]
-        public async Task<DataPaging> GetPagedAsync([FromBody] BaseParam<CategoryFilter> filter) => await _categoryService.GetAllPagedAsync(filter);
-
+        [ProducesResponseType(typeof(ApiPagedResponse<IEnumerable<CategoryDto>>), 200)]
+        [ProducesResponseType(typeof(ApiPagedResponse<IEnumerable<CategoryDto>>), 400)]
+        public async Task<ActionResult<ApiPagedResponse<IEnumerable<CategoryDto>>>> GetPagedAsync([FromBody] BaseParam<CategoryFilter> filter)
+        {
+            var result = await _categoryService.GetAllPagedAsync(filter);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Add 
@@ -66,8 +91,13 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost("add")]
-        public async Task<IFinalResult> AddAsync([FromBody] AddCategoryDto dto) => await _categoryService.AddAsync(dto);
-
+        [ProducesResponseType(typeof(ApiResponse<int?>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<int?>), 400)]
+        public async Task<ActionResult<ApiResponse<int?>>> AddAsync([FromBody] AddCategoryDto dto)
+        {
+            var result = await _categoryService.AddAsync(dto);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Update  
@@ -75,7 +105,13 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <param name="model">Object content</param>
         /// <returns></returns>
         [HttpPut("update")]
-        public async Task<IFinalResult> UpdateAsync(AddCategoryDto model) => await _categoryService.UpdateAsync(model);
+        [ProducesResponseType(typeof(ApiResponse<int?>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<int?>), 400)]
+        public async Task<ActionResult<ApiResponse<int?>>> UpdateAsync(AddCategoryDto model)
+        {
+            var result = await _categoryService.UpdateAsync(model);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Remove by id
@@ -83,8 +119,13 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("delete/{id}")]
-        public async Task<IFinalResult> DeleteAsync(int id) => await _categoryService.DeleteAsync(id);
-
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 404)]
+        public async Task<ActionResult<ApiResponse>> DeleteAsync(int id)
+        {
+            var result = await _categoryService.DeleteAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Soft Remove by id
@@ -92,7 +133,13 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("deleteSoft/{id}")]
-        public async Task<IFinalResult> DeleteSoftAsync(int id) => await _categoryService.DeleteSoftAsync(id);
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 404)]
+        public async Task<ActionResult<ApiResponse>> DeleteSoftAsync(int id)
+        {
+            var result = await _categoryService.DeleteSoftAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Bulk Remove by ids
@@ -100,6 +147,12 @@ namespace Template.Api.Controllers.V2.Lookup
         /// <param name="ids">PK</param>
         /// <returns></returns>
         [HttpDelete("deleteRange")]
-        public async Task<IFinalResult> DeleteRangeAsync(List<int> ids) => await _categoryService.DeleteRangeAsync(ids);
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        public async Task<ActionResult<ApiResponse>> DeleteRangeAsync(List<int> ids)
+        {
+            var result = await _categoryService.DeleteRangeAsync(ids);
+            return result.ToActionResult();
+        }
     }
 }

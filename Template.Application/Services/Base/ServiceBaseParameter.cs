@@ -1,9 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using AutoMapper;
-using Template.Common.Core;
-using Template.Common.Infrastructure.UnitOfWork;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Serilog.Core;
+using System.Diagnostics.CodeAnalysis;
+using Template.Common.Infrastructure.UnitOfWork;
 using Template.Integration.CacheRepository;
 
 namespace Template.Application.Services.Base
@@ -15,31 +16,31 @@ namespace Template.Application.Services.Base
         public ServiceBaseParameter(
             IMapper mapper,
             IUnitOfWork<T> unitOfWork,
-            IResponseResult responseResult,
             IHttpContextAccessor httpContextAccessor,
             ICacheRepository cacheRepository,
-            IConfiguration configuration
+            IConfiguration configuration,
+            ILogger<T> logger
         )
         {
             Mapper = mapper;
             UnitOfWork = unitOfWork;
-            ResponseResult = responseResult;
             HttpContextAccessor = httpContextAccessor;
             CacheRepository = cacheRepository;
             Configuration = configuration;
+            Logger = logger;
         }
 
         public IMapper Mapper { get; set; }
 
         public IUnitOfWork<T> UnitOfWork { get; set; }
 
-        public IResponseResult ResponseResult { get; set; }
-
         public IHttpContextAccessor HttpContextAccessor { get; set; }
 
         public ICacheRepository CacheRepository { get; set; }
 
         public IConfiguration Configuration { get; set; }
+
+        public ILogger<T> Logger { get; set; }
 
     }
 }

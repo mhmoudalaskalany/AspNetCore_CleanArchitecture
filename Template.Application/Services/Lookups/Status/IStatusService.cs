@@ -10,10 +10,10 @@ namespace Template.Application.Services.Lookups.Status
 {
     public interface IStatusService : IBaseService<Domain.Entities.Lookup.Status, AddStatusDto, EditStatusDto, StatusDto, int, int?>
     {
-        Task<DataPaging> GetAllPagedAsync(BaseParam<StatusFilter> filter);
+        Task<PagedResult<IEnumerable<StatusDto>>> GetAllPagedAsync(BaseParam<StatusFilter> filter);
 
-        Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter);
+        Task<PagedResult<IEnumerable<StatusDto>>> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter);
 
-        Task<IFinalResult> DeleteRangeAsync(List<int> ids);
+        Task<Result> DeleteRangeAsync(List<int> ids);
     }
 }

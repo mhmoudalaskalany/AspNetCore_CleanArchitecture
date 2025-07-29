@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Threading.Tasks;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
@@ -11,6 +10,7 @@ using Template.Api.Controllers.V1.Base;
 using Template.Application.Services.File;
 using Template.Common.Core;
 using Template.Common.DTO.Common.File;
+using Template.Common.Extensions;
 using Template.Common.Helpers.FileHelpers.Token;
 using Template.Domain.Enum;
 
@@ -34,19 +34,28 @@ namespace Template.Api.Controllers.V2.Business
             _configuration = configuration;
         }
 
-
         /// <summary>
-        /// Download File With App Code From  Token 
+        /// Download File With App Code From Token 
         /// </summary>
         /// <param name="id"></param>
         /// <param name="token"></param>
         /// <returns></returns>
         [HttpGet("downloadWithAppCode/{id}")]
         [AllowAnonymous]
+        [ProducesResponseType(typeof(FileResult), 200)]
+        [ProducesResponseType(typeof(ApiResponse<object>), 404)]
+        [ProducesResponseType(typeof(ApiResponse<object>), 400)]
         public async Task<IActionResult> DownloadWithAppCodeAsync(Guid id, string token)
         {
-            var downloadFile = (DownLoadDto)await _fileService.DownloadWithAppCode(id, token);
-            return File(downloadFile.MemoryStream, downloadFile.ContentType, downloadFile.Name);
+            var result = await _fileService.DownloadWithAppCode(id, token);
+            if (result.IsSuccess)
+            {
+                var downloadFile = (DownLoadDto)result.Data;
+                return File(downloadFile.MemoryStream, downloadFile.ContentType, downloadFile.Name);
+            }
+            
+            var errorResponse = ApiResponse<object>.ErrorResponse(result.Message, System.Net.HttpStatusCode.BadRequest, result.Errors);
+            return BadRequest(errorResponse);
         }
 
         /// <summary>
@@ -56,11 +65,22 @@ namespace Template.Api.Controllers.V2.Business
         /// <param name="appCode"></param>
         /// <returns></returns>
         [HttpPost("generateTokenWithClaims/{appCode}")]
-        public IFinalResult GenerateTokenWithClaimsAsync(List<Guid> ids, string appCode)
+        [ProducesResponseType(typeof(ApiResponse<List<FileTokenDto>>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<List<FileTokenDto>>), 400)]
+        public ActionResult<ApiResponse<List<FileTokenDto>>> GenerateTokenWithClaimsAsync(List<Guid> ids, string appCode)
         {
-            var secretKey = _configuration.GetValue<string>("SecurityToken:SecurityKey");
-            var token = TokenHelper.GenerateJsonWebTokenWithClaims(60, secretKey, ids, appCode);
-            return new ResponseResult(token, HttpStatusCode.OK, null, "Tokens Generated Successfully");
+            try
+            {
+                var secretKey = _configuration.GetValue<string>("SecurityToken:SecurityKey");
+                var tokens = TokenHelper.GenerateJsonWebTokenWithClaims(60, secretKey, ids, appCode);
+                var result = Result<List<FileTokenDto>>.Success(tokens, "Tokens Generated Successfully");
+                return result.ToActionResult();
+            }
+            catch (Exception ex)
+            {
+                var result = Result<List<FileTokenDto>>.Failure("Failed to generate token", new[] { ex.Message });
+                return result.ToActionResult();
+            }
         }
 
         /// <summary>
@@ -72,10 +92,12 @@ namespace Template.Api.Controllers.V2.Business
         /// <param name="appCode"></param>
         /// <returns></returns>
         [HttpPost("uploadToSanStorage")]
-        public async Task<IFinalResult> UploadToSanStorageAsync(IFormFileCollection files, StorageType storageType, bool isPublic, string appCode)
+        [ProducesResponseType(typeof(ApiResponse<List<FileDto>>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<List<FileDto>>), 400)]
+        public async Task<ActionResult<ApiResponse<List<FileDto>>>> UploadToSanStorageAsync(IFormFileCollection files, StorageType storageType, bool isPublic, string appCode)
         {
             var result = await _fileService.UploadToSanStorage(files, storageType, isPublic, appCode);
-            return result;
+            return result.ToActionResult();
         }
 
         /// <summary>
@@ -84,10 +106,12 @@ namespace Template.Api.Controllers.V2.Business
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost("uploadBytes")]
-        public async Task<IFinalResult> UploadBytesAsync([FromBody] UploadRequestDto dto)
+        [ProducesResponseType(typeof(ApiResponse<UploadResponseDto>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<UploadResponseDto>), 400)]
+        public async Task<ActionResult<ApiResponse<UploadResponseDto>>> UploadBytesAsync([FromBody] UploadRequestDto dto)
         {
-            var uploadResponse = await _fileService.UploadBytes(dto, 10000);
-            return uploadResponse;
+            var result = await _fileService.UploadBytes(dto, 10000);
+            return result.ToActionResult();
         }
 
         /// <summary>
@@ -96,10 +120,12 @@ namespace Template.Api.Controllers.V2.Business
         /// <returns></returns>
         [AllowAnonymous]
         [HttpGet("getDirectories")]
-        public async Task<IActionResult> GetDirectories(StorageType storageType)
+        [ProducesResponseType(typeof(ApiResponse<object>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<object>), 400)]
+        public async Task<ActionResult<ApiResponse<object>>> GetDirectories(StorageType storageType)
         {
-            var directories = await _fileService.GetDirectoriesAsync(storageType);
-            return Ok(directories);
+            var result = await _fileService.GetDirectoriesAsync(storageType);
+            return result.ToActionResult();
         }
 
         /// <summary>
@@ -108,10 +134,13 @@ namespace Template.Api.Controllers.V2.Business
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpGet("delete/{id}")]
-        public async Task<IFinalResult> DeleteAsync(Guid id)
+        [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<bool>), 404)]
+        [ProducesResponseType(typeof(ApiResponse<bool>), 400)]
+        public async Task<ActionResult<ApiResponse<bool>>> DeleteAsync(Guid id)
         {
-            return await _fileService.DeletePhysicalAsync(id);
+            var result = await _fileService.DeletePhysicalAsync(id);
+            return result.ToActionResult();
         }
-
     }
 }

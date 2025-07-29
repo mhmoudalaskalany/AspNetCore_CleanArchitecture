@@ -12,21 +12,21 @@ namespace Template.Application.Services.Base
         where TEditDto : IEntityDto<TKeyDto>
         where TGetDto : IEntityDto<TKeyDto>
     {
-        Task<IFinalResult> GetByIdAsync(object id);
+        Task<Result<TGetDto>> GetByIdAsync(object id);
 
-        Task<IFinalResult> GetEditByIdAsync(object id);
+        Task<Result<TEditDto>> GetEditByIdAsync(object id);
 
-        Task<IFinalResult> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null);
+        Task<Result<IEnumerable<TGetDto>>> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null);
 
-        Task<IFinalResult> AddAsync(TAddDto model);
+        Task<Result<TKeyDto>> AddAsync(TAddDto model);
 
-        Task<IFinalResult> AddListAsync(List<TAddDto> model);
+        Task<Result<IEnumerable<TKeyDto>>> AddListAsync(List<TAddDto> model);
 
-        Task<IFinalResult> UpdateAsync(TAddDto model);
+        Task<Result<TKeyDto>> UpdateAsync(TAddDto model);
 
-        Task<IFinalResult> DeleteAsync(object id);
+        Task<Result> DeleteAsync(object id);
 
-        Task<IFinalResult> DeleteSoftAsync(object id);
+        Task<Result> DeleteSoftAsync(object id);
 
 
     }

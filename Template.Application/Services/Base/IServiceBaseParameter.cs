@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Template.Common.Core;
-using Template.Common.Infrastructure.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Template.Common.Infrastructure.UnitOfWork;
 using Template.Integration.CacheRepository;
 
 namespace Template.Application.Services.Base
@@ -13,12 +13,11 @@ namespace Template.Application.Services.Base
 
         IUnitOfWork<T> UnitOfWork { get; set; }
 
-        IResponseResult ResponseResult { get; set; }
-
         IHttpContextAccessor HttpContextAccessor { get; set; }
 
         IConfiguration Configuration { get; set; }
 
         ICacheRepository CacheRepository { get; set; }
+        ILogger<T> Logger { get; set; }
     }
 }

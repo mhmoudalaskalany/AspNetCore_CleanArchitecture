@@ -6,7 +6,8 @@ namespace Template.Application.Services.Identity.Account
 {
     public interface IAccountService
     {
-        Task<IFinalResult> Login(LoginParameters parameters);
-        Task<IFinalResult> AdLogin(LoginParameters parameters);
+        Task<Result<LoginResponse>> Login(LoginParameters parameters);
+
+        Task<Result<LoginResponse>> AdLogin(LoginParameters parameters);
     }
 }

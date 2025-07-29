@@ -6,6 +6,6 @@ namespace Template.Application.Services.Base
 {
     public interface ITokenService
     {
-        UserLoginReturn GenerateJsonWebToken(UserDto userInfo, Role role);
+        LoginResponse GenerateJsonWebToken(UserDto userInfo, Role role);
     }
 }

@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Net;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Template.Common.Core;
 using Template.Common.DTO.Base;
 using Template.Common.Infrastructure.UnitOfWork;
@@ -27,11 +27,10 @@ namespace Template.Application.Services.Base
     {
         protected readonly IUnitOfWork<T> UnitOfWork;
         protected readonly IMapper Mapper;
-        protected readonly IResponseResult ResponseResult;
-        protected IFinalResult Result;
         protected IHttpContextAccessor HttpContextAccessor;
         protected IConfiguration Configuration;
         protected ICacheRepository CacheRepository;
+        private readonly ILogger _logger;
         private readonly JsonSerializerSettings _serializerSettings = new()
         {
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -43,8 +42,8 @@ namespace Template.Application.Services.Base
         {
             HttpContextAccessor = businessBaseParameter.HttpContextAccessor;
             UnitOfWork = businessBaseParameter.UnitOfWork;
-            ResponseResult = businessBaseParameter.ResponseResult;
             Mapper = businessBaseParameter.Mapper;
+            _logger = businessBaseParameter.Logger;
             CacheRepository = businessBaseParameter.CacheRepository;
             Configuration = businessBaseParameter.Configuration;
             var claims = HttpContextAccessor?.HttpContext?.User;
@@ -52,39 +51,73 @@ namespace Template.Application.Services.Base
 
         }
 
-        public virtual async Task<IFinalResult> GetByIdAsync(object id)
+        public virtual async Task<Result<TGetDto>> GetByIdAsync(object id)
         {
-            T query = await UnitOfWork.Repository.GetAsync(id);
-            var data = Mapper.Map<T, TGetDto>(query);
-            return ResponseResult.PostResult(result: data, status: HttpStatusCode.OK,
-                message: MessagesConstants.Success);
-        }
-
-        public virtual async Task<IFinalResult> GetEditByIdAsync(object id)
-        {
-            T query = await UnitOfWork.Repository.GetAsync(id);
-            var data = Mapper.Map<T, TEditDto>(query);
-            return ResponseResult.PostResult(result: data, status: HttpStatusCode.OK,
-                message: MessagesConstants.Success);
-        }
-
-        public virtual async Task<IFinalResult> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null)
-        {
-            IEnumerable<T> query;
-            if (predicate != null)
+            try
             {
-                query = await UnitOfWork.Repository.FindAsync(predicate);
+                T query = await UnitOfWork.Repository.GetAsync(id);
+                if (query == null)
+                {
+                    return Result<TGetDto>.Failure(MessagesConstants.EntityNotFound);
+                }
+                var data = Mapper.Map<T, TGetDto>(query);
+                return Result<TGetDto>.Success(data, MessagesConstants.Success);
             }
-            else
+            catch (Exception e)
             {
-                query = await UnitOfWork.Repository.GetAllAsync(disableTracking: disableTracking);
+                _logger.LogError($"Error in {nameof(GetByIdAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                return Result<TGetDto>.Failure(MessagesConstants.GetError);
             }
-            var data = Mapper.Map<IEnumerable<T>, IEnumerable<TGetDto>>(query);
-            return ResponseResult.PostResult(data, status: HttpStatusCode.OK,
-                message: HttpStatusCode.OK.ToString());
         }
 
-        public virtual async Task<IFinalResult> AddAsync(TAddDto model)
+
+        public virtual async Task<Result<TEditDto>> GetEditByIdAsync(object id)
+        {
+            try
+            {
+                T query = await UnitOfWork.Repository.GetAsync(id);
+                if (query == null)
+                {
+                    return Result<TEditDto>.Failure(MessagesConstants.EntityNotFound);
+                }
+                var data = Mapper.Map<T, TEditDto>(query);
+                return Result<TEditDto>.Success(data, MessagesConstants.Success);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error in {nameof(GetEditByIdAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                return Result<TEditDto>.Failure(MessagesConstants.GetError);
+            }
+        }
+
+        public virtual async Task<Result<IEnumerable<TGetDto>>> GetAllAsync(bool disableTracking = false, Expression<Func<T, bool>> predicate = null)
+        {
+            try
+            {
+                IEnumerable<T> query;
+                if (predicate != null)
+                {
+                    query = await UnitOfWork.Repository.FindAsync(predicate);
+                }
+                else
+                {
+                    query = await UnitOfWork.Repository.GetAllAsync(disableTracking: disableTracking);
+                }
+
+                var data = Mapper.Map<IEnumerable<T>, IEnumerable<TGetDto>>(query);
+                return Result<IEnumerable<TGetDto>>.Success(data, MessagesConstants.Success);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error in {nameof(GetAllAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                return Result<IEnumerable<TGetDto>>.Failure(MessagesConstants.EntitiesRetrievalError);
+            }
+        }
+
+        public virtual async Task<Result<TKeyDto>> AddAsync(TAddDto model)
         {
             try
             {
@@ -94,114 +127,115 @@ namespace Template.Application.Services.Base
                 var affectedRows = await UnitOfWork.SaveChangesAsync();
                 if (affectedRows > 0)
                 {
-                    Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
-                        message: MessagesConstants.AddSuccess);
+                    return Result<TKeyDto>.Success(model.Id, MessagesConstants.AddSuccess);
                 }
-
-                Result.Data = model;
-                return Result;
+                return Result<TKeyDto>.Failure(MessagesConstants.AddError);
             }
             catch (Exception e)
             {
-                Log.Error($"{MessagesConstants.AddError}-{nameof(AddAsync)}");
-                Log.Error(JsonConvert.SerializeObject(e, _serializerSettings));
-                throw;
+                _logger.LogError($"{MessagesConstants.AddError}-{nameof(AddAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                return Result<TKeyDto>.Failure(MessagesConstants.AddError);
             }
         }
 
-        public virtual async Task<IFinalResult> AddListAsync(List<TAddDto> model)
+        public virtual async Task<Result<IEnumerable<TKeyDto>>> AddListAsync(List<TAddDto> model)
         {
             try
             {
                 List<T> entities = Mapper.Map<List<TAddDto>, List<T>>(model);
-                UnitOfWork.Repository.AddRange(entities);
+                await UnitOfWork.Repository.AddRangeAsync(entities);
                 var affectedRows = await UnitOfWork.SaveChangesAsync();
                 if (affectedRows > 0)
                 {
-                    Result = new ResponseResult(result: null, status: HttpStatusCode.Created,
-                        message: MessagesConstants.AddError);
+                    var ids = model.Select(x => x.Id);
+                    return Result<IEnumerable<TKeyDto>>.Success(ids, MessagesConstants.AddSuccess);
                 }
-                Result.Data = model;
-                return Result;
+                return Result<IEnumerable<TKeyDto>>.Failure(MessagesConstants.AddError);
             }
             catch (Exception e)
             {
-                Log.Error($"{MessagesConstants.AddError}-{nameof(AddListAsync)}");
-                Log.Error(JsonConvert.SerializeObject(e, _serializerSettings));
-                throw;
+                _logger.LogError($"{MessagesConstants.AddError}-{nameof(AddListAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                return Result<IEnumerable<TKeyDto>>.Failure(MessagesConstants.AddError);
             }
         }
 
-        public virtual async Task<IFinalResult> UpdateAsync(TAddDto model)
+        public virtual async Task<Result<TKeyDto>> UpdateAsync(TAddDto model)
         {
             try
             {
                 T entityToUpdate = await UnitOfWork.Repository.GetAsync(model.Id);
+                if (entityToUpdate == null)
+                {
+                    return Result<TKeyDto>.Failure(MessagesConstants.EntityNotFound);
+                }
                 var newEntity = Mapper.Map(model, entityToUpdate);
                 SetEntityModifiedBaseProperties(newEntity);
                 UnitOfWork.Repository.Update(entityToUpdate, newEntity);
                 var affectedRows = await UnitOfWork.SaveChangesAsync();
                 if (affectedRows > 0)
                 {
-                    Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
-                        message: MessagesConstants.UpdateSuccess);
+                    return Result<TKeyDto>.Success(model.Id, MessagesConstants.UpdateSuccess);
                 }
-
-                return Result;
+                return Result<TKeyDto>.Failure(MessagesConstants.UpdateError);
             }
             catch (Exception e)
             {
-                Log.Error($"{MessagesConstants.UpdateError}-{nameof(UpdateAsync)}");
-                Log.Error(JsonConvert.SerializeObject(e, _serializerSettings));
-                throw;
+                _logger.LogError($"{MessagesConstants.UpdateError}-{nameof(UpdateAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                return Result<TKeyDto>.Failure(MessagesConstants.UpdateError);
             }
-
         }
 
-        public virtual async Task<IFinalResult> DeleteAsync(object id)
+        public virtual async Task<Result> DeleteAsync(object id)
         {
             try
             {
                 var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
+                if (entityToDelete == null)
+                {
+                    return Result.Failure(MessagesConstants.EntityNotFound);
+                }
                 UnitOfWork.Repository.Remove(entityToDelete);
                 var affectedRows = await UnitOfWork.SaveChangesAsync();
                 if (affectedRows > 0)
                 {
-                    Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
-                        message: MessagesConstants.DeleteSuccess);
+                    return Result.Success(MessagesConstants.DeleteSuccess);
                 }
-
-                return Result;
+                return Result.Failure(MessagesConstants.DeleteError);
             }
             catch (Exception e)
             {
-                Log.Error($"{MessagesConstants.DeleteError}-{nameof(DeleteAsync)}");
-                Log.Error(JsonConvert.SerializeObject(e, _serializerSettings));
-                throw;
+                _logger.LogError($"{MessagesConstants.DeleteError}-{nameof(DeleteAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                return Result.Failure(MessagesConstants.DeleteError);
             }
         }
 
-        public virtual async Task<IFinalResult> DeleteSoftAsync(object id)
+        public virtual async Task<Result> DeleteSoftAsync(object id)
         {
             try
             {
                 var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
+                if (entityToDelete == null)
+                {
+                    return Result.Failure(MessagesConstants.EntityNotFound);
+                }
                 SetEntityModifiedBaseProperties(entityToDelete);
                 UnitOfWork.Repository.RemoveLogical(entityToDelete);
                 var affectedRows = await UnitOfWork.SaveChangesAsync();
                 if (affectedRows > 0)
                 {
-                    Result = ResponseResult.PostResult(result: true, status: HttpStatusCode.Accepted,
-                        message: MessagesConstants.DeleteSuccess);
+                    return Result.Success(MessagesConstants.DeleteSuccess);
                 }
-
-                return Result;
+                return Result.Failure(MessagesConstants.DeleteError);
             }
             catch (Exception e)
             {
-                Log.Error($"{MessagesConstants.DeleteError}-{nameof(DeleteSoftAsync)}");
-                Log.Error(JsonConvert.SerializeObject(e, _serializerSettings));
-                throw;
+                _logger.LogError($"{MessagesConstants.DeleteError}-{nameof(DeleteSoftAsync)}");
+                _logger.LogError(JsonConvert.SerializeObject(e, _serializerSettings));
+                return Result.Failure(MessagesConstants.DeleteError);
             }
         }
 

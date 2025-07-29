@@ -8,6 +8,7 @@ using Template.Common.Core;
 using Template.Common.DTO.Base;
 using Template.Common.DTO.Lookup.Action;
 using Template.Common.DTO.Lookup.Action.Parameters;
+using Template.Common.Extensions;
 
 namespace Template.Api.Controllers.V1.Lookup
 {
@@ -27,30 +28,46 @@ namespace Template.Api.Controllers.V1.Lookup
             _actionService = actionService;
         }
 
-
         /// <summary>
         /// Get By id
         /// </summary>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("get/{id}")]
-        public async Task<IFinalResult> GetAsync(int id) => await _actionService.GetByIdAsync(id);
-
+        [ProducesResponseType(typeof(ApiResponse<ActionDto>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<ActionDto>), 404)]
+        public async Task<ActionResult<ApiResponse<ActionDto>>> GetAsync(int id)
+        {
+            var result = await _actionService.GetByIdAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Get By id for edit 
         /// </summary>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("getEdit/{id}")]
-        public async Task<IFinalResult> GetEditAsync(int id) => await _actionService.GetEditByIdAsync(id);
-
+        [ProducesResponseType(typeof(ApiResponse<EditActionDto>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<EditActionDto>), 404)]
+        public async Task<ActionResult<ApiResponse<EditActionDto>>> GetEditAsync(int id)
+        {
+            var result = await _actionService.GetEditByIdAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
-        /// Get All Categories
+        /// Get All Actions
         /// </summary>
         /// <returns></returns>
         [HttpGet("getAll")]
-        public async Task<IFinalResult> GetAllAsync() => await _actionService.GetAllAsync();
-
+        [ProducesResponseType(typeof(ApiResponse<IEnumerable<ActionDto>>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<IEnumerable<ActionDto>>), 400)]
+        public async Task<ActionResult<ApiResponse<IEnumerable<ActionDto>>>> GetAllAsync()
+        {
+            var result = await _actionService.GetAllAsync();
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Get Paged
@@ -58,8 +75,13 @@ namespace Template.Api.Controllers.V1.Lookup
         /// <param name="filter">Filter responsible for search and sort</param>
         /// <returns></returns>
         [HttpPost("getPaged")]
-        public async Task<DataPaging> GetPagedAsync([FromBody] BaseParam<ActionFilter> filter) => await _actionService.GetAllPagedAsync(filter);
-
+        [ProducesResponseType(typeof(ApiPagedResponse<IEnumerable<ActionDto>>), 200)]
+        [ProducesResponseType(typeof(ApiPagedResponse<IEnumerable<ActionDto>>), 400)]
+        public async Task<ActionResult<ApiPagedResponse<IEnumerable<ActionDto>>>> GetPagedAsync([FromBody] BaseParam<ActionFilter> filter)
+        {
+            var result = await _actionService.GetAllPagedAsync(filter);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Get All Data paged For Drop Down
@@ -68,8 +90,13 @@ namespace Template.Api.Controllers.V1.Lookup
         /// <returns></returns>
         [HttpPost]
         [Route("getDropDown")]
-        public async Task<DataPaging> GetDropDownAsync([FromBody] BaseParam<SearchCriteriaFilter> filter) => await _actionService.GetDropDownAsync(filter);
-        
+        [ProducesResponseType(typeof(ApiPagedResponse<IEnumerable<ActionDto>>), 200)]
+        [ProducesResponseType(typeof(ApiPagedResponse<IEnumerable<ActionDto>>), 400)]
+        public async Task<ActionResult<ApiPagedResponse<IEnumerable<ActionDto>>>> GetDropDownAsync([FromBody] BaseParam<SearchCriteriaFilter> filter)
+        {
+            var result = await _actionService.GetDropDownAsync(filter);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Add 
@@ -77,8 +104,13 @@ namespace Template.Api.Controllers.V1.Lookup
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost("add")]
-        public async Task<IFinalResult> AddAsync([FromBody] AddActionDto dto) => await _actionService.AddAsync(dto);
-
+        [ProducesResponseType(typeof(ApiResponse<int?>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<int?>), 400)]
+        public async Task<ActionResult<ApiResponse<int?>>> AddAsync([FromBody] AddActionDto dto)
+        {
+            var result = await _actionService.AddAsync(dto);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Update  
@@ -86,7 +118,13 @@ namespace Template.Api.Controllers.V1.Lookup
         /// <param name="model">Object content</param>
         /// <returns></returns>
         [HttpPut("update")]
-        public async Task<IFinalResult> UpdateAsync(AddActionDto model) => await _actionService.UpdateAsync(model);
+        [ProducesResponseType(typeof(ApiResponse<int?>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<int?>), 400)]
+        public async Task<ActionResult<ApiResponse<int?>>> UpdateAsync(AddActionDto model)
+        {
+            var result = await _actionService.UpdateAsync(model);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Remove by id
@@ -94,8 +132,13 @@ namespace Template.Api.Controllers.V1.Lookup
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("delete/{id}")]
-        public async Task<IFinalResult> DeleteAsync(int id) => await _actionService.DeleteAsync(id);
-
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 404)]
+        public async Task<ActionResult<ApiResponse>> DeleteAsync(int id)
+        {
+            var result = await _actionService.DeleteAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Soft Remove by id
@@ -103,7 +146,13 @@ namespace Template.Api.Controllers.V1.Lookup
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("deleteSoft/{id}")]
-        public async Task<IFinalResult> DeleteSoftAsync(int id) => await _actionService.DeleteSoftAsync(id);
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 404)]
+        public async Task<ActionResult<ApiResponse>> DeleteSoftAsync(int id)
+        {
+            var result = await _actionService.DeleteSoftAsync(id);
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Bulk Remove by ids
@@ -111,6 +160,12 @@ namespace Template.Api.Controllers.V1.Lookup
         /// <param name="ids">PK</param>
         /// <returns></returns>
         [HttpDelete("deleteRange")]
-        public async Task<IFinalResult> DeleteRangeAsync(List<int> ids) => await _actionService.DeleteRangeAsync(ids);
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        public async Task<ActionResult<ApiResponse>> DeleteRangeAsync(List<int> ids)
+        {
+            var result = await _actionService.DeleteRangeAsync(ids);
+            return result.ToActionResult();
+        }
     }
 }

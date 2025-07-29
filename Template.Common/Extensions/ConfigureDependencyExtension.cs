@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Template.Common.Core;
 using Template.Common.Helpers.EmailHelper;
 using Template.Common.Helpers.FileHelpers.StorageHelper;
 using Template.Common.Helpers.HttpClient;
@@ -37,8 +36,6 @@ namespace Template.Common.Extensions
             services.AddSingleton<MicroServicesUrls>();
             services.AddScoped<IClaimService, ClaimService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient<IResponseResult, ResponseResult>();
-            services.AddTransient<IFinalResult, FinalResult>();
             services.AddSingleton<ISendMail, SendMail>();
             services.AddTransient<ITokenGenerator, TokenGenerator>();
             services.AddTransient<IUploaderConfiguration, UploaderConfiguration>();

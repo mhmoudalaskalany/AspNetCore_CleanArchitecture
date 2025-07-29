@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Net;
 using System.Threading.Tasks;
 using Template.Application.Services.Base;
 using Template.Common.Core;
@@ -20,7 +19,7 @@ namespace Template.Application.Services.Lookups.Category
         {
         }
 
-        public async Task<DataPaging> GetAllPagedAsync(BaseParam<CategoryFilter> filter)
+        public async Task<PagedResult<IEnumerable<CategoryDto>>> GetAllPagedAsync(BaseParam<CategoryFilter> filter)
         {
 
             var limit = filter.PageSize;
@@ -31,12 +30,12 @@ namespace Template.Application.Services.Lookups.Category
 
             var data = Mapper.Map<IEnumerable<Domain.Entities.Lookup.Category>, IEnumerable<CategoryDto>>(query.Item2);
 
-            return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, result: data, status: HttpStatusCode.OK, HttpStatusCode.OK.ToString());
+            return PagedResult<IEnumerable<CategoryDto>>.Success(data, filter.PageNumber, filter.PageSize, query.Item1, MessagesConstants.Success);
 
         }
 
 
-        public async Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter)
+        public async Task<PagedResult<IEnumerable<CategoryDto>>> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter)
         {
 
             var limit = filter.PageSize;
@@ -49,18 +48,19 @@ namespace Template.Application.Services.Lookups.Category
 
             var data = Mapper.Map<IEnumerable<Domain.Entities.Lookup.Category>, IEnumerable<CategoryDto>>(query.Item2);
 
-            return new DataPaging(filter.PageNumber, filter.PageSize, query.Item1, data, status: HttpStatusCode.OK, MessagesConstants.Success);
+            return PagedResult<IEnumerable<CategoryDto>>.Success(data, filter.PageNumber, filter.PageSize, query.Item1, MessagesConstants.Success);
 
         }
 
-        public async Task<IFinalResult> DeleteRangeAsync(List<int> ids)
+        public async Task<Result> DeleteRangeAsync(List<int> ids)
         {
             var rows = await UnitOfWork.Repository.RemoveBulkAsync(x => ids.Contains(x.Id));
+
             if (rows > 0)
             {
-                return new ResponseResult().PostResult(result: true, status: HttpStatusCode.OK, message: MessagesConstants.DeleteSuccess);
+                return Result.Success(MessagesConstants.DeleteSuccess);
             }
-            return new ResponseResult().PostResult(result: false, status: HttpStatusCode.BadRequest, message: MessagesConstants.DeleteError);
+            return Result.Failure(MessagesConstants.DeleteError);
         }
 
         static Expression<Func<Domain.Entities.Lookup.Category, bool>> PredicateBuilderFunction(CategoryFilter filter)

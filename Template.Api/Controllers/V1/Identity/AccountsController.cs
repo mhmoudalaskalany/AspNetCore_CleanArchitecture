@@ -7,6 +7,7 @@ using Template.Application.Services.Base;
 using Template.Application.Services.Identity.Account;
 using Template.Common.Core;
 using Template.Common.DTO.Identity.Account;
+using Template.Common.Extensions;
 
 namespace Template.Api.Controllers.V1.Identity
 {
@@ -30,9 +31,10 @@ namespace Template.Api.Controllers.V1.Identity
         /// <returns></returns>
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<IFinalResult> Login(LoginParameters parameter)
+        public async Task<ActionResult<ApiResponse<LoginResponse>>> Login(LoginParameters parameter)
         {
-            return await _service.Login(parameter);
+            var result = await _service.Login(parameter);
+            return result.ToActionResult();
         }
     }
 }

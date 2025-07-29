@@ -54,8 +54,6 @@ namespace Template.Api.MiddleWares
         /// </summary>
         private async Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
-
-
             var serializerSettings = new JsonSerializerSettings()
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
@@ -81,17 +79,15 @@ namespace Template.Api.MiddleWares
             {
                 context.Response.StatusCode = (int)HttpStatusCode.NotFound;
 
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new ResponseResult() { Message = ex.Message }));
+                var errorResponse = ApiResponse<object>.ErrorResponse(ex.Message, HttpStatusCode.NotFound);
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
             }
             else if (ex is UnauthorizedAccessException)
             {
                 context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
 
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new ResponseResult
-                {
-                    Message = "Unauthorized",
-                    Status = HttpStatusCode.Unauthorized
-                }));
+                var errorResponse = ApiResponse<object>.ErrorResponse("Unauthorized", HttpStatusCode.Unauthorized);
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
             }
             else if (ex is DbUpdateException)
             {
@@ -106,45 +102,33 @@ namespace Template.Api.MiddleWares
                             {
                                 var table = dbException.Message.Split("table");
                                 var column = table[1].Split("column");
-                                var error = new FinalResult
-                                {
-                                    Status = HttpStatusCode.BadRequest,
-                                    Message = $"Wrong Foreign Key (Id) For Entity {column[0]}"
-                                };
-
-                                await context.Response.WriteAsync(JsonConvert.SerializeObject(error));
+                                var errorMessage = $"Wrong Foreign Key (Id) For Entity {column[0]}";
+                                
+                                var errorResponse = ApiResponse<object>.ErrorResponse(errorMessage, HttpStatusCode.BadRequest);
+                                await context.Response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
                                 break;
                             }
                         default:
                             {
-
-                                var error = new FinalResult
-                                {
-                                    Status = HttpStatusCode.BadRequest,
-                                    Message = dbException.Message
-                                };
-                                await context.Response.WriteAsync(JsonConvert.SerializeObject(error));
+                                var errorResponse = ApiResponse<object>.ErrorResponse(dbException.Message, HttpStatusCode.BadRequest);
+                                await context.Response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
                                 break;
                             }
                     }
                 }
                 else
                 {
-                    await context.Response.WriteAsync(JsonConvert.SerializeObject(new ResponseResult() { Message = ex.Message }.ToString()));
+                    var errorResponse = ApiResponse<object>.ErrorResponse(ex.Message, HttpStatusCode.BadRequest);
+                    await context.Response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
                 }
-
-
             }
             else
             {
-
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new ResponseResult()
-                {
-                    Message = _configuration["Enable_Stack_Trace"] == "TRUE" ? exceptionJson : ex.Message
-
-                }));
+                var errorMessage = _configuration["Enable_Stack_Trace"] == "TRUE" ? exceptionJson : ex.Message;
+                var errorResponse = ApiResponse<object>.ErrorResponse(errorMessage, HttpStatusCode.InternalServerError);
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
             }
         }
     }

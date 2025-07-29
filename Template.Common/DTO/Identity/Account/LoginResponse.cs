@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Template.Common.DTO.Identity.Account
 {
     [ExcludeFromCodeCoverage]
-    public class UserLoginReturn
+    public record LoginResponse
     {
         public string Token { get; set; }
 

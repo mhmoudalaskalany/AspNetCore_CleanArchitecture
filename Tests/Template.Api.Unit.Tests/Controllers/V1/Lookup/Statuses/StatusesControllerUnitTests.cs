@@ -1,9 +1,13 @@
-using System.Net;
+using System.Linq.Expressions;
 using AutoFixture;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
+using System.Net;
 using Template.Api.Controllers.V1.Lookup;
 using Template.Application.Services.Lookups.Status;
 using Template.Common.Core;
+using Template.Common.DTO.Lookup.Status;
+using Template.Domain.Entities.Lookup;
 
 namespace Template.Api.Unit.Tests.Controllers.V1.Lookup.Statuses
 {
@@ -19,18 +23,26 @@ namespace Template.Api.Unit.Tests.Controllers.V1.Lookup.Statuses
         }
 
         [Fact]
-        public async Task GetAllAsync_Return_Ok()
+        public async Task GetAll_Return_Ok()
         {
-            //Arrange (set up variables)
-            var result = (IFinalResult)Fixture.Build<FinalResult>().With(p => p.Status, HttpStatusCode.OK).Create();
-            _statusServiceMock.Setup(x => x.GetAllAsync(It.IsAny<bool>() , null))
-                .Returns(Task.FromResult(result));
+            // AAA
+            //Arrange (set up variables) 
+            var testDtos = Fixture.CreateMany<StatusDto>().ToList();
+            var result = Result<IEnumerable<StatusDto>>.Success(testDtos);
+
+            _statusServiceMock.Setup(x => x.GetAllAsync(It.IsAny<bool>(), It.IsAny<Expression<Func<Status, bool>>>()))
+                .ReturnsAsync(result);
 
             //Act ( execute the target method )
-            var finalResult = await _controller.GetAllAsync();
+            var actionResult = await _controller.GetAllAsync();
 
             //Assert
-            Assert.Equal(HttpStatusCode.OK, finalResult.Status);
+            var objectResult = Assert.IsType<OkObjectResult>(actionResult.Result);
+            Assert.Equal(200, objectResult.StatusCode);
+
+            var apiResponse = Assert.IsType<ApiResponse<IEnumerable<StatusDto>>>(objectResult.Value);
+            Assert.Equal((int)HttpStatusCode.OK, apiResponse.StatusCode);
+            Assert.NotNull(apiResponse.Data);
         }
 
 

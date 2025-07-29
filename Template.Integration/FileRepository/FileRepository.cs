@@ -29,7 +29,7 @@ namespace Template.Integration.FileRepository
         public async Task<List<TokenDto>> GetTokens(List<Guid> ids)
         {
             var appCode = _configuration["AppCode"];
-            var result = await _restSharpClient.SendRequest<ResponseResult>(_urls.GenerateTokenWithClaims + "/" + appCode, Method.Post, ids);
+            var result = await _restSharpClient.SendRequest<ApiResponse<IEnumerable<TokenDto>>>(_urls.GenerateTokenWithClaims + "/" + appCode, Method.Post, ids);
             var tokens = JsonConvert.DeserializeObject<List<TokenDto>>(JsonConvert.SerializeObject(result.Data));
             return tokens;
         }

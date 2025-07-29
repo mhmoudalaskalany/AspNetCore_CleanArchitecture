@@ -10,10 +10,10 @@ namespace Template.Application.Services.Identity.Permission
 {
     public interface IPermissionService : IBaseService<Domain.Entities.Identity.Permission, AddPermissionDto , EditPermissionDto, PermissionDto , int , int?>
     {
-        Task<DataPaging> GetAllPagedAsync(BaseParam<PermissionFilter> filter);
+        Task<PagedResult<IEnumerable<PermissionDto>>> GetAllPagedAsync(BaseParam<PermissionFilter> filter);
 
-        Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter);
+        Task<PagedResult<IEnumerable<PermissionDto>>> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter);
 
-        Task<IFinalResult> DeleteRangeAsync(List<int> ids);
+        Task<Result> DeleteRangeAsync(List<int> ids);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Net;
 using System.Threading.Tasks;
 using Template.Common.Core;
 using Template.Common.DTO.Base;
@@ -20,7 +19,7 @@ namespace Template.Application.Services.Identity.User
 
         }
 
-        public async Task<DataPaging> GetAllPagedAsync(BaseParam<UserFilter> filter)
+        public async Task<PagedResult<IEnumerable<UserDto>>> GetAllPagedAsync(BaseParam<UserFilter> filter)
         {
 
             var limit = filter.PageSize;
@@ -31,12 +30,12 @@ namespace Template.Application.Services.Identity.User
 
             var data = Mapper.Map<IEnumerable<Domain.Entities.Identity.User>, IEnumerable<UserDto>>(query.Item2);
 
-            return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, result: data, status: HttpStatusCode.OK, HttpStatusCode.OK.ToString());
+            return PagedResult<IEnumerable<UserDto>>.Success(data, filter.PageNumber, filter.PageSize, query.Item1, MessagesConstants.Success);
 
         }
 
 
-        public async Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter)
+        public async Task<PagedResult<IEnumerable<UserDto>>> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter)
         {
 
             var limit = filter.PageSize;
@@ -49,18 +48,19 @@ namespace Template.Application.Services.Identity.User
 
             var data = Mapper.Map<IEnumerable<Domain.Entities.Identity.User>, IEnumerable<UserDto>>(query.Item2);
 
-            return new DataPaging(filter.PageNumber, filter.PageSize, query.Item1, data, status: HttpStatusCode.OK, MessagesConstants.Success);
+            return PagedResult<IEnumerable<UserDto>>.Success(data, filter.PageNumber, filter.PageSize, query.Item1, MessagesConstants.Success);
 
         }
 
-        public async Task<IFinalResult> DeleteRangeAsync(List<Guid> ids)
+        public async Task<Result> DeleteRangeAsync(List<Guid> ids)
         {
             var rows = await UnitOfWork.Repository.RemoveBulkAsync(x => ids.Contains(x.Id));
+
             if (rows > 0)
             {
-                return new ResponseResult().PostResult(result: true, status: HttpStatusCode.OK, message: MessagesConstants.DeleteSuccess);
+                return Result.Success(MessagesConstants.DeleteSuccess);
             }
-            return new ResponseResult().PostResult(result: false, status: HttpStatusCode.BadRequest, message: MessagesConstants.DeleteError);
+            return Result.Failure(MessagesConstants.DeleteError);
         }
 
         static Expression<Func<Domain.Entities.Identity.User, bool>> PredicateBuilderFunction(UserFilter filter)

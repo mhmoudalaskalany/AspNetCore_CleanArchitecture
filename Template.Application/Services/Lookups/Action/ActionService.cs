@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net;
 using System.Threading.Tasks;
 using Template.Common.Core;
 using Template.Common.DTO.Lookup.Action;
@@ -22,7 +21,7 @@ namespace Template.Application.Services.Lookups.Action
         }
 
 
-        public async Task<DataPaging> GetAllPagedAsync(BaseParam<ActionFilter> filter)
+        public async Task<PagedResult<IEnumerable<ActionDto>>> GetAllPagedAsync(BaseParam<ActionFilter> filter)
         {
             var limit = filter.PageSize;
 
@@ -32,11 +31,11 @@ namespace Template.Application.Services.Lookups.Action
 
             var data = Mapper.Map<IEnumerable<Domain.Entities.Lookup.Action>, IEnumerable<ActionDto>>(query.Item2);
 
-            return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, result: data, status: HttpStatusCode.OK, HttpStatusCode.OK.ToString());
+            return PagedResult<IEnumerable<ActionDto>>.Success(data, filter.PageNumber, filter.PageSize, query.Item1, MessagesConstants.Success);
         }
 
 
-        public async Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter)
+        public async Task<PagedResult<IEnumerable<ActionDto>>> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter)
         {
 
             var limit = filter.PageSize;
@@ -49,18 +48,19 @@ namespace Template.Application.Services.Lookups.Action
 
             var data = Mapper.Map<IEnumerable<Domain.Entities.Lookup.Action>, IEnumerable<ActionDto>>(query.Item2);
 
-            return new DataPaging(filter.PageNumber, filter.PageSize, query.Item1, data, status: HttpStatusCode.OK, MessagesConstants.Success);
+            return PagedResult<IEnumerable<ActionDto>>.Success(data, filter.PageNumber, filter.PageSize, query.Item1, MessagesConstants.Success);
 
         }
 
-        public async Task<IFinalResult> DeleteRangeAsync(List<int> ids)
+        public async Task<Result> DeleteRangeAsync(List<int> ids)
         {
             var rows = await UnitOfWork.Repository.RemoveBulkAsync(x => ids.Contains(x.Id));
+
             if (rows > 0)
             {
-                return new ResponseResult().PostResult(result: true, status: HttpStatusCode.OK, message: MessagesConstants.DeleteSuccess);
+                return Result.Success(MessagesConstants.DeleteSuccess);
             }
-            return new ResponseResult().PostResult(result: false, status: HttpStatusCode.BadRequest, message: MessagesConstants.DeleteError);
+            return Result.Failure(MessagesConstants.DeleteError);
         }
 
         static Expression<Func<Domain.Entities.Lookup.Action, bool>> PredicateBuilderFunction(ActionFilter filter)

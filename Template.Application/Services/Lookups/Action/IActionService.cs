@@ -10,10 +10,10 @@ namespace Template.Application.Services.Lookups.Action
 {
     public interface IActionService : IBaseService<Domain.Entities.Lookup.Action, AddActionDto , EditActionDto , ActionDto , int , int?>
     {
-        Task<DataPaging> GetAllPagedAsync(BaseParam<ActionFilter> filter);
+        Task<PagedResult<IEnumerable<ActionDto>>> GetAllPagedAsync(BaseParam<ActionFilter> filter);
 
-        Task<DataPaging> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter);
+        Task<PagedResult<IEnumerable<ActionDto>>> GetDropDownAsync(BaseParam<SearchCriteriaFilter> filter);
 
-        Task<IFinalResult> DeleteRangeAsync(List<int> ids);
+        Task<Result> DeleteRangeAsync(List<int> ids);
     }
 }

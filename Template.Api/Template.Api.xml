@@ -42,7 +42,7 @@
         </member>
         <member name="M:Template.Api.Controllers.V1.Business.FilesController.DownloadWithAppCodeAsync(System.Guid,System.String)">
             <summary>
-            Download File With App Code From  Token 
+            Download File With App Code From Token 
             </summary>
             <param name="id"></param>
             <param name="token"></param>
@@ -168,7 +168,6 @@
             <summary>
             Soft Remove by id
             </summary>
-            <param name="id">PK</param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Identity.PermissionsController.DeleteRangeAsync(System.Collections.Generic.List{System.Int32})">
@@ -269,17 +268,19 @@
             <summary>
             Get By id
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.ActionsController.GetEditAsync(System.Int32)">
             <summary>
             Get By id for edit 
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.ActionsController.GetAllAsync">
             <summary>
-            Get All Categories
+            Get All Actions
             </summary>
             <returns></returns>
         </member>
@@ -346,12 +347,14 @@
             <summary>
             Get By id
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.CategoriesController.GetEditAsync(System.Int32)">
             <summary>
             Get By id for edit 
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.CategoriesController.GetAllAsync">
@@ -423,17 +426,19 @@
             <summary>
             Get By id
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.StatusesController.GetEditAsync(System.Int32)">
             <summary>
             Get By id for edit 
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V1.Lookup.StatusesController.GetAllAsync">
             <summary>
-            Get All Categories
+            Get All Statuses
             </summary>
             <returns></returns>
         </member>
@@ -512,7 +517,7 @@
         </member>
         <member name="M:Template.Api.Controllers.V2.Business.FilesController.DownloadWithAppCodeAsync(System.Guid,System.String)">
             <summary>
-            Download File With App Code From  Token 
+            Download File With App Code From Token 
             </summary>
             <param name="id"></param>
             <param name="token"></param>
@@ -725,17 +730,19 @@
             <summary>
             Get By id 
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.ActionsController.GetEditAsync(System.Int32)">
             <summary>
             Get By id for edit 
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.ActionsController.GetAllAsync">
             <summary>
-            Get All Categories
+            Get All Actions
             </summary>
             <returns></returns>
         </member>
@@ -795,12 +802,14 @@
             <summary>
             Get By id
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.CategoriesController.GetEditAsync(System.Int32)">
             <summary>
             Get By id for edit 
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.CategoriesController.GetAllAsync">
@@ -865,17 +874,19 @@
             <summary>
             Get By id
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.StatusesController.GetEditAsync(System.Int32)">
             <summary>
             Get By id for edit 
             </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Template.Api.Controllers.V2.Lookup.StatusesController.GetAllAsync">
             <summary>
-            Get All Categories
+            Get All Statuses
             </summary>
             <returns></returns>
         </member>
