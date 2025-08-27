@@ -53,4 +53,4 @@ Clean Architecture For .NET 9 Web Api
 - try login using Username: Admin ; Password:123456
 
 # Releases
-- current release version is 2.1.0
+- current release version is 9.1.0
