@@ -1,14 +1,74 @@
 # .NET 9 Clean Architecture
 Clean Architecture For .NET 9 Web Api
 
-# Layers
+## Architecture Overview
+
+This project follows the Clean Architecture principles, which emphasize separation of concerns, dependency inversion, and maintainability. The architecture is divided into several layers, each with distinct responsibilities, ensuring that the core business logic remains independent of external frameworks and technologies.
+
+### Layers
+
 ![layers](https://github.com/mhmoudalaskalany/Images/raw/main/clean_architecture_images/CleanArchitecture.png)
-- Web Api Layer 
-- Application Layer (Business Logic)
-- Common Layer  (Abstraction Layer Between (High Level Layer) Application Layer And (Low Level Layer) Infrastructure)
-- Domain Layers (Domain Models)
-- Infrastructure Layer (Data Access Layer)
-- Integration Layer (External Third Parties Integration)
+
+- **Web Api Layer** (Template.Api)
+  - Handles HTTP requests and responses
+  - Contains controllers, middleware, and API versioning
+  - Responsible for routing, authentication, and authorization
+- **Application Layer** (Template.Application)
+  - Contains business logic and application services
+  - Implements use cases and orchestrates domain objects
+  - Includes services like ActionService for handling lookup operations
+- **Common Layer** (Template.Common)
+  - Provides shared utilities, DTOs, and abstractions
+  - Acts as a bridge between high-level (Application) and low-level (Infrastructure) layers
+  - Includes caching, configurations, and common helpers
+- **Domain Layer** (Template.Domain)
+  - Defines core business entities and domain models
+  - Contains business rules, enums, and constants
+  - Independent of any external frameworks
+- **Infrastructure Layer** (Template.Infrastructure)
+  - Handles data access and external integrations
+  - Implements repositories, unit of work, and database migrations
+  - Manages database context and entity configurations
+- **Integration Layer** (Template.Integration)
+  - Manages external third-party services and integrations
+  - Includes cache and file repositories for external data sources
+
+### Key Principles Applied
+
+- **Dependency Inversion**: Higher-level modules do not depend on lower-level modules; both depend on abstractions
+- **Single Responsibility**: Each layer and class has a single reason to change
+- **SOLID Principles**: Applied throughout the codebase for better design
+- **Generic Repository and Unit of Work**: For consistent data access patterns
+
+## Request Flow Diagram
+
+The following diagram illustrates the flow of a typical request using the ActionService as an example. When a client sends a request to retrieve actions (e.g., via a GET endpoint), the flow follows these steps:
+
+```mermaid
+flowchart TD
+    A[Client Request] --> B[API Controller<br/>Template.Api/Controllers]
+    B --> C[ActionService<br/>Template.Application/Services/Lookups/Action]
+    C --> D[UnitOfWork.Repository<br/>Template.Infrastructure/Repository]
+    D --> E[Domain Entities<br/>Template.Domain/Entities]
+    E --> F[Database]
+    F --> E
+    E --> D
+    D --> C
+    C --> G[AutoMapper<br/>Maps to DTOs]
+    G --> B
+    B --> H[Response to Client]
+```
+
+1. **Client Request**: The request arrives at the API layer
+2. **API Controller**: Routes the request to the appropriate controller method
+3. **Application Service**: ActionService handles the business logic, applying filters and pagination
+4. **Repository**: Uses the repository pattern to query the database
+5. **Domain Entities**: Core business objects are retrieved or manipulated
+6. **Database Interaction**: Data is fetched from the underlying database
+7. **Mapping**: Results are mapped to DTOs using AutoMapper
+8. **Response**: The formatted response is sent back to the client
+
+This flow ensures separation of concerns, with each layer focusing on its specific responsibility while maintaining loose coupling.
 
 # Features
 
