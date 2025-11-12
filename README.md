@@ -70,6 +70,31 @@ flowchart TD
 
 This flow ensures separation of concerns, with each layer focusing on its specific responsibility while maintaining loose coupling.
 
+## Integration Flow Diagram
+
+The following diagram illustrates how the Integration layer can be injected into the Application layer to integrate with external services for fetching data. For example, the ActionService might need to retrieve cached data or files from external sources, using dependency injection of abstractions defined in the Common layer.
+
+```mermaid
+flowchart TD
+    A[Application Service<br/>Template.Application/Services/Lookups/Action] --> B[Interface Abstraction<br/>Template.Common/Services]
+    B --> C[Integration Implementation<br/>Template.Integration/CacheRepository or FileRepository]
+    C --> D[External Service<br/>Redis Cache / File System / Third-Party API]
+    D --> C
+    C --> B
+    B --> A
+    A --> E[Process Data<br/>Combine with Domain Logic]
+    E --> F[Return Result]
+```
+
+1. **Application Service**: ActionService requires external data (e.g., cached actions or files)
+2. **Interface Abstraction**: Calls an interface defined in the Common layer (e.g., ICacheRepository)
+3. **Integration Implementation**: The concrete implementation in the Integration layer handles the external interaction
+4. **External Service**: Fetches data from Redis, file system, or third-party APIs
+5. **Data Processing**: The retrieved data is processed and combined with domain logic
+6. **Result**: The integrated data is returned for use in the application service
+
+This pattern allows the Application layer to remain decoupled from specific external technologies, adhering to Clean Architecture principles.
+
 # Features
 
 - Generic crud operations
