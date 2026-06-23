@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Asp.Versioning.ApiExplorer;
-using FluentScheduler;
 using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,7 +12,6 @@ using Microsoft.FeatureManagement;
 using Serilog;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Template.Api.Authorization;
-using Template.Application.Services.BackgroundJobs.Jobs;
 using Template.Common.FeatureFlags;
 using Template.Domain;
 using Template.Infrastructure.Context;
@@ -39,7 +37,6 @@ namespace Template.Api.Extensions
             app.UseAuthentication();
             app.UseAuthorization();
             app.AddLocalization();
-            app.UseFluentScheduler(configuration);
             app.SwaggerConfig(provider);
             app.UseHangFire();
             app.UseHealthChecks("/probe");
@@ -116,17 +113,7 @@ namespace Template.Api.Extensions
             });
         }
 
-        /// <summary>
-        /// User Fluent Scheduler
-        /// </summary>
-        public static void UseFluentScheduler(this IApplicationBuilder app, IConfiguration configuration)
-        {
-            var env = configuration["Environment"];
-            if (env == Environment.Development)
-            {
-                JobManager.Initialize(new MyRegistry());
-            }
-        }
+
 
         /// <summary>
         /// Add Hang fire

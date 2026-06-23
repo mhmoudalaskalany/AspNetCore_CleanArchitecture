@@ -20,7 +20,6 @@ using Template.Integration.CacheRepository;
 using Template.Integration.FileRepository;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using Microsoft.OpenApi.Models;
 using System.IO;
 using System;
 using Microsoft.AspNetCore.Routing;
@@ -28,6 +27,7 @@ using Template.Api.Extensions.Swagger.Headers;
 using Template.Api.Extensions.Swagger.Options;
 using Hangfire;
 using Microsoft.FeatureManagement;
+using Microsoft.OpenApi;
 using Template.Common.FeatureFlags;
 
 namespace Template.Api.Extensions
@@ -158,16 +158,8 @@ namespace Template.Api.Extensions
                 var security = new OpenApiSecurityRequirement
                         {
                             {
-                                new OpenApiSecurityScheme
-                                {
-                                    Reference = new OpenApiReference
-                                    {
-                                        Type = ReferenceType.SecurityScheme,
-                                        Id = "Bearer"
-                                    }
-                                },
+                                new OpenApiSecuritySchemeReference("Bearer"),
                                 []
-
                             }
                         };
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -179,7 +171,7 @@ namespace Template.Api.Extensions
                     In = ParameterLocation.Header,
                     Description = "JWT Authorization header using the Bearer scheme."
                 });
-                options.AddSecurityRequirement(security);
+                options.AddSecurityRequirement(_ => security);
                 options.OperationFilter<LanguageHeader>();
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
