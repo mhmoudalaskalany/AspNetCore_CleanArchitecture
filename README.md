@@ -105,7 +105,6 @@ This pattern allows the Application layer to remain decoupled from specific exte
 - Redis Caching
 - Audit Trails
 - Logging Using Serilog To Sql Server Database
-- Fluent Scheduler (For Background Tasks)
 - Swagger Documentation
 - JWT Authentication
 - Policy Based Authorization

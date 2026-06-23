@@ -1036,11 +1036,6 @@
             User Swagger
             </summary>
         </member>
-        <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.UseFluentScheduler(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            User Fluent Scheduler
-            </summary>
-        </member>
         <member name="M:Template.Api.Extensions.ConfigureMiddlewareExtension.UseHangFire(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Add Hang fire
@@ -1051,7 +1046,7 @@
             Language Header
             </summary>
         </member>
-        <member name="M:Template.Api.Extensions.Swagger.Headers.LanguageHeader.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+        <member name="M:Template.Api.Extensions.Swagger.Headers.LanguageHeader.Apply(Microsoft.OpenApi.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
             <summary>
             Apply
             </summary>
