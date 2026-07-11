@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -9,90 +10,70 @@ namespace Template.Common.Caching.Redis
 {
     public static class RedisCacheHelper
     {
-        public static IDatabase Database { get; set; }
-        public static bool Set(string key, object value)
+        // one reused ConnectionMultiplexer (StackExchange.Redis is built to be shared, never reconnected per call) —
+        // this was the R1 leak. PublicationOnly so a connect failure isn't cached: we reuse on success, retry on outage.
+        // Move to a DI-registered IConnectionMultiplexer singleton if this helper ever needs mocking/deterministic disposal.
+        private static readonly Lazy<IConfigurationRoot> Configuration =
+            new(AppSettingsConfigurations.ReadConfigurationFromAppSettings);
+
+        private static readonly Lazy<ConnectionMultiplexer> Multiplexer =
+            new(() => ConnectionMultiplexer.Connect(Configuration.Value.GetSection("RedisConfig")["StackExchangeConnection"]),
+                LazyThreadSafetyMode.PublicationOnly);
+
+        public static bool Set(string key, object value, string databaseIdKey = null)
         {
-            if (Database == null)
-            {
-                Database = GetDatabase();
-            }
-            Database.StringSet(key, JsonConvert.SerializeObject(value));
+            GetDatabase(databaseIdKey).StringSet(key, JsonConvert.SerializeObject(value));
             return true;
         }
 
-        public static void Set(string key, object value, int time)
+        public static void Set(string key, object value, int time, string databaseIdKey = null)
         {
-
-            if (Database == null)
-            {
-                Database = GetDatabase();
-            }
             var timeInSeconds = TimeSpan.FromHours(time);
-            Database.StringSet(key, JsonConvert.SerializeObject(value), timeInSeconds);
+            GetDatabase(databaseIdKey).StringSet(key, JsonConvert.SerializeObject(value), timeInSeconds);
         }
 
-        public static T GetT<T>(string key)
+        public static T GetT<T>(string key, string databaseIdKey = null)
         {
-            if (Database == null)
-            {
-                Database = GetDatabase();
-            }
-            var result = Database.StringGet(key);
+            var result = GetDatabase(databaseIdKey).StringGet(key);
             if (result.IsNullOrEmpty)
                 return default(T);
             var serialized = JsonConvert.DeserializeObject<T>(result);
             return serialized;
         }
-        public  static async Task<HashEntry[]> GetAllT(string hashKey)
+
+        public static async Task<HashEntry[]> GetAllT(string hashKey, string databaseIdKey = null)
         {
-            if (Database == null)
-            {
-                Database = GetDatabase();
-            }
-            var result = await Database.HashGetAllAsync("Employees");
-            if (result != null)
-            {
-                return result;
-            }
-            return new HashEntry[0];
+            var result = await GetDatabase(databaseIdKey).HashGetAllAsync("Employees");
+            return result ?? new HashEntry[0];
         }
-        public static bool Delete(string key)
+
+        public static bool Delete(string key, string databaseIdKey = null)
         {
-            if (Database == null)
-            {
-                Database = GetDatabase();
-            }
-            var result = Database.KeyDelete(key);
-            return result;
+            return GetDatabase(databaseIdKey).KeyDelete(key);
         }
-        public static T Refresh<T>(string key, object value)
+
+        public static T Refresh<T>(string key, object value, string databaseIdKey = null)
         {
-            if (Database == null)
-            {
-                Database = GetDatabase();
-            }
-            Database.KeyDelete(key);
+            var database = GetDatabase(databaseIdKey);
+            database.KeyDelete(key);
             var timeInSeconds = TimeSpan.FromHours(20);
-            Database.StringSet(key, JsonConvert.SerializeObject(value), timeInSeconds);
-            var result = Database.StringGet(key);
+            database.StringSet(key, JsonConvert.SerializeObject(value), timeInSeconds);
+            var result = database.StringGet(key);
             var serialized = JsonConvert.DeserializeObject<T>(result);
             return serialized;
         }
 
-
-
-        public static IDatabase GetDatabase()
+        public static IDatabase GetDatabase(string databaseIdKey = null)
         {
-            IConfigurationRoot root = AppSettingsConfigurations.ReadConfigurationFromAppSettings();
-            var redisConfig = root.GetSection("RedisConfig");
-            var connection = redisConfig["StackExchangeConnection"];
-            //IDatabase DatabaseReturn = null;
-            string connectionString = connection;
-            var connectionMultiplexer = ConnectionMultiplexer.Connect(connectionString);
-            if (connectionMultiplexer.IsConnected)
-                Database = connectionMultiplexer.GetDatabase();
+            var databaseId = 0;
+            if (!string.IsNullOrEmpty(databaseIdKey))
+            {
+                databaseId = Convert.ToInt32(Configuration.Value.GetSection("RedisConfig")[databaseIdKey]);
+            }
 
-            return Database;
+            // GetDatabase(int) is a lightweight handle over the shared multiplexer — safe to resolve per call,
+            // and this removes the old cross-thread race on the shared static Database field.
+            return Multiplexer.Value.GetDatabase(databaseId);
         }
     }
 }
