@@ -12,15 +12,15 @@ using Template.Infrastructure.Context;
 namespace Template.Infrastructure.Migrations
 {
     [DbContext(typeof(TemplateDbContext))]
-    [Migration("20231109054501_AddSeedDataForActionAndStatus")]
-    partial class AddSeedDataForActionAndStatus
+    [Migration("20260624050706_AddInitialModels")]
+    partial class AddInitialModels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.13")
+                .HasAnnotation("ProductVersion", "10.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -298,9 +298,9 @@ namespace Template.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             NameAr = "مدير",
                             NameEn = "Admin"
                         });
@@ -361,13 +361,13 @@ namespace Template.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("abcc43c2-f7b8-4d70-8c1e-81bc61cb4518"),
-                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "Admin@admin.com",
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             NameAr = "مدير",
                             NameEn = "Admin",
-                            Password = "ALcjzHUwEYmUesf3ZKrrmR9HZ8j+R/59i6sn6atBvRKbhpqtUhwiZYgm8/vULDb4Tg==",
+                            Password = "AAECAwQFBgcICQoLDA0ODxBm+kcteBa6pyg4kYa1uowBD4JB+xTV6aIQGSHiIlVejQ==",
                             Phone = "01016670280",
                             RoleId = 1,
                             UserName = "admin"

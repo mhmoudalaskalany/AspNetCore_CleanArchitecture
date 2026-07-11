@@ -168,6 +168,8 @@ namespace Template.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    EntityName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CssClass = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedById = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -217,9 +219,9 @@ namespace Template.Infrastructure.Migrations
                 columns: new[] { "Id", "Code", "CreatedById", "CreatedDate", "IsDeleted", "ModifiedById", "ModifiedDate", "NameAr", "NameEn" },
                 values: new object[,]
                 {
-                    { 1, "APPROVE", null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "موافقة", "Approve" },
-                    { 2, "REJECT", null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "رفض", "Reject" },
-                    { 3, "CLOSE", null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "إغلاق", "Close" }
+                    { 1, "ADD", "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "إضافة", "Add" },
+                    { 2, "APPROVE", "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "موافقة", "Approve" },
+                    { 3, "REJECT", "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "رفض", "Reject" }
                 });
 
             migrationBuilder.InsertData(
@@ -227,31 +229,33 @@ namespace Template.Infrastructure.Migrations
                 columns: new[] { "Id", "Code", "CreatedById", "CreatedDate", "IsDeleted", "ModifiedById", "ModifiedDate", "NameAr", "NameEn" },
                 values: new object[,]
                 {
-                    { 1, null, "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2023, 2, 19, 2, 54, 24, 266, DateTimeKind.Local).AddTicks(2496), "اضافة", "Add" },
-                    { 2, null, "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2023, 2, 19, 2, 54, 24, 267, DateTimeKind.Local).AddTicks(5203), "تعديل", "Edit" },
-                    { 3, null, "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2023, 2, 19, 2, 54, 24, 267, DateTimeKind.Local).AddTicks(5326), "عرض", "View" },
-                    { 4, null, "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2023, 2, 19, 2, 54, 24, 267, DateTimeKind.Local).AddTicks(5365), "حذف", "Delete" }
+                    { 1, "ADD", "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "اضافة", "Add" },
+                    { 2, "EDIT", "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "تعديل", "Edit" },
+                    { 3, "VIEW", "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "عرض", "View" },
+                    { 4, "DELETE", "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "حذف", "Delete" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "CreatedById", "CreatedDate", "IsDeleted", "ModifiedById", "ModifiedDate", "NameAr", "NameEn" },
-                values: new object[] { 1, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "مدير", "Admin" });
+                values: new object[] { 1, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "مدير", "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Statuses",
-                columns: new[] { "Id", "Code", "CreatedById", "CreatedDate", "IsDeleted", "ModifiedById", "ModifiedDate", "NameAr", "NameEn" },
+                columns: new[] { "Id", "Code", "CreatedById", "CreatedDate", "CssClass", "EntityName", "IsDeleted", "ModifiedById", "ModifiedDate", "NameAr", "NameEn" },
                 values: new object[,]
                 {
-                    { 1, "ACTIVE", null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "فعال", "Active" },
-                    { 2, "IN-ACTIVE", null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "غير فعال", "InActive" },
-                    { 3, "SUSPENDED", null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "موقوف", "Suspended" }
+                    { 1, "NEW", "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "status-success", null, false, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "جديدة", "New" },
+                    { 2, "PENDING", "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "status-info", null, false, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "قيد الإنتظار", "Pending" },
+                    { 3, "CLOSED", "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "status-warning", null, false, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "مغلقة", "Closed" },
+                    { 4, "COMPLETED", "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "status-warning", null, false, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "مكتملة", "Completed" },
+                    { 5, "REJECTED", "1", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "status-warning", null, false, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "مرفوض", "Rejected" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedById", "CreatedDate", "Email", "IsDeleted", "ModifiedById", "ModifiedDate", "NameAr", "NameEn", "NationalId", "Password", "Phone", "RoleId", "UserName" },
-                values: new object[] { new Guid("abcc43c2-f7b8-4d70-8c1e-81bc61cb4518"), null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin@admin.com", false, null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "مدير", "Admin", null, "AHSRqviUhVnsr5xRcMvJP8IVTZ3JpUbVAsiuDeNs9XeRM9C7HyVARKMLVXKrNB2H+Q==", "01016670280", 1, "admin" });
+                values: new object[] { new Guid("abcc43c2-f7b8-4d70-8c1e-81bc61cb4518"), null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Admin@admin.com", false, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "مدير", "Admin", null, "AAECAwQFBgcICQoLDA0ODxBm+kcteBa6pyg4kYa1uowBD4JB+xTV6aIQGSHiIlVejQ==", "01016670280", 1, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Actions_Code",

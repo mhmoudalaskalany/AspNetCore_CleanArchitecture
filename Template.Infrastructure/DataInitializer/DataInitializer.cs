@@ -10,7 +10,10 @@ namespace Template.Infrastructure.DataInitializer
 {
     public class DataInitializer : IDataInitializer
     {
-
+        private static readonly DateTime FixedDate = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        // PBKDF2-SHA256 hash of "123456" with a fixed salt. Hardcoded (not CryptoHasher.HashPassword)
+        // because that call uses a random salt, which makes the EF model change every build.
+        private const string AdminPasswordHash = "AAECAwQFBgcICQoLDA0ODxBm+kcteBa6pyg4kYa1uowBD4JB+xTV6aIQGSHiIlVejQ==";
         public IEnumerable<Role> SeedRoles()
         {
             var roleList = new List<Role>();
@@ -21,8 +24,8 @@ namespace Template.Infrastructure.DataInitializer
                     Id = 1,
                     NameEn = "Admin",
                     NameAr = "مدير",
-                    CreatedDate = new DateTime(2021, 1, 1),
-                    ModifiedDate = new DateTime(2021, 1, 1)
+                    CreatedDate = FixedDate,
+                    ModifiedDate = FixedDate
                 }
 
             });
@@ -44,10 +47,10 @@ namespace Template.Infrastructure.DataInitializer
                     Phone = "01016670280",
                     IsDeleted = false,
                     UserName = "admin",
-                    Password = CryptoHasher.HashPassword("123456"),
+                    Password = AdminPasswordHash,
                     RoleId = 1,
-                    CreatedDate = new DateTime(2021, 1, 1),
-                    ModifiedDate = new DateTime(2021, 1, 1)
+                    CreatedDate =  FixedDate,
+                    ModifiedDate = FixedDate
                 }
 
             });
